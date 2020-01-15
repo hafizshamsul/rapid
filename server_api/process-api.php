@@ -44,5 +44,16 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='update'){
+        $query = mysqli_query($mysqli, "UPDATE master_customer SET
+        name_customer='$postjson[name_customer]',
+        desc_customer='$postjson[desc_customer]' WHERE customer_id='$postjson[customer_id]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+        else $result = json_encode(array('success'=>false, 'result'=>'error'));
+        
+        echo $result;
+    
+    }
 
 ?>

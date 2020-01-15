@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Add Customer</ion-title>
-    <ion-buttons slot="primary" (click)="addCustomer()">
+    <ion-buttons slot="primary">
       <ion-back-button text="Back" icon="" color="tertiary" fill="outline"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
@@ -18,5 +18,6 @@
     <ion-textarea [(ngModel)]="desc_customer"></ion-textarea>
   </ion-item>
 
-  <ion-button expand="block" padding color="primary" (click)="createdProcess()">Submit</ion-button>
+  <ion-button expand="block" padding color="primary" *ngIf="!id" (click)="createdProcess()">Submit</ion-button>
+  <ion-button expand="block" padding color="primary" *ngIf="id>=1" (click)="updatedProcess()">Update</ion-button>
 </ion-content>
