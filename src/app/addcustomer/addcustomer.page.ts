@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-addcustomer',
@@ -10,10 +10,17 @@ import { Router } from '@angular/router';
 export class AddcustomerPage implements OnInit {
   name_customer: string = "";
   desc_customer: string = "";
+  id: number;
 
-  constructor(private postprovider: PostProvider, private router: Router) { }
+  constructor(private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.actRoute.params.subscribe((data: any) =>{
+      this.id = data.id;
+      this.name_customer = data.name;
+      this.desc_customer = data.desc;
+      console.log(data);
+    });
   }
 
   createdProcess(){
@@ -29,7 +36,21 @@ export class AddcustomerPage implements OnInit {
         console.log('OK');
       });
     });
+  }
 
-    
+  updatedProcess(){
+    return new Promise(resolve => {
+      let body = {
+        action: 'update',
+        customer_id: this.id,
+        name_customer: this.name_customer,
+        desc_customer: this.desc_customer,
+      };
+
+      this.postprovider.postData(body, 'process-api.php').subscribe(data=>{
+        this.router.navigate(['/customer']);
+        console.log('OK');
+      });
+    });
   }
 }

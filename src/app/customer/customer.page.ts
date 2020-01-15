@@ -27,6 +27,14 @@ export class CustomerPage implements OnInit {
     this.router.navigate(['/addcustomer']);
   }
 
+  updateCustomer(id, name, desc){
+    this.router.navigate(['/addcustomer/'+id+'/'+name+'/'+desc]);
+  }
+
+  delCustomer(){
+
+  }
+
   loadCustomer(){
     return new Promise(resolve => {
       let body = {
