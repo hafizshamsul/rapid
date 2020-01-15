@@ -55,5 +55,14 @@
         echo $result;
     
     }
+    elseif($postjson['action']=='delete'){
+        $query = mysqli_query($mysqli, "DELETE FROM master_customer WHERE customer_id='$postjson[customer_id]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+        else $result = json_encode(array('success'=>false, 'result'=>'error'));
+        
+        echo $result;
+    
+    }
 
 ?>
