@@ -31,8 +31,33 @@ export class CustomerPage implements OnInit {
     this.router.navigate(['/addcustomer/'+id+'/'+name+'/'+desc]);
   }
 
-  delCustomer(){
+  showCustomer(id, name, desc){
+    this.router.navigate(['/showcustomer/'+id+'/'+name+'/'+desc]);
+  }
 
+  doRefresh(event){
+    setTimeout(()=>{
+      this.ionViewWillEnter();
+      event.target.complete();
+    }, 140);
+  }
+
+  loadData(event:any){
+    this.start += this.limit;
+    this.loadCustomer().then(()=>{
+      event.target.complete();
+    });
+  }
+
+  delCustomer(id){
+    let body = {
+      action : 'delete',
+      customer_id: id
+    };
+
+    this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+      this.ionViewWillEnter();
+    });
   }
 
   loadCustomer(){
