@@ -35,6 +35,10 @@ export class CustomerPage implements OnInit {
     this.router.navigate(['/showcustomer/'+id+'/'+name+'/'+desc]);
   }
 
+  toHome(){
+    this.router.navigate(['/homepage']);
+  }
+
   doRefresh(event){
     setTimeout(()=>{
       this.ionViewWillEnter();

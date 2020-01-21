@@ -1,5 +1,5 @@
 <?php
-    define('DB_NAME', 'db_crudionic');
+    define('DB_NAME', 'db_rapid');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
     define('DB_HOST', 'localhost');
