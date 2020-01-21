@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PostProvider {
-    server: string = "http://192.168.0.137/tutorial/server_api/";
+    server: string = "http://192.168.0.137/rapidkl/rapid/server_api/";
 
     constructor(public http: Http){
 

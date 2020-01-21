@@ -75,3 +75,87 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+#ion-content-login{
+  //--background: linear-gradient( #a22ffe, #4d51f5);
+  //--background: rgb(160,66,249);
+  //--background: rgb(29, 161, 242);
+  --background: white;
+
+  /*@media (max-width: 576px) {
+  --background: rgb(29, 161, 242);
+  }*/
+}
+
+#div-login{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 100;
+  color: rgb(136, 136, 136);
+  text-align: center;
+}
+
+h1{
+  color: rgb(62, 62, 62);
+}
+
+#img-login{
+  height:230px;
+  margin-top: 0.5em;
+  margin-bottom: 2.5em;
+}
+
+#btnGetStarted{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color: white;
+  --background: rgb(51,175,133);
+  --border-radius: 0.6em;
+  //--box-shadow: 0 20px 60px 0;
+  height: 54px;
+  width: 30%;
+  display: block;
+  margin: 0 auto 0 auto;
+
+  @media (max-width: 576px) {
+    width: 87%;
+  }
+}
+
+#btnLogin{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color:  rgb(142, 142, 142);
+  --background: rgb(255,255,255);
+  --border-radius: 0.6em;
+  //--box-shadow: 0 20px 60px 0;
+  height: 54px;
+  width: 30%;
+  display: block;
+  margin: 10px auto 10px auto;
+  --border-color: rgb(62, 62, 62);
+  --border-width: 10px solid;
+
+  @media (max-width: 576px) {
+    width: 87%;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+  text-align: center;
+}
+
+div.item {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: 100vw;
+}
+
+.caption {
+  display: block;
+}

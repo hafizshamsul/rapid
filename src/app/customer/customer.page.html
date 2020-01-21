@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>Data Customer</ion-title>
+    <ion-title text-center>Stations</ion-title>
     <ion-buttons slot="primary" (click)="addCustomer()">
       <ion-button color="tertiary">
         <ion-icon text-center name="add"></ion-icon>
@@ -41,4 +41,18 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
+  <ion-tabs>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="Home" (click)="toHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="contact">
+        <ion-icon name="call"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="settings">
+        <ion-icon name="settings"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
