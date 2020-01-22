@@ -8,8 +8,10 @@
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  //--ion-color-primary-shade: #3171e0;
+  --ion-color-primary-shade: rgb(96, 190, 159);
+  --ion-color-primary-tint: rgb(96, 190, 159);
+  //--ion-color-primary-tint: #4c8dff;
 
   /** secondary **/
   --ion-color-secondary: #0cd1e8;
@@ -121,6 +123,23 @@ h1{
   }
 }
 
+#btnGetStarted:hover{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color: white;
+  --background: rgb(96, 190, 159);
+  --border-radius: 0.6em;
+  //--box-shadow: 0 20px 60px 0;
+  height: 54px;
+  width: 30%;
+  display: block;
+  margin: 0 auto 0 auto;
+
+  @media (max-width: 576px) {
+    width: 87%;
+  }
+}
+
 #btnLogin{
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
@@ -134,11 +153,35 @@ h1{
   margin: 10px auto 10px auto;
   --border-color: rgb(62, 62, 62);
   --border-width: 10px solid;
+  --box-shadow: none;
+
+  @media (max-width: 576px) {
+    width: 87%;
+  }
+
+}
+
+#btnLogin:hover{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color:  rgb(102, 102, 102);
+  --background: rgb(255,255,255);
+  --border-radius: 0.6em;
+  //--box-shadow: 0 20px 60px 0;
+  height: 54px;
+  width: 30%;
+  display: block;
+  margin: 10px auto 10px auto;
+  --border-color: rgb(62, 62, 62);
+  --border-width: 10px solid;
+  --box-shadow: none;
 
   @media (max-width: 576px) {
     width: 87%;
   }
 }
+
+
 
 .grid-container {
   display: grid;
@@ -158,4 +201,37 @@ div.item {
 
 .caption {
   display: block;
+}
+
+#input-loginform{
+  background: rgb(244,246,249);
+  border-radius: 0.6em;
+  height: 54px;
+  width: 30%;
+  display: block;
+  margin: 12px auto 12px auto;
+  text-align: left;
+  --padding-top: 17px;
+  //--padding-bottom: 17px;
+  --padding-start: 21px;
+  --padding-end: 21px;
+  color: rgb(70,70,70) !important;
+  font-weight: 400;
+
+  @media (max-width: 576px) {
+    width: 87%;
+  }   
+}
+
+#input-loginform>::placeholder{
+  color: rgb(80,80,80) !important;
+  font-weight: 300;
+}
+
+#icon-back{
+  margin: 18px 0 0 18px;
+
+  @media (max-width: 576px) {
+    margin: 28px 0 0 6px;
+  }
 }
