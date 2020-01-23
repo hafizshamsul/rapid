@@ -112,7 +112,6 @@ h1{
   --color: white;
   --background: rgb(51,175,133);
   --border-radius: 0.6em;
-  //--box-shadow: 0 20px 60px 0;
   height: 54px;
   width: 30%;
   display: block;
@@ -129,7 +128,6 @@ h1{
   --color: white;
   --background: rgb(96, 190, 159);
   --border-radius: 0.6em;
-  //--box-shadow: 0 20px 60px 0;
   height: 54px;
   width: 30%;
   display: block;
@@ -146,7 +144,6 @@ h1{
   --color:  rgb(142, 142, 142);
   --background: rgb(255,255,255);
   --border-radius: 0.6em;
-  //--box-shadow: 0 20px 60px 0;
   height: 54px;
   width: 30%;
   display: block;
@@ -167,7 +164,6 @@ h1{
   --color:  rgb(102, 102, 102);
   --background: rgb(255,255,255);
   --border-radius: 0.6em;
-  //--box-shadow: 0 20px 60px 0;
   height: 54px;
   width: 30%;
   display: block;
@@ -182,6 +178,41 @@ h1{
 }
 
 
+#btnBack{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color:  rgb(142, 142, 142);
+  --background: rgb(255,255,255);
+  --border-radius: 0.6em;
+  height: 54px;
+  --border-color: rgb(62, 62, 62);
+  --border-width: 10px solid;
+  --box-shadow: none;
+  margin: 0px;
+
+  @media (max-width: 576px) {
+    margin-left: -8px;
+    margin-top: 16px;
+  }
+}
+
+#btnBack:hover{
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  --color:  rgb(102, 102, 102);
+  --background: rgb(255,255,255);
+  --border-radius: 0.6em;
+  height: 54px;
+  --border-color: rgb(62, 62, 62);
+  --border-width: 10px solid;
+  --box-shadow: none;
+  margin: 0px;
+
+  @media (max-width: 576px) {
+    margin-left: -8px;
+    margin-top: 16px;
+  }
+}
 
 .grid-container {
   display: grid;
@@ -235,3 +266,13 @@ div.item {
     margin: 28px 0 0 6px;
   }
 }
+
+@media (max-width: 576px) {
+    #haha {
+      visibility:hidden;
+    }
+
+    ion-menu {
+      visibility:hidden;
+    }
+  }
