@@ -17,4 +17,12 @@ export class LoginformPage implements OnInit {
   login(){
     this.router.navigate(['/login']);
   }
+
+  registerform(){
+    this.router.navigate(['/registerform']);
+  }
+
+  customer(){
+    this.router.navigate(['/customer']);
+  }
 }

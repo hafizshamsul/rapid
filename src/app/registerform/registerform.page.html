@@ -1,9 +1,32 @@
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+</head>
+
 <ion-header>
-  <ion-toolbar>
-    <ion-title>registerform</ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
+<ion-content id="ion-content-login" scrollY="false">
+  <div id="div-login">
+    <div class="item" style="text-align:left">
+      <ion-button id="btnBack" (click)="login()" color="none" style="color:rgb(80,80,80)">
+        <ion-icon id="icon-back" name="arrow-back" style="font-size:30px; padding: 0px; margin: 0px;"></ion-icon>
+      </ion-button>
+      
+    </div>
 
+    <div class="item">
+      <img id="img-login" src="assets/svg/logform.svg" style="margin-top: 4em; height: 100px; margin-bottom: 0;" />
+      <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 1.6em 1.2em">Sign Up</h1>
+      <ion-input id="input-loginform" placeholder="Enter your email"></ion-input>
+      <ion-input id="input-loginform" placeholder="Enter your password"></ion-input>
+      <ion-button id="btnGetStarted" style="text-transform: none; margin-top: 1.7em;">Create account</ion-button>
+      <ion-button id="btnLogin" (click)="loginform()" color="none" style="text-transform: none; box-shadow: none;">Already have an account? Sign In</ion-button>
+    </div>    
+  </div>
+  <div>
+    
+  </div>
 </ion-content>

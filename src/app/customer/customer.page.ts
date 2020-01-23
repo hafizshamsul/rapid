@@ -35,8 +35,16 @@ export class CustomerPage implements OnInit {
     this.router.navigate(['/showcustomer/'+id+'/'+name+'/'+desc]);
   }
 
-  toHome(){
+  home(){
     this.router.navigate(['/homepage']);
+  }
+
+  customer(){
+    this.router.navigate(['/customer']);
+  }
+
+  loginform(){
+    this.router.navigate(['/loginform']);
   }
 
   doRefresh(event){
