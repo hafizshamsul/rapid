@@ -63,41 +63,75 @@
 
   <!-- the main content -->
   <ion-router-outlet id="menu-content">
-    
 
     
     <ion-content style="--padding-top: 70px; --padding-start: 10px; --padding-end: 10px; --padding:10px">
-
-      <div *ngIf="!isSelected">
-            <h2>Select image and upload</h2>
-            <input
-              type="file"
-              (change)="selectFileToUpload($event)">
-        </div>
-
-        <div *ngIf="isSelected">
-          <button
-              ion-button
-              color="primary"
-              (click)="uploadFile()">Upload</button>
-
-              <!-- Display the selected image -->
-          <img [src]="image">
-        </div>
-
+      <ion-searchbar></ion-searchbar>
       <ion-list>
-        <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
-          <ion-item style="--padding-end: 14px">
-            <ion-label>{{customer.name_customer}}</ion-label>
-          </ion-item>
-    
-          <ion-item-options side="end">
-            <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
+        <ion-item-sliding *ngFor="let file of files">
+          <ion-item>
+            
+            <!--<div class="row">
+              <div class="column">
+                <img src="img_snow.jpg" alt="Snow" style="width:100%">
+              </div>
+              <div class="column" style="width: 60%;">
+                <p>lol</p><p>lel</p>
+              </div>
+              <div class="column">
+                <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+              </div>
+            </div>-->
+            
+               <img src="assets/svg/svg_icons/{{file.type}}" style="height: 22px; margin: 0 12px 0 4px;" />
+            <ion-label style="font-family: 'Nunito Sans', sans-serif;">
+              <p style="font-size: 16px;color:black; margin:0; padding:0; ">
+                {{file.name}}
+              </p>
+              <p style="font-size: 13px; color:rgb(100,100,100); margin:0; padding:0;">
+                {{lol}}
+              </p>
+            </ion-label>
           
-            <ion-item-option color="danger" (click)="delCustomer(customer.customer_id)">Delete</ion-item-option>
-          </ion-item-options>
+           
+          </ion-item>
         </ion-item-sliding>
       </ion-list>
+      
+      <!--
+          <a href="http://192.168.0.137/rapidkl/upload_api/uploads/1579881407292.pdf" download>Download</a>
+
+        <div *ngIf="!isSelected">
+              <h2>Select image and upload</h2>
+              <input
+                type="file"
+                (change)="selectFileToUpload($event)">
+          </div>
+
+          <div *ngIf="isSelected">
+            <button
+                ion-button
+                color="primary"
+                (click)="uploadFile()">Upload</button>
+
+            <img [src]="image">
+          </div>
+
+        <ion-list>
+          <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
+            <ion-item style="--padding-end: 14px">
+              <ion-label>{{customer.name_customer}}</ion-label>
+            </ion-item>
+      
+            <ion-item-options side="end">
+              <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
+            
+              <ion-item-option color="danger" (click)="delCustomer(customer.customer_id)">Delete</ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      -->
+      
     
       <ion-infinite-scroll (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content
