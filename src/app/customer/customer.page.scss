@@ -6,4 +6,20 @@ input[type="file"] {
     background: rgba(230, 230, 230,1);
     padding: 1em;
 }
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 33.33%;
+  }
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
  
