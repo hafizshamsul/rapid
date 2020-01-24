@@ -12,14 +12,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { PostProvider } from '../providers/post-provider';
 
+import { HttpClientModule } from '@angular/common/http';
+import { ImagesProvider } from '../providers/images/images';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
     PostProvider,
+    ImagesProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

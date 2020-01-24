@@ -64,8 +64,27 @@
   <!-- the main content -->
   <ion-router-outlet id="menu-content">
     
+
     
     <ion-content style="--padding-top: 70px; --padding-start: 10px; --padding-end: 10px; --padding:10px">
+
+      <div *ngIf="!isSelected">
+            <h2>Select image and upload</h2>
+            <input
+              type="file"
+              (change)="selectFileToUpload($event)">
+        </div>
+
+        <div *ngIf="isSelected">
+          <button
+              ion-button
+              color="primary"
+              (click)="uploadFile()">Upload</button>
+
+              <!-- Display the selected image -->
+          <img [src]="image">
+        </div>
+
       <ion-list>
         <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
           <ion-item style="--padding-end: 14px">
