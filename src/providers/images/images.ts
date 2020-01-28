@@ -42,12 +42,12 @@ export class ImagesProvider {
     return (/^(gif|pdf|jpg|jpeg|png)$/i).test(file);
   }
 
-  uploadImageSelection(file: string, mimeType: string): Observable<any> {
+  uploadImageSelection(body, file: string, mimeType: string): Observable<any> {
     let fileName: any = Date.now() + '.' + mimeType;
 
     let type = "application/json; charset=UTF-8";
     let headers: any = new Headers({'Content-Type' : type});
-    let body: any = {"action" : "add" , "name" : fileName, "file" : file, "rename" : "kehkeh.png" };
+    //let body: any = {"action" : "add" , "name" : fileName, "file" : file, "rename" : "kehkeh.png" };
     let options = new RequestOptions({headers: headers});
 
     //return this.http.post(this._REMOTE_URI, JSON.stringify(options), headers);
