@@ -8,11 +8,14 @@
 
     include "library/config.php";
 
+    $lol = file_get_contents('php://input');
+    
     $postjson = json_decode(file_get_contents('php://input'), true);
+    $lel = $postjson['action'];
     $today = date('Y-m-d');
 
     if($postjson['action'] == 'add'){
-        $query = mysqli_query($mysqli, "INSERT INTO master_customer SET name_customer = '$postjson[name_customer]', desc_customer = '$postjson[desc_customer]', created_at = '$today'");
+        $query = mysqli_query($mysqli, "INSERT INTO master_customer SET name_customer = '$postjson[name_customer]', desc_customer = '$lel', created_at = '$today'");
 
         $idcust = mysqli_insert_id($mysqli);
 
