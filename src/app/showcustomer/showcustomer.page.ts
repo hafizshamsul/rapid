@@ -9,17 +9,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ShowcustomerPage implements OnInit {
   
-  name_customer: string;
+  /*name_customer: string;
   desc_customer: string;
+  id: number;*/
+
+  //name: string;
   id: number;
 
   constructor(private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
-      this.id = data.id;
+      /*this.id = data.id;
       this.name_customer = data.name;
-      this.desc_customer = data.desc;
+      this.desc_customer = data.desc;*/
+      
+      this.id = data.id;
+      //this.name = data.name;
       console.log(data);
     });
   }

@@ -18,6 +18,10 @@ export class CustomerPage implements OnInit {
   //@ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
   
   hiks: any = [];
+  /*$.grep(this.hiks, function(n,i){
+    return n.name === 'lol';
+  });*/
+  
   customers: any = [];
   limit: number = 10;
   start: number = 0;
@@ -206,8 +210,18 @@ export class CustomerPage implements OnInit {
       alert.present();
    }
 
+   /*filter(){
+    return this.hiks.filter(item => {
+      return item.id > 84;
+    });
+   }*/
+  
+
   ionViewWillEnter(){
     this.hiks = [];
+    //this.filter();
+
+
     this.customers = [];
     this.start = 0;
     
@@ -225,6 +239,10 @@ export class CustomerPage implements OnInit {
 
   showCustomer(id, name, desc){
     this.router.navigate(['/showcustomer/'+id+'/'+name+'/'+desc]);
+  }
+
+  showFile(id){
+    this.router.navigate(['/showcustomer/'+id]);
   }
 
   home(){
@@ -288,7 +306,10 @@ export class CustomerPage implements OnInit {
         action : 'getit',
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+
         for(let hik of data.result){
+          //this.hiks = this.hiks.filter((item) => {return item.id === 84});
           this.hiks.push(hik);
         }
         resolve(true);
