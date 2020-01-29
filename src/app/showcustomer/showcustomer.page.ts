@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from 'ionic-angular';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+
 
 @Component({
   selector: 'app-showcustomer',
@@ -19,7 +21,9 @@ export class ShowcustomerPage implements OnInit {
 
   hiks: any = [];
 
-  constructor(private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
+  
+
+  constructor(private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute, private document: DocumentViewer) { }
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
@@ -32,6 +36,18 @@ export class ShowcustomerPage implements OnInit {
       console.log(data);
     });
   }
+
+  
+
+  viewdoc(){
+    const options: DocumentViewerOptions = {
+      title: 'My PDF'
+    };
+    this.document.viewDocument('http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1579881407292.pdf', 'application/pdf', options);
+  }
+
+
+
 
   ionViewWillEnter(){
     this.hiks = [];
