@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Item } from 'ionic-angular';
 
 @Component({
   selector: 'app-showcustomer',
@@ -13,8 +14,10 @@ export class ShowcustomerPage implements OnInit {
   desc_customer: string;
   id: number;*/
 
-  //name: string;
+  name: string;
   id: number;
+
+  hiks: any = [];
 
   constructor(private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
 
@@ -25,8 +28,36 @@ export class ShowcustomerPage implements OnInit {
       this.desc_customer = data.desc;*/
       
       this.id = data.id;
-      //this.name = data.name;
+      this.name = data.name;
       console.log(data);
+    });
+  }
+
+  ionViewWillEnter(){
+    this.hiks = [];
+    this.loadFile(this.id);
+  }
+
+  loadFile(id){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getit',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+
+        for(let hik of data.result){
+          this.hiks = this.hiks.filter((item) => {
+            return item.id === id
+          });
+          
+          if(hik.id == id){
+            this.hiks.push(hik);
+          }
+          
+        }
+        resolve(true);
+      });
     });
   }
 
