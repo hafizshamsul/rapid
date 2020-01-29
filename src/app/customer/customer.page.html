@@ -85,7 +85,7 @@
     
       <ion-searchbar></ion-searchbar>
       <ion-list>
-        <ion-item-sliding *ngFor="let hik of hiks">
+        <ion-item-sliding (click)="showFile(hik.id)" *ngFor="let hik of hiks">
           <ion-item>
             
             <!--<div class="row">
@@ -101,7 +101,7 @@
             </div>-->
             
             <img src="assets/svg/svg_icons/images_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
-            <ion-label style="font-family: 'Nunito Sans', sans-serif;">
+            <ion-label  style="font-family: 'Nunito Sans', sans-serif;">
               <!--
                 <a href="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}">
                 {{hik.name}}
