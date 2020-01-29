@@ -132,10 +132,10 @@ export class CustomerPage implements OnInit {
   ];
 
   selectFileToUpload(event) : void {
-    this.postprovider.handleImageSelection(event).subscribe((res) => {
+    this._IMAGES.handleImageSelection(event).subscribe((res) => {
         this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
-        if(this.postprovider.isCorrectFileType(this._SUFFIX)) {
+        if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
           this.isSelected = true;
           this.image = res;
         }
