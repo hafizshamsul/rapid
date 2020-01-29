@@ -32,7 +32,7 @@ export class CustomerPage implements OnInit {
 
   name: string = "l";
   decoded: string = "l";
-  id: number;
+  idc: number;
 
   constructor(
     //private docPicker: DocumentPicker,
@@ -42,7 +42,7 @@ export class CustomerPage implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
-      this.id = data.id;
+      this.idc = data.idc;
       this.name = data.name;
       this.decoded = data.decoded;
       console.log(data);
