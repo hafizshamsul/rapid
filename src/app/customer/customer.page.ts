@@ -63,7 +63,6 @@ export class CustomerPage implements OnInit {
         name: this.name,
         decoded: this.decoded,
       };
-
       this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
         this.router.navigate(['/customer']);
         console.log('OK');
@@ -150,15 +149,20 @@ export class CustomerPage implements OnInit {
     }
    
    uploadFile() : void {
-        let body = {
-          action: 'added',
-          name: this.name,
-          decoded: this.decoded,
-          rename: 'kehkeh.png'
-        };  
-
-        this._IMAGES.uploadImageSelection(body, this.image, this._SUFFIX).subscribe((res) => {        
+    this.name = Date.now() + '.' + this._SUFFIX;
+    let body: any = {
+      action : "add" ,
+      name : this.name,
+      file : this.image,
+      rename : "kehkeh.png"
+    };  
+    
+      this._IMAGES.uploadImageSelection(
+        body
+        //this.image, this._SUFFIX
+        ).subscribe((res) => {        
         
+
         this.displayAlert(res.message);
         //this.createdProcess();
       },
@@ -168,7 +172,7 @@ export class CustomerPage implements OnInit {
       });
    }
 
-  
+   
   /*async createdProcess(){
     return new Promise(resolve => {
       let body = {
@@ -176,7 +180,6 @@ export class CustomerPage implements OnInit {
         name: this.name,
         decoded: this.decoded,
       };
-
       this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
         this.router.navigate(['/loginform']);
         console.log('OK');
@@ -208,7 +211,6 @@ export class CustomerPage implements OnInit {
       let body = {
         action : 'getdata',
       };
-
       this._IMAGES.posting(body, 'parse-upload.php').subscribe(data => {
         for(let customer of data.result){
           this.files.push(customer);
