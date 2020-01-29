@@ -14,7 +14,6 @@
       
     </ion-content>
   </ion-menu>
-
   <ion-router-outlet main></ion-router-outlet>
 -->
 <head>
@@ -162,7 +161,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -172,14 +170,11 @@
       refreshingText="">
     </ion-refresher-content>
   </ion-refresher>
-
   <ion-list>
     <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
-
       <ion-item>
         <ion-label>{{customer.name_customer}}</ion-label>
       </ion-item>
-
       <ion-item-options side="end">
         <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
       
@@ -187,14 +182,12 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
   <ion-infinite-scroll (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="Home" (click)="toHome()">
@@ -210,4 +203,3 @@
   </ion-tabs>
 </ion-content>
 -->
-

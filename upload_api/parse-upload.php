@@ -52,12 +52,11 @@ header("Content-Type: application/json; charset=utf-8");
       }
 
       /*if($postjson['action'] == 'add'){
-
       }*/
 
       // Everything went well - inform the user :)
       if($postjson['action'] == 'add'){
-         $query = mysqli_query($mysqli, "INSERT INTO filedata SET name = '$postjson[name]', decoded = '$postjson[rename]'");
+         $query = mysqli_query($mysqli, "INSERT INTO filedata SET name = '$postjson[name]', decoded = '$postjson[file]'");
       }
       /*if($postjson['action']=='added'){
          $data = array();
@@ -69,7 +68,6 @@ header("Content-Type: application/json; charset=utf-8");
                   'decoded' => $row['decoded']
                );
          }
-
          if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
          else $result = json_encode(array('success'=>false));
          
@@ -98,3 +96,4 @@ header("Content-Type: application/json; charset=utf-8");
       echo json_encode(array('message' => 'Fail!'));
    }
 
+?>
