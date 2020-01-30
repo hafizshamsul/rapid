@@ -56,7 +56,7 @@ header("Content-Type: application/json; charset=utf-8");
 
       // Everything went well - inform the user :)
       if($postjson['action'] == 'add'){
-         $query = mysqli_query($mysqli, "INSERT INTO filedata SET name = '$postjson[name]', decoded = '$postjson[file]'");
+         $query = mysqli_query($mysqli, "INSERT INTO filedata SET name = '$postjson[name]', decoded = '$postjson[file]', type='$postjson[type]', icon='$postjson[icon]'");
       
       }
       
