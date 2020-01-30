@@ -33,7 +33,7 @@ export class ImagesProvider {
   }
 
   isCorrectFileType(file) {
-    return (/^(gif|pdf|jpg|jpeg|png)$/i).test(file);
+    return (/^(docx|doc|pptx|ppt|xlsx|xls|mdb|ai|bmp|gif|jpeg|png|psd|svg|tiff|pdf|gif|pdf|jpg|jpeg|png|txt|zip)$/i).test(file);
   }
 
   uploadImageSelection(body: any): Observable<any> {

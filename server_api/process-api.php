@@ -55,7 +55,9 @@
             $data[] = array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'decoded' => $row['decoded']
+                'decoded' => $row['decoded'],
+                'type' => $row['type'],
+                'icon' => $row['icon']
             );
         }
 
