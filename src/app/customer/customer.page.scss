@@ -23,3 +23,16 @@ input[type="file"] {
     display: table;
   }
  
+.image-cropper {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: 4px;
+}
+
+.image {
+    display: inline;
+    margin: 0 auto;
+}
