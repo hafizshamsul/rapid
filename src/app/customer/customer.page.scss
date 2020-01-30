@@ -36,3 +36,8 @@ input[type="file"] {
     display: inline;
     margin: 0 auto;
 }
+
+.hideInput{
+  position: absolute;
+  bottom: -100000000px;
+}
