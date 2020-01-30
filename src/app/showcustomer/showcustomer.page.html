@@ -7,15 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <!--
     <iframe src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1579881407292.pdf"
     style="width: 100%; height: 100%">
         <p>Your browser does not support iframes.</p>
   </iframe>
   -->
+  <ion-list>
+    <ion-item-sliding *ngFor="let hik of hiks">
+      <ion-item *ngIf="hik.icon == 'images'">
+        <img src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}" width="100%" height="100%"/>
+      </ion-item>
+      <ion-item *ngIf="hik.icon != 'images'">
+        <embed src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}" width="100%" height="100%"/>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+    
   
-
-  <embed src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1579881407292.pdf" width="100%" height="100%" />
  
 </ion-content>
