@@ -77,4 +77,29 @@ export class ShowcustomerPage implements OnInit {
     });
   }
 
+  users: any[];
+  userid: string;
+  loadUser(userid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getuser',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+
+        for(let user of data.result){
+          this.users = this.users.filter((item) => {
+            return item.id === userid
+          });
+          
+          if(user.id == userid){
+            this.hiks.push(user);
+          }
+          
+        }
+        resolve(true);
+      });
+    });
+  }
+
 }

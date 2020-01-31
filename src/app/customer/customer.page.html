@@ -38,15 +38,15 @@
             </ion-menu-toggle>
             
           </p>
-          <p style="text-align: center; margin-top: 12px;">
+          <p style="text-align: center; margin-top: 0px;">
             <ion-menu-toggle>
               <div class="image-cropper" style="width: 74px; height: 74px; display: block; margin: 0 auto;">
                 <img class="image" height="74px" width="74px" style="object-fit: cover; display: block; margin: 0 auto;" src="https://cdn0-production-images-kly.akamaized.net/RqAbEaFbTq3_lSGzyGLwUKJ7mLc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3006266/original/009046400_1577386107-Chelsea_Vs_Southampton_07.jpg">
               </div>
           </ion-menu-toggle>
           </p>
-          <p style="text-align:center;font-size: 1.05em; font-weight: 700; margin-left: 2px; margin-top:4px; color:black; font-family: 'Nunito Sans', sans-serif">
-            {{global.username}}
+          <p *ngFor="let user of users" style="text-align:center;font-size: 1.05em; font-weight: 700; margin-left: 2px; margin-top:10px; color:black; font-family: 'Nunito Sans', sans-serif">
+            {{user.username}}
           </p>
         </ion-label>
       </ion-item>
