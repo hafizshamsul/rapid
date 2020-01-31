@@ -87,6 +87,25 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='getfolder'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT * FROM folderdata ORDER BY id DESC");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'folderid' => $row['id'],
+                'foldername' => $row['name'],
+                'description' => $row['description'],
+                'users_id' => $row['users_id']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
     elseif($postjson['action']=='update'){
         $query = mysqli_query($mysqli, "UPDATE master_customer SET
         name_customer='$postjson[name_customer]',
