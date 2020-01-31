@@ -2,26 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { NavController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
-//import { IOSFilePicker } from '@ionic-native/file-picker';
-//import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 import { GlobalService } from "../..//providers/global.service";
-
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.page.html',
   styleUrls: ['./customer.page.scss'],
 })
+
 export class CustomerPage implements OnInit {
-  //@ViewChild('nav',  {static: false}) nav: NavController;
-  //@ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
-  
-  /*$.grep(this.hiks, function(n,i){
-    return n.name === 'lol';
-  });*/
   
   users: any[];
   folders: any[];
@@ -31,10 +22,6 @@ export class CustomerPage implements OnInit {
   limit: number = 10;
   start: number = 0;
   lol: String = "25 Jan 2020";
-
-  /*name_customer: string = "";
-  desc_customer: string = "";
-  id: number;*/
 
   private _SUFFIX : string;
   public image : string;
@@ -58,8 +45,6 @@ export class CustomerPage implements OnInit {
   folderdata_id: number;
   
   constructor(
-    //private docPicker: DocumentPicker,
-    //private filePicker: IOSFilePicker,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
@@ -90,19 +75,11 @@ export class CustomerPage implements OnInit {
       this.folderdata_id = data.folderdata_id;
       console.log(data);
     });
-
-    /*
-    this.actRoute.params.subscribe((data: any) =>{
-      this.id = data.id;
-      this.name_customer = data.name;
-      this.desc_customer = data.desc;
-      console.log(data);
-    });*/
   }
   
   selectFileToUpload(event) : void {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
-        this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
+      this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
       if(this._SUFFIX == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
         this._SUFFIX = 'docx';
@@ -150,19 +127,19 @@ export class CustomerPage implements OnInit {
         this._SUFFIX = 'zip';
       }
 
-        if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
-          this.isSelected = true;
-          this.image = res;
-        }
-        else {
-          this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
-        }
-      },
-      (error) => {
-        console.dir(error);
-        this.displayAlert(error.message);
-      });
-    }
+      if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
+        this.isSelected = true;
+        this.image = res;
+      }
+      else {
+        this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
+      }
+    },
+    (error) => {
+      console.dir(error);
+      this.displayAlert(error.message);
+    });
+  }
  
    uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
@@ -195,35 +172,15 @@ export class CustomerPage implements OnInit {
       rename : "kehkeh.png"
     };  
     
-      this._IMAGES.uploadImageSelection(
-        body
-        //this.image, this._SUFFIX
-        ).subscribe((res) => {        
-        
-
+      this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
         this.displayAlert(res.message);
         this.isSelected = false;
-        //this.createdProcess();
       },
       (error : any) => {
          console.dir(error);
          this.displayAlert(error.message);
       });
    }
-
-  /*async createdProcess(){
-    return new Promise(resolve => {
-      let body = {
-        action: 'added',
-        name: this.name,
-        decoded: this.decoded,
-      };
-      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
-        this.router.navigate(['/loginform']);
-        console.log('OK');
-      });
-    });
-  }*/
 
    async presentAlert() {
     let alert : any = await this.alertCtrl.create({
@@ -254,7 +211,6 @@ export class CustomerPage implements OnInit {
     this.loadFile();
 
     this.customers = [];
-    //this.loadCustomer();
     this.start = 0;
   }
 
@@ -339,7 +295,6 @@ export class CustomerPage implements OnInit {
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let folder of data.result){
-          //this.hiks = this.hiks.filter((item) => {return item.id === 84});
           this.folders.push(folder);
         }
         resolve(true);
@@ -355,7 +310,6 @@ export class CustomerPage implements OnInit {
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let hik of data.result){
-          //this.hiks = this.hiks.filter((item) => {return item.id === 84});
           this.hiks.push(hik);
         }
         resolve(true);
@@ -367,16 +321,11 @@ export class CustomerPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
+        id : userid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let user of data.result){
-          this.users = this.users.filter((item) => {
-            return item.id === userid
-          });
-          
-          if(user.id == userid){
             this.users.push(user);
-          }
         }
         resolve(true);
       });

@@ -25,7 +25,7 @@ export class LoginformPage implements OnInit {
   }
 
   customer(){
-    this.global.username = 'hafizshamsul';
+    this.global.userid = 2;
     this.router.navigate(['/customer']);
   }
 }
