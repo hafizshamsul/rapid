@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
-
+import { GlobalService } from "../..//providers/global.service";
 
 @Component({
   selector: 'app-loginform',
@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LoginformPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public global: GlobalService, private router: Router) {}
 
   ngOnInit() {
   }
+
+  
 
   login(){
     this.router.navigate(['/login']);
@@ -23,6 +25,7 @@ export class LoginformPage implements OnInit {
   }
 
   customer(){
+    this.global.username = 'hafizshamsul';
     this.router.navigate(['/customer']);
   }
 }
