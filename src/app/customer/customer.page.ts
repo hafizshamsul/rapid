@@ -42,6 +42,7 @@ export class CustomerPage implements OnInit {
   decoded: string = "l";
   type: string = "l";
   icon: string;
+  folderdata_id: number;
   
   userid: number;
   username: string;
@@ -62,6 +63,7 @@ export class CustomerPage implements OnInit {
       this.decoded = data.decoded;
       this.type = data.type;
       this.icon = data.icon;
+      this.folderdata_id = data.folderdata_id;
       console.log(data);
     });
 
@@ -401,6 +403,7 @@ export class CustomerPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'getit',
+        folder: 1
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
