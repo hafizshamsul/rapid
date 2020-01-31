@@ -70,7 +70,7 @@
     }
     elseif($postjson['action']=='getuser'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
+        $query = mysqli_query($mysqli, "SELECT * FROM users WHERE id = $postjson[id]");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
