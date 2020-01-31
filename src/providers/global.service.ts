@@ -7,5 +7,5 @@ export class GlobalService {
 
   constructor() { }
 
-  public username: String = "lelelelelel";
+  public userid: number = 1;
 }
