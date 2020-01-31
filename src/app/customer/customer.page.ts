@@ -7,6 +7,7 @@ import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 //import { IOSFilePicker } from '@ionic-native/file-picker';
 //import { DocumentPicker } from '@ionic-native/document-picker/ngx';
+import { GlobalService } from "../..//providers/global.service";
 
 
 @Component({
@@ -45,9 +46,10 @@ export class CustomerPage implements OnInit {
 
   constructor(
     //private docPicker: DocumentPicker,
-    //private filePicker: IOSFilePicker, 
+    //private filePicker: IOSFilePicker,
+    public global: GlobalService, 
     private actRoute: ActivatedRoute,
-    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) { }
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
