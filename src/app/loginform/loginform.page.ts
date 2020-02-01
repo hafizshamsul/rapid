@@ -24,8 +24,8 @@ export class LoginformPage implements OnInit {
     this.router.navigate(['/registerform']);
   }
 
-  customer(){
+  folder(){
     this.global.userid = 2;
-    this.router.navigate(['/customer']);
+    this.router.navigate(['/folder']);
   }
 }
