@@ -70,7 +70,7 @@
     }
     elseif($postjson['action']=='getuser'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM users WHERE id = $postjson[id]");
+        $query = mysqli_query($mysqli, "SELECT * FROM users WHERE username = '$postjson[username]'");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -78,6 +78,25 @@
                 'username' => $row['username'],
                 'passwordhash' => $row['passwordhash'],
                 'displayname' => $row['displayname']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+    elseif($postjson['action']=='getcurrentuser'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT * FROM users WHERE username = '$postjson[username]'");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'current_userid' => $row['id'],
+                'current_username' => $row['username'],
+                'current_passwordhash' => $row['passwordhash'],
+                'current_displayname' => $row['displayname']
             );
         }
 
