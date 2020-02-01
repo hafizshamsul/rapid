@@ -89,7 +89,7 @@
     }
     elseif($postjson['action']=='getfolder'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM folderdata INNER JOIN users ON folderdata.users_id = users.id WHERE users.id=$postjson[users_id]");
+        $query = mysqli_query($mysqli, "SELECT * FROM folderdata INNER JOIN users ON folderdata.users_id = users.id WHERE users.username='$postjson[username]'");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
