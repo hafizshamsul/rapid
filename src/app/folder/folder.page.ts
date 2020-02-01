@@ -20,6 +20,7 @@ export class FolderPage implements OnInit {
   
   r_username: string;
 
+  current_users: any[];
   users: any[];
   folders: any[];
   hiks: any = [];
@@ -33,6 +34,11 @@ export class FolderPage implements OnInit {
   public image : string;
   public isSelected : boolean =	false;
   
+  current_userid: number;
+  current_username: string;
+  current_passwordhash: string;
+  current_displayname: string;
+
   userid: number;
   username: string;
   passwordhash: string;
@@ -62,6 +68,14 @@ export class FolderPage implements OnInit {
   ngOnInit() {
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     
+    this.actRoute.params.subscribe((data: any) =>{
+      this.current_userid = data.current_id;
+      this.current_username = data.current_username;
+      this.current_passwordhash = data.current_passwordhash;
+      this.current_displayname = data.current_displayname;
+      console.log(data);
+    });
+
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
@@ -213,6 +227,9 @@ export class FolderPage implements OnInit {
    }
 
   ionViewWillEnter(){
+    this.current_users = [];
+    this.loadCurrentUser(this.global.username);
+    
     this.users = [];
     this.loadUser(this.r_username);
     
@@ -334,15 +351,30 @@ export class FolderPage implements OnInit {
     });
   }
 
-  loadUser(userid){
+  loadUser(username){
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
-        id : userid
+        username : username
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let user of data.result){
             this.users.push(user);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+  loadCurrentUser(username){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getcurrentuser',
+        username : username
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let current_user of data.result){
+            this.current_users.push(current_user);
         }
         resolve(true);
       });
