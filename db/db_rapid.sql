@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2020 at 02:56 AM
+-- Generation Time: Feb 01, 2020 at 05:34 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_rapid`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `textcmt` varchar(200) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL,
+  `replyto` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -67,16 +80,19 @@ INSERT INTO `filedata` (`id`, `name`, `decoded`, `type`, `icon`, `folderdata_id`
 CREATE TABLE `folderdata` (
   `id` int(11) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL
+  `description` varchar(200) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `folderdata`
 --
 
-INSERT INTO `folderdata` (`id`, `name`, `description`) VALUES
-(1, 'Internet Programming', 'Developing web application using PHP'),
-(2, 'Advanced Programming', 'Developing web application using ASP.NET MVC');
+INSERT INTO `folderdata` (`id`, `name`, `description`, `users_id`) VALUES
+(1, 'Internet Programming', 'Developing web application using PHP', 1),
+(2, 'Advanced Programming', 'Developing web application using ASP.NET MVC', 1),
+(3, 'Ubiquitous Computing', 'Developing mobile application using Android Java', 2),
+(4, 'Web Application Development', 'Developing mobile application using ASP.NET Web Forms', 2);
 
 -- --------------------------------------------------------
 
@@ -169,6 +185,14 @@ INSERT INTO `users` (`id`, `username`, `passwordhash`, `displayname`) VALUES
 --
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`),
+  ADD KEY `replyto` (`replyto`);
+
+--
 -- Indexes for table `filedata`
 --
 ALTER TABLE `filedata`
@@ -179,7 +203,8 @@ ALTER TABLE `filedata`
 -- Indexes for table `folderdata`
 --
 ALTER TABLE `folderdata`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `master_customer`
@@ -198,6 +223,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `filedata`
 --
 ALTER TABLE `filedata`
@@ -207,7 +238,7 @@ ALTER TABLE `filedata`
 -- AUTO_INCREMENT for table `folderdata`
 --
 ALTER TABLE `folderdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
@@ -226,10 +257,23 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`replyto`) REFERENCES `comment` (`id`);
+
+--
 -- Constraints for table `filedata`
 --
 ALTER TABLE `filedata`
   ADD CONSTRAINT `filedata_ibfk_1` FOREIGN KEY (`folderdata_id`) REFERENCES `folderdata` (`id`);
+
+--
+-- Constraints for table `folderdata`
+--
+ALTER TABLE `folderdata`
+  ADD CONSTRAINT `folderdata_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
