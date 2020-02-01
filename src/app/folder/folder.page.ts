@@ -5,6 +5,8 @@ import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../..//providers/global.service";
+import { IonicPage } from 'ionic-angular';
+import {AppRoutingModule} from '../app-routing.module';
 
 @Component({
   selector: 'app-folder',
@@ -12,8 +14,12 @@ import { GlobalService } from "../..//providers/global.service";
   styleUrls: ['./folder.page.scss'],
 })
 
+
+
 export class FolderPage implements OnInit {
   
+  r_username: string;
+
   users: any[];
   folders: any[];
   hiks: any = [];
@@ -45,11 +51,17 @@ export class FolderPage implements OnInit {
   folderdata_id: number;
   
   constructor(
+    public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
-    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
+      
+      
+    }
 
   ngOnInit() {
+    this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
+    
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
@@ -202,10 +214,10 @@ export class FolderPage implements OnInit {
 
   ionViewWillEnter(){
     this.users = [];
-    this.loadUser(this.global.userid);
+    this.loadUser(this.r_username);
     
     this.folders = [];
-    this.loadFolder();
+    this.loadFolder(this.r_username);
 
     this.hiks = [];
     this.loadFile();
@@ -231,7 +243,7 @@ export class FolderPage implements OnInit {
   }
 
   showFolder(folderid){
-    this.router.navigate(['/folder/customer/'+folderid]);
+    this.router.navigate([this.r_username +'/'+folderid]);
   }
 
   home(){
@@ -292,11 +304,11 @@ export class FolderPage implements OnInit {
     });
   }
 
-  loadFolder(){
+  loadFolder(username){
     return new Promise(resolve => {
       let body = {
         action : 'getfolder',
-        users_id : this.global.userid
+        username : username
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let folder of data.result){
