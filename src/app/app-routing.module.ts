@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'loginform', pathMatch: 'full' },
-  { path: ':r_username/:folderid', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},
+  { path: ':r_username/:r_folderid', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},
   { path: 'addcustomer', loadChildren: () => import('./addcustomer/addcustomer.module').then( m => m.AddcustomerPageModule)},
   { path: 'addcustomer/:id/:name/:desc', loadChildren: () => import('./addcustomer/addcustomer.module').then(m=>m.AddcustomerPageModule)},
   { path: 'showcustomer/:id', loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)},
