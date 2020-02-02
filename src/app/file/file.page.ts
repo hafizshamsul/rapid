@@ -14,6 +14,9 @@ import { GlobalService } from "../../providers/global.service";
 
 export class FilePage implements OnInit {
   
+  r_username: string;
+  r_folderid: string;
+
   users: any[];
   folders: any[];
   hiks: any = [];
@@ -50,6 +53,9 @@ export class FilePage implements OnInit {
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
   ngOnInit() {
+    this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
+    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
+    
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
@@ -208,7 +214,7 @@ export class FilePage implements OnInit {
     this.loadFolder();
 
     this.hiks = [];
-    this.loadFile();
+    this.loadFile(this.r_username, this.r_folderid);
 
     this.customers = [];
     this.start = 0;
@@ -302,11 +308,12 @@ export class FilePage implements OnInit {
     });
   }
      
-   loadFile(){
+   loadFile(username, folderid){
     return new Promise(resolve => {
       let body = {
-        action : 'getit',
-        folder: 1
+        action : 'getfile',
+        username : username,
+        folderid: folderid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let hik of data.result){

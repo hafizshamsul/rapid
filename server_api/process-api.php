@@ -47,9 +47,11 @@
     echo $result;
     
     }
-    elseif($postjson['action']=='getit'){
+
+
+    elseif($postjson['action']=='getfile'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM filedata WHERE folderdata_id=$postjson[folder] ORDER BY id DESC");
+        $query = mysqli_query($mysqli, "SELECT * from filedata inner join folderdata on filedata.folderdata_id = folderdata.id inner join users on folderdata.users_id = users.id where users.username='$postjson[username]' and folderdata.id='$postjson[folderid]'");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
