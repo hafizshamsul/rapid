@@ -28,6 +28,22 @@
 
         echo $result;
     }
+
+    elseif($postjson['action'] == 'addfolder'){
+        $query = mysqli_query($mysqli, "INSERT INTO folderdata SET name = '$postjson[foldername]', description = '$postjson[description]', users_id = '$postjson[users_id]'");
+
+        $id = mysqli_insert_id($mysqli);
+
+        if($query){
+            $result = json_encode(array('success'=>true, 'id'=>$id));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
     elseif($postjson['action']=='getdata'){
         $data = array();
         $query = mysqli_query($mysqli, "SELECT * FROM master_customer ORDER BY customer_id DESC LIMIT $postjson[start], $postjson[limit]");

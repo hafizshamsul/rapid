@@ -5,6 +5,7 @@ import { Platform,
  } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { TabsPage } from '../app/tabs/tabs.page';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  rootPage : any = TabsPage;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
