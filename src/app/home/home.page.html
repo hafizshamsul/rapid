@@ -1,3 +1,9 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+  <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+</head>
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -22,8 +28,7 @@
 
 
 
-
-<ion-content style="--background:rgb(235,235,235);--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+<!--
   <ion-refresher pullMax="this.pullMin+20" style="margin-top: 80px;" slot="fixed" (ionRefresh)="doRefresh($event)">
   <ion-refresher-content
     pullingIcon="arrow-round-down"
@@ -32,47 +37,52 @@
     refreshingText="">
   </ion-refresher-content>
 </ion-refresher>
+-->
+<ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
+  
 
-  <div style="background:white; width:80%; display:block; margin:0 auto; border-radius: 6px; box-shadow:0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12); margin-top:10px">
-      <ion-list style="background: rgba(0,0,0,0); padding-inline-start: 30px; padding-inline-end: 30px;">
-    <ion-item-sliding (click)="showFolder(folder.folderid)" >
+  <div style="margin-top:10px">
       
       <div *ngFor="let comment of comments">
-        <ion-item>
-          
+        <!--
           <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 0px;" />
-          <ion-label  style="font-family: 'Nunito Sans', sans-serif;">
+        -->
+        <div id="listitem" style="padding:10px 20px; background:white; display:block; margin:0 auto;  margin-bottom:8px">
+          
+          
+          <ion-label  style="font-family: 'Inter var', sans-serif;">
 
-            <div style="font-size: 10px;color:black; font-weight: 500; float:left; margin-right:10px">
+            <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
               {{comment.username}}
             </div>
-            <div style="font-size: 10px;color:rgb(140,140,140); font-weight: 500;">
+            <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
+            <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
               {{comment.dateuploaded}}
             </div>
 
-            <p style="font-size: 14px; color:rgb(20,20,20); margin:0; padding:0; font-weight: 700">
+            <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
               {{comment.title}}
             </p>
-            <p style="font-size: 12px; color:rgb(100,100,100); margin:0; padding:0;">
+            <p id="textcmt" style="color:rgb(30,30,30); margin-bottom:4px; padding:0;">
               {{comment.textcmt}}
             </p>
             
           </ion-label>
-        </ion-item>
+        </div>
 
         
       </div>
       
       
-    </ion-item-sliding>
-  </ion-list>
   </div>
   
-
-  <ion-infinite-scroll (ionInfinite)="loadData($event)" style="margin-top: 30px;">
+  <!--
+    <ion-infinite-scroll (ionInfinite)="loadData($event)" style="margin-top: 30px;">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+  -->
+  
 
 </ion-content>
