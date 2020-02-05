@@ -38,6 +38,7 @@ export class HomePage {
   users_id: number;
   replyto: number;
   username: string;
+  dateuploaded: string;
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
@@ -47,6 +48,7 @@ export class HomePage {
       this.textcmt = data.textcmt;
       this.replyto = data.replyto;
       this.username = data.username;
+      this.dateuploaded = data.dateuploaded;
 
       console.log(data);
     });
@@ -72,17 +74,5 @@ export class HomePage {
     });
   }
 
-  loadReply(){
-    return new Promise(resolve => {
-      let body = {
-        action : 'getreply',
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        for(let reply of data.result){
-          this.replies.push(reply);
-        }
-        resolve(true);
-      });
-    });
-  }
+  
 }
