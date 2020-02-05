@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 03:46 PM
+-- Generation Time: Feb 05, 2020 at 09:30 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -33,22 +33,23 @@ CREATE TABLE `comment` (
   `textcmt` varchar(200) DEFAULT NULL,
   `users_id` int(11) DEFAULT NULL,
   `replyto` int(11) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL
+  `title` varchar(100) DEFAULT NULL,
+  `dateuploaded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`) VALUES
-(1, 'The CREATE DATABASE statement is used to create a new SQL database.', 1, NULL, 'How to Create DB'),
-(2, 'The DROP DATABASE statement is used to drop an existing SQL database.', 2, NULL, 'How to Drop DB'),
-(5, 'The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.', 2, NULL, 'How to backup DB'),
-(6, 'The CREATE TABLE statement is used to create a new table in a database.', 2, NULL, 'How to create DB table'),
-(7, 'The DROP TABLE statement is used to drop an existing table in a database.', 2, NULL, 'How to drop DB table'),
-(8, 'The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. The ALTER TABLE statement is also used to add and drop various constraints on an existing table.', 2, NULL, 'How to alter DB table'),
-(9, 'SQL constraints are used to specify rules for data in a table. Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABL', 2, NULL, 'SQL Constraints'),
-(10, 'By default, a column can hold NULL values. The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, which means that you cannot insert a ne', 2, NULL, 'SQL NOT NULL');
+INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateuploaded`) VALUES
+(1, 'The CREATE DATABASE statement is used to create a new SQL database.', 1, NULL, 'How to Create DB', '2020-02-05 18:00:58'),
+(2, 'The DROP DATABASE statement is used to drop an existing SQL database.', 2, NULL, 'How to Drop DB', '2020-02-05 05:12:58'),
+(5, 'The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.', 2, NULL, 'How to backup DB', '2020-02-03 10:12:58'),
+(6, 'The CREATE TABLE statement is used to create a new table in a database.', 2, NULL, 'How to create DB table', '2020-02-01 15:12:58'),
+(7, 'The DROP TABLE statement is used to drop an existing table in a database.', 2, NULL, 'How to drop DB table', '2020-01-09 15:12:58'),
+(8, 'The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. The ALTER TABLE statement is also used to add and drop various constraints on an existing table.', 2, NULL, 'How to alter DB table', '2019-12-05 15:12:58'),
+(9, 'SQL constraints are used to specify rules for data in a table. Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABL', 2, NULL, 'SQL Constraints', '2019-09-05 15:12:58'),
+(10, 'By default, a column can hold NULL values. The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, which means that you cannot insert a ne', 2, NULL, 'SQL NOT NULL', '2016-02-05 15:12:58');
 
 -- --------------------------------------------------------
 
