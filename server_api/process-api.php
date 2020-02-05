@@ -44,6 +44,51 @@
         echo $result;
     }
 
+    elseif($postjson['action']=='getpost'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NULL");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'commentid' => $row['id'],
+                'users_id' => $row['users_id'],
+                'title' => $row['title'],
+                'textcmt' => $row['textcmt'],
+                'replyto' => $row['replyto'],
+                'username' => $row['username']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+    elseif($postjson['action']=='getreply'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NOT NULL");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'reply_commentid' => $row['id'],
+                'reply_users_id' => $row['users_id'],
+                'reply_title' => $row['title'],
+                'reply_textcmt' => $row['textcmt'],
+                'reply_replyto' => $row['replyto'],
+                'reply_username' => $row['username']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+
     elseif($postjson['action']=='getdata'){
         $data = array();
         $query = mysqli_query($mysqli, "SELECT * FROM master_customer ORDER BY customer_id DESC LIMIT $postjson[start], $postjson[limit]");
