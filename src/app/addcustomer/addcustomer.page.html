@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>Add Station</ion-title>
+    <ion-title text-center>Add Folder</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="" color="tertiary" fill="outline"></ion-back-button>
     </ion-buttons>
@@ -8,16 +8,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <!--
+    <ion-item>
     <ion-label position="floating">Name</ion-label>
     <ion-input type="text" [(ngModel)]="name_customer"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea [(ngModel)]="desc_customer"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" padding color="primary" *ngIf="!id" (click)="createdProcess()">Submit</ion-button>
+    <ion-button expand="block" padding color="primary" *ngIf="id>=1" (click)="updatedProcess()">Update</ion-button>
+  -->
+  <ion-item>
+    <ion-label position="floating">Folder name</ion-label>
+    <ion-input type="text" [(ngModel)]="foldername"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea [(ngModel)]="desc_customer"></ion-textarea>
+    <ion-label position="floating">Folder description</ion-label>
+    <ion-textarea [(ngModel)]="description"></ion-textarea>
   </ion-item>
 
-  <ion-button expand="block" padding color="primary" *ngIf="!id" (click)="createdProcess()">Submit</ion-button>
+  <ion-button expand="block" padding color="primary" (click)="createdFolder()">Submit</ion-button>
   <ion-button expand="block" padding color="primary" *ngIf="id>=1" (click)="updatedProcess()">Update</ion-button>
 </ion-content>

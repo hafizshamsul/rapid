@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../../providers/global.service";
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-file',
@@ -48,6 +49,7 @@ export class FilePage implements OnInit {
   folderdata_id: number;
   
   constructor(
+    public navCtrl: NavController,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
