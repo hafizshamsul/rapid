@@ -44,6 +44,7 @@ export class HomePage {
   tagcommentid: number;
   comment_id: number;
   tag_id: number;
+  tag_tagname: string;
 
   pass(index){
     console.log(index);
@@ -67,6 +68,7 @@ export class HomePage {
       this.tagcommentid = data.tagcommentid;
       this.comment_id = data.comment_id;
       this.tag_id = data.tag_id;
+      this.tag_tagname = data.tag_tagname;
 
       console.log(data);
     });

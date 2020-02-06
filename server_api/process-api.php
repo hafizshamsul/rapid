@@ -46,13 +46,14 @@
 
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT id, comment_id, tag_id FROM tagcomment");
+        $query = mysqli_query($mysqli, "SELECT tagcomment.id, comment_id, tag_id, tag.tagname FROM tagcomment INNER JOIN tag ON tagcomment.tag_id = tag.id");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
                 'tagcommentid' => $row['id'],
                 'comment_id' => $row['comment_id'],
                 'tag_id' => $row['tag_id'],
+                'tag_tagname' => $row['tagname']
             );
         }
 
