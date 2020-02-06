@@ -46,7 +46,7 @@
 
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT id, comment_id, tag_id FROM tagcomment WHERE comment_id = '$postjson[index]'");
+        $query = mysqli_query($mysqli, "SELECT id, comment_id, tag_id FROM tagcomment");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
