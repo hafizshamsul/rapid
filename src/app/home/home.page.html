@@ -18,9 +18,9 @@
 
     <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
 
-    <ion-buttons slot="primary" (click)="addCustomer()">
-      <ion-button color="tertiary">
-        <ion-icon text-center name="add"></ion-icon>
+    <ion-buttons slot="primary" (click)="login()">
+      <ion-button color="green">
+        <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -43,14 +43,14 @@
 
   <div style="margin-top:10px">
       
-      <div *ngFor="let comment of comments">
+      <div *ngFor="let comment of comments; let i=index">
         <!--
           <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 0px;" />
         -->
         <div id="listitem" style="padding:10px 20px; background:white; display:block; margin:0 auto;  margin-bottom:8px">
           
           
-          <ion-label  style="font-family: 'Inter var', sans-serif;">
+          <ion-label style="font-family: 'Inter var', sans-serif;">
 
             <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
               {{comment.username}}
@@ -59,6 +59,20 @@
             <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
               {{comment.dateuploaded}}
             </div>
+            <!--
+              <div *ngFor="let tagcomment of tagcomments">
+              <div style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+                {{tagcomment.tag_id}}
+              </div>
+              </div>
+
+              
+              <div>
+                .
+              </div>            
+            -->
+            
+
 
             <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
               {{comment.title}}
