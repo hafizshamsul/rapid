@@ -47,7 +47,7 @@
         <!--
           <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 0px;" />
         -->
-        <div id="listitem" style="padding:10px 20px; background:white; display:block; margin:0 auto;  margin-bottom:8px">
+        <div (click)="pass(i)" id="listitem" style="padding:10px 20px; background:white; display:block; margin:0 auto;  margin-bottom:8px">
           
           
           <ion-label style="font-family: 'Inter var', sans-serif;">
@@ -56,13 +56,14 @@
               {{comment.username}}
             </div>
             <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
-            <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+            <div style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
               {{comment.dateuploaded}}
             </div>
-            <!--
+            
               <div *ngFor="let tagcomment of tagcomments">
-              <div style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+              <div *ngIf="tagcomment.comment_id==comment.commentid" style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
                 {{tagcomment.tag_id}}
+                
               </div>
               </div>
 
@@ -70,7 +71,7 @@
               <div>
                 .
               </div>            
-            -->
+            
             
 
 
@@ -81,7 +82,7 @@
               {{comment.textcmt}}
             </p>
             
-          </ion-label>
+          </ion-label >
         </div>
 
         
