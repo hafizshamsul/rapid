@@ -40,6 +40,7 @@ export class HomePage {
   replyto: number;
   username: string;
   dateuploaded: string;
+  vote: number;
 
   tagcommentid: number;
   comment_id: number;
@@ -60,6 +61,7 @@ export class HomePage {
       this.replyto = data.replyto;
       this.username = data.username;
       this.dateuploaded = data.dateuploaded;
+      this.vote = data.vote;
 
       console.log(data);
     });

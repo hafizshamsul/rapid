@@ -66,7 +66,7 @@
 
     elseif($postjson['action']=='getpost'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NULL ORDER BY dateuploaded DESC");
+        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NULL ORDER BY dateuploaded DESC");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
@@ -109,6 +109,8 @@
                 $ago = $year . " years ago";
             }
 
+            $vote = $row['upvote'] - $row['downvote'];
+
             $data[] = array(
                 'commentid' => $row['id'],
                 'users_id' => $row['users_id'],
@@ -116,7 +118,8 @@
                 'textcmt' => $row['textcmt'],
                 'replyto' => $row['replyto'],
                 'username' => $row['username'],
-                'dateuploaded' => $ago
+                'dateuploaded' => $ago,
+                'vote' => $vote
             );
         }
 
