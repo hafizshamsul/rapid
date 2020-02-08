@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 09:30 PM
+-- Generation Time: Feb 08, 2020 at 06:09 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -34,22 +34,24 @@ CREATE TABLE `comment` (
   `users_id` int(11) DEFAULT NULL,
   `replyto` int(11) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL,
-  `dateuploaded` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `dateuploaded` datetime NOT NULL DEFAULT current_timestamp(),
+  `upvote` int(11) DEFAULT NULL,
+  `downvote` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateuploaded`) VALUES
-(1, 'The CREATE DATABASE statement is used to create a new SQL database.', 1, NULL, 'How to Create DB', '2020-02-05 18:00:58'),
-(2, 'The DROP DATABASE statement is used to drop an existing SQL database.', 2, NULL, 'How to Drop DB', '2020-02-05 05:12:58'),
-(5, 'The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.', 2, NULL, 'How to backup DB', '2020-02-03 10:12:58'),
-(6, 'The CREATE TABLE statement is used to create a new table in a database.', 2, NULL, 'How to create DB table', '2020-02-01 15:12:58'),
-(7, 'The DROP TABLE statement is used to drop an existing table in a database.', 2, NULL, 'How to drop DB table', '2020-01-09 15:12:58'),
-(8, 'The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. The ALTER TABLE statement is also used to add and drop various constraints on an existing table.', 2, NULL, 'How to alter DB table', '2019-12-05 15:12:58'),
-(9, 'SQL constraints are used to specify rules for data in a table. Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABL', 2, NULL, 'SQL Constraints', '2019-09-05 15:12:58'),
-(10, 'By default, a column can hold NULL values. The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, which means that you cannot insert a ne', 2, NULL, 'SQL NOT NULL', '2016-02-05 15:12:58');
+INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateuploaded`, `upvote`, `downvote`) VALUES
+(1, 'The CREATE DATABASE statement is used to create a new SQL database.', 1, NULL, 'How to Create DB', '2020-02-07 04:12:53', 500, 136),
+(2, 'The DROP DATABASE statement is used to drop an existing SQL database.', 2, NULL, 'How to Drop DB', '2020-02-06 23:13:10', 500, 264),
+(5, 'The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.', 2, NULL, 'How to backup DB', '2020-02-06 11:13:32', 500, 171),
+(6, 'The CREATE TABLE statement is used to create a new table in a database.', 2, NULL, 'How to create DB table', '2020-02-05 04:13:57', 500, 262),
+(7, 'The DROP TABLE statement is used to drop an existing table in a database.', 2, NULL, 'How to drop DB table', '2020-01-17 04:14:20', 500, 222),
+(8, 'The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. The ALTER TABLE statement is also used to add and drop various constraints on an existing table.', 2, NULL, 'How to alter DB table', '2019-01-12 04:14:45', 500, 249),
+(9, 'SQL constraints are used to specify rules for data in a table. Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABL', 2, NULL, 'SQL Constraints', '2019-07-07 04:15:19', 500, 98),
+(10, 'By default, a column can hold NULL values. The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, which means that you cannot insert a ne', 2, NULL, 'SQL NOT NULL', '2017-02-07 04:15:29', 500, 85);
 
 -- --------------------------------------------------------
 
@@ -193,6 +195,56 @@ CREATE TABLE `student` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tag`
+--
+
+CREATE TABLE `tag` (
+  `id` int(11) NOT NULL,
+  `tagname` varchar(30) DEFAULT NULL,
+  `tagdesc` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tag`
+--
+
+INSERT INTO `tag` (`id`, `tagname`, `tagdesc`) VALUES
+(1, 'sql', 'About sql'),
+(2, 'database', 'About database');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tagcomment`
+--
+
+CREATE TABLE `tagcomment` (
+  `id` int(11) NOT NULL,
+  `comment_id` int(11) DEFAULT NULL,
+  `tag_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tagcomment`
+--
+
+INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 5, 1),
+(4, 6, 1),
+(5, 7, 1),
+(6, 8, 1),
+(7, 9, 1),
+(8, 10, 1),
+(9, 1, 2),
+(10, 2, 2),
+(11, 5, 2),
+(12, 6, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -250,6 +302,20 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`studid`);
 
 --
+-- Indexes for table `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tagcomment`
+--
+ALTER TABLE `tagcomment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `tag_id` (`tag_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -290,6 +356,18 @@ ALTER TABLE `student`
   MODIFY `studid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tagcomment`
+--
+ALTER TABLE `tagcomment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -317,6 +395,13 @@ ALTER TABLE `filedata`
 --
 ALTER TABLE `folderdata`
   ADD CONSTRAINT `folderdata_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `tagcomment`
+--
+ALTER TABLE `tagcomment`
+  ADD CONSTRAINT `tagcomment_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`),
+  ADD CONSTRAINT `tagcomment_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
