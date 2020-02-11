@@ -40,6 +40,22 @@
 -->
 <ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
   
+  <ul>
+    <ng-template #recursiveList let-listos>
+      <li *ngFor="let item of listos">
+        {{item.title}}
+        <ul *ngIf="item.children.length > 0">  <!-- item.subnodes.length -->
+          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listos }"></ng-container>
+  </ul>
+
+
+  
+
+
 
   <div style="margin-top:10px">
       
