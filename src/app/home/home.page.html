@@ -39,18 +39,28 @@
 </ion-refresher>
 -->
 <ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
+  <div style="display:grid; grid-template-columns: auto 70% auto">
+    <div></div>
+    <div>
+      <div>
+        <ng-template #recursiveList let-listos>
+          <div *ngFor="let item of listos">
+            <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px">
+              {{item.title}}
+              {{item.textcmt}}
+              </div>
+              
+              <div *ngIf="item.children.length > 0" style="width: 92%;  display:block; margin-left: auto; ">  <!-- item.subnodes.length -->
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+              </div>
+            </div>
+          </ng-template>
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listos }"></ng-container>
+      </div>
+    </div>
+    <div></div>   
+  </div>
   
-  <ul>
-    <ng-template #recursiveList let-listos>
-      <li *ngFor="let item of listos">
-        {{item.title}}
-        <ul *ngIf="item.children.length > 0">  <!-- item.subnodes.length -->
-          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-        </ul>
-      </li>
-    </ng-template>
-    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listos }"></ng-container>
-  </ul>
 
 
   
