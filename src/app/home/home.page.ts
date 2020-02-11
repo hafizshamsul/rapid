@@ -75,29 +75,7 @@ export class HomePage {
 
     
 
-    treeify(listo, idAttr, parentAttr, childrenAttr) {
-      if (!idAttr) idAttr = 'commentid';
-      if (!parentAttr) parentAttr = 'replyto';
-
-      if (!childrenAttr) childrenAttr = 'children';
-  
-      var treeList = [];
-      var lookup = {};
-      listo.forEach(function(obj) {
-          lookup[obj[idAttr]] = obj;
-          obj[childrenAttr] = [];
-      });
-      listo.forEach(function(obj) {
-          if (obj[parentAttr] != null) {
-              lookup[obj[parentAttr]][childrenAttr].push(obj);
-          } else {
-              treeList.push(obj);
-          }
-        });
-        return treeList;
-    };
-
-listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
+    
 
 
  list:any = [
@@ -110,6 +88,34 @@ listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
     
   current_users: any[];
   comments: any[];
+
+  treeify(listo, idAttr, parentAttr, childrenAttr) {
+    if (!idAttr) idAttr = 'commentid';
+    if (!parentAttr) parentAttr = 'replyto';
+
+    if (!childrenAttr) childrenAttr = 'children';
+
+    var treeList = [];
+    var lookup = {};
+    listo.forEach(function(obj) {
+        lookup[obj[idAttr]] = obj;
+        obj[childrenAttr] = [];
+    });
+    listo.forEach(function(obj) {
+        if (obj[parentAttr] != null) {
+            lookup[obj[parentAttr]][childrenAttr].push(obj);
+        } else {
+            treeList.push(obj);
+        }
+      });
+      return treeList;
+  };
+
+
+listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
+listoso:any[]; 
+
+
   tagcomments: any[];
 
   done: boolean =true;
@@ -181,6 +187,7 @@ listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
         for(let comment of data.result){
           this.comments.push(comment);
         }
+        this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
         resolve(true);
       });
     });
