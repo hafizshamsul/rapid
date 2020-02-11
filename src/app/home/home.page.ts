@@ -27,25 +27,58 @@ export class HomePage {
     
       
     }
+    //commentid: number;
+    //replyto: number;
 
     listo:any[]=[
       {
-        id: 1,
+        commentid: 1,
         title: '1',
-        parent: null
+        textcmt: 'satu',
+        users_id: 1,
+        username: 'hafizshamsul',
+        dateuploaded: 'days ago',
+        vote: 213,
+        replyto: null
       },
       {
-        id: 2,
+        commentid: 2,
         title: '2',
-        parent: 1
+        textcmt: 'dua',
+        users_id: 1,
+        username: 'hafizshamsul',
+        dateuploaded: 'days ago',
+        vote: 213,
+        replyto: 1
+      },
+      {
+        commentid: 3,
+        title: '3',
+        textcmt: 'tiga',
+        users_id: 1,
+        username: 'hafizshamsul',
+        dateuploaded: 'days ago',
+        vote: 213,
+        replyto: 1
+      },
+      {
+        commentid: 4,
+        title: '4',
+        textcmt: 'empat',
+        users_id: 1,
+        username: 'hafizshamsul',
+        dateuploaded: 'days ago',
+        vote: 213,
+        replyto: 2
       }
     ];
 
     
 
     treeify(listo, idAttr, parentAttr, childrenAttr) {
-      if (!idAttr) idAttr = 'id';
-      if (!parentAttr) parentAttr = 'parent';
+      if (!idAttr) idAttr = 'commentid';
+      if (!parentAttr) parentAttr = 'replyto';
+
       if (!childrenAttr) childrenAttr = 'children';
   
       var treeList = [];
@@ -64,7 +97,7 @@ export class HomePage {
         return treeList;
     };
 
-listos:any[] = this.treeify(this.listo, 'id', 'parent', 'children');
+listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
 
 
  list:any = [
