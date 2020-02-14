@@ -66,7 +66,7 @@
 
     elseif($postjson['action']=='getpost'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id order by dateuploaded desc limit 8 offset 0) d order by dateuploaded desc");
+        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null order by dateuploaded desc limit 8 offset 0) d order by dateuploaded desc");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
@@ -185,7 +185,8 @@
                 'replyto' => $row['replyto'],
                 'username' => $row['username'],
                 'dateuploaded' => $ago,
-                'vote' => $vote
+                'vote' => $vote,
+                'thread' => $row['thread']
             );
         }
 
