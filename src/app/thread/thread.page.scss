@@ -18,6 +18,14 @@
     }
 }
 
+#griditem2{
+    grid-template-columns: auto 70% auto;
+
+    @media (max-width: 576px) {
+        grid-template-columns: auto 100% auto;
+    }
+}
+
 #textcmt{
     font-size: 13px;
     letter-spacing: -0.0025em; 
