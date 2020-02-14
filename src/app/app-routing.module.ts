@@ -3,9 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: ':r_username/:r_folderid', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},
+  { path: ':r_username/:r_folderid/', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},
   { path: 'addcustomer', loadChildren: () => import('./addcustomer/addcustomer.module').then( m => m.AddcustomerPageModule)},
-  { path: 'thread', loadChildren: () => import('./thread/thread.module').then( m => m.ThreadPageModule)},
+  { path: 'thread/:r_thread', loadChildren: () => import('./thread/thread.module').then( m => m.ThreadPageModule)},
 
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'addcustomer/:id/:name/:desc', loadChildren: () => import('./addcustomer/addcustomer.module').then(m=>m.AddcustomerPageModule)},
