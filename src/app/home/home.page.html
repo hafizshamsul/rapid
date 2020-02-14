@@ -16,6 +16,7 @@
       </ion-menu-toggle>
     </ion-buttons>
 
+    
     <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
 
     <ion-buttons slot="primary" (click)="login()">
@@ -46,7 +47,7 @@
       <div>
         <ng-template #recursiveList let-listoso>
           <div *ngFor="let item of listoso">
-            <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px">
+            <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px" (click)="toThread(item.commentid)">
               <ion-label style="font-family: 'Inter var', sans-serif;">
                 <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
                   {{item.username}}

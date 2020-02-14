@@ -1,6 +1,6 @@
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
+  
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
@@ -16,6 +16,10 @@
       </ion-menu-toggle>
     </ion-buttons>
 
+    <ion-buttons slot="start">
+      <ion-back-button color="green"></ion-back-button>
+    </ion-buttons>
+    
     <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
 
     <ion-buttons slot="primary" (click)="login()">
@@ -90,7 +94,7 @@
                   <div *ngIf="item.replyto != item.thread" style="width: 100%; display:block; margin-left: auto;">
                     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
                   </div>
-                  <div *ngIf="item.replyto == item.thread" style="width: 92%; display:block; margin-left: auto;">
+                  <div *ngIf="item.replyto == item.thread" style="width: 97%; display:block; margin-left: auto;">
                     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
                   </div>
 

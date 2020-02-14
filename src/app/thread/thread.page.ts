@@ -17,6 +17,7 @@ import { NavController } from '@ionic/angular';
 
 
 export class ThreadPage {
+  r_thread: string;
 
   constructor(
     public navCtrl: NavController,
@@ -115,6 +116,7 @@ export class ThreadPage {
 listos:any[] = this.treeify(this.listo, 'commentid', 'replyto', 'children');
 listoso:any[]; 
 
+  
 
   tagcomments: any[];
 
@@ -141,6 +143,8 @@ listoso:any[];
 
 
   ngOnInit() {
+    this.r_thread = this.actRoute.snapshot.paramMap.get('r_thread');
+
     console.log(JSON.stringify(this.list));
     console.log(JSON.stringify(this.listos));
 
@@ -171,7 +175,7 @@ listoso:any[];
   ionViewWillEnter(){
     this.comments = [];
     this.tagcomments = [];
-    this.loadThread();
+    this.loadThread(this.r_thread);
     this.loadTagComment(1);
   
   }
@@ -182,10 +186,11 @@ listoso:any[];
 
 
 
-  loadThread(){
+  loadThread(thread){
     return new Promise(resolve => {
       let body = {
         action : 'getthread',
+        thread : thread
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){

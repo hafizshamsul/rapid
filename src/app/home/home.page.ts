@@ -178,6 +178,10 @@ listoso:any[];
     this.router.navigate(['/loginform']);
   }
 
+  toThread(r_thread){
+    this.router.navigate(['/thread/'+r_thread+'/']);
+  }
+
   loadPost(){
     return new Promise(resolve => {
       let body = {
