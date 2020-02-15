@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -20,6 +20,7 @@ export class ThreadPage {
   r_thread: string;
 
   constructor(
+    private ref: ChangeDetectorRef,
     public navCtrl: NavController,
     public route: AppRoutingModule,
     public global: GlobalService, 
@@ -193,6 +194,7 @@ listoso:any[];
         thread : thread
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
         for(let comment of data.result){
           this.comments.push(comment);
         }
@@ -201,6 +203,7 @@ listoso:any[];
       });
     });
   }
+
 
   loadTagComment(index){
     return new Promise(resolve => {
