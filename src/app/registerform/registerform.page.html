@@ -20,9 +20,9 @@
     <div class="item">
       <img id="img-login" src="assets/svg/logform.svg" style="margin-top: 4em; height: 100px; margin-bottom: 0;" />
       <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 1.6em 1.2em">Sign Up</h1>
-      <ion-input id="input-loginform" placeholder="Enter your email"></ion-input>
-      <ion-input id="input-loginform" placeholder="Enter your password"></ion-input>
-      <ion-button id="btnGetStarted" style="text-transform: none; margin-top: 1.7em;">Create account</ion-button>
+      <ion-input id="input-loginform" [(ngModel)]="logusername" placeholder="Enter your username"></ion-input>
+      <ion-input id="input-loginform" [(ngModel)]="logpassword" placeholder="Enter your password" type="password"></ion-input>
+      <ion-button id="btnGetStarted" (click)="console()" style="text-transform: none; margin-top: 1.7em;">Create account</ion-button>
       <ion-button id="btnLogin" (click)="loginform()" color="none" style="text-transform: none; box-shadow: none;">Already have an account? Sign In</ion-button>
     </div>    
   </div>
