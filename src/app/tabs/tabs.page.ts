@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FolderPage } from '../folder/folder.page';
-import { FilePage } from '../file/file.page';
+import { Component } from '@angular/core';
+import { GlobalService } from "../..//providers/global.service";
+
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: './tabs.page.html',
-  styleUrls: ['./tabs.page.scss'],
+  templateUrl: 'tabs.page.html',
+  styleUrls: ['tabs.page.scss']
 })
-export class TabsPage implements OnInit {
+export class TabsPage {
 
-  tab1Root = FolderPage;
-  tab2Root = FilePage;
+  r_username:string = this.global.username;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(public global: GlobalService) {
   }
 
+  
 }
