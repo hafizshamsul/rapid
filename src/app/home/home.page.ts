@@ -179,7 +179,7 @@ listoso:any[];
   }
 
   toThread(r_thread){
-    this.router.navigate(['/thread/'+r_thread+'/']);
+    this.router.navigate(['r/home/'+r_thread+'/']);
   }
 
   loadPost(){

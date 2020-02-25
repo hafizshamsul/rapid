@@ -50,7 +50,7 @@
         <div>
           <ng-template #recursiveList let-listoso>
             <div *ngFor="let item of listoso">
-              <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px">
+              <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:6px">
                 <ion-label style="font-family: 'Inter var', sans-serif;">
                   <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
                     {{item.username}}
@@ -92,9 +92,10 @@
 
                 <div *ngIf="item.children.length > 0">  <!-- item.subnodes.length -->
                   <div *ngIf="item.replyto != item.thread" style="width: 100%; display:block; margin-left: auto;">
+                    
                     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
                   </div>
-                  <div *ngIf="item.replyto == item.thread" style="width: 97%; display:block; margin-left: auto;">
+                  <div *ngIf="item.replyto == item.thread" style="width: 94%; display:block; margin-left: auto;">
                     <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
                   </div>
 
