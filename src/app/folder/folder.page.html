@@ -107,13 +107,13 @@
       </ion-toolbar>
 </ion-header>
 
-    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
       <a (click)="cancel()">Cancel</a>
       <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
       <img [src]="image" style="height: 60px; width: 60px;">
     </ion-content>
 
-    <ion-content *ngIf="!isSelected" style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+    <ion-content *ngIf="!isSelected" style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding:10px">
     
       <div style="margin-top:10px">
         
