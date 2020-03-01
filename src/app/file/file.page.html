@@ -25,7 +25,6 @@
 
 
     
-<ion-split-pane contentId="menu-content">
   <!--  our side menu  -->
   <!--
       <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px; --background: white">
@@ -75,7 +74,6 @@
 
 
   <!-- the main content -->
-  <ion-router-outlet id="menu-content">
     
   
     <!--
@@ -96,6 +94,10 @@
           </ion-menu-toggle>
         </ion-buttons>
 
+        <ion-buttons slot="start">
+          <ion-back-button color="green"></ion-back-button>
+        </ion-buttons>
+
         <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
 
         <ion-buttons slot="primary" (click)="addCustomer()">
@@ -106,7 +108,7 @@
       </ion-toolbar>
 </ion-header>
 
-    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
       <a (click)="cancel()">Cancel</a>
       <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
       <img [src]="image" style="height: 60px; width: 60px;">
@@ -115,7 +117,7 @@
 
     
 
-    <ion-content *ngIf="!isSelected" style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+    <ion-content *ngIf="!isSelected" style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding:10px">
 
 
     
@@ -161,8 +163,7 @@
       
 
     </ion-content>
-  </ion-router-outlet>
-</ion-split-pane>
+
 
 
 
