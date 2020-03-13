@@ -54,10 +54,14 @@ export class ShowcustomerPage implements OnInit {
     this.loadFile(this.id);
   }
 
+  displayhiks(){
+    console.log(this.hiks);
+  }
+
   loadFile(id){
     return new Promise(resolve => {
       let body = {
-        action : 'getit',
+        action : 'getfile',
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
