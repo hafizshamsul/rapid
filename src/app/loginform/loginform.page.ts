@@ -83,7 +83,7 @@ export class LoginformPage implements OnInit {
           this.isCorrect = true;
           this.users=[];
           
-          this.router.navigate(['/home']);
+          this.router.navigate(['r/home']);
           this.isCorrect = false;
           this.logusername=null;
           this.logpassword=null;
