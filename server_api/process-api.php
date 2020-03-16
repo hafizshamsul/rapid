@@ -325,6 +325,28 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='getindividualfile'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT filedata.id, filedata.name, decoded, type, icon, folderdata_id from filedata inner join folderdata on filedata.folderdata_id = folderdata.id inner join users on folderdata.users_id = users.id where users.username='$postjson[username]' and folderdata.id='$postjson[folderid]' and filedata.id='$postjson[fileid]'");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'decoded' => $row['decoded'],
+                'type' => $row['type'],
+                'icon' => $row['icon'],
+                'folderdata_id' => $row['folderdata_id']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getuser'){
         $data = array();
         $query = mysqli_query($mysqli, "SELECT * FROM users WHERE username = '$postjson[username]'");

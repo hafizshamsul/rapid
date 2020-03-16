@@ -19,6 +19,7 @@ import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

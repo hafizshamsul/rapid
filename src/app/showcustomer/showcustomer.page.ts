@@ -16,8 +16,12 @@ export class ShowcustomerPage implements OnInit {
   desc_customer: string;
   id: number;*/
 
+  idc: number;
   name: string;
-  id: number;
+  decoded: string;
+  type: string;
+  icon: string;
+  folderdata_id: number;
 
   hiks: any = [];
 
@@ -27,12 +31,12 @@ export class ShowcustomerPage implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
-      /*this.id = data.id;
-      this.name_customer = data.name;
-      this.desc_customer = data.desc;*/
-      
-      this.id = data.id;
+      this.idc = data.idc;
       this.name = data.name;
+      this.decoded = data.decoded;
+      this.type = data.type;
+      this.icon = data.icon;
+      this.folderdata_id = data.folderdata_id;
       console.log(data);
     });
   }
@@ -51,30 +55,24 @@ export class ShowcustomerPage implements OnInit {
 
   ionViewWillEnter(){
     this.hiks = [];
-    this.loadFile(this.id);
+    this.loadFile('hafizshamsul', 1, 201);
   }
 
   displayhiks(){
     console.log(this.hiks);
   }
 
-  loadFile(id){
+  loadFile(username, folderid, fileid){
     return new Promise(resolve => {
       let body = {
-        action : 'getfile',
+        action : 'getindividualfile',
+        username : username,
+        folderid: folderid,
+        fileid: fileid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        
-
         for(let hik of data.result){
-          this.hiks = this.hiks.filter((item) => {
-            return item.id === id
-          });
-          
-          if(hik.id == id){
-            this.hiks.push(hik);
-          }
-          
+            this.hiks.push(hik);  
         }
         resolve(true);
       });
@@ -83,7 +81,7 @@ export class ShowcustomerPage implements OnInit {
 
   users: any[];
   userid: string;
-  loadUser(userid){
+  /*loadUser(userid){
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
@@ -104,6 +102,6 @@ export class ShowcustomerPage implements OnInit {
         resolve(true);
       });
     });
-  }
+  }*/
 
 }
