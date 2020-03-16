@@ -6,7 +6,7 @@ const routes: Routes = [
   
   { path: 'addcustomer', loadChildren: () => import('./addcustomer/addcustomer.module').then( m => m.AddcustomerPageModule)},
   { path: 'addcustomer/:id/:name/:desc', loadChildren: () => import('./addcustomer/addcustomer.module').then(m=>m.AddcustomerPageModule)},
-  { path: 'showcustomer/:id', loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)},
+  { path: 'showcustomer/:r_id', loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)},
   { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)},
 
   //{ path: 'thread/:r_thread', loadChildren: () => import('./thread/thread.module').then( m => m.ThreadPageModule)},

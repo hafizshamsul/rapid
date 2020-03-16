@@ -31,6 +31,7 @@
     "@ionic-native/file-picker": "^4.20.0",
     "@ionic-native/http": "^5.18.0",
     "@ionic-native/native-geocoder": "^5.19.1",
+    "@ionic-native/preview-any-file": "^5.22.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.11.9",
@@ -47,6 +48,7 @@
     "cordova-plugin-filechooser": "^1.2.0",
     "cordova-plugin-filepicker": "^1.1.6",
     "cordova-plugin-nativegeocoder": "^3.2.2",
+    "cordova-plugin-preview-any-file": "0.1.5",
     "cordova-plugin-whitelist": "^1.3.4",
     "core-js": "^2.5.4",
     "ionic-angular": "^3.9.9",
@@ -54,6 +56,7 @@
     "leaflet-gesture-handling": "^1.1.8",
     "leaflet-routing-machine": "^3.2.12",
     "pbkdf2": "^3.0.17",
+    "pdfjs-dist": "^2.2.228",
     "pkglink": "^0.7.9",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.3",
@@ -107,7 +110,8 @@
       "cordova-plugin-filechooser": {},
       "cordova-plugin-file-opener2": {},
       "cordova-plugin-filepicker": {},
-      "cordova-plugin-document-viewer": {}
+      "cordova-plugin-document-viewer": {},
+      "cordova-plugin-preview-any-file": {}
     },
     "platforms": [
       "ios",
