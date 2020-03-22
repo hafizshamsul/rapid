@@ -19,7 +19,11 @@ const routes: Routes = [
   { path: 'loginform', loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule) },
   { path: 'registerform', loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule) },
   
-  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },  {
+    path: 'submitpost',
+    loadChildren: () => import('./submitpost/submitpost.module').then( m => m.SubmitpostPageModule)
+  },
+
 
 
 
