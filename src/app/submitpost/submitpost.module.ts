@@ -8,11 +8,18 @@ import { SubmitpostPageRoutingModule } from './submitpost-routing.module';
 
 import { SubmitpostPage } from './submitpost.page';
 
+import { QuillModule } from 'ngx-quill';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    QuillModule.forRoot({
+      modules: {
+        syntax: true
+      }
+    }),
     SubmitpostPageRoutingModule
   ],
   declarations: [SubmitpostPage]
