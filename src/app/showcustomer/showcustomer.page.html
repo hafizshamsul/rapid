@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngFor="let hik of hiks" text-center>{{hik.name}} - {{hik.id}}</ion-title>
+    <ion-title *ngFor="let hik of hiks" text-center>{{hik.name}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="" color="tertiary" fill="outline"></ion-back-button>
     </ion-buttons>
@@ -9,36 +9,37 @@
 
 <ion-content>
   <!--
-    <iframe src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1579881407292.pdf"
+    <iframe src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1580368746847.pptx"
     style="width: 100%; height: 100%">
         <p>Your browser does not support iframes.</p>
   </iframe>
   -->
 
+  <!--
+    <iframe src="http://192.168.0.137/rapidkl/rapid/ViewerJS/#index.html../../1580368746847.odp">
+        <p>Your browser does not support iframes.</p>
+  </iframe>
+  -->
   
 
-  <ion-list style="width: 100vw; height: 100vh; margin: 0px; padding: 0px">
+  
+    <ion-list style="width: 100vw; height: 100vh; margin: 0px; padding: 0px">
     <ion-item-sliding *ngFor="let hik of hiks" style="width: 100vw; height: 100vh">
       <div *ngIf="hik.icon == 'pdf'; then thenBlock else elseBlock"></div>
       <ng-template #thenBlock>
-        <iframe src="http://192.168.0.137/rapidkl/rapid/web/viewer.html" style="width: 100%; height: 100%"></iframe>        
+        <!--
+          <iframe src="http://192.168.0.137/rapidkl/rapid/ViewerJS/#index.html../../1579881407292.pdf"></iframe>
+        -->
+        
+        <iframe src="http://192.168.0.137/rapidkl/rapid/web/viewer.html" style="width: 100%; height: 100%"></iframe>
+              
       </ng-template>
       <ng-template #elseBlock>
         <img src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}" width="100%" />
-      </ng-template>
-
-
-      <!--
-        <ion-item *ngIf="hik.icon == 'images'">
-        <img src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}" width="100%" height="100%"/>
-      </ion-item>
-      <ion-item *ngIf="hik.icon != 'images'">
-        <embed src="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}" width="100%" height="100%"/>
-      </ion-item>
-      -->
-      
+      </ng-template>      
     </ion-item-sliding>
   </ion-list>
+  
     
   
  
