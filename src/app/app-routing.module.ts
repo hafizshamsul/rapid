@@ -8,9 +8,8 @@ const routes: Routes = [
   { path: 'addcustomer/:id/:name/:desc', loadChildren: () => import('./addcustomer/addcustomer.module').then(m=>m.AddcustomerPageModule)},
   { path: 'showcustomer/:r_id', loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)},
   { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)},
-
   //{ path: 'thread/:r_thread', loadChildren: () => import('./thread/thread.module').then( m => m.ThreadPageModule)},
-  //{ path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
     
   //{ path: ':r_username', loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule) },
   //{ path: ':r_username/:r_folderid/', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},
@@ -19,10 +18,8 @@ const routes: Routes = [
   { path: 'loginform', loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule) },
   { path: 'registerform', loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule) },
   
-  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },  {
-    path: 'submitpost',
-    loadChildren: () => import('./submitpost/submitpost.module').then( m => m.SubmitpostPageModule)
-  },
+  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+  { path: 'submitpost', loadChildren: () => import('./submitpost/submitpost.module').then( m => m.SubmitpostPageModule) },
 
 
 
