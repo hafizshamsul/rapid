@@ -17,13 +17,20 @@ import { ImagesProvider } from '../providers/images/images';
 //import { IOSFilePicker } from '@ionic-native/file-picker';
 import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
-
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot(),
+    AppRoutingModule, QuillModule.forRoot(
+      {
+        modules: {
+          syntax: false
+        }
+      }
+    )],
   providers: [
     StatusBar,
     SplashScreen,

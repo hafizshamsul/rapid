@@ -37,9 +37,19 @@
               },
               {
                 "input": "src/global.scss"
+              },
+              {
+                "input": "./node_modules/quill/dist/quill.core.css"
+              },
+              {
+                "input": "./node_modules/quill/dist/quill.snow.css"
               }
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "./node_modules/quill/dist/quill.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
