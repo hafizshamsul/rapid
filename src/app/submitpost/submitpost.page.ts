@@ -23,7 +23,7 @@ export class SubmitpostPage implements OnInit {
   config = {
     toolbar: [
       ['bold', 'italic', 'underline'],
-      ['code-block']
+      ['image', 'code-block']
     ]
   }
 

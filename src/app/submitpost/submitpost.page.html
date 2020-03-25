@@ -53,7 +53,7 @@
           <label for="editor">
             <h3>Editor</h3>
           </label>
-          
+
           <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
         </div>
