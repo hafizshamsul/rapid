@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { Tagify } from '@yaireo/tagify';
+
 
 @Component({
   selector: 'app-submitpost',
@@ -11,9 +13,25 @@ import { QuillModule } from 'ngx-quill';
 export class SubmitpostPage implements OnInit {
 
   constructor(private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
+
+  opt:any = [
+    {
+      "id": "webdev"
+    },
+    {
+      "id": "mobiledev"
+    },
+    {
+      "id": "database"
+    }
+  ]
   
+
   editorForm: FormGroup;
   editorContent: string;
+
+  //input = document.querySelector('input[name=basic]');
+  //tagify = new Tagify(this.input);
 
   editorStyle = {
     height: '380px',

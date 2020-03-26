@@ -48,18 +48,35 @@
   <div id="griditem2" style="display:grid;">
     <div></div>
     <div style="background: white; height:78vh">
-      <form [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+
+      <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="editor">
-            <h3>Editor</h3>
+            <h5 style="text-align: center;">Upload Post</h5>
           </label>
+
+          <ion-item>
+            <ion-input placeholder="Select title...">
+              
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Select categories...</ion-label>
+            <ion-select multiple="true" cancelText="Back" okText="OK">
+              <div *ngFor="let item of opt">
+                <ion-select-option value={{item.id}} (ionChange)="onSelect()">{{item.id}}</ion-select-option>
+              </div>
+            </ion-select>
+          </ion-item>          
 
           <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
         </div>
-        <ion-button type="submit">Submit</ion-button>
+        
+        <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
       </form>
-      <h3>Output</h3>
+      <h5 style="text-align: center; margin-top:50px">Preview</h5>
       <p [innerHTML]="editorContent"></p>
     </div>
     <div></div>   

@@ -43,11 +43,17 @@
               },
               {
                 "input": "./node_modules/quill/dist/quill.snow.css"
+              },
+              {
+                "input": "./node_modules/@yaireo/tagify/dist/tagify.css"
               }
             ],
             "scripts": [
               {
                 "input": "./node_modules/quill/dist/quill.js"
+              },
+              {
+                "input": "./node_modules/@yaireo/tagify/dist/tagify.min.js"
               }
             ]
           },
