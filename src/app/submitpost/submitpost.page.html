@@ -48,12 +48,7 @@
   <div id="griditem2" style="display:grid;">
     <div></div>
     <div style="background: white; height:78vh">
-
-      <ion-select  [(ngModel)]="getSelectedSubject" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
-        <div *ngFor="let item of tags">
-          <ion-select-option value={{item.tagname}}>{{item.tagname}}</ion-select-option>
-        </div>
-      </ion-select>
+      
 
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -63,11 +58,14 @@
 
           <ion-item>
             <ion-input placeholder="Select title...">
-              
             </ion-input>
           </ion-item>
 
-          
+          <ion-select  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+            <div *ngFor="let item of tags">
+              <ion-select-option value={{item.tagname}}>{{item.tagname}}</ion-select-option>
+            </div>
+          </ion-select>
 
           <ion-item>
             <ion-label>Select categories...</ion-label>
@@ -77,14 +75,13 @@
               </div>
             </ion-select>
           </ion-item>
-
-
           <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
         </div>
         
         <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
       </form>
+
       <h5 style="text-align: center; margin-top:50px">Preview</h5>
       <p [innerHTML]="editorContent"></p>
     </div>
