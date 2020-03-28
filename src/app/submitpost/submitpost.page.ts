@@ -14,6 +14,8 @@ export class SubmitpostPage implements OnInit {
 
   constructor(private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
 
+  dis: string = "lol";
+
   opt:any = [
     {
       "id": "webdev"
@@ -62,4 +64,18 @@ export class SubmitpostPage implements OnInit {
     }
   }
 
+  lul:any = [];
+
+  getSelectedSubjectValue(getSelectedSubject){
+    this.lul = getSelectedSubject;
+    this.kah();
+    //console.log(this.lul);
+  }
+
+  kah(){
+    for(let val of this.lul){
+      console.log("Add tag of value: "+val);
+    }
+  }
+  
 }

@@ -49,6 +49,12 @@
     <div></div>
     <div style="background: white; height:78vh">
 
+<ion-select  [(ngModel)]="getSelectedSubject" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+
+            <ion-select-option value="English">English</ion-select-option>
+            <ion-select-option value="Mathematics">Mathematics</ion-select-option>
+          </ion-select>
+
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="editor">
@@ -61,14 +67,17 @@
             </ion-input>
           </ion-item>
 
+          
+
           <ion-item>
             <ion-label>Select categories...</ion-label>
             <ion-select multiple="true" cancelText="Back" okText="OK">
               <div *ngFor="let item of opt">
-                <ion-select-option value={{item.id}} (ionChange)="onSelect()">{{item.id}}</ion-select-option>
+                <ion-select-option value={{item.id}}>{{item.id}}</ion-select-option>
               </div>
             </ion-select>
-          </ion-item>          
+          </ion-item>
+
 
           <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
