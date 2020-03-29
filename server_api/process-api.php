@@ -107,13 +107,44 @@
         echo $result;
     }
 
+    elseif($postjson['action'] == 'addpost'){
+        $query = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+
+        $id = mysqli_insert_id($mysqli);
+
+        if($query){
+            $result = json_encode(array('success'=>true, 'id'=>$id));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
+    elseif($postjson['action'] == 'addtagcomment'){
+        //$idx = mysqli_insert_id($mysqli);
+        $query = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 30, tag_id = '$postjson[tag_id]'");
+
+        $id = mysqli_insert_id($mysqli);
+
+        if($query){
+            $result = json_encode(array('success'=>true, 'tagcommentid'=>$id));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
     elseif($postjson['action']=='gettag'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from tag");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
-                'id' => $row['id'],
+                'tagid' => $row['id'],
                 'tagname' => $row['tagname'],
                 'tagdesc' => $row['tagdesc']
             );

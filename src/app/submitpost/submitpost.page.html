@@ -57,24 +57,16 @@
           </label>
 
           <ion-item>
-            <ion-input placeholder="Select title...">
+            <ion-input placeholder="Select title..."  [(ngModel)]="getTitle" [ngModelOptions]="{standalone: true}">
             </ion-input>
           </ion-item>
 
           <ion-select  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
             <div *ngFor="let item of tags">
-              <ion-select-option value={{item.tagname}}>{{item.tagname}}</ion-select-option>
+              <ion-select-option value={{item.tagid}}>{{item.tagname}}</ion-select-option>
             </div>
           </ion-select>
 
-          <ion-item>
-            <ion-label>Select categories...</ion-label>
-            <ion-select multiple="true" cancelText="Back" okText="OK">
-              <div *ngFor="let item of opt">
-                <ion-select-option value={{item.id}}>{{item.id}}</ion-select-option>
-              </div>
-            </ion-select>
-          </ion-item>
           <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
         </div>
