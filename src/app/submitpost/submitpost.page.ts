@@ -111,8 +111,8 @@ export class SubmitpostPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
       });
-      this.addPost();
-      this.router.navigate(['r/home/']);
+      this.loopTagComment();
+      //this.router.navigate(['r/home/']);
     });
 
     
@@ -130,11 +130,11 @@ export class SubmitpostPage implements OnInit {
   
   getSelectedSubjectValue(getSelectedSubject){
     this.selectedtags = getSelectedSubject;
-    this.addPost();
+    this.loopTagComment();
     //console.log(this.lul);
   }
 
-  addPost(){
+  loopTagComment(){
     /*
     return new Promise(resolve => {
       let body = {
@@ -154,18 +154,20 @@ export class SubmitpostPage implements OnInit {
     */
     
     for(let val of this.selectedtags){
-      console.log("tagcomment.tagname: "+val);
-      
-      return new Promise(resolve => {
+      console.log("tagcomment.tagid: "+val);
+      this.addTagComment(val);
+    }
+  }
+
+  addTagComment(val){
+    return new Promise(resolve => {
         let body = {
           action : 'addtagcomment',
           tag_id : val
         };
         this.postprovider.postData(body, 'process-api.php').subscribe(data => {   
-        });
-        
-      });
-    }
+        }); 
+    });
   }
   
   /*
