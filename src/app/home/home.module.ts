@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
 import { HomePage } from './home.page';
 
-import { StripHtmlPipe } from '../striphtml.pipe'
+import { StripHtmlPipe } from '../striphtml.pipe';
+import { SharedModule } from '../SharedModule';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
@@ -20,6 +21,6 @@ import { StripHtmlPipe } from '../striphtml.pipe'
       }
     ])
   ],
-  declarations: [HomePage, StripHtmlPipe]
+  declarations: [HomePage]
 })
 export class HomePageModule {}
