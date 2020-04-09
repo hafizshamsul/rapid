@@ -134,6 +134,7 @@ listoso:any[];
   username: string;
   dateuploaded: string;
   vote: number;
+  //thread: number;
 
   tagcommentid: number;
   comment_id: number;
@@ -162,6 +163,7 @@ listoso:any[];
       this.username = data.username;
       this.dateuploaded = data.dateuploaded;
       this.vote = data.vote;
+      //this.thread = data.thread;
 
       console.log(data);
     });
@@ -189,7 +191,11 @@ listoso:any[];
   }
 
   toThread(r_thread){
-    this.router.navigate(['r/home/'+r_thread+'/']);
+    var selection = window.getSelection();
+    console.log(selection);
+    if(selection.toString().length === 0) {
+      this.router.navigate(['r/home/'+r_thread+'/']);
+    }
   }
 
   loadPost(){
