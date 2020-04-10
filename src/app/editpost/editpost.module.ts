@@ -8,11 +8,20 @@ import { EditpostPageRoutingModule } from './editpost-routing.module';
 
 import { EditpostPage } from './editpost.page';
 
+import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot({
+      modules: {
+        syntax: false
+      }
+    }),
     EditpostPageRoutingModule
   ],
   declarations: [EditpostPage]
