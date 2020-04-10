@@ -193,9 +193,17 @@ listoso:any[];
   toThread(r_thread){
     var selection = window.getSelection();
     console.log(selection);
+
     if(selection.toString().length === 0) {
       this.router.navigate(['r/home/'+r_thread+'/']);
     }
+  }
+
+  toEdit(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    this.router.navigate(['editpost/']);
   }
 
   loadPost(){
