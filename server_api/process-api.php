@@ -532,5 +532,4 @@
         echo $result;
     
     }
-
 ?>
