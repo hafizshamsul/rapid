@@ -282,6 +282,25 @@
     
     }
 
+    elseif($postjson['action']=='deletepost'){
+        $data = array();
+        $query = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = '$postjson[commentid]'");
+        $query2 = mysqli_query($mysqli, "DELETE FROM comment WHERE thread = '$postjson[commentid]'");
+    
+        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
+        
+        //$diff = $date2->diff($date1);
+        //$hours = $diff->h;
+        //$hours = $hours + ($diff->days*24);
+
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getthread'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, thread, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where thread=$postjson[thread] order by dateuploaded desc limit 8 offset 0) d order by dateuploaded desc");
