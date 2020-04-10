@@ -88,3 +88,23 @@
     /* bg color = bg color under block */
     background: white;
   }
+
+  #edit{
+    color:rgb(200,200,200);
+  }
+
+  #edit:hover{
+    color:rgb(53, 53, 53);
+    cursor: pointer;
+  }
+
+  #trash{
+    color:rgb(200,200,200);
+  }
+
+  #trash:hover{
+    color:#d91e18;
+    cursor: pointer;
+  }
+
+  
