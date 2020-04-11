@@ -45,8 +45,10 @@ export class EditpostPage implements OnInit {
   comment_id: number;
   tag_id: number;
 
-  editorForm: FormGroup;
+  getTitle:string; //title
   editorContent: string; //textcmt
+  editorForm: FormGroup;
+  retrievedtextcmt: string ="haha";
 
   editorStyle = {
     height: '380px',
@@ -64,12 +66,21 @@ export class EditpostPage implements OnInit {
   
 
   ngOnInit() {
+    
+    
     this.myObject = this.myNavService.myParam;
     this.passededitid = this.myObject.locs.id;
+    this.passededittitle = this.myObject.locs.title;
+    this.passededittextcmt = this.myObject.locs.textcmt;
     console.log(this.passededitid);
+    console.log(this.passededittitle);
+    console.log(this.passededittextcmt);
 
+    this.comments = [];
+    this.loadPost(this.passededitid);
+    
     this.editorForm = new FormGroup({
-      'editor': new FormControl(null)
+      'editor': new FormControl(this.passededittextcmt)
     });
 
     //tag
@@ -89,6 +100,7 @@ export class EditpostPage implements OnInit {
       this.textcmt = data.textcmt;
 
       console.log(data);
+      //console.log('before editorform:'+this.listoso[0].textcmt);
       //console.log("This is: "+this.commentid);
     });
 
@@ -102,21 +114,23 @@ export class EditpostPage implements OnInit {
       
     });
     
+    
   }
 
   ionViewWillEnter(){
     //load
+    
     this.tags = [];
-    this.comments = [];
-    this.loadTag();
-    this.loadPost(this.passededitid);
+    this.loadTag();    
   }
 
-  getTitle:string;
+  
 
   contoh:any = [];
   
   passededitid:number;
+  passededittitle:string;
+  passededittextcmt:string;
 
 
   //convert plain tree to hierarchical tree
@@ -147,6 +161,7 @@ export class EditpostPage implements OnInit {
 
   //loading plain tree array of post and convert it using treeify
   loadPost(passededitid){
+    
     return new Promise(resolve => {
       let body = {
         action : 'getpostall',
@@ -155,8 +170,11 @@ export class EditpostPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
           this.comments.push(comment);
+          this.getTitle = comment.title;
+          this.retrievedtextcmt = comment.textcmt;
         }
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        
         resolve(true);
       });
     });
