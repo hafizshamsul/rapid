@@ -162,6 +162,59 @@
         echo $result;
     }
 
+    elseif($postjson['action'] == 'updatepost'){
+        //$kot = $postjson->contoh->id;
+        //$postjson = json_decode(file_get_contents('php://input'), true);
+        $jsonz = '
+                {
+                    "id": 1,
+                    "text": "lol"
+                }';
+
+        $yummy = json_decode($jsonz);
+        //$zummy = $postjson['contoh'];
+
+        //$jsond = 'eh';
+        $trytest = json_decode("{ 'id': 1, 'text': 'lol' }");
+
+        
+        //$eh = $postjson['contoh']['name'];
+
+        $huhu = array (
+            'name' => 'John',
+        );
+
+        $postjson['textcmt'] = mysqli_real_escape_string($mysqli, $postjson['textcmt']);
+        $query_updatepost = mysqli_query($mysqli, "UPDATE comment SET title = '$postjson[title]', textcmt = '$postjson[textcmt]' WHERE id = '$postjson[commentid]'");
+        
+
+        $id_updatepost = mysqli_insert_id($mysqli);
+        $addone = mysqli_insert_id($mysqli)+1;
+
+        //$query_updatethread = mysqli_query($mysqli, "UPDATE comment SET thread = $id_addpost WHERE id=$id_addpost");
+
+        //$query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+        /*for($i=0; $i<count($postjson['contoh']); $i++){
+            $curr = $postjson['contoh'][$i]['name'];
+            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_addpost, tag_id = $curr");
+        }*/
+        
+        if($query_updatepost){
+            /*while($row = mysqli_fetch_array($query)){
+                $data[] = array(
+                    'commentid' => $row['id']
+                );
+            }*/
+            
+            $result = json_encode(array('success'=>true, 'id'=>$id_updatepost));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
     elseif($postjson['action'] == 'addtagcomment'){
         $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 56, tag_id = '$postjson[tag_id]'");
 
