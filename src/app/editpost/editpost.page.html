@@ -44,6 +44,9 @@
           <label for="editor">
             <h5 style="text-align: center;">Edit Post (ID: {{passededitid}})</h5>
           </label>
+          <div *ngFor="let item of listoso">
+            <p>{{item.title}}</p>
+          </div>
 
           <ion-item>
             <ion-input placeholder="Select title..."  [(ngModel)]="getTitle" [ngModelOptions]="{standalone: true}">

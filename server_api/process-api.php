@@ -282,6 +282,72 @@
     
     }
 
+    elseif($postjson['action']=='getpostall'){
+        $data = array();
+        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and comment.id='$postjson[passededitid]' order by dateuploaded desc) d order by dateuploaded desc");
+    
+        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
+        
+        //$diff = $date2->diff($date1);
+        //$hours = $diff->h;
+        //$hours = $hours + ($diff->days*24);
+
+        
+        while($row = mysqli_fetch_array($query)){
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+
+            $date = new DateTime();
+            $datenow = $date->format('Y-m-d H:i:s');
+            
+            $start = strtotime($row['dateuploaded']);
+            $end = strtotime($datenow);
+            $minutes = round(($end - $start) / 60 );
+
+            if($minutes<60){
+                $ago = $minutes . " minutes ago";
+            }
+            elseif($minutes<1440){
+                $hour = floor($minutes / 60);
+                $ago = $hour . " hours ago";
+            }
+            elseif($minutes<10080){
+                $day = floor($minutes/1440);
+                $ago = $day . " days ago";
+            }
+            elseif($minutes<43800){
+                $week = floor($minutes/(10080));
+                $ago = $week . " weeks ago";
+            }
+            elseif($minutes<525600){
+                $month = floor($minutes/(43800));
+                $ago = $month . " months ago";
+            }
+            else{
+                $year = floor($minutes/(525600));
+                $ago = $year . " years ago";
+            }
+
+            $vote = $row['upvote'] - $row['downvote'];
+
+            $data[] = array(
+                'commentid' => $row['id'],
+                'users_id' => $row['users_id'],
+                'title' => $row['title'],
+                'textcmt' => $row['textcmt'],
+                'replyto' => $row['replyto'],
+                'username' => $row['username'],
+                'dateuploaded' => $ago,
+                'vote' => $vote
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='deletepost'){
         $data = array();
         $query = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = '$postjson[commentid]'");
