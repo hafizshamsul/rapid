@@ -42,18 +42,15 @@
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="editor">
-            <h5 style="text-align: center;">Edit Post (ID: {{passededitid}}, Title: {{passededittitle}})</h5>
+            <h5 style="text-align: center;">Edit Post</h5>
           </label>
-          <div *ngFor="let item of listoso">
-            <p>{{item.title}}</p>
-          </div>
 
           <ion-item>
             <ion-input placeholder="{{getTitle}"  [(ngModel)]="getTitle" [ngModelOptions]="{standalone: true}">
             </ion-input>
           </ion-item>
 
-          <ion-select  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+          <ion-select [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="{{getSelectedSubject}}">
             <div *ngFor="let item of tags">
               <ion-select-option value={{item.tagid}}>{{item.tagname}}</ion-select-option>
             </div>

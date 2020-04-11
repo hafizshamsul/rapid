@@ -201,10 +201,12 @@ listoso:any[];
     }
   }
 
+  
   locs: any = {
     "id": 0,
     "title": "lel",
-    "textcmt": "lel"
+    "textcmt": "lel",
+    "tags": ["1", "2"]
   }
 
   public async toEdit(commentid, title, textcmt){
@@ -214,6 +216,7 @@ listoso:any[];
     this.locs.id = commentid;
     this.locs.title = title;
     this.locs.textcmt = textcmt;
+    this.locs.tags = this.locs.tags;
 
     this.myNavService.myParam = {locs:this.locs};
     //await this.navCtrl.goForward('/map-page');
