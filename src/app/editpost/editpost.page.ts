@@ -19,12 +19,16 @@ export class EditpostPage implements OnInit {
   //state$: Observable<object>;
   hello:string = "eh";
 
-  
+  getSelectedSubject:any[];
 
   constructor(
     public global: GlobalService,
     public myNavService: MyNavService,
-    private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
+    private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
+      console.log(this.getSelectedSubject);
+      
+      //this.getSelectedSubject = [1];
+     }
 
   //tag
   tags: any = [];
@@ -64,17 +68,20 @@ export class EditpostPage implements OnInit {
 
   myObject:any = [];
   
-
   ngOnInit() {
     
-    
+
     this.myObject = this.myNavService.myParam;
     this.passededitid = this.myObject.locs.id;
     this.passededittitle = this.myObject.locs.title;
     this.passededittextcmt = this.myObject.locs.textcmt;
+    this.passededittags = this.myObject.locs.tags;
     console.log(this.passededitid);
     console.log(this.passededittitle);
     console.log(this.passededittextcmt);
+    console.log(this.passededittags);
+
+    this.getSelectedSubject = this.passededittags;
 
     this.comments = [];
     this.loadPost(this.passededitid);
@@ -131,6 +138,7 @@ export class EditpostPage implements OnInit {
   passededitid:number;
   passededittitle:string;
   passededittextcmt:string;
+  passededittags:any[];
 
 
   //convert plain tree to hierarchical tree
@@ -237,7 +245,7 @@ export class EditpostPage implements OnInit {
   getSelectedSubjectValue(getSelectedSubject){
     this.contoh = [];
     this.selectedtags = getSelectedSubject;
-    
+    //console.log(getSelectedSubject);
     this.loopTagComment();
   }
 
