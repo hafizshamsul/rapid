@@ -150,8 +150,6 @@ listoso:any[];
   ngOnInit() {
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
-
-    
     
     console.log(JSON.stringify(this.list));
     console.log(JSON.stringify(this.listos));
@@ -181,6 +179,7 @@ listoso:any[];
   }
 
   ionViewWillEnter(){
+    
     this.comments = [];
     this.tagcomments = [];
     this.loadPost();
@@ -206,8 +205,10 @@ listoso:any[];
     "id": 0,
     "title": "lel",
     "textcmt": "lel",
-    "tags": ["1", "2"]
+    "tags": ["hur"]
   }
+
+  collecttag: any=[];
 
   public async toEdit(commentid, title, textcmt){
     event.cancelBubble = true;
@@ -216,14 +217,28 @@ listoso:any[];
     this.locs.id = commentid;
     this.locs.title = title;
     this.locs.textcmt = textcmt;
-    this.locs.tags = this.locs.tags;
+
+    for(let tagcomment of this.tagcomments){
+      if(tagcomment.comment_id==commentid){
+        console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
+        this.collecttag.push(tagcomment.tag_tagname);
+      }
+    }
+    console.log(this.collecttag);
+
+    this.locs.tags = this.collecttag;
 
     this.myNavService.myParam = {locs:this.locs};
     //await this.navCtrl.goForward('/map-page');
+    
+    this.collecttag =[];
+
     await this.router.navigateByUrl('/editpost');
 
-    this.router.navigate(['editpost/']);
+    //this.router.navigate(['editpost/']);
     //this.router.navigateByUrl('/editpost', { state: { hello: 'world' } });
+
+    
   }
 
   loadPost(){
@@ -301,4 +316,8 @@ listoso:any[];
     await alert.present();
   }
   
+
+  man(tagname){
+    console.log(tagname);
+  }
 }

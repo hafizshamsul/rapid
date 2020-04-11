@@ -59,7 +59,9 @@
                 
                   <div *ngFor="let tagcomment of tagcomments">
                     <div *ngIf="tagcomment.comment_id==item.commentid" style="background:rgb(237,237,237); padding:1px 6px 3px 6px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
+                      
                       {{tagcomment.tag_tagname}}
+                      {{man(tagcomment.tag_tagname)}}
                     </div>
                   </div>
                   <div>
