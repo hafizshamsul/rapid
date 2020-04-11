@@ -202,14 +202,18 @@ listoso:any[];
   }
 
   locs: any = {
-    "id": 0
+    "id": 0,
+    "title": "lel",
+    "textcmt": "lel"
   }
 
-  public async toEdit(commentid){
+  public async toEdit(commentid, title, textcmt){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
 
     this.locs.id = commentid;
+    this.locs.title = title;
+    this.locs.textcmt = textcmt;
 
     this.myNavService.myParam = {locs:this.locs};
     //await this.navCtrl.goForward('/map-page');
