@@ -61,7 +61,7 @@ export class EditpostPage implements OnInit {
   }
 
   myObject:any = [];
-  passededitid:number = 0;
+  
 
   ngOnInit() {
     this.myObject = this.myNavService.myParam;
@@ -107,12 +107,69 @@ export class EditpostPage implements OnInit {
   ionViewWillEnter(){
     //load
     this.tags = [];
+    this.comments = [];
     this.loadTag();
+    this.loadPost(this.passededitid);
   }
 
   getTitle:string;
 
   contoh:any = [];
+  
+  passededitid:number;
+
+
+  //convert plain tree to hierarchical tree
+  treeify(listo, idAttr, parentAttr, childrenAttr) {
+    if (!idAttr) idAttr = 'commentid';
+    if (!parentAttr) parentAttr = 'replyto';
+
+    if (!childrenAttr) childrenAttr = 'children';
+
+    var treeList = [];
+    var lookup = {};
+    listo.forEach(function(obj) {
+        lookup[obj[idAttr]] = obj;
+        obj[childrenAttr] = [];
+    });
+    listo.forEach(function(obj) {
+        if (obj[parentAttr] != null) {
+            lookup[obj[parentAttr]][childrenAttr].push(obj);
+        } else {
+            treeList.push(obj);
+        }
+      });
+      return treeList;
+  };
+
+  //hierarchical array of post
+  listoso:any[]; 
+
+  //loading plain tree array of post and convert it using treeify
+  loadPost(passededitid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getpostall',
+        passededitid : passededitid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let comment of data.result){
+          this.comments.push(comment);
+        }
+        this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        resolve(true);
+      });
+    });
+  }
+
+
+
+
+
+
+
+
+
   
 
   onSubmit(){
