@@ -39,6 +39,7 @@ export class HomePage{
 
     //tagifyclone
     totalselected:number = 0;
+    selectedtag:any = [];
 
     //category object array
     category:any = [
@@ -64,18 +65,29 @@ export class HomePage{
         if(item.id == itemid){
           //select
           if(item.selected == false){
-            item.selected = true;
             this.totalselected++;
+            item.selected = true;
           }
           //deselect
           else if(item.selected == true){
-            item.selected = false;
             this.totalselected--;
+            item.selected = false;
           }
         }
-      }
-      
+      } 
     }
+
+    getselectedtag(){
+      this.selectedtag = [];
+      for(let item of this.category){
+        if(item.selected == true){
+          this.selectedtag.push(item.id);
+        }
+      }
+      console.log(this.selectedtag);
+    }
+
+
     
     //commentid: number;
     //replyto: number;
@@ -247,10 +259,16 @@ listoso:any[];
     "id": 0,
     "title": "lel",
     "textcmt": "lel",
-    "tags": ["hur"]
+    "tags": ["hur"],
+    "tagsname": ["hur"],
+    "generaltags":{
+      "tagid": 0,
+      "tagname": "hur"
+    }
   }
 
   collecttag: any=[];
+  collecttagname: any=[];
 
   public async toEdit(commentid, title, textcmt){
     event.cancelBubble = true;
@@ -262,18 +280,25 @@ listoso:any[];
 
     for(let tagcomment of this.tagcomments){
       if(tagcomment.comment_id==commentid){
+        console.log('ehhhhhhhhhhh'+tagcomment.tag_id);
         console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
-        this.collecttag.push(tagcomment.tag_tagname);
+        this.collecttag.push(tagcomment.tag_id);
+        this.collecttagname.push(tagcomment.tag_tagname);
       }
     }
     console.log(this.collecttag);
+    console.log(this.collecttagname);
 
     this.locs.tags = this.collecttag;
+    this.locs.tagsname = this.collecttagname;
+    this.locs.generaltags.tagid = this.collecttag;
+    this.locs.generaltags.tagname = this.collecttagname;
 
     this.myNavService.myParam = {locs:this.locs};
     //await this.navCtrl.goForward('/map-page');
     
     this.collecttag =[];
+    this.collecttagname =[];
 
     await this.router.navigateByUrl('/editpost');
 

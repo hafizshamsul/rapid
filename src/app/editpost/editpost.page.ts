@@ -18,9 +18,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class EditpostPage implements OnInit {
   //state$: Observable<object>;
-  hello:string = "eh";
-
-  getSelectedSubject:any[];
+  
 
   constructor(
     public global: GlobalService,
@@ -28,8 +26,58 @@ export class EditpostPage implements OnInit {
     public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
       console.log(this.getSelectedSubject);
+      console.log(this.getSelectedSubjectName);
       //this.getSelectedSubject = [1];
+
+      this.category = [];
+      this.category.push({"id": 1, "name": "science", "selected": false});
+      this.category.push({"id": 2, "name": "maths", "selected": false});
      }
+
+
+//tagifyclone
+totalselected:number = 0;
+selectedtag:any = [];
+
+//category object array
+category:any[];
+
+changeselection(itemid){
+  for(let item of this.category){
+    if(item.id == itemid){
+      //select
+      if(item.selected == false){
+        this.totalselected++;
+        item.selected = true;
+      }
+      //deselect
+      else if(item.selected == true){
+        this.totalselected--;
+        item.selected = false;
+      }
+    }
+  } 
+}
+
+getselectedtag(){
+  this.selectedtag = [];
+  for(let item of this.category){
+    if(item.selected == true){
+      this.selectedtag.push(item.id);
+    }
+  }
+  console.log(this.selectedtag);
+}
+  
+
+
+
+
+
+
+  hello:string = "eh";
+  getSelectedSubject:any[];
+  getSelectedSubjectName:any[];
 
   //tag
   tags: any = [];
@@ -77,12 +125,20 @@ export class EditpostPage implements OnInit {
     this.passededittitle = this.myObject.locs.title;
     this.passededittextcmt = this.myObject.locs.textcmt;
     this.passededittags = this.myObject.locs.tags;
+    this.passededittagsname = this.myObject.locs.tagsname;
+    this.passededitgeneraltagstagid = this.myObject.locs.generaltags.tagid;
+    this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
+    
     console.log(this.passededitid);
     console.log(this.passededittitle);
     console.log(this.passededittextcmt);
     console.log(this.passededittags);
+    console.log(this.passededittagsname);
+    console.log(this.passededitgeneraltagstagid);
+    console.log(this.passededitgeneraltagstagname);
 
     this.getSelectedSubject = this.passededittags;
+    this.getSelectedSubjectName = this.passededittagsname;
 
     this.comments = [];
     this.loadPost(this.passededitid);
@@ -140,6 +196,9 @@ export class EditpostPage implements OnInit {
   passededittitle:string;
   passededittextcmt:string;
   passededittags:any[];
+  passededittagsname:any[];
+  passededitgeneraltagstagid:any[];
+  passededitgeneraltagstagname:any[];
 
 
   //convert plain tree to hierarchical tree
@@ -211,6 +270,7 @@ export class EditpostPage implements OnInit {
           handler: () => {
             this.onUpdate();
             console.log('Update is clicked');
+            console.log(this.contoh);
             //window.location.href = window.location.href;
           }
         }
@@ -243,7 +303,7 @@ export class EditpostPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
       });
-      this.loopTagComment();
+      //this.loopTagComment();
       //window.location.reload(true);
       //window.location.href = window.location.href;
       
@@ -263,11 +323,13 @@ export class EditpostPage implements OnInit {
   }
 
   selectedtags: any = [];
+  selectedtagsname: any = [];
   flagselected: boolean = false;
   
   getSelectedSubjectValue(getSelectedSubject){
     this.contoh = [];
     this.selectedtags = getSelectedSubject;
+    this.selectedtagsname = this.getSelectedSubjectName;
     //console.log(getSelectedSubject);
     this.loopTagComment();
   }
@@ -277,11 +339,27 @@ export class EditpostPage implements OnInit {
   loopTagComment(){    
     for(let val of this.selectedtags){
       console.log("tagcomment.tagid: "+val);
-      this.contoh.push({"id": 3, "name": val});
+      //this.contoh.push({"id": val, "name": val, "selected": false});
       //this.arraytag.push(val);
       //console.log(this.arraytag)
       //this.addTagComment(val);
     }
+
+    /*for(let item of this.myObject.locs){
+      //this.contoh.push({"id": this.myObject.item.generaltags.tagid, "name": this.myObject.item.generaltags.tagname, "selected": false});
+    }*/
+
+    for(let item of this.myObject.locs.generaltags.tagid){
+      //console.log(this.myObject.locs.generaltags.tagid[item-1]);
+      //console.log(item);
+      this.contoh.push({"id": this.myObject.locs.generaltags.tagid[item-1], "name": this.myObject.locs.generaltags.tagname[item-1], "selected": false});
+
+    }
+
+    //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[0], "name": this.myObject.locs.generaltags.tagname[0], "selected": false});
+
+    //console.log(this.myObject.locs.generaltags.tagid[0]);
+    console.log(this.contoh);
   }
 
   addTagComment(val){
