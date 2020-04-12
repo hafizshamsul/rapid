@@ -194,10 +194,17 @@
         //$query_updatethread = mysqli_query($mysqli, "UPDATE comment SET thread = $id_addpost WHERE id=$id_addpost");
 
         //$query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+        
+        for($i=0; $i<count($postjson['contoh']); $i++){
+            //$curr = $postjson['contoh'][$i]['name'];
+            //$query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_updatepost, tag_id = $curr");
+            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = 1");
+        }
         /*for($i=0; $i<count($postjson['contoh']); $i++){
-            $curr = $postjson['contoh'][$i]['name'];
-            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_addpost, tag_id = $curr");
+            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = 1");
         }*/
+        
+        
         
         if($query_updatepost){
             /*while($row = mysqli_fetch_array($query)){
