@@ -35,6 +35,48 @@ export class HomePage{
     
       
     }
+    
+
+    //tagifyclone
+    totalselected:number = 0;
+
+    //category object array
+    category:any = [
+      {
+        "id": 1,
+        "subject": "science",
+        "selected": false
+      },
+      {
+        "id": 2,
+        "subject": "maths",
+        "selected": false
+      },
+      {
+        "id": 3,
+        "subject": "english",
+        "selected": false
+      }
+    ];
+    
+    changeselection(itemid){
+      for(let item of this.category){
+        if(item.id == itemid){
+          //select
+          if(item.selected == false){
+            item.selected = true;
+            this.totalselected++;
+          }
+          //deselect
+          else if(item.selected == true){
+            item.selected = false;
+            this.totalselected--;
+          }
+        }
+      }
+      
+    }
+    
     //commentid: number;
     //replyto: number;
 
@@ -318,6 +360,6 @@ listoso:any[];
   
 
   man(tagname){
-    console.log(tagname);
+    //console.log(tagname);
   }
 }

@@ -28,7 +28,6 @@ export class EditpostPage implements OnInit {
     public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
       console.log(this.getSelectedSubject);
-      
       //this.getSelectedSubject = [1];
      }
 
