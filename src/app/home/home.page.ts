@@ -84,7 +84,7 @@ export class HomePage{
           this.selectedtag.push(item.id);
         }
       }
-      console.log(this.selectedtag);
+      //console.log(this.selectedtag);
     }
 
 
@@ -198,15 +198,15 @@ listoso:any[];
   tag_tagname: string;
 
   pass(index){
-    console.log(index);
+    //console.log(index);
   }
 
   ngOnInit() {
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
     
-    console.log(JSON.stringify(this.list));
-    console.log(JSON.stringify(this.listos));
+    //console.log(JSON.stringify(this.list));
+    //console.log(JSON.stringify(this.listos));
 
     this.actRoute.params.subscribe((data: any) =>{
       this.commentid = data.commentid;
@@ -219,7 +219,7 @@ listoso:any[];
       this.vote = data.vote;
       //this.thread = data.thread;
 
-      console.log(data);
+      //console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -228,7 +228,7 @@ listoso:any[];
       this.tag_id = data.tag_id;
       this.tag_tagname = data.tag_tagname;
 
-      console.log(data);
+      //console.log(data);
     });
   }
 
@@ -247,7 +247,7 @@ listoso:any[];
 
   toThread(r_thread){
     var selection = window.getSelection();
-    console.log(selection);
+    //console.log(selection);
 
     if(selection.toString().length === 0) {
       this.router.navigate(['r/home/'+r_thread+'/']);
@@ -279,16 +279,16 @@ listoso:any[];
 
     for(let tagcomment of this.tagcomments){
       if(tagcomment.comment_id==commentid){
-        console.log('ehhhhhhhhhhh'+tagcomment.tag_id);
-        console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
+        //console.log('ehhhhhhhhhhh'+tagcomment.tag_id);
+        //console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
         this.collecttag.push(tagcomment.tag_id);
         this.collecttagname.push(tagcomment.tag_tagname);
         this.collectnewtags.push({"tagid": tagcomment.tag_id, "tagname": tagcomment.tag_tagname});
       }
     }
-    console.log(this.collecttag);
+    /*console.log(this.collecttag);
     console.log(this.collecttagname);
-    console.log(this.collectnewtags);
+    console.log(this.collectnewtags);*/
 
     this.locs.tags = this.collecttag;
     this.locs.tagsname = this.collecttagname;
@@ -376,7 +376,7 @@ listoso:any[];
           text: 'Delete',
           handler: (r_thread) => {
             this.deletePost(leh);
-            console.log('Delete is clicked');
+            //console.log('Delete is clicked');
             window.location.href = window.location.href;
           }
         }

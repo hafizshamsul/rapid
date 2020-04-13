@@ -25,8 +25,9 @@ export class EditpostPage implements OnInit {
     public myNavService: MyNavService,
     public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
-      console.log(this.getSelectedSubject);
-      console.log(this.getSelectedSubjectName);
+      console.log('constructor');
+      //console.log(this.getSelectedSubject);
+      //console.log(this.getSelectedSubjectName);
       //this.getSelectedSubject = [1];
 
       this.category = [];
@@ -85,6 +86,8 @@ getselectedtag(){
   getSelectedSubject:any[];
   getSelectedSubjectName:any[];
 
+  contoh: any = [];
+
   //tag
   tags: any = [];
   tagid: number;
@@ -124,7 +127,7 @@ getselectedtag(){
   myObject:any = [];
   
   ngOnInit() {
-    
+    console.log('ngOnInit');
 
     this.myObject = this.myNavService.myParam;
     this.passededitid = this.myObject.locs.id;
@@ -136,23 +139,26 @@ getselectedtag(){
     this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
     this.passededitnewtags = this.myObject.locs.newtags;
     
-    console.log(this.passededitid);
+    /*console.log(this.passededitid);
     console.log(this.passededittitle);
     console.log(this.passededittextcmt);
     console.log(this.passededittags);
     console.log(this.passededittagsname);
     console.log(this.passededitgeneraltagstagid);
     console.log(this.passededitgeneraltagstagname);
-    console.log(this.passededitnewtags);
+    console.log(this.passededitnewtags);*/
 
     this.getSelectedSubject = this.passededittags;
     this.getSelectedSubjectName = this.passededittagsname;
 
     this.comments = [];
     this.tags = [];
+    this.contoh = [];
+    
 
     this.loadPost(this.passededitid);
     this.loadTag();
+    
     
     this.editorForm = new FormGroup({
       'editor': new FormControl(this.passededittextcmt)
@@ -164,7 +170,7 @@ getselectedtag(){
       this.tagname = data.tagname;
       this.tagdesc = data.tagdesc;
 
-      console.log(data);
+      //console.log(data);
     });
 
     //comment
@@ -174,7 +180,8 @@ getselectedtag(){
       this.title = data.title;
       this.textcmt = data.textcmt;
 
-      console.log(data);
+      //console.log(data);
+
       //console.log('before editorform:'+this.listoso[0].textcmt);
       //console.log("This is: "+this.commentid);
     });
@@ -185,15 +192,17 @@ getselectedtag(){
       this.comment_id = data.comment_id;
       this.tag_id = data.tag_id;
 
-      console.log(data);
+      //console.log(data);
       
     });
-    
-    
     
   }
 
   ionViewWillEnter(){
+    console.log('ionViewWillEnter');
+
+    
+
     //load
     
     
@@ -204,7 +213,7 @@ getselectedtag(){
     //console.log(this.myObject.locs.generaltags.tagid[0]);
     
 
-    for(let item of this.tags){
+    /*for(let item of this.tags){
       console.log(item.tagid);
     }
     for(let item of this.passededittags){
@@ -212,7 +221,7 @@ getselectedtag(){
     }
     for(let item of this.myObject.locs.generaltags.tagid){
       console.log(this.myObject.locs.generaltags.tagid[item-1]);
-    }
+    }*/
 
     for(let itemtags of this.tags){
       /*for(let itempassededittags of this.myObject.locs.generaltags.tagid){
@@ -220,32 +229,23 @@ getselectedtag(){
           console.log('selected');
         }
       }*/
-      this.contoh.push({"id": itemtags.tagid, "name": itemtags.tagname, "selected": false})
+      //this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false})
     }
-    for(let itemtags of this.tags){
-      for(let itempassededittags of this.myObject.locs.generaltags.tagid){
-        /*if(itemtags.tagid == this.myObject.locs.generaltags.tagid[itempassededittags-1]){
-          this.contoh[0].selected = true;
-          console.log('itempassededittags: '+itempassededittags+', itempassededittags-1: '+(itempassededittags-1));
-          
-        }*/
+
+    /*for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
+      for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
+        if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
+          this.contoh[itemtags].selected = true;
+        }
       }
-    }
+    }*/
 
     console.log(this.tags);
     console.log(this.myObject.locs.newtags);
-    //this.contoh[0].selected = true;
-    //this.contoh[1].selected = true;
-    
     //console.log(this.contoh);
-    
-    //console.log(this.comments[0]);
-    //console.log(this.tags[0]);
   }
-
-
-  contoh:any = [];
   
+
   passededitid:number;
   passededittitle:string;
   passededittextcmt:string;
@@ -302,9 +302,41 @@ getselectedtag(){
     });
   }
 
+  ionViewDidEnter(){
+    console.log('ionViewDidEnter');
+    //console.log(Object.keys(this.tags).length);
+    
+    /*for(let i=0; i<Object.keys(this.tags).length; i++){
+      this.contoh.push({"tagid":"1", "name":"lel", "selected": false});
+    }*/
 
+    for(let itemtags of this.tags){
+      this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
+    }
+    
+    for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
+      for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
+        if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
+          this.contoh[itemtags].selected = true;
+        }
+      }
+    }
 
+    console.log(this.contoh);
+    
+  }
 
+  ionViewWilLeave(){
+    //console.log('ionViewWillLeave');
+  }
+
+  ionViewDidLeave(){
+    //console.log('ionViewDidLeave');
+  }
+
+  ngOnDestroy(){
+    //console.log('ngOnDestroy');
+  }
 
   async presentAlertMultipleButtons() {
     //let leh: number = r_thread;
@@ -323,8 +355,8 @@ getselectedtag(){
           text: 'Update',
           handler: () => {
             this.onUpdate();
-            console.log('Update is clicked');
-            console.log(this.contoh);
+            //console.log('Update is clicked');
+            //console.log(this.contoh);
             //window.location.href = window.location.href;
           }
         }
@@ -337,9 +369,9 @@ getselectedtag(){
 
   onUpdate(){
     this.editorContent = this.editorForm.get('editor').value;
-    console.log("comment.users_id: "+this.global.userid);
-    console.log("comment.title: "+this.getTitle);
-    console.log("comment.textcmt: "+this.editorContent);
+    //console.log("comment.users_id: "+this.global.userid);
+    //console.log("comment.title: "+this.getTitle);
+    //console.log("comment.textcmt: "+this.editorContent);
 
     
 
@@ -381,7 +413,6 @@ getselectedtag(){
   flagselected: boolean = false;
   
   getSelectedSubjectValue(getSelectedSubject){
-    this.contoh = [];
     this.selectedtags = getSelectedSubject;
     this.selectedtagsname = this.getSelectedSubjectName;
     //console.log(getSelectedSubject);
