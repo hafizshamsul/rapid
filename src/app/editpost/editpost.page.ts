@@ -32,6 +32,10 @@ export class EditpostPage implements OnInit {
       this.category = [];
       this.category.push({"id": 1, "name": "science", "selected": false});
       this.category.push({"id": 2, "name": "maths", "selected": false});
+
+      for(let item of this.tags){
+        console.log('aiwah');
+      }
      }
 
 
@@ -43,6 +47,7 @@ selectedtag:any = [];
 category:any[];
 
 changeselection(itemid){
+  /*
   for(let item of this.category){
     if(item.id == itemid){
       //select
@@ -56,17 +61,18 @@ changeselection(itemid){
         item.selected = false;
       }
     }
-  } 
+  }*/
 }
 
 getselectedtag(){
+  /*
   this.selectedtag = [];
   for(let item of this.category){
     if(item.selected == true){
       this.selectedtag.push(item.id);
     }
   }
-  console.log(this.selectedtag);
+  console.log(this.selectedtag);*/
 }
   
 
@@ -128,6 +134,7 @@ getselectedtag(){
     this.passededittagsname = this.myObject.locs.tagsname;
     this.passededitgeneraltagstagid = this.myObject.locs.generaltags.tagid;
     this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
+    this.passededitnewtags = this.myObject.locs.newtags;
     
     console.log(this.passededitid);
     console.log(this.passededittitle);
@@ -136,12 +143,16 @@ getselectedtag(){
     console.log(this.passededittagsname);
     console.log(this.passededitgeneraltagstagid);
     console.log(this.passededitgeneraltagstagname);
+    console.log(this.passededitnewtags);
 
     this.getSelectedSubject = this.passededittags;
     this.getSelectedSubjectName = this.passededittagsname;
 
     this.comments = [];
+    this.tags = [];
+
     this.loadPost(this.passededitid);
+    this.loadTag();
     
     this.editorForm = new FormGroup({
       'editor': new FormControl(this.passededittextcmt)
@@ -179,16 +190,59 @@ getselectedtag(){
     });
     
     
+    
   }
 
   ionViewWillEnter(){
     //load
     
-    this.tags = [];
-    this.loadTag();    
+    
+    
+    //console.log(this.comments);
+    //console.log(this.tags);
+    //console.log(this.contoh);
+    //console.log(this.myObject.locs.generaltags.tagid[0]);
+    
+
+    for(let item of this.tags){
+      console.log(item.tagid);
+    }
+    for(let item of this.passededittags){
+      console.log('looping passedittags');
+    }
+    for(let item of this.myObject.locs.generaltags.tagid){
+      console.log(this.myObject.locs.generaltags.tagid[item-1]);
+    }
+
+    for(let itemtags of this.tags){
+      /*for(let itempassededittags of this.myObject.locs.generaltags.tagid){
+        if(itemtags.tagid == this.myObject.locs.generaltags.tagid[itempassededittags-1]){
+          console.log('selected');
+        }
+      }*/
+      this.contoh.push({"id": itemtags.tagid, "name": itemtags.tagname, "selected": false})
+    }
+    for(let itemtags of this.tags){
+      for(let itempassededittags of this.myObject.locs.generaltags.tagid){
+        /*if(itemtags.tagid == this.myObject.locs.generaltags.tagid[itempassededittags-1]){
+          this.contoh[0].selected = true;
+          console.log('itempassededittags: '+itempassededittags+', itempassededittags-1: '+(itempassededittags-1));
+          
+        }*/
+      }
+    }
+
+    console.log(this.tags);
+    console.log(this.myObject.locs.newtags);
+    //this.contoh[0].selected = true;
+    //this.contoh[1].selected = true;
+    
+    //console.log(this.contoh);
+    
+    //console.log(this.comments[0]);
+    //console.log(this.tags[0]);
   }
 
-  
 
   contoh:any = [];
   
@@ -199,7 +253,7 @@ getselectedtag(){
   passededittagsname:any[];
   passededitgeneraltagstagid:any[];
   passededitgeneraltagstagname:any[];
-
+  passededitnewtags:any[];
 
   //convert plain tree to hierarchical tree
   treeify(listo, idAttr, parentAttr, childrenAttr) {
@@ -331,14 +385,18 @@ getselectedtag(){
     this.selectedtags = getSelectedSubject;
     this.selectedtagsname = this.getSelectedSubjectName;
     //console.log(getSelectedSubject);
+    
     this.loopTagComment();
   }
 
   arraytag: any = [];
 
+  objectselected: any = [];
+
   loopTagComment(){    
     for(let val of this.selectedtags){
-      console.log("tagcomment.tagid: "+val);
+      //console.log("tagcomment.tagid: "+val);
+      
       //this.contoh.push({"id": val, "name": val, "selected": false});
       //this.arraytag.push(val);
       //console.log(this.arraytag)
@@ -349,17 +407,28 @@ getselectedtag(){
       //this.contoh.push({"id": this.myObject.item.generaltags.tagid, "name": this.myObject.item.generaltags.tagname, "selected": false});
     }*/
 
-    for(let item of this.myObject.locs.generaltags.tagid){
+    for(let item of this.selectedtags){
       //console.log(this.myObject.locs.generaltags.tagid[item-1]);
       //console.log(item);
-      this.contoh.push({"id": this.myObject.locs.generaltags.tagid[item-1], "name": this.myObject.locs.generaltags.tagname[item-1], "selected": false});
+      
+      //console.log('lol: '+this.selectedtags[item-1]);
+      //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[item-1], "name": this.myObject.locs.generaltags.tagname[item-1], "selected": false});
 
     }
 
     //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[0], "name": this.myObject.locs.generaltags.tagname[0], "selected": false});
+    //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[1], "name": this.myObject.locs.generaltags.tagname[1], "selected": false});
 
     //console.log(this.myObject.locs.generaltags.tagid[0]);
-    console.log(this.contoh);
+    
+    //console.log(this.contoh);
+    //console.log(this.myObject.locs.generaltags.tagid);
+
+    /*for(let item of this.contoh){
+      console.log(this.contoh[0].id);
+    }*/
+
+    
   }
 
   addTagComment(val){
@@ -382,6 +451,7 @@ getselectedtag(){
         for(let tag of data.result){
           this.tags.push(tag);
         }
+        //console.log(this.tags);
         resolve(true);
       });
     });
