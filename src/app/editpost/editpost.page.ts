@@ -41,16 +41,16 @@ export class EditpostPage implements OnInit {
 
 
 //tagifyclone
-totalselected:number = 0;
+totalselected:number;
 selectedtag:any = [];
 
 //category object array
 category:any[];
 
 changeselection(itemid){
-  /*
-  for(let item of this.category){
-    if(item.id == itemid){
+  
+  for(let item of this.contoh){
+    if(item.tagid == itemid){
       //select
       if(item.selected == false){
         this.totalselected++;
@@ -62,7 +62,7 @@ changeselection(itemid){
         item.selected = false;
       }
     }
-  }*/
+  }
 }
 
 getselectedtag(){
@@ -324,6 +324,7 @@ getselectedtag(){
 
     console.log(this.contoh);
     
+    this.totalselected = this.myObject.locs.newtags.length;
   }
 
   ionViewWilLeave(){
