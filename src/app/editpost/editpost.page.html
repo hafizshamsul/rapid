@@ -42,7 +42,7 @@
       
 
       <!--
-        <ion-button (click)="getselectedtag()">Submit</ion-button>
+        
       -->
       
 
@@ -77,6 +77,8 @@
           </div>
           
           <div>{{totalselected}}</div>
+
+          <ion-button (click)="getselectedtag()">Submit</ion-button>
 
           <ion-select [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="{{getSelectedSubject}}">
             <div *ngFor="let item of tags">
