@@ -6,6 +6,7 @@ import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../..//providers/global.service";
 import { MyNavService } from "../..//providers/mynavservice.service";
+import { CurrentNavService } from "../..//providers/currentnav.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
@@ -30,6 +31,7 @@ export class HomePage{
     public route: AppRoutingModule,
     public global: GlobalService,
     public myNavService: MyNavService,
+    public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
     
@@ -201,10 +203,9 @@ listoso:any[];
     //console.log(index);
   }
 
-  
 
   ngOnInit() {
-    
+    this.currentnav.currentpage = 'home';
 
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
