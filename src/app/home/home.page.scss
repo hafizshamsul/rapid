@@ -12,11 +12,21 @@
     width:100%;
     border-radius: 3px;
     //border-radius: 6px;
+    cursor:pointer;
+    background:white;
 
     @media (max-width: 576px) {
         width:100%;
         border-radius: 0px;  
     }
+}
+
+#listitem2:hover{
+  background: rgb(252,252,255);
+}
+
+#listitem2:active{
+  background: rgb(249,249,252);
 }
 
 #griditem2{
@@ -30,6 +40,7 @@
 
 #innercontent{
   padding: 0 14px;
+  //padding: 0 14px;
 
   @media (max-width: 576px) {
     padding: 0;
