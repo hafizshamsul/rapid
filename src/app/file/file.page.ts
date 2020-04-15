@@ -210,10 +210,10 @@ export class FilePage implements OnInit {
 
   ionViewWillEnter(){
     this.users = [];
-    this.loadUser(this.global.userid);
+    this.loadUser(this.global.username, this.global.password);
     
     this.folders = [];
-    this.loadFolder();
+    this.loadFolder(this.global.username);
 
     this.hiks = [];
     this.loadFile(this.r_username, this.r_folderid);
@@ -296,10 +296,11 @@ export class FilePage implements OnInit {
     });
   }
 
-  loadFolder(){
+  loadFolder(username){
     return new Promise(resolve => {
       let body = {
-        action : 'getfolder'
+        action : 'getfolder',
+        username : username
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let folder of data.result){
@@ -326,11 +327,12 @@ export class FilePage implements OnInit {
     });
   }
 
-  loadUser(userid){
+  loadUser(username, password){
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
-        id : userid
+        username : username,
+        password : password
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let user of data.result){

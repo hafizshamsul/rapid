@@ -235,7 +235,7 @@ export class FolderPage implements OnInit {
     this.loadCurrentUser(this.global.username);
     
     this.users = [];
-    this.loadUser(this.r_username);
+    this.loadUser(this.r_username, this.global.password);
     
     this.folders = [];
     this.loadFolder(this.r_username);
@@ -343,7 +343,7 @@ export class FolderPage implements OnInit {
    loadFile(username, folderid){
     return new Promise(resolve => {
       let body = {
-        action : 'getit',
+        action : 'getfile',
         username : username,
         folderid : folderid
       };
@@ -356,11 +356,12 @@ export class FolderPage implements OnInit {
     });
   }
 
-  loadUser(username){
+  loadUser(username, password){
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
-        username : username
+        username : username,
+        password : password
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let user of data.result){
