@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { GlobalService } from "../providers/global.service";
+import { CurrentNavService } from "../providers/currentnav.service";
 
 import { Platform,
 //  AlertController
@@ -17,6 +20,9 @@ export class AppComponent {
   rootPage : any = TabsPage;
 
   constructor(
+    public navCtrl: NavController,
+    public global: GlobalService,
+    public currentnav: CurrentNavService,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -32,4 +38,33 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  ngOnInit(){
+    //console.log(this.viewCtrl.instance);
+    //this.navCtrl.
+    this.currentpage = this.currentnav.currentpage;
+  }
+
+  toHome(){
+    this.currentpage = 'home';
+    console.log(this.currentpage);
+    this.router.navigate(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.currentpage = 'submitpost';
+    console.log(this.currentpage);
+    this.router.navigate(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.currentpage = 'folder';
+    console.log(this.currentpage);
+    this.router.navigate(['r/'+this.global.username+'/']);
+    //console.log(this.global.username);
+  }
+
+  currentpage:string;
+
+
 }

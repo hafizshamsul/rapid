@@ -1,11 +1,93 @@
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  
+    <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+</head>
+
 <ion-app>
     <ion-split-pane contentId="main">
-        <ion-menu contentId="main" style="min-width: 220px; max-width: 220px;">
+        <ion-menu contentId="main" style="min-width: 240px; max-width: 230px;">
             <ion-header>
                 <ion-toolbar>
-                    <ion-title>Menu</ion-title>
+                    <ion-title style="padding: 0 0 0 16px;">Edushare</ion-title>
                 </ion-toolbar>
             </ion-header>
+            <ion-content>
+                
+                <ng-container *ngIf="currentpage == 'home';else home">
+                    <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px; margin-right: 12px;">
+                        <div style="display: grid; grid-template-columns: 44px auto;">
+                            <div class="fas fa-home" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Home
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #home>
+                    <ng-container *ngIf="currentpage != 'home'">
+                        <div (click)="toHome()" id="menuitem" style="margin-top: 12px; margin-right: 12px;">
+                            <div style="display: grid; grid-template-columns: 44px auto;">
+                                <div class="fas fa-home" style="font-size: 18px"></div>
+                                <div style="padding-top: 2px">
+                                    Home
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-template>
+
+                <ng-container *ngIf="currentpage == 'submitpost';else submitpost">
+                    <div (click)="toSubmitpost()" id="currentmenuitem" style="margin-right: 12px;">
+                        <div style="display: grid; grid-template-columns: 44px auto;">
+                            <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Uploads
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #submitpost>
+                    <ng-container *ngIf="currentpage != 'submitpost'">
+                        <div (click)="toSubmitpost()" id="menuitem" style="margin-right: 12px;">
+                            <div style="display: grid; grid-template-columns: 44px auto;">
+                                <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
+                                <div style="padding-top: 2px">
+                                    Uploads
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-template>
+
+                <ng-container *ngIf="currentpage == 'folder';else folder">
+                    <div (click)="toFolder()" id="currentmenuitem" style="margin-right: 12px;">
+                        <div style="display: grid; grid-template-columns: 44px auto;">
+                            <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Folders
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #folder>
+                    <ng-container *ngIf="currentpage != 'folder'">
+                        <div (click)="toFolder()" id="menuitem" style="margin-right: 12px;">
+                            <div style="display: grid; grid-template-columns: 44px auto;">
+                                <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                                <div style="padding-top: 2px">
+                                    Folders
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-template>
+                
+
+
+                
+            </ion-content>
+            
         </ion-menu>
         <ion-router-outlet id="main"></ion-router-outlet>
     </ion-split-pane>
