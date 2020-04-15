@@ -1,6 +1,6 @@
 #listitem{
     width:70%;
-    border-radius: 6px;
+    border-radius: 0px;
 
     @media (max-width: 576px) {
         width:100%;
@@ -10,7 +10,7 @@
 
 #listitem2{
     width:100%;
-    border-radius: 6px;
+    border-radius: 0px;
 
     @media (max-width: 576px) {
         width:100%;
@@ -26,6 +26,14 @@
         grid-template-columns: auto 100% auto;
     }
 }
+
+#innercontent{
+    padding: 0 14px;
+  
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+  }
 
 #textcmt{
     font-size: 13px;
