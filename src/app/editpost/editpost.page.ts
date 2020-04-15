@@ -9,6 +9,7 @@ import { MyNavService } from "../..//providers/mynavservice.service";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class EditpostPage implements OnInit {
   
 
   constructor(
+    public navCtrl: NavController,
     public global: GlobalService,
     public myNavService: MyNavService,
     public alertCtrl: AlertController,
@@ -397,7 +399,11 @@ getselectedtag(){
       
       //this.router.navigate(['r/home/']);
       //this.getTitle = "";
+      //this.router.navigate(['r/home/']);
+      this.navCtrl.pop();
       
+      //this.navCtrl.
+      //this.navCtrl.navigateRoot('/r/home', {animated: true, animationDirection: 'forward'});
     }
     
     );

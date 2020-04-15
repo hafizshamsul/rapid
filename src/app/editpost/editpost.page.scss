@@ -19,12 +19,21 @@
 }
 
 #griditem2{
-    grid-template-columns: auto 70% auto;
+    grid-template-columns: auto 100% auto;
+    //grid-template-columns: auto 70% auto;
 
     @media (max-width: 576px) {
         grid-template-columns: auto 100% auto;
     }
 }
+
+#innercontent{
+    padding: 0 14px;
+  
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+  }
 
 #textcmt{
     font-size: 13px;
@@ -43,4 +52,36 @@
         padding-top: 5.5px;
     }
 }
+
+#input-loginform{
+    background: rgb(244,246,249);
+    border-radius: 0.6em;
+    height: 54px;
+    width: 30%;
+    display: block;
+    margin: 12px auto 12px auto;
+    text-align: left;
+    --padding-top: 17px;
+    //--padding-bottom: 17px;
+    --padding-start: 21px;
+    --padding-end: 21px;
+    color: rgb(70,70,70) !important;
+    font-weight: 400;
+  
+    @media (max-width: 576px) {
+      width: 87%;
+    }
+  }
+  
+  
+
+  #input-loginform>::placeholder{
+    color: rgb(80,80,80) !important;
+    font-weight: 300;
+  }
+  
+  #input-loginform:focus{
+    //box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    background: rgb(16, 43, 85);
+  }
 

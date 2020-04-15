@@ -15,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 
 
@@ -201,7 +201,11 @@ listoso:any[];
     //console.log(index);
   }
 
+  
+
   ngOnInit() {
+    
+
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
     
@@ -237,9 +241,20 @@ listoso:any[];
     this.comments = [];
     this.tagcomments = [];
     this.loadPost();
-    this.loadTagComment(1);
-  
+    this.loadTagComment();
+    console.log('kita tgh enter home sekali ni');
   }
+
+  ionViewDidEnter(){
+    console.log('kita tgh enter home sekali ni');
+  }
+  ionViewWillLeave(){
+    console.log('kita tgh enter home sekali ni');
+  }
+  ionViewDidLeave(){
+    console.log('kita tgh enter home sekali ni');
+  }
+
 
   login(){
     this.router.navigate(['/loginform']);
@@ -304,6 +319,7 @@ listoso:any[];
     this.collectnewtags =[];
 
     await this.router.navigateByUrl('/editpost');
+    
 
     //this.router.navigate(['editpost/']);
     //this.router.navigateByUrl('/editpost', { state: { hello: 'world' } });
@@ -342,22 +358,43 @@ listoso:any[];
     });
   }
 
-  loadTagComment(index){
-    return new Promise(resolve => {
-      let body = {
-        action : 'gettagcomment',
-        index : index
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+  subsrcibedatafirst(body){
+    this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let tagcomment of data.result){
           //if(tagcomment.comment_id == 10){
             this.tagcomments.push(tagcomment);
           //}
         }
-        resolve(true);
-      });
+      }); 
+  }
+  subsrcibedatalater(body){
+    
+    this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        this.tagcomments = [];
+        for(let tagcomment of data.result){
+          //if(tagcomment.comment_id == 10){
+            this.tagcomments.push(tagcomment);
+          //}
+        }
+      }); 
+  }
+
+  interval:any;
+  counter:number = 0;
+
+  loadTagComment(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettagcomment'
+      };
+      this.subsrcibedatafirst(body);
+      
+      /*this.interval = setInterval(() => { 
+        this.subsrcibedatalater(body); 
+      }, 1000);*/
     });
   }
+
 
   async presentAlertMultipleButtons(r_thread) {
     let leh: number = r_thread;
