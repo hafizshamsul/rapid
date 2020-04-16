@@ -42,6 +42,8 @@ export class EditpostPage implements OnInit {
      }
 
 
+noerror:boolean = true;
+
 //tagifyclone
 totalselected:number;
 selectedtag:any = [];
@@ -129,76 +131,88 @@ getselectedtag(){
 
   myObject:any = [];
   
+
+
   ngOnInit() {
     console.log('ngOnInit edit');
     
 
-    this.myObject = this.myNavService.myParam;
-    this.passededitid = this.myObject.locs.id;
-    this.passededittitle = this.myObject.locs.title;
-    this.passededittextcmt = this.myObject.locs.textcmt;
-    this.passededittags = this.myObject.locs.tags;
-    this.passededittagsname = this.myObject.locs.tagsname;
-    this.passededitgeneraltagstagid = this.myObject.locs.generaltags.tagid;
-    this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
-    this.passededitnewtags = this.myObject.locs.newtags;
-    
-    /*console.log(this.passededitid);
-    console.log(this.passededittitle);
-    console.log(this.passededittextcmt);
-    console.log(this.passededittags);
-    console.log(this.passededittagsname);
-    console.log(this.passededitgeneraltagstagid);
-    console.log(this.passededitgeneraltagstagname);
-    console.log(this.passededitnewtags);*/
-
-    this.getSelectedSubject = this.passededittags;
-    this.getSelectedSubjectName = this.passededittagsname;
-
-    this.comments = [];
-    this.tags = [];
-    this.contoh = [];
-    
-
-    this.loadPost(this.passededitid);
-    this.loadTag();
-    
-    
-    this.editorForm = new FormGroup({
-      'editor': new FormControl(this.passededittextcmt)
-    });
-
-    //tag
-    this.actRoute.params.subscribe((data: any) =>{
-      this.tagid = data.tagid;
-      this.tagname = data.tagname;
-      this.tagdesc = data.tagdesc;
-
-      //console.log(data);
-    });
-
-    //comment
-    this.actRoute.params.subscribe((data: any) =>{
-      this.commentid = data.commentid;
-      this.users_id = data.users_id;
-      this.title = data.title;
-      this.textcmt = data.textcmt;
-
-      //console.log(data);
-
-      //console.log('before editorform:'+this.listoso[0].textcmt);
-      //console.log("This is: "+this.commentid);
-    });
-
-    //tagcomment
-    this.actRoute.params.subscribe((data: any) =>{
-      this.tagcommentid = data.tagcommentid;
-      this.comment_id = data.comment_id;
-      this.tag_id = data.tag_id;
-
-      //console.log(data);
+    try{
       
-    });
+      
+      this.myObject = this.myNavService.myParam;
+      this.passededitid = this.myObject.locs.id;
+      this.passededittitle = this.myObject.locs.title;
+      this.passededittextcmt = this.myObject.locs.textcmt;
+      this.passededittags = this.myObject.locs.tags;
+      this.passededittagsname = this.myObject.locs.tagsname;
+      this.passededitgeneraltagstagid = this.myObject.locs.generaltags.tagid;
+      this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
+      this.passededitnewtags = this.myObject.locs.newtags;
+
+       /*console.log(this.passededitid);
+      console.log(this.passededittitle);
+      console.log(this.passededittextcmt);
+      console.log(this.passededittags);
+      console.log(this.passededittagsname);
+      console.log(this.passededitgeneraltagstagid);
+      console.log(this.passededitgeneraltagstagname);
+      console.log(this.passededitnewtags);*/
+
+      this.getSelectedSubject = this.passededittags;
+      this.getSelectedSubjectName = this.passededittagsname;
+
+      this.comments = [];
+      this.tags = [];
+      this.contoh = [];
+      
+
+      this.loadPost(this.passededitid);
+      this.loadTag();
+      
+      
+      this.editorForm = new FormGroup({
+        'editor': new FormControl(this.passededittextcmt)
+      });
+
+      //tag
+      this.actRoute.params.subscribe((data: any) =>{
+        this.tagid = data.tagid;
+        this.tagname = data.tagname;
+        this.tagdesc = data.tagdesc;
+
+        //console.log(data);
+      });
+
+      //comment
+      this.actRoute.params.subscribe((data: any) =>{
+        this.commentid = data.commentid;
+        this.users_id = data.users_id;
+        this.title = data.title;
+        this.textcmt = data.textcmt;
+
+        //console.log(data);
+
+        //console.log('before editorform:'+this.listoso[0].textcmt);
+        //console.log("This is: "+this.commentid);
+      });
+
+      //tagcomment
+      this.actRoute.params.subscribe((data: any) =>{
+        this.tagcommentid = data.tagcommentid;
+        this.comment_id = data.comment_id;
+        this.tag_id = data.tag_id;
+
+        //console.log(data);
+        
+      });
+    }
+    catch(err){
+      this.noerror = false;
+    }
+    
+    
+   
     
   }
 
@@ -306,6 +320,10 @@ getselectedtag(){
     });
   }
 
+  goback(){
+    this.navCtrl.navigateRoot(['/r/home']);
+  }
+
   ionViewDidEnter(){
     //console.log('ionViewDidEnter');
     //console.log(Object.keys(this.tags).length);
@@ -315,21 +333,27 @@ getselectedtag(){
     }*/
     
 
-    for(let itemtags of this.tags){
-      this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
-    }
-    
-    for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
-      for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
-        if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
-          this.contoh[itemtags].selected = true;
+    try{
+      for(let itemtags of this.tags){
+        this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
+      }
+      
+      for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
+        for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
+          if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
+            this.contoh[itemtags].selected = true;
+          }
         }
       }
-    }
 
-    //console.log(this.contoh);
+      //console.log(this.contoh);
+      
+      this.totalselected = this.myObject.locs.newtags.length;
+    }
+    catch(err){
+      console.log('eeeeeeeeeeeeeeeeeeeeeeeeee');
+    }
     
-    this.totalselected = this.myObject.locs.newtags.length;
   }
 
   ionViewWilLeave(){

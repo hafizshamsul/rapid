@@ -40,8 +40,9 @@
       
 
     </div>
-    <div style="background: white; height:78vh; padding:0 20px">
 
+    <ng-container *ngIf="noerror == true;else second">
+      <div style="background: white; height:78vh; padding:0 20px">
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="presentAlertMultipleButtons()">
         <div class="form-group">
           <label for="editor">
@@ -101,6 +102,24 @@
       -->
       
     </div>
+    </ng-container>
+    <ng-template #second>
+      <ng-container *ngIf="noerror == false">
+        <div style="display: grid; grid-template-columns: auto;">
+          <div style="clear:both; margin-top:30px">
+            <p style="color: rgb(120,120,120);font-size:80px; font-weight:700; text-align: center;line-height: 0px;">404</p>
+            <p style="color: rgb(100,100,100);font-size:40px; font-weight:700; text-align: center;line-height: 0px;">Whoops!</p>
+            <p style="color: rgb(80,80,80); font-size:20px; font-weight:500; display:block; margin:0 auto; text-align: center; word-wrap: break-word; width:330px">It seems like we couldn't find the page you were looking for</p>
+          </div>
+          <div style="text-align: center; margin-top:20px">
+            <ion-button (click)="goback()" slot="center">Go back</ion-button>
+          </div>
+        </div>
+        
+      </ng-container>
+    </ng-template>
+
+    
     <div></div>   
   </div>
 </div>
