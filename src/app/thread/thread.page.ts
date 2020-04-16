@@ -139,15 +139,20 @@ listoso:any[];
   tag_tagname: string;
 
   pass(index){
-    console.log(index);
+    //console.log(index);
   }
 
+  ngOnDestroy(){
+    console.log('ngOnDestroy thread');
+  }
 
   ngOnInit() {
     this.r_thread = this.actRoute.snapshot.paramMap.get('r_thread');
 
-    console.log(JSON.stringify(this.list));
-    console.log(JSON.stringify(this.listos));
+    console.log('ngOnInit thread');
+
+    //console.log(JSON.stringify(this.list));
+    //console.log(JSON.stringify(this.listos));
 
     this.actRoute.params.subscribe((data: any) =>{
       this.commentid = data.commentid;
@@ -160,7 +165,7 @@ listoso:any[];
       this.vote = data.vote;
       this.thread = data.thread;
 
-      console.log(data);
+      //console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -169,7 +174,7 @@ listoso:any[];
       this.tag_id = data.tag_id;
       this.tag_tagname = data.tag_tagname;
 
-      console.log(data);
+      //console.log(data);
     });
   }
 

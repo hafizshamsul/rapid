@@ -20,7 +20,7 @@
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
 
 
@@ -53,14 +53,34 @@
             </ion-input>
           </ion-item>
 
-          <ion-select  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+          <ion-select style="clear:both"  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
             <div *ngFor="let item of tags">
               <ion-select-option value={{item.tagid}}>{{item.tagname}}</ion-select-option>
             </div>
           </ion-select>
 
-          <quill-editor [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
-          <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+          <div style="clear:both; margin: 10px 0">
+            <div *ngFor="let item of contoh2">
+              <ng-container *ngIf="item.selected == true;else second">
+              <div (click)="changeselection(item.tagid)" style="cursor:pointer; background:rgb(51, 92, 230); padding:2px 8px 3px 8px; border-radius:6px; margin:4px 4px; float:left; font-size: 13px; letter-spacing: 0.01em; color:rgb(238, 238, 238); font-weight: 400; margin-bottom: 4px;">
+                {{item.name}}
+              </div>
+              </ng-container>
+              <ng-template #second>
+                  <ng-container *ngIf="item.selected == false">
+                    <div (click)="changeselection(item.tagid)" style="cursor:pointer; background:rgb(237,237,237); padding:2px 8px 3px 8px; border-radius:6px; margin:4px 4px; float:left; font-size: 13px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
+                      {{item.name}}
+                    </div>
+                  </ng-container>
+              </ng-template>
+            </div>
+          </div>
+
+          <div style="clear:both; padding: 10px 0">
+            <quill-editor style="clear:both;" [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+            <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+          </div>
+          
         </div>
         
         <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>

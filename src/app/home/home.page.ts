@@ -34,7 +34,7 @@ export class HomePage{
     public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-    
+      console.log('constructor home');
       
     }
     
@@ -207,6 +207,8 @@ listoso:any[];
   ngOnInit() {
     this.currentnav.currentpage = 'home';
 
+    console.log('ngOnInit home');
+
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
     
@@ -238,22 +240,24 @@ listoso:any[];
   }
 
   ionViewWillEnter(){
-    
+    console.log('ionViewWillEnter home');
     this.comments = [];
     this.tagcomments = [];
     this.loadPost();
     this.loadTagComment();
-    console.log('kita tgh enter home sekali ni');
   }
 
   ionViewDidEnter(){
-    console.log('kita tgh enter home sekali ni');
+    console.log('ionViewDidEnter home');
   }
   ionViewWillLeave(){
-    console.log('kita tgh enter home sekali ni');
+    console.log('ionViewWillLeave home');
   }
   ionViewDidLeave(){
-    console.log('kita tgh enter home sekali ni');
+    console.log('ionViewDidLeave home');
+  }
+  ngOnDestroy(){
+    console.log('ngOnDestroy home');
   }
 
 
@@ -319,8 +323,8 @@ listoso:any[];
     this.collecttagname =[];
     this.collectnewtags =[];
 
-    await this.router.navigateByUrl('/editpost');
-    
+    this.router.navigateByUrl('/r/home/editpost');
+    //this.navCtrl.navigateRoot(['/r/editpost']);
 
     //this.router.navigate(['editpost/']);
     //this.router.navigateByUrl('/editpost', { state: { hello: 'world' } });
