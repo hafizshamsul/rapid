@@ -30,6 +30,7 @@ export class AppComponent {
     //private alertController: AlertController
   ) {
     this.initializeApp();
+    console.log('constructor app');
   }
 
   initializeApp() {
@@ -39,28 +40,62 @@ export class AppComponent {
     });
   }
 
+  ionViewWillEnter(){
+    console.log('ionViewWillEnter app');
+  }
+
+  ionViewDidEnter(){
+    console.log('ionViewDidEnter app');
+  }
+  ionViewWillLeave(){
+    console.log('ionViewWillLeave app');
+  }
+  ionViewDidLeave(){
+    console.log('ionViewDidLeave app');
+  }
+  ngOnDestroy(){
+    console.log('ngOnDestroy app');
+  }
+
+
   ngOnInit(){
     //console.log(this.viewCtrl.instance);
     //this.navCtrl.
-    this.currentpage = this.currentnav.currentpage;
+    //this.currentpage = this.currentnav.currentpage;
+    console.log('ngOnInit app');
+    //console.log('this is'+this.currentnav.currentpage);
+    console.log(window.location.href);
+
+    if(window.location.href.includes('submitpost')){
+      this.currentpage = 'submitpost';
+    }
+    else if(window.location.href.includes(this.global.username)){
+      this.currentpage = 'folder';
+    }
+    else{
+      this.currentpage = 'home';
+    }
   }
 
   toHome(){
     this.currentpage = 'home';
-    console.log(this.currentpage);
-    this.router.navigate(['r/home/']);
+    //console.log(this.currentpage);
+    //this.router.navigate(['r/home/']);
+    this.navCtrl.navigateRoot(['r/home/']);
   }
 
   toSubmitpost(){
     this.currentpage = 'submitpost';
-    console.log(this.currentpage);
-    this.router.navigate(['r/submitpost/']);
+    //console.log(this.currentpage);
+    //this.router.navigate(['r/submitpost/']);
+    this.navCtrl.navigateRoot(['r/submitpost/']);
   }
 
   toFolder(){
     this.currentpage = 'folder';
-    console.log(this.currentpage);
-    this.router.navigate(['r/'+this.global.username+'/']);
+    //console.log(this.currentpage);
+    //this.router.navigate(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
     //console.log(this.global.username);
   }
 

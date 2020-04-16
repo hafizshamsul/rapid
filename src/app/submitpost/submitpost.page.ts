@@ -55,7 +55,9 @@ export class SubmitpostPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('ngOnInit submitpost');
     this.currentnav.currentpage = 'submitpost';
+    console.log('this is'+this.currentnav.currentpage);
     
     this.editorForm = new FormGroup({
       'editor': new FormControl(null)
@@ -90,19 +92,52 @@ export class SubmitpostPage implements OnInit {
       console.log(data);
       
     });
-    
-  }
 
-  ionViewWillEnter(){
-    //load
+    
     this.tags = [];
     this.loadTag();
   }
 
+  ionViewWillEnter(){
+    //load
+    
+  }
+
+  ionViewDidEnter(){
+    
+    
+    for(let itemtags of this.tags){
+      this.contoh2.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
+    }
+  }
+
+  ngOnDestroy(){
+    console.log('ngOnDestroy submitpost');
+  }
+
+  changeselection(itemid){
+  
+    for(let item of this.contoh){
+      if(item.tagid == itemid){
+        //select
+        if(item.selected == false){
+          this.totalselected++;
+          item.selected = true;
+        }
+        //deselect
+        else if(item.selected == true){
+          this.totalselected--;
+          item.selected = false;
+        }
+      }
+    }
+  }
+
+  totalselected:number=0;
   getTitle:string;
 
   contoh:any = [];
-  
+  contoh2:any = [];
 
   onSubmit(){
     this.editorContent = this.editorForm.get('editor').value;

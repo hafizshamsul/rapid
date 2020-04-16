@@ -9,9 +9,15 @@ const routes: Routes = [ {
       { 
         path: 'home',
         children: [ 
-          { path: '',
-            loadChildren: () => import('../home/home.module').then(m => m.HomePageModule) }, 
-              { path: ':r_thread', loadChildren: () => import('../thread/thread.module').then(m => m.ThreadPageModule) } 
+          {
+            path: '', loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+          },
+          {
+            path: 'editpost', loadChildren: () => import('../editpost/editpost.module').then(m => m.EditpostPageModule)
+          },
+          {
+            path: ':r_thread', loadChildren: () => import('../thread/thread.module').then(m => m.ThreadPageModule)
+          }
         ] 
       },
 
@@ -20,6 +26,15 @@ const routes: Routes = [ {
         children: [
           { path: '',
             loadChildren: () => import('../submitpost/submitpost.module').then( m => m.SubmitpostPageModule)
+          }
+        ]
+        
+      },
+      { 
+        path: 'editpost',
+        children: [
+          { path: '',
+            loadChildren: () => import('../editpost/editpost.module').then( m => m.EditpostPageModule)
           }
         ]
         

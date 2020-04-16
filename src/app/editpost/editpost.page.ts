@@ -27,7 +27,7 @@ export class EditpostPage implements OnInit {
     public myNavService: MyNavService,
     public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
-      console.log('constructor');
+      //console.log('constructor');
       //console.log(this.getSelectedSubject);
       //console.log(this.getSelectedSubjectName);
       //this.getSelectedSubject = [1];
@@ -75,8 +75,8 @@ getselectedtag(){
       this.selectedtag.push(item.tagid);
     }
   }
-  console.log(this.selectedtag);
-  console.log(this.contoh);
+  //console.log(this.selectedtag);
+  //console.log(this.contoh);
 }
   
 
@@ -130,7 +130,8 @@ getselectedtag(){
   myObject:any = [];
   
   ngOnInit() {
-    console.log('ngOnInit');
+    console.log('ngOnInit edit');
+    
 
     this.myObject = this.myNavService.myParam;
     this.passededitid = this.myObject.locs.id;
@@ -202,7 +203,7 @@ getselectedtag(){
   }
 
   ionViewWillEnter(){
-    console.log('ionViewWillEnter');
+    //console.log('ionViewWillEnter');
 
     
 
@@ -243,8 +244,8 @@ getselectedtag(){
       }
     }*/
 
-    console.log(this.tags);
-    console.log(this.myObject.locs.newtags);
+    //console.log(this.tags);
+    //console.log(this.myObject.locs.newtags);
     //console.log(this.contoh);
   }
   
@@ -306,12 +307,13 @@ getselectedtag(){
   }
 
   ionViewDidEnter(){
-    console.log('ionViewDidEnter');
+    //console.log('ionViewDidEnter');
     //console.log(Object.keys(this.tags).length);
     
     /*for(let i=0; i<Object.keys(this.tags).length; i++){
       this.contoh.push({"tagid":"1", "name":"lel", "selected": false});
     }*/
+    
 
     for(let itemtags of this.tags){
       this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
@@ -325,7 +327,7 @@ getselectedtag(){
       }
     }
 
-    console.log(this.contoh);
+    //console.log(this.contoh);
     
     this.totalselected = this.myObject.locs.newtags.length;
   }
@@ -339,7 +341,7 @@ getselectedtag(){
   }
 
   ngOnDestroy(){
-    //console.log('ngOnDestroy');
+    console.log('ngOnDestroy edit');
   }
 
   async presentAlertMultipleButtons() {
@@ -400,7 +402,14 @@ getselectedtag(){
       //this.router.navigate(['r/home/']);
       //this.getTitle = "";
       //this.router.navigate(['r/home/']);
-      this.navCtrl.pop();
+      //this.navCtrl.pop();
+      //this.router.navigateByUrl('/r/home');
+      //this.navCtrl.navigateRoot(['r/home']);
+
+      setTimeout(() => {
+        this.navCtrl.navigateRoot(['r/home']);
+      }, 500);
+
       
       //this.navCtrl.
       //this.navCtrl.navigateRoot('/r/home', {animated: true, animationDirection: 'forward'});
