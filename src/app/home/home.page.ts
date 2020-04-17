@@ -37,7 +37,7 @@ export class HomePage{
       console.log('constructor home');
       
     }
-    
+
 
     //tagifyclone
     totalselected:number = 0;
@@ -431,5 +431,21 @@ listoso:any[];
 
   man(tagname){
     //console.log(tagname);
+  }
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
   }
 }
