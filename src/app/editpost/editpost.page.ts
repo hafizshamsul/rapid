@@ -432,7 +432,7 @@ getselectedtag(){
 
       setTimeout(() => {
         this.navCtrl.navigateRoot(['r/home']);
-      }, 500);
+      }, 1000);
 
       
       //this.navCtrl.
