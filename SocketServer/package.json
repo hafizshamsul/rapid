@@ -1,0 +1,14 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "messenger demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "hafiz",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
+}
