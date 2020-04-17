@@ -24,7 +24,11 @@ const routes: Routes = [
   {
     path: 'editpost',
     loadChildren: () => import('./editpost/editpost.module').then( m => m.EditpostPageModule)
+  },  {
+    path: 'messenger',
+    loadChildren: () => import('./messenger/messenger.module').then( m => m.MessengerPageModule)
   },
+
 
 
 
