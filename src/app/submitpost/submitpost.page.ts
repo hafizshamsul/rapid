@@ -97,6 +97,8 @@ export class SubmitpostPage implements OnInit {
     
     this.tags = [];
     this.loadTag();
+    
+    
   }
 
   ionViewWillEnter(){
@@ -105,11 +107,7 @@ export class SubmitpostPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    
-    
-    for(let itemtags of this.tags){
-      this.contoh2.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
-    }
+    console.log('ionViewDidEnter submitpost');
   }
 
   ngOnDestroy(){
@@ -222,6 +220,9 @@ export class SubmitpostPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let tag of data.result){
           this.tags.push(tag);
+        }
+        for(let itemtags of this.tags){
+          this.contoh2.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false});
         }
         resolve(true);
       });
