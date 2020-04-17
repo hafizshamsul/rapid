@@ -1,69 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { GlobalService } from "../providers/global.service";
-import { CurrentNavService } from "../providers/currentnav.service";
-
-import { Platform,
-//  AlertController
- } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { TabsPage } from '../app/tabs/tabs.page';
+import { GlobalService } from "/xampp/htdocs/rapidkl/rapid/src/providers/global.service";
+import { CurrentNavService } from "/xampp/htdocs/rapidkl/rapid/src/providers/currentnav.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  selector: 'sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
-export class AppComponent {
-  rootPage : any = TabsPage;
+export class SidebarComponent implements OnInit {
 
   constructor(
     public navCtrl: NavController,
     public global: GlobalService,
     public currentnav: CurrentNavService,
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private router: Router,
-    //private alertController: AlertController
-  ) {
-    this.initializeApp();
-    console.log('constructor app');
-  }
+  ) { }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-
+    
   currentusername:string;
 
-  ionViewWillEnter(){
-    console.log('ionViewWillEnter app');
-  }
-
-  ionViewDidEnter(){
-    console.log('ionViewDidEnter app');
-  }
-  ionViewWillLeave(){
-    console.log('ionViewWillLeave app');
-  }
-  ionViewDidLeave(){
-    console.log('ionViewDidLeave app');
-  }
-  ngOnDestroy(){
-    console.log('ngOnDestroy app');
-  }
-
-
-  ngOnInit(){
-    //console.log(this.viewCtrl.instance);
-    //this.navCtrl.
-    //this.currentpage = this.currentnav.currentpage;
+  ngOnInit() {
     console.log('ngOnInit app');
     //console.log('this is'+this.currentnav.currentpage);
     console.log(window.location.href);
@@ -116,6 +74,4 @@ export class AppComponent {
 
 
   currentpage:string;
-
-
 }

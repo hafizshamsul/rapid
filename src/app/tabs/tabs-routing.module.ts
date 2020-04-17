@@ -4,8 +4,11 @@ import { TabsPage } from './tabs.page';
 
 
 
-const routes: Routes = [ {
+const routes: Routes = [
+  { path: '', redirectTo: '/r/home', pathMatch: 'full' },  
+  {
     path: 'r', component: TabsPage, children: [
+      { path: '', redirectTo: '/r/home', pathMatch: 'full' },
       { 
         path: 'home',
         children: [ 
@@ -40,11 +43,14 @@ const routes: Routes = [ {
         
       },
 
-      { path: ':r_username', children: [ { path: '', loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule) }, { path: ':r_folderid', loadChildren: () => import('../file/file.module').then(m => m.FilePageModule) } ] },
-      { path: '', redirectTo: '/r/home', pathMatch: 'full' }
+      { path: ':r_username', children: [
+          { path: '', loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule) },
+          { path: ':r_folderid', loadChildren: () => import('../file/file.module').then(m => m.FilePageModule) }
+        ]
+      }
     ]
-  },
-  { path: '', redirectTo: '/r/home', pathMatch: 'full' }
+  }
+  
 ];
 
 @NgModule({

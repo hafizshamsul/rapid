@@ -6,7 +6,7 @@ import { Tagify } from '@yaireo/tagify';
 import { PostProvider } from '../../providers/post-provider';
 import { GlobalService } from "../..//providers/global.service";
 import { CurrentNavService } from "../..//providers/currentnav.service";
-
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-submitpost',
@@ -16,6 +16,7 @@ import { CurrentNavService } from "../..//providers/currentnav.service";
 export class SubmitpostPage implements OnInit {
 
   constructor(
+    public navCtrl: NavController,
     public global: GlobalService,
     public currentnav: CurrentNavService,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
@@ -225,5 +226,22 @@ export class SubmitpostPage implements OnInit {
         resolve(true);
       });
     });
+  }
+
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
   }
 }
