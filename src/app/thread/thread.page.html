@@ -36,6 +36,52 @@
 -->
 <ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
   <div id="innercontent" style="margin-top:10px">
+    <div style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
+
+      <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px;">
+          <div id="gapicontext" style="">
+              <div class="fas fa-home" style="font-size: 18px"></div>
+                <div style="padding-top: 2px">
+                    Home
+                </div>
+            </div>
+        </div>
+
+
+
+
+            <div (click)="toSubmitpost()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Uploads
+                    </div>
+                </div>
+            </div>
+ 
+
+
+            <div (click)="toFolder()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Folders
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div (click)="toMessenger()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
+                    <div style="padding-top: 0px">
+                        Messenger
+                    </div>
+                </div>
+            </div>
+
+    </div>
     <div id="griditem2" style="display:grid;">
       <div></div>
       <div>
