@@ -136,7 +136,16 @@ export class FolderPage implements OnInit {
 
       //console.log(data);
     });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.deletelist = data;
+      //this.thread = data.thread;
+
+      //console.log(data);
+    });
   }
+
+  deletelist:string;
   
   selectFileToUpload(event) : void {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
@@ -479,5 +488,25 @@ export class FolderPage implements OnInit {
 
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
+  }
+
+
+  deletefolder(folderfileid){
+    this.counting(folderfileid);
+  }
+
+  //kaun:any = [];
+
+  counting(folderfileid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletefolderfile',
+        folderfileid : folderfileid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        this.deletelist = data;
+        resolve(true);
+      });
+    });
   }
 }
