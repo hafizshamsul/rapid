@@ -401,7 +401,7 @@
         $curr = array();
         
 
-        $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = 2");
+        $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = $postjson[folderfileid]");
         while($row = mysqli_fetch_array($querya)){
             array_push($deletelist, $row['id']);
             array_push($curr, $row['id']);
@@ -418,7 +418,7 @@
         }
 
         $reversed = array_reverse($deletelist);
-        array_push($reversed, 2);
+        array_push($reversed, $postjson['folderfileid']);
         $data = json_encode($reversed);
 
         /*
