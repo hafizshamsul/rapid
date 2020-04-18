@@ -178,9 +178,9 @@
               </ion-list>
 
               
-              <div id="listgrandparent" *ngFor="let item of listoso" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
-                
-                <div style="display: grid; grid-template-columns: 38px auto; ">
+              <div  id="listgrandparent" *ngFor="let item of listoso" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
+                <div (click)="showFolder(item.folderfileid)">
+                  <div style="display: grid; grid-template-columns: 38px auto; ">
                   <div>
                     <div *ngIf="item.folderfileicon == 'folder'">
                       <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
@@ -189,13 +189,16 @@
                       <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
                     </div>
                     
-                  </div>
-                  <div>
-                    <ion-label style="font-family: 'Nunito Sans', sans-serif;">
-                      {{item.folderfilename}}
-                    </ion-label>
+                    </div>
+                    <div>
+                      <ion-label style="font-family: 'Nunito Sans', sans-serif;">
+                        {{item.folderfilename}}
+                      </ion-label>
+                    </div>
                   </div>
                 </div>
+
+                
                 
                 
                 
