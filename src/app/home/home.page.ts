@@ -249,6 +249,7 @@ listoso:any[];
 
   ionViewDidEnter(){
     console.log('ionViewDidEnter home');
+    
   }
   ionViewWillLeave(){
     console.log('ionViewWillLeave home');
@@ -332,6 +333,18 @@ listoso:any[];
     
   }
 
+  mainan:any = [
+    {
+      "id": 1,
+      "name": "bola",
+      "children": [
+        {
+          "venue": "stamford"
+        }
+      ]
+    }
+  ]
+
   loadPost(){
     return new Promise(resolve => {
       let body = {
@@ -342,6 +355,7 @@ listoso:any[];
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
     });
