@@ -249,7 +249,7 @@ export class FilePage implements OnInit {
   ionViewWillEnter(){
     
 
-    this.enter = false;
+    //this.enter = false;
   }
 
   ionViewDidEnter(){
@@ -268,7 +268,7 @@ export class FilePage implements OnInit {
     this.customers = [];
     this.start = 0;
     
-    this.enter = true;
+    //this.enter = true;
   }
 
   addCustomer(){
@@ -491,5 +491,5 @@ export class FilePage implements OnInit {
     });
   }
 
-  enter:boolean = true;
+  //enter:boolean = true;
 }
