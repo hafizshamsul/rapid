@@ -99,11 +99,14 @@
             </ion-input>
           </ion-item>
 
-          <ion-select style="clear:both"  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+          <!--
+            <ion-select style="clear:both"  [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
             <div *ngFor="let item of tags">
               <ion-select-option value={{item.tagid}}>{{item.tagname}}</ion-select-option>
             </div>
           </ion-select>
+          -->
+          
 
           <div style="clear:both; margin: 10px 0">
             <div *ngFor="let item of contoh2">
@@ -132,7 +135,9 @@
         <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
       </form>
       
-      <ion-button (click)="checkselected()" style="display: block; float:left; width: 40%; margin-top:10px; margin-right:10px" >Check selected</ion-button>
+      <!--
+        <ion-button (click)="checkselected()" style="display: block; float:left; width: 40%; margin-top:10px; margin-right:10px" >Check selected</ion-button>
+      -->
 
       <!--
         <h5 style="text-align: center; margin-top:50px">Preview</h5>
