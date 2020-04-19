@@ -157,7 +157,8 @@
           <div></div>
           <div>
             <div>
-              <ion-list>
+              <!--
+                <ion-list>
                 <ion-item-sliding (click)="showFolder(folder.folderid)" *ngFor="let folder of folders">
                   <ion-item>
                     
@@ -176,10 +177,15 @@
                   </ion-item>
                 </ion-item-sliding>
               </ion-list>
-
+              -->
+              
+              <ion-button (click)="deletefolder(1)">Delete 1 - Ubiquitous</ion-button>
+              <div>
+                {{deletelist}}
+              </div>
               
               <div  id="listgrandparent" *ngFor="let item of listoso" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
-                <div (click)="showFolder(item.folderfileid)">
+                <div (click)="showFolder(item.folderfileid, item.folderfileicon)">
                   <div style="display: grid; grid-template-columns: 38px auto; ">
                   <div>
                     <div *ngIf="item.folderfileicon == 'folder'">
@@ -197,17 +203,9 @@
                     </div>
                   </div>
                 </div>
-
-                
-                
-                
-                
               </div>
 
-              <ion-button (click)="deletefolder(1)">Delete 1 - Ubiquitous</ion-button>
-              <div>
-                {{deletelist}}
-              </div>
+              
 
               <!--
                 <div>

@@ -97,3 +97,17 @@ input[type="file"] {
   display: grid;
   grid-template-columns: 34px auto;
 }
+
+
+#listgrandparent{
+  background: white;
+  cursor: pointer;
+}
+
+#listgrandparent:hover{
+  background:rgb(244,244,247);
+}
+
+#listgrandparent:active{
+  background:rgb(241,241,244);
+}
