@@ -30,7 +30,8 @@ export class FilePage implements OnInit {
   private _SUFFIX : string;
   public image : string;
   public isSelected : boolean =	false;
-  
+  public enter : boolean;
+
   userid: number;
   username: string;
   passwordhash: string;
@@ -246,6 +247,12 @@ export class FilePage implements OnInit {
    }
 
   ionViewWillEnter(){
+    
+
+    this.enter = false;
+  }
+
+  ionViewDidEnter(){
     this.users = [];
     this.loadUser(this.global.username, this.global.password);
     
@@ -260,6 +267,8 @@ export class FilePage implements OnInit {
 
     this.customers = [];
     this.start = 0;
+    
+    this.enter = true;
   }
 
   addCustomer(){
@@ -276,6 +285,19 @@ export class FilePage implements OnInit {
 
   showFile(id){
     this.router.navigate(['/showcustomer/'+id]);
+  }
+
+  showFolder(folderfileid, folderfileicon){
+    //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
+    if(folderfileicon == 'folder'){
+      this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+    }
+    
+  }
+
+  toBack(){
+    this.navCtrl.back( { animated: false, });
   }
 
   home(){
@@ -468,4 +490,6 @@ export class FilePage implements OnInit {
       });
     });
   }
+
+  enter:boolean = true;
 }
