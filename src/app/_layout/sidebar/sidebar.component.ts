@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { GlobalService } from "/xampp/htdocs/rapidkl/rapid/src/providers/global.service";
-import { CurrentNavService } from "/xampp/htdocs/rapidkl/rapid/src/providers/currentnav.service";
+import { GlobalService } from "../../../providers/global.service";
+import { CurrentNavService } from "../../../providers/currentnav.service";
 
 @Component({
   selector: 'sidebar',
