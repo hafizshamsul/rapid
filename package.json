@@ -59,7 +59,7 @@
     "leaflet-gesture-handling": "^1.1.8",
     "leaflet-routing-machine": "^3.2.12",
     "ngx-doc-viewer": "^1.0.3",
-    "ngx-quill": "^8.1.0",
+    "ngx-quill": "^8.1.7",
     "ngx-socket-io": "^3.0.1",
     "pbkdf2": "^3.0.17",
     "pdfjs-dist": "^2.2.228",
