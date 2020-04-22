@@ -530,6 +530,11 @@ getselectedtag(){
   }
 
  
+  toBack(){
+    this.navCtrl.pop();
+  }
+
+
 
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);

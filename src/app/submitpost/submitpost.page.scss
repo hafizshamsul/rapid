@@ -57,6 +57,29 @@ ion-content{
     }
   }
 
+  #pcheader{
+    @media (max-width: 576px) {
+        display:none;
+    }
+  }
+
+  #mobileheader{
+    display:none;
+
+    @media (max-width: 576px) {
+        display: initial;
+        display: block;
+    }
+  }
+
+  #formsubmit{
+    clear:both; display: block; float:right; width: 40%; margin-top:10px; margin-right:10px;
+  
+    @media (max-width: 576px) {
+      display:none;
+    }
+  }
+
 #textcmt{
     font-size: 13px;
     letter-spacing: -0.0025em; 
