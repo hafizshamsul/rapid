@@ -51,6 +51,12 @@ input[type="file"] {
   }
 }
 
+#sidemenu{
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
 #innercontent{
   padding: 0 14px 0 0;
 
