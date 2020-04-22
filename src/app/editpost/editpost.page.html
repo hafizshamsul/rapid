@@ -5,10 +5,8 @@
 </head>
 
 
-  <ion-header no-border>
+  <ion-header id="pcheader" no-border>
   <ion-toolbar>
-
-  
       <ion-buttons slot="start">
         <ion-back-button color="green"></ion-back-button>
       </ion-buttons>
@@ -90,6 +88,27 @@
     <ng-container *ngIf="noerror == true;else second">
       <div style="background: white; height:78vh; padding:0 20px">
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="presentAlertMultipleButtons()">
+        <ion-header id="mobileheader" no-border>
+          <ion-toolbar>
+              <ion-buttons slot="start">
+                <!--
+                  <ion-back-button color="green"></ion-back-button>
+                -->
+                <ion-button color="green" (click)="toBack()">
+                  <i class="fas fa-chevron-left" style="font-size: 20px"></i>
+                </ion-button>
+              </ion-buttons>
+              
+              <ion-title class="ion-text-center" style="color: rgb(30,30,30)">Edit</ion-title>
+          
+              <ion-buttons slot="primary" >
+                <ion-button color="green"  type="submit" style="width:60px;">
+                  <i class="fas fa-paper-plane" style="font-size: 16px"></i>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+
         <div class="form-group">
           <label for="editor">
             <h5 id="editpost" style="text-align: center;">Edit Post</h5>
@@ -142,7 +161,9 @@
           -->
         </div>
         
-        <ion-button style="clear:both; display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Update</ion-button>
+        
+          <ion-button id="formsubmit" type="submit">Update</ion-button>
+        
       </form>
 
       <!--

@@ -20,13 +20,9 @@
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
-<ion-header no-border>
+<ion-header id="pcheader" no-border>
   <ion-toolbar>
-
-
-    
     <ion-title style="color: rgb(30,30,30)" text-center>Submit</ion-title>
-
     <ion-buttons slot="primary" (click)="login()">
       <ion-button color="green">
         <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
@@ -89,13 +85,25 @@
       
 
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+        <ion-header id="mobileheader" no-border>
+          <ion-toolbar>
+            <ion-title style="color: rgb(30,30,30)" text-center>Submit</ion-title>
+            <ion-buttons slot="primary">
+              <ion-button color="green" type="submit" style="width:60px;">
+                <i class="fas fa-paper-plane" style="font-size: 18px;"></i>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+
         <div class="form-group">
+ 
           <label for="editor">
             <h5 id="uploadpost" style="text-align: center;">Upload Post</h5>
           </label>
 
           <ion-item>
-            <ion-input placeholder="Select title..."  [(ngModel)]="getTitle" [ngModelOptions]="{standalone: true}">
+            <ion-input autocapitalize="sentences" placeholder="Select title..."  [(ngModel)]="getTitle" [ngModelOptions]="{standalone: true}">
             </ion-input>
           </ion-item>
 
@@ -127,12 +135,19 @@
 
           <div style="clear:both; padding: 10px 0">
             <quill-editor style="clear:both;" [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
-            <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+            
+            <!--
+                          <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+
+            -->
           </div>
           
         </div>
         
-        <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
+        <!--
+          <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
+        -->
+        <ion-button id="formsubmit" type="submit">Update</ion-button>
       </form>
       
       <!--
