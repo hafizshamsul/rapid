@@ -13,9 +13,9 @@
         <ion-back-button color="green"></ion-back-button>
       </ion-buttons>
       
-      <ion-title class="ion-text-center" style="color: rgb(37, 156, 117)">Edushare</ion-title>
+      <ion-title class="ion-text-center" style="color: rgb(30,30,30)">Edit</ion-title>
   
-      <ion-buttons slot="primary" (click)="login()">
+      <ion-buttons slot="primary" >
         <ion-button color="green">
           <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
         </ion-button>
@@ -25,9 +25,9 @@
 
 
 
-<ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
-  <div id="innercontent" style="margin-top:10px">
-    <div style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
+<ion-content style="--padding-top: 4px;  --padding:10px">
+  <div id="innercontent">
+    <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
 
       <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px;">
           <div id="gapicontext" style="">
@@ -92,7 +92,7 @@
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="presentAlertMultipleButtons()">
         <div class="form-group">
           <label for="editor">
-            <h5 style="text-align: center;">Edit Post</h5>
+            <h5 id="editpost" style="text-align: center;">Edit Post</h5>
           </label>
           
 
@@ -137,7 +137,9 @@
           <div style="clear:both; padding: 10px 0">
             <quill-editor style="clear: both;" [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
           </div>
-          <span style="font-size: 14px; color:rgb(150,150,150); float:right; padding-right:22px" *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+          <!--
+            <span style="font-size: 14px; color:rgb(150,150,150); float:right; padding-right:22px" *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
+          -->
         </div>
         
         <ion-button style="clear:both; display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Update</ion-button>

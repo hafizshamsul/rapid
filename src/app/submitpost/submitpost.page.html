@@ -25,7 +25,7 @@
 
 
     
-    <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
+    <ion-title style="color: rgb(30,30,30)" text-center>Submit</ion-title>
 
     <ion-buttons slot="primary" (click)="login()">
       <ion-button color="green">
@@ -35,9 +35,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
-  <div id="innercontent" style="margin-top:10px">
-    <div style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
+<ion-content style="--padding-top: 4px;  --padding:10px">
+  <div id="innercontent">
+    <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
 
       <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
           <div id="gapicontext" style="">
@@ -91,7 +91,7 @@
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="editor">
-            <h5 style="text-align: center;">Upload Post</h5>
+            <h5 id="uploadpost" style="text-align: center;">Upload Post</h5>
           </label>
 
           <ion-item>

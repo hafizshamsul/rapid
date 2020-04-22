@@ -355,7 +355,7 @@ listoso:any[];
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
-        console.log(JSON.stringify(this.listoso));
+        //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
     });
@@ -372,6 +372,7 @@ listoso:any[];
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        console.log('Delete is clicked');
         resolve(true);
       });
     });
@@ -432,7 +433,7 @@ listoso:any[];
           text: 'Delete',
           handler: (r_thread) => {
             this.deletePost(leh);
-            //console.log('Delete is clicked');
+            
             window.location.href = window.location.href;
           }
         }
