@@ -243,7 +243,7 @@ listoso:any[];
     console.log('ionViewWillEnter home');
     this.comments = [];
     this.tagcomments = [];
-    this.loadPost();
+    this.loadPost(this.topdate);
     this.loadTagComment();
   }
 
@@ -345,10 +345,11 @@ listoso:any[];
     }
   ]
 
-  loadPost(){
+  loadPost(topdate){
     return new Promise(resolve => {
       let body = {
         action : 'getpost',
+        topsort : topdate
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
@@ -375,7 +376,7 @@ listoso:any[];
         console.log('Delete is clicked');
         this.comments = [];
         this.tagcomments = [];
-        this.loadPost();
+        this.loadPost(this.topdate);
         this.loadTagComment();
         resolve(true);
       });
@@ -452,6 +453,100 @@ listoso:any[];
 
     await alert.present();
   }
+
+
+  toppostpressed: boolean = false;
+
+  presstoppost(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    if(this.toppostpressed == true){
+      this.toppostpressed = false;
+    }
+    else if(this.toppostpressed == false){
+      this.toppostpressed = true;
+    }
+  }
+
+  clickcontent(){
+    this.toppostpressed = false;
+  }
+
+  topdatearray:any = [
+    {
+      'value': 'today',
+      'menu': 'Today',
+      'selected': true
+    },
+    {
+      'value': 'week',
+      'menu': 'This week',
+      'selected': false
+    },
+    {
+      'value': 'month',
+      'menu': 'This month',
+      'selected': false
+    },
+    {
+      'value': 'year',
+      'menu': 'This year',
+      'selected': false
+    },
+    {
+      'value': 'alltime',
+      'menu': 'All time',
+      'selected': false
+    }
+  ];
+
+  topdate:string = 'today';
+  topdatestring:string = 'POST TODAY';
+  topsortedby(topdate){
+    //this.topdate = 'alltime';
+    this.topdate = topdate;
+    this.toppostpressed = false;
+
+    for(let item of this.topdatearray){
+      if(item.value == topdate){
+        item.selected = true;
+      }
+      else if(item.value != topdate){
+        item.selected = false;
+      }
+    }
+
+    if(this.topdate == 'today'){
+      this.topdatestring = 'POST TODAY';
+    }
+    else if(this.topdate == 'week'){
+      this.topdatestring = 'THIS WEEK';
+    }
+    else if(this.topdate == 'month'){
+      this.topdatestring = 'THIS MONTH';
+    }
+    else if(this.topdate == 'year'){
+      this.topdatestring = 'THIS YEAR';
+    }
+    else if(this.topdate == 'alltime'){
+      this.topdatestring = 'ALL TIME';
+    }
+    
+    this.comments = [];
+    this.tagcomments = [];
+    this.loadPost(this.topdate);
+    this.loadTagComment();
+  }
+
+
+
+
+
+
+
+
+
   
 
   man(tagname){
