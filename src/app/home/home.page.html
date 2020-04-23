@@ -35,7 +35,7 @@
 -->
 
 
-<ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
+<ion-content (click)="clickcontent()" style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
   
   <div id="innercontent" style="margin-top:10px">
     <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
@@ -89,6 +89,43 @@
       
     <div></div>
     <div>
+      <div style="display: grid; grid-template-columns:160px auto 160px; margin: 3px 0 13px 14px; font-family: 'Inter var', sans-serif; font-size: 11px; font-weight: 700; color:rgb(150,150,150)">
+        <div style="font-size: 14px; margin-left: 2px;">
+          <div class="fas fa-globe-americas" style="font-size: 17px; float:left; margin-right:10px; float:left;"></div>
+          <div>Popular posts</div>
+        </div>
+
+        <div></div>
+
+        <div style="cursor: pointer; position: relative;display: inline-block;">
+          <div id="topposttoday" (click)="presstoppost()" style="height: 10px; float:right; margin-right: 20px;">
+            <div class="fas fa-chart-line" style="font-size: 17px; float:left; margin-right:4px"></div>
+            <div style="float:left; margin-right:4px">
+              TOP {{topdatestring}}
+            </div>
+            <div class="fas fa-caret-down" style="font-size: 14px; float:left"></div>
+          </div>
+          <div *ngIf="toppostpressed == true">
+            <div id="toppostsubcontainer">
+              <div *ngIf="toppostpressed == true">
+                <div *ngFor="let item of topdatearray">
+                  <div *ngIf="item.selected == true">
+                    <div id="toppostsub" style="background: rgb(246,246,246)" (click)="topsortedby(item.value)">{{item.menu}}</div>
+                  </div>
+                  <div *ngIf="item.selected == false">
+                    <div id="toppostsub" (click)="topsortedby(item.value)">{{item.menu}}</div>
+                  </div>
+                </div>
+              </div>
+                
+              
+            </div>
+          </div>
+          
+        </div>
+
+        
+      </div>
       <div>
         <ng-template #recursiveList let-listoso>
           <div *ngFor="let item of listoso">
@@ -117,10 +154,13 @@
                   <div style="width:0px; clear:both"></div>
                   
     
-                <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
+                  <!--
+                    title color:hsl(24,24%,11%)
+                  -->
+                <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 14.5px; letter-spacing: -0.011em; color:rgb(60,60,60); padding:0; font-weight: 600">
                   {{item.title}}
                 </p>
-                <p class="block-with-text" style="color:rgb(30,30,30); margin-bottom:7px; padding:0;">
+                <p class="block-with-text" style="color:rgb(120,120,120); margin-bottom:7px; padding:0;">
                   {{item.textcmt | striphtml}}
                 </p>
                 <div id="textcmt" style="font-weight: 400; font-size: 12px; letter-spacing: 0em; color:rgb(160,160,160);margin-top:16px; padding:0;">
