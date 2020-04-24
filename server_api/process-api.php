@@ -347,6 +347,21 @@
         else if($postjson['topsort']=='alltime'){
             $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
         }
+        else if($postjson['topsort'] == 'todaysearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 DAY AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort'] == 'weeksearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 WEEK AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort'] == 'monthsearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 MONTH AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort'] == 'yearsearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 YEAR AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort'] == 'alltimesearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
 
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time

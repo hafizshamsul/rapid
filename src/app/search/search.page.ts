@@ -14,13 +14,13 @@ import { NavController } from '@ionic/angular';
 declare var $: any;
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  selector: 'app-search',
+  templateUrl: 'search.page.html',
+  styleUrls: ['search.page.scss']
 })
 
 
-export class HomePage{
+export class SearchPage{
 
   transform(value: string): any {
     return value.replace(/<.*?>/g, ''); // replace tags
@@ -34,7 +34,7 @@ export class HomePage{
     public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      console.log('constructor home');
+      console.log('constructor search');
       
     }
 
@@ -203,11 +203,16 @@ listoso:any[];
     //console.log(index);
   }
 
+  r_searchedtexturi:string;
+  r_searchedtext:string;
 
   ngOnInit() {
-    this.currentnav.currentpage = 'home';
+    this.r_searchedtexturi = this.actRoute.snapshot.paramMap.get('r_searchedtexturi');
+    
+    
+    this.currentnav.currentpage = 'search';
 
-    console.log('ngOnInit home');
+    console.log('ngOnInit search');
 
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
@@ -240,22 +245,26 @@ listoso:any[];
   }
 
   ionViewWillEnter(){
-    console.log('ionViewWillEnter home');
+    console.log('ionViewWillEnter search');
     this.comments = [];
     this.tagcomments = [];
-    this.loadPost(this.topdate);
+
+    console.log('ionview:'+this.topdate+','+this.r_searchedtext)
+    this.r_searchedtext = decodeURI(this.r_searchedtexturi);
+
+    this.loadPost(this.topdate, this.r_searchedtext);
     this.loadTagComment();
   }
 
   ionViewDidEnter(){
-    console.log('ionViewDidEnter home');
+    console.log('ionViewDidEnter search');
     
   }
   ionViewWillLeave(){
-    console.log('ionViewWillLeave home');
+    console.log('ionViewWillLeave search');
   }
   ionViewDidLeave(){
-    console.log('ionViewDidLeave home');
+    console.log('ionViewDidLeave search');
   }
   ngOnDestroy(){
     console.log('ngOnDestroy home');
@@ -345,17 +354,21 @@ listoso:any[];
     }
   ]
 
-  loadPost(topdate){
+  loadPost(topdate, r_searchedtext){
     return new Promise(resolve => {
       let body = {
         action : 'getpost',
-        topsort : topdate
+        topsort : topdate,
+        r_searchedtext : r_searchedtext
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
           this.comments.push(comment);
         }
+        
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        console.log('after treeify');
+        
         //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
@@ -376,7 +389,7 @@ listoso:any[];
         console.log('Delete is clicked');
         this.comments = [];
         this.tagcomments = [];
-        this.loadPost(this.topdate);
+        this.loadPost(this.topdate, this.r_searchedtext);
         this.loadTagComment();
         resolve(true);
       });
@@ -475,34 +488,34 @@ listoso:any[];
 
   topdatearray:any = [
     {
-      'value': 'today',
+      'value': 'todaysearch',
       'menu': 'Today',
-      'selected': true
+      'selected': false
     },
     {
-      'value': 'week',
+      'value': 'weeksearch',
       'menu': 'This week',
       'selected': false
     },
     {
-      'value': 'month',
+      'value': 'monthsearch',
       'menu': 'This month',
       'selected': false
     },
     {
-      'value': 'year',
+      'value': 'yearsearch',
       'menu': 'This year',
       'selected': false
     },
     {
-      'value': 'alltime',
+      'value': 'alltimesearch',
       'menu': 'All time',
-      'selected': false
+      'selected': true
     }
   ];
 
-  topdate:string = 'today';
-  topdatestring:string = 'POST TODAY';
+  topdate:string = 'alltimesearch';
+  topdatestring:string = 'ALL TIME';
   topsortedby(topdate){
     //this.topdate = 'alltime';
     this.topdate = topdate;
@@ -517,50 +530,33 @@ listoso:any[];
       }
     }
 
-    if(this.topdate == 'today'){
+    if(this.topdate == 'todaysearch'){
       this.topdatestring = 'POST TODAY';
     }
-    else if(this.topdate == 'week'){
+    else if(this.topdate == 'weeksearch'){
       this.topdatestring = 'THIS WEEK';
     }
-    else if(this.topdate == 'month'){
+    else if(this.topdate == 'monthsearch'){
       this.topdatestring = 'THIS MONTH';
     }
-    else if(this.topdate == 'year'){
+    else if(this.topdate == 'yearsearch'){
       this.topdatestring = 'THIS YEAR';
     }
-    else if(this.topdate == 'alltime'){
+    else if(this.topdate == 'alltimesearch'){
       this.topdatestring = 'ALL TIME';
     }
     
     this.comments = [];
     this.tagcomments = [];
-    this.loadPost(this.topdate);
+    this.loadPost(this.topdate, this.r_searchedtext);
     this.loadTagComment();
   }
 
+
   
-  searchedtext:string;
-  searchedtexturi:string;
-
-  onKeydown(event){
-    if (event.key == "Enter") {
-      console.log(event);
-      
-      this.searchedtext = event.target.value;
-      this.searchedtexturi = encodeURI(this.searchedtext);
-
-      console.log(this.searchedtext);
-      console.log(this.searchedtexturi);
-
-      //this.router.navigate(['r//'+r_thread+'/']);
-      //this.router.navigate(['r/search/'+this.searchedtexturi+'/']);
-      //this.router.navigate(['r/home/search/'+this.searchedtexturi+'/']);
-      this.navCtrl.navigateForward(['r/home/search/'+this.searchedtexturi+'/'],{animated: false});
-      event.target.value = '';
-    }
+  toBack(){
+    this.navCtrl.pop();
   }
-
 
 
 
