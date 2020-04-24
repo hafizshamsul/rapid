@@ -87,7 +87,6 @@
 
 
 <ion-content (click)="clickcontent()" style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
-  
   <div id="innercontent" style="margin-top: 6px;">
     <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
 
@@ -183,26 +182,38 @@
         <ng-template #recursiveList let-listoso>
           <div *ngFor="let item of listoso">
             <div id="listitem2" style="padding:10px 20px;  display:block; margin-left: auto; border-bottom:1px solid rgb(236,236,236);" (click)="toThread(item.commentid)">
-              <ion-label style="font-family: 'Inter var', sans-serif;">
-                <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
-                  {{item.username}}
-                </div>
-                <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
-                <div style="float:left; margin-right: 4px; font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
-                  {{item.dateuploaded}}
-                </div>
-                
+              <div style="display:grid; grid-template-columns: auto 26px 26px; height:20px; font-size: 11px;font-family: 'Inter var', sans-serif;">
+                <div>
+                  <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
+                    {{item.username}}
+                  </div>
+                  <div id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></div>
+                  <div style="float:left; margin-right: 4px; font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+                    {{item.dateuploaded}}
+                  </div>
                   <div *ngFor="let tagcomment of tagcomments">
-                    <div *ngIf="tagcomment.comment_id==item.commentid" style="background:rgb(241,241,241); padding:1px 6px 3px 6px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
+                    <div *ngIf="tagcomment.comment_id==item.commentid" style="background:rgb(243,243,243); padding:1px 5px 2px 5px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(110,110,110); font-weight: 400; margin-bottom: 4px;">
                       
                       {{tagcomment.tag_tagname}}
                       {{man(tagcomment.tag_tagname)}}
                     </div>
                   </div>
-                  <div>
-                    <i id="trash" class="far fa-trash-alt" (click)="presentAlertMultipleButtons(item.commentid)" style="font-size: 14px; margin:4px 2px 0 0; float:right" alt="Delete post"></i>
-                    <i id="edit" class="fas fa-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="font-size: 14px; margin:4px 14px 0 0; float:right" alt="Edit post"></i>
-                  </div>
+                </div>
+
+                <div>
+                  <div id="edit" class="fas fa-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="font-size: 14px;float: right;" alt="Edit post"></div>
+                </div>
+
+                <div>
+                    <div id="trash" class="far fa-trash-alt" (click)="presentAlertMultipleButtons(item.commentid)" style="font-size: 14px;float: right;" alt="Delete post"></div>
+                </div>
+                
+                
+              </div>
+              <ion-label style="font-family: 'Inter var', sans-serif;">
+                
+                
+                
                   
                   <div style="width:0px; clear:both"></div>
                   

@@ -11,6 +11,12 @@ import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 
+import { Plugins } from '@capacitor/core';
+const { Device } = Plugins;
+
+import { KeyboardInfo } from '@capacitor/core';
+const { Keyboard } = Plugins;
+
 declare var $: any;
 
 @Component({
@@ -561,11 +567,19 @@ listoso:any[];
     }
   }
 
+  /*
+  info:string="000";
 
+  async um(){
+    this.info = (await Device.getInfo()).appBuild;
+    Keyboard.show();
+  }
 
-
-
-
+  im(){
+    Keyboard.hide();
+  }
+*/
+  
 
   
 
