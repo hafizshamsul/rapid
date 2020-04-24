@@ -7,32 +7,41 @@
 
   <ion-header no-border>
   <ion-toolbar id="toolbarborder">
+    <div id="parentsearchnav" style="display: grid;">
+    </div>
+    <div></div>
+
     <div id="searchnav" style="display: grid;">
-      
       <div>
         <div id="headertitle" style="padding: 7px 0 0 26px">
           <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">WEdushare</ion-title>
         </div>
         
       </div>
 
       <div>
+        <ion-buttons slot="end" style="float: right;padding-right: 4px;">
+          <!--
+            <ion-back-button color="green"></ion-back-button>
+          -->
+          <ion-button color="green" (click)="toBack()">
+            <i class="fas fa-chevron-left" style="font-size: 20px"></i>
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+      <div>
         <div style="background: rgb(246,246,246); border-radius: 3px; width:284px; height:100%; display:block; margin:0 auto; display:block">
-          <div style="display: grid; grid-template-columns: 23px auto; padding: 6px 0 0 16px">
-            <!--
-              <div style="font-family: Inter; font-size: 13px; color:rgb(150,150,150)">Search</div>
-            -->
-            <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 3px;"></div>
-            <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:14px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search">
-            
-            
+          <div style="display: grid; grid-template-columns: 20px auto; padding: 7px 0 0 16px">
+            <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 2px;"></div>
+            <div style="font-family: Inter; font-size: 13px; color:rgb(150,150,150)">Search</div>
           </div>
           
         </div>
       </div>
 
-      <div>
+      <div style="">
         <ion-buttons slot="primary" (click)="login()">
           <ion-button color="green">
             <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
@@ -41,8 +50,12 @@
       </div>
 
     </div>
+
+    <div></div>
   </ion-toolbar>
-  <div id="topnav">
+
+  <!--
+    <div id="topnav">
     <div></div>
     <div>
       <div style="display:grid; grid-template-columns: 33.33% 33.33% 33.33%; font-size: 14.5px; text-align: center;margin:11px 0 11px 0; font-weight: 600;">
@@ -65,8 +78,10 @@
           <div>
           </div>
         </div>
+      </div>
     </div>
-  </div>
+  -->
+  
   
 </ion-header>
 
@@ -142,13 +157,12 @@
       
     <div></div>
     <div>
-      <div style="display: grid; grid-template-columns:160px auto 160px; margin: 6px 0 15px 14px; font-family: 'Inter var', sans-serif; font-size: 10.5px; font-weight: 700; color:rgb(150,150,150)">
+      <div style="display: grid; grid-template-columns: auto 160px; margin: 6px 0 15px 14px; font-family: 'Inter var', sans-serif; font-size: 10.5px; font-weight: 700; color:rgb(150,150,150)">
         <div style="font-size: 14px; margin-left: 2px;">
-          <div class="fas fa-globe-americas" style="margin-right:10px; float:left;"></div>
-          <div style="font-size: 10.5px;">ALL CATEGORIES</div>
+          <div class="fas fa-search" style="margin-right:10px; float:left;"></div>
+          <div style="font-size: 11px;">Results for "{{r_searchedtext}}"</div>
         </div>
 
-        <div></div>
 
         <div style="cursor: pointer; position: relative;display: inline-block;">
           <div id="topposttoday" (click)="presstoppost()" style="height: 10px; float:right; margin-right: 20px;">

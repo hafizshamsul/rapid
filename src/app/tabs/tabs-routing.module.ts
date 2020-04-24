@@ -20,6 +20,9 @@ const routes: Routes = [
           },
           {
             path: ':r_thread', loadChildren: () => import('../thread/thread.module').then(m => m.ThreadPageModule)
+          },
+          {
+            path: 'search/:r_searchedtexturi', loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
           }
         ] 
       },
@@ -38,6 +41,15 @@ const routes: Routes = [
         children: [
           { path: '',
             loadChildren: () => import('../editpost/editpost.module').then( m => m.EditpostPageModule)
+          }
+        ]
+        
+      },
+      { 
+        path: 'search/:r_searchedtexturi',
+        children: [
+          { path: '',
+            loadChildren: () => import('../search/search.module').then( m => m.SearchPageModule)
           }
         ]
         

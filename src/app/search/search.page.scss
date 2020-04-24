@@ -55,11 +55,20 @@
     }
 }
 
+#parentsearchnav{
+  grid-template-columns: 244px auto 0;
+  //grid-template-columns: auto 70% auto;
+
+  @media (max-width: 576px) {
+      grid-template-columns: auto 100% auto;
+  }
+}
+
 #searchnav{
-  grid-template-columns: 278px auto 34px;
+  grid-template-columns: 244px 34px auto 34px;
 
     @media (max-width: 576px) {
-        grid-template-columns: 34px auto 34px;
+        grid-template-columns: 0px 34px auto 34px;
     }
 }
 
@@ -249,35 +258,4 @@
   @media (max-width: 576px) {
     border-bottom: none;
   }
-}
-
-#inputsearch{
-
-}
-#inputsearch:focus{
-  outline: none;
-}
-
-#inputsearch::-webkit-input-placeholder {
-  font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
-}
-
-#inputsearch:-ms-input-placeholder {
-  font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
-}
-
-#inputsearch:-moz-placeholder {
-  font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
-}
-
-#inputsearch::-moz-placeholder {
-  font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
 }
