@@ -428,8 +428,9 @@
 
     elseif($postjson['action']=='getfolderfile'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
-    
+        //$query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
+        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by id asc");
+
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
         //$diff = $date2->diff($date1);

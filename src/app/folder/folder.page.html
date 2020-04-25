@@ -110,15 +110,35 @@
 
 
     <div *ngIf="popup == true">
-      <div (click)="closepopup()" style="display:grid; grid-template-rows: auto 200px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998; ;">
+      <div id="popupbg" (click)="closepopupbg()" style="display:grid; grid-template-rows: auto 180px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
       <div></div>
 
       <div>
-        <div style="display: grid; grid-template-columns: auto 400px auto; height: 100%;">
+        <div id="popupfore" style="display: grid; height: 100%;">
           <div></div>
 
           <div (click)="openpopup()" style="background: white; width:100%; text-align: center; border-radius: 8px; box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.3);">
+            <div style="display: grid; grid-template-columns: auto 50px; height:50px">
+              <div style="padding:24px 0 0 24px; font-size: 20px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
+                New folder
+              </div>
+              
+              <div (click)="closepopupbtn()" style="padding:20px 10px 0 10px; height:100%; cursor: pointer">
+                <div class="fas fa-times" style="font-size: 16px;color:rgb(150,150,150)"></div>
+              </div>
+            </div>
             
+            <div style="padding: 8px 32px 0 32px;">
+              <ion-item style="--background: rgb(240,246,255)">
+                <ion-input #rename type="text" value="Untitled" style="text-align: left;;"></ion-input>
+              </ion-item>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: auto 100px 100px; height:64px; padding:16px 24px 0 24px; font-size: 14px;font-weight: 500;">
+              <div></div>
+              <div id="clickbtn" (click)="closepopupbtn()" style="border-radius:8px;cursor:pointer; margin:3px; color:rgb(150,150,150);padding-top: 10px;">Cancel</div>
+              <div id="clickbtn" (click)="addetc()" style="border-radius:8px;cursor:pointer; margin:3px;margin:3px; color:#2d98da;padding-top: 10px;font-size: 15px;">Create</div>
+            </div>
           </div>
 
           <div></div>
