@@ -511,23 +511,41 @@ export class FolderPage implements OnInit {
 
   //kaun:any = [];
 
+  @ViewChild('rename', {static: false}) rename;
+
   popup:boolean = false;
 
   openpopup(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
     this.popup = true;
+    console.log(this.popup);
+    setTimeout(()=>{
+      this.rename.setFocus();
+    },150);  
+    
   }
 
-  closepopup(){
+  closepopupbg(){
     this.popup = false;
+    console.log(this.popup);
+  }
+
+  closepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.popup = false;
+    console.log(this.popup);
   }
 
   addetc(){
     this.addfolderfile_folder();
-    this.listoso = [];
-    this.comments = [];
-    this.loadFolderFile();
+    
+    setTimeout(()=>{
+      this.ionViewWillEnter();
+    }, 240);
+    
+    this.popup = false;
   }
 
   addfolderfile_folder(){
