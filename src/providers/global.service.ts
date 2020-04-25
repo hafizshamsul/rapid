@@ -10,4 +10,6 @@ export class GlobalService {
   public userid: number = 1;
   public username: string = 'hafizshamsul';
   public password: string = 'lolol';
+
+  public popup:boolean = false;
 }

@@ -5,6 +5,21 @@
 </head>
 
 
+<ion-tabs>
+  <ion-tab-bar slot="bottom" style="height:42px">
+    <ion-tab-button (click)="toHome()">
+      <div class="fas fa-home" style="font-size: 24px; color:rgb(50,50,50)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toSubmitpost()">
+      <div class="fas fa-plus-square" style="font-size: 24px; color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toFolder()">
+      <div class="fas fa-folder" style="font-size: 24px; color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+
   <ion-header no-border>
   <ion-toolbar id="toolbarborder">
     <div id="searchnav" style="display: grid;">
@@ -49,7 +64,7 @@
         <div style="color:rgb(160,160,160);">
           News
         </div>
-        <div style="color:rgb(70,70,70);">
+        <div style="color:rgb(50,50,50);">
           Home
         </div>
         <div style="color:rgb(160,160,160)">
