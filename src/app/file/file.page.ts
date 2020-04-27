@@ -176,6 +176,8 @@ export class FilePage implements OnInit {
       if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
         this.isSelected = true;
         this.image = res;
+
+        this.originalname = event.target.files[0].name;
       }
       else {
         this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
@@ -187,7 +189,9 @@ export class FilePage implements OnInit {
     });
   }
  
-   uploadFile() : void {
+  originalname:string;
+
+    uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
     
     if(['ai', 'bmp', 'gif', 'jpeg', 'png', 'psd', 'svg', 'tiff'].includes(this._SUFFIX)){
@@ -208,27 +212,33 @@ export class FilePage implements OnInit {
     else if(['zip'].includes(this._SUFFIX)){
       this.icon = 'zip';
     }
-  
+
     let body: any = {
-      action : "add" ,
+      action : 'addfolderfile_file',
       name : this.name,
       file : this.image,
       type : this._SUFFIX,
       icon : this.icon,
-      rename : "kehkeh.png"
+      rename : 'kehkeh.png',
+      originalname : this.originalname,
+      folder_id : this.r_folderid
     };  
-    
-      this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
-        this.displayAlert(res.message);
-        this.isSelected = false;
-      },
-      (error : any) => {
-         console.dir(error);
-         this.displayAlert(error.message);
-      });
-   }
+  
+    this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
+      this.displayAlert(res.message);
+      this.isSelected = false;
 
-   async presentAlert() {
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
+    },
+    (error : any) => {
+        console.dir(error);
+        this.displayAlert(error.message);
+    });
+  }
+
+  async presentAlert() {
     let alert : any = await this.alertCtrl.create({
     message: 'Low battery',
     subHeader: '10% of battery remaining',

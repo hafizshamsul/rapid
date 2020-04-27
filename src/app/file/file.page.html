@@ -238,16 +238,19 @@
       </ion-toolbar>
 </ion-header>
 
-    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
+<!--
+  <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
       <a (click)="cancel()">Cancel</a>
       <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
       <img [src]="image" style="height: 60px; width: 60px;">
     </ion-content>
+-->
+    
 
 
     
 
-    <ion-content *ngIf="!isSelected" style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding:10px">
+    <ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px; --padding:10px">
 
 
     
@@ -375,6 +378,18 @@
                 </div>
               </div>
 
+              <input type="file" (change)="selectFileToUpload($event)">
+
+              <div *ngIf="isSelected == true">
+                <a (click)="cancel()">Cancel</a>
+                <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
+                <!--
+                  
+                  
+                  <img [src]="image" style="height: 60px; width: 60px;">
+                -->
+              </div>
+
               <ng-template #recursiveList let-listoso>
                 <div *ngFor="let item of listoso">
                   <div *ngIf="item.folder_id==r_folderid">
@@ -386,8 +401,11 @@
                               <div *ngIf="item.folderfileicon == 'folder'">
                                 <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
                               </div>
-                              <div *ngIf="item.folderfileicon != 'folder'">
+                              <div *ngIf="item.folderfileicon == 'pdf'">
                                 <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                              </div>
+                              <div *ngIf="item.folderfileicon == 'doc'">
+                                <img src="assets/svg/svg_icons/doc_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
                               </div>
                             </div>
 
