@@ -524,6 +524,10 @@
         array_push($reversed, $postjson['folderfileid']);
         $data = json_encode($reversed);
 
+        for($i=0; $i<count($reversed); $i++){
+            $querydelete = mysqli_query($mysqli, "DELETE FROM folderfile WHERE id = $reversed[$i]");
+        }
+
         /*
         $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = $curr[0]");
         while($row = mysqli_fetch_array($querya)){
