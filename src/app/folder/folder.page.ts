@@ -319,7 +319,9 @@ export class FolderPage implements OnInit {
     //this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
 
     if(folderfileicon == 'folder'){
-      this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      
+      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
       //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
     }
     
@@ -512,9 +514,28 @@ export class FolderPage implements OnInit {
   //kaun:any = [];
 
   @ViewChild('rename', {static: false}) rename;
-
+  //LOGIC VARIABLE
   popup:boolean = false;
+  UDpopup:boolean = false;
+  CDpopup:boolean = false;
 
+  //VARIABLE PASSED TO POPUP
+  selectedid:number;
+  selectedname:string;
+
+  showid(folderfileid, folderfilename){
+    this.selectedid = folderfileid;
+    this.selectedname = folderfilename;
+    this.UDopenpopup();
+  }
+
+  showdeleteid(){
+    this.CDopenpopup();
+  }
+
+  
+
+  //OPEN POPUP
   openpopup(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
@@ -526,11 +547,39 @@ export class FolderPage implements OnInit {
     
   }
 
+  UDopenpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.UDpopup = true;
+    console.log(this.UDpopup);
+  }
+
+  CDopenpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.CDpopup = true;
+    console.log(this.CDpopup);
+  }
+
+  //CLOSE POPUP
   closepopupbg(){
     this.popup = false;
     console.log(this.popup);
   }
 
+  UDclosepopupbg(){
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  CDclosepopupbg(){
+    this.CDpopup = false;
+    this.UDpopup = false;
+    console.log(this.CDpopup);
+  }
+
+
+  //CLOSE POPUP BUTTON
   closepopupbtn(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
@@ -538,8 +587,36 @@ export class FolderPage implements OnInit {
     console.log(this.popup);
   }
 
+  UDclosepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  CDclosepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.CDpopup = false;
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  //ACTION FOR DELETING FOLDER
+  delete(){
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+    
+    setTimeout(()=>{
+      this.ionViewWillEnter();
+    }, 240);
+
+    this.CDpopup = false;
+    this.UDpopup = false;
+  }
+
+  //ACTION FOR ADDING FOLDER
   addetc(){
-    this.addfolderfile_folder();
+    this.addfolderfile_folder(this.popuprename);
     
     setTimeout(()=>{
       this.ionViewWillEnter();
@@ -548,17 +625,20 @@ export class FolderPage implements OnInit {
     this.popup = false;
   }
 
-  addfolderfile_folder(){
+  popuprename:string = 'Untitled';
+
+  addfolderfile_folder(name){
     return new Promise(resolve => {
       let body = {
         action : 'addfolderfile_folder',
+        name : name
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         resolve(true);
       });
     });
   }
-
+  //END OF CODE
 
   counting(folderfileid){
     return new Promise(resolve => {
@@ -572,4 +652,7 @@ export class FolderPage implements OnInit {
       });
     });
   }
+
+  
+
 }

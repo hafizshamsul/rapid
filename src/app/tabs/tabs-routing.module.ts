@@ -55,7 +55,8 @@ const routes: Routes = [
         
       },
 
-      { path: ':r_username', children: [
+      { path: ':r_username',
+      children: [
           { path: '', loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule) },
           { path: ':r_folderid', loadChildren: () => import('../file/file.module').then(m => m.FilePageModule) }
         ]
