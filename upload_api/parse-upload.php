@@ -59,7 +59,9 @@ header("Content-Type: application/json; charset=utf-8");
          $query = mysqli_query($mysqli, "INSERT INTO filedata SET name = '$postjson[name]', decoded = '$postjson[file]', type='$postjson[type]', icon='$postjson[icon]'");
       
       }
-      
+      else if($postjson['action'] == 'addfolderfile_file'){
+         $query = mysqli_query($mysqli, "INSERT INTO folderfile SET name = '$postjson[originalname]', filename = '$postjson[originalname]', type='$postjson[type]', icon='$postjson[icon]', folder_id='$postjson[folder_id]'");
+      }
       /*if($postjson['action']=='added'){
          $data = array();
          $query = mysqli_query($mysqli, "SELECT * FROM filedata");
