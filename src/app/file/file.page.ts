@@ -479,7 +479,69 @@ export class FilePage implements OnInit {
     this.counting(folderfileid);
   }
 
-  //kaun:any = [];
+
+  //HTML ID
+  @ViewChild('rename', {static: false}) rename;
+
+  //LOGIC VARIABLE
+  popup:boolean = false;
+  //UDpopup:boolean = false;
+  //CDpopup:boolean = false;
+
+  //OPEN POPUP
+  openpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.popup = true;
+    console.log(this.popup);
+    setTimeout(()=>{
+      this.rename.setFocus();
+    },150);  
+    
+  }
+
+  //CLOSE POPUP
+  closepopupbg(){
+    this.popup = false;
+    console.log(this.popup);
+  }
+
+   //CLOSE POPUP BUTTON
+   closepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.popup = false;
+    console.log(this.popup);
+  }
+
+   //ACTION FOR ADDING FOLDER
+   popuprename:string = 'Untitled';
+   //currparent_str:string = this.r_folderid;
+   currparent:string = '12';
+  
+   addetc(){
+    this.currparent  = this.r_folderid;
+    this.addfolderfile_subfolder(this.popuprename, this.currparent);
+     
+     setTimeout(()=>{
+       this.ionViewDidEnter();
+     }, 240);
+     
+     this.popup = false;
+   }
+
+  addfolderfile_subfolder(name, parent){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addfolderfile_subfolder',
+        name : name,
+        parent : parent
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+    });
+  }
 
   counting(folderfileid){
     return new Promise(resolve => {
