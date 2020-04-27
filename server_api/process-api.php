@@ -461,7 +461,7 @@
 
     elseif($postjson['action']=='addfolderfile_folder'){
         $data = array();
-        $query = mysqli_query($mysqli, "insert into folderfile set name = 'etc', icon = 'folder', users_id = 'etc'");
+        $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 'etc'");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
