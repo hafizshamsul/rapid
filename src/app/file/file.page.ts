@@ -485,8 +485,22 @@ export class FilePage implements OnInit {
 
   //LOGIC VARIABLE
   popup:boolean = false;
-  //UDpopup:boolean = false;
-  //CDpopup:boolean = false;
+  UDpopup:boolean = false;
+  CDpopup:boolean = false;
+
+  //VARIABLE PASSED TO POPUP
+  selectedid:number;
+  selectedname:string;
+
+  showid(folderfileid, folderfilename){
+    this.selectedid = folderfileid;
+    this.selectedname = folderfilename;
+    this.UDopenpopup();
+  }
+
+  showdeleteid(){
+    this.CDopenpopup();
+  }
 
   //OPEN POPUP
   openpopup(){
@@ -496,8 +510,21 @@ export class FilePage implements OnInit {
     console.log(this.popup);
     setTimeout(()=>{
       this.rename.setFocus();
-    },150);  
-    
+    },150);
+  }
+
+  UDopenpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.UDpopup = true;
+    console.log(this.UDpopup);
+  }
+
+  CDopenpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.CDpopup = true;
+    console.log('CDpopup: '+this.CDpopup);
   }
 
   //CLOSE POPUP
@@ -506,29 +533,74 @@ export class FilePage implements OnInit {
     console.log(this.popup);
   }
 
-   //CLOSE POPUP BUTTON
-   closepopupbtn(){
+  UDclosepopupbg(){
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  CDclosepopupbg(){
+    this.CDpopup = false;
+    this.UDpopup = false;
+    console.log(this.CDpopup);
+  }
+
+  //CLOSE POPUP BUTTON
+  closepopupbtn(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
     this.popup = false;
     console.log(this.popup);
   }
-
-   //ACTION FOR ADDING FOLDER
-   popuprename:string = 'Untitled';
-   //currparent_str:string = this.r_folderid;
-   currparent:string = '12';
   
-   addetc(){
-    this.currparent  = this.r_folderid;
-    this.addfolderfile_subfolder(this.popuprename, this.currparent);
-     
-     setTimeout(()=>{
-       this.ionViewDidEnter();
-     }, 240);
-     
-     this.popup = false;
-   }
+  UDclosepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  CDclosepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.CDpopup = false;
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
+  //ACTION FOR DELETING FOLDER
+  delete(){
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+    
+    this.counting(this.selectedid);
+
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    this.CDpopup = false;
+    this.UDpopup = false;
+
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
+  }
+
+  //ACTION FOR ADDING FOLDER
+  popuprename:string = 'Untitled';
+  currparent:string = '12';
+
+  addetc(){
+  this.currparent  = this.r_folderid;
+  this.addfolderfile_subfolder(this.popuprename, this.currparent);
+    
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+    
+    this.popup = false;
+
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
+  }
 
   addfolderfile_subfolder(name, parent){
     return new Promise(resolve => {

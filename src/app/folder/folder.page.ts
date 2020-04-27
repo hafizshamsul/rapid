@@ -529,8 +529,6 @@ export class FolderPage implements OnInit {
     this.CDopenpopup();
   }
 
-  
-
   //OPEN POPUP
   openpopup(){
     event.cancelBubble = true;
@@ -539,8 +537,7 @@ export class FolderPage implements OnInit {
     console.log(this.popup);
     setTimeout(()=>{
       this.rename.setFocus();
-    },150);  
-    
+    },150);
   }
 
   UDopenpopup(){
@@ -623,6 +620,8 @@ export class FolderPage implements OnInit {
     }, 240);
     
     this.popup = false;
+
+    this.popuprename = 'Untitled';
   }
 
   addfolderfile_folder(name){
