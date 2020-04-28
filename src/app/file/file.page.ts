@@ -7,6 +7,11 @@ import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../../providers/global.service";
 import { NavController } from '@ionic/angular';
 
+import { Observable } from 'rxjs';
+
+import * as $ from 'jquery';
+import { LineUtil } from 'leaflet';
+
 @Component({
   selector: 'app-file',
   templateUrl: './file.page.html',
@@ -14,7 +19,9 @@ import { NavController } from '@ionic/angular';
 })
 
 export class FilePage implements OnInit {
-  
+
+
+
   r_username: string;
   r_folderid: string;
 
@@ -27,8 +34,8 @@ export class FilePage implements OnInit {
   start: number = 0;
   lol: String = "25 Jan 2020";
 
-  private _SUFFIX : string;
-  public image : string;
+  private _SUFFIX : string = 'txt'; //database
+  public image : any = 'this.image'; //database
   public isSelected : boolean =	false;
   public enter : boolean;
 
@@ -46,7 +53,7 @@ export class FilePage implements OnInit {
   name: string;
   decoded: string;
   type: string;
-  icon: string;
+  icon: string = 'doc'; //database
   folderdata_id: number;
   
   constructor(
@@ -123,8 +130,16 @@ export class FilePage implements OnInit {
   
   deletelist:string;
 
+  
+  tup:string = "lmao";
+
   selectFileToUpload(event) : void {
+    this.tup = event.target.files[0].name;
+    this.originalname = event.target.files[0].name;
+    //console.log(event.target.files[0].name);
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
+      //console.log(event.target.files[0].name);
+      //console.log(res);
       this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
       if(this._SUFFIX == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
@@ -174,10 +189,11 @@ export class FilePage implements OnInit {
       }
 
       if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
+          this.image = res;
+          
+        //this.originalname = 'hehhe';
+        
         this.isSelected = true;
-        this.image = res;
-
-        this.originalname = event.target.files[0].name;
       }
       else {
         this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
@@ -189,7 +205,7 @@ export class FilePage implements OnInit {
     });
   }
  
-  originalname:string;
+  originalname:string = 'Untitled.txt';
 
     uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
@@ -213,15 +229,17 @@ export class FilePage implements OnInit {
       this.icon = 'zip';
     }
 
+    
+
     let body: any = {
       action : 'addfolderfile_file',
-      name : this.name,
-      file : this.image,
-      type : this._SUFFIX,
-      icon : this.icon,
-      rename : 'kehkeh.png',
-      originalname : this.originalname,
-      folder_id : this.r_folderid
+      originalname : this.originalname, //namebeforeuploaded
+      rename : 'kehkeh.png', //displayname
+      name : this.name, //storeduniquename
+      file : this.image, //actual file, not available in iOS*****
+      type : this._SUFFIX, //suffix from actual file, not available in iOS*****
+      icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
+      folder_id : this.r_folderid //parentfolder
     };  
   
     this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
@@ -460,7 +478,7 @@ export class FilePage implements OnInit {
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
-        console.log(JSON.stringify(this.listoso));
+        //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
     });
@@ -639,4 +657,20 @@ export class FilePage implements OnInit {
   }
 
   //enter:boolean = true;
+
+  selectit(){
+    this.isSelected = true;
+  }
+
+
+  target:string = "eh";
+
+
+
+  tar(event: any){
+    this.target = event.target.value;
+    console.log(event.target.value);
+  }
+
+
 }

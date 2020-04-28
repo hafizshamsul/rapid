@@ -5,6 +5,9 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 //import { IOSFilePicker } from '@ionic-native/file-picker';
 import { map } from 'rxjs/operators';
 
+import { Plugins } from '@capacitor/core';
+const { Camera } 		= Plugins;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,13 +23,16 @@ export class ImagesProvider {
     public htt: Http
     ) { }
 
-  handleImageSelection(event : any) : Observable<any> {
+  handleImageSelection(event : any){
     let file: any = event.target.files[0];
-
+    console.log(event.target.files[0].name);
     this._READER.readAsDataURL(file);
+    
     return Observable.create((observer) => {
         this._READER.onloadend = () => {
-          observer.next(this._READER.result);
+          console.log(this._READER.result as string);
+          observer.next(this._READER.result as string);
+          
           observer.complete();
         }
     });
