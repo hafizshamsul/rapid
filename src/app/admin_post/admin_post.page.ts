@@ -4,23 +4,29 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
-import { GlobalService } from "../..//providers/global.service";
-import { MyNavService } from "../..//providers/mynavservice.service";
-import { CurrentNavService } from "../..//providers/currentnav.service";
+import { GlobalService } from "../../providers/global.service";
+import { MyNavService } from "../../providers/mynavservice.service";
+import { CurrentNavService } from "../../providers/currentnav.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 
+import { Plugins } from '@capacitor/core';
+const { Device } = Plugins;
+
+import { KeyboardInfo } from '@capacitor/core';
+const { Keyboard } = Plugins;
+
 declare var $: any;
 
 @Component({
-  selector: 'app-search',
-  templateUrl: 'search.page.html',
-  styleUrls: ['search.page.scss']
+  selector: 'app-admin_post',
+  templateUrl: 'admin_post.page.html',
+  styleUrls: ['admin_post.page.scss']
 })
 
 
-export class SearchPage{
+export class Admin_postPage{
 
   transform(value: string): any {
     return value.replace(/<.*?>/g, ''); // replace tags
@@ -34,7 +40,7 @@ export class SearchPage{
     public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      console.log('constructor search');
+      console.log('constructor home');
       
     }
 
@@ -203,16 +209,11 @@ listoso:any[];
     //console.log(index);
   }
 
-  r_searchedtexturi:string;
-  r_searchedtext:string;
 
   ngOnInit() {
-    this.r_searchedtexturi = this.actRoute.snapshot.paramMap.get('r_searchedtexturi');
-    
-    
-    this.currentnav.currentpage = 'search';
+    this.currentnav.currentpage = 'home';
 
-    console.log('ngOnInit search');
+    console.log('ngOnInit home');
 
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
@@ -245,26 +246,22 @@ listoso:any[];
   }
 
   ionViewWillEnter(){
-    console.log('ionViewWillEnter search');
+    console.log('ionViewWillEnter home');
     this.comments = [];
     this.tagcomments = [];
-
-    console.log('ionview:'+this.topdate+','+this.r_searchedtext)
-    this.r_searchedtext = decodeURI(this.r_searchedtexturi);
-
-    this.loadPost(this.topdate, this.r_searchedtext);
+    this.loadPost(this.topdate);
     this.loadTagComment();
   }
 
   ionViewDidEnter(){
-    console.log('ionViewDidEnter search');
+    console.log('ionViewDidEnter home');
     
   }
   ionViewWillLeave(){
-    console.log('ionViewWillLeave search');
+    console.log('ionViewWillLeave home');
   }
   ionViewDidLeave(){
-    console.log('ionViewDidLeave search');
+    console.log('ionViewDidLeave home');
   }
   ngOnDestroy(){
     console.log('ngOnDestroy home');
@@ -354,21 +351,17 @@ listoso:any[];
     }
   ]
 
-  loadPost(topdate, r_searchedtext){
+  loadPost(topdate){
     return new Promise(resolve => {
       let body = {
         action : 'getpost',
-        topsort : topdate,
-        r_searchedtext : r_searchedtext
+        topsort : topdate
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
           this.comments.push(comment);
         }
-        
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
-        console.log('after treeify');
-        
         //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
@@ -389,7 +382,7 @@ listoso:any[];
         console.log('Delete is clicked');
         this.comments = [];
         this.tagcomments = [];
-        this.loadPost(this.topdate, this.r_searchedtext);
+        this.loadPost(this.topdate);
         this.loadTagComment();
         resolve(true);
       });
@@ -488,34 +481,34 @@ listoso:any[];
 
   topdatearray:any = [
     {
-      'value': 'todaysearch',
+      'value': 'today',
       'menu': 'Today',
-      'selected': false
+      'selected': true
     },
     {
-      'value': 'weeksearch',
+      'value': 'week',
       'menu': 'This week',
       'selected': false
     },
     {
-      'value': 'monthsearch',
+      'value': 'month',
       'menu': 'This month',
       'selected': false
     },
     {
-      'value': 'yearsearch',
+      'value': 'year',
       'menu': 'This year',
       'selected': false
     },
     {
-      'value': 'alltimesearch',
+      'value': 'alltime',
       'menu': 'All time',
-      'selected': true
+      'selected': false
     }
   ];
 
-  topdate:string = 'alltimesearch';
-  topdatestring:string = 'ALL TIME';
+  topdate:string = 'today';
+  topdatestring:string = 'POST TODAY';
   topsortedby(topdate){
     //this.topdate = 'alltime';
     this.topdate = topdate;
@@ -530,38 +523,63 @@ listoso:any[];
       }
     }
 
-    if(this.topdate == 'todaysearch'){
+    if(this.topdate == 'today'){
       this.topdatestring = 'POST TODAY';
     }
-    else if(this.topdate == 'weeksearch'){
+    else if(this.topdate == 'week'){
       this.topdatestring = 'THIS WEEK';
     }
-    else if(this.topdate == 'monthsearch'){
+    else if(this.topdate == 'month'){
       this.topdatestring = 'THIS MONTH';
     }
-    else if(this.topdate == 'yearsearch'){
+    else if(this.topdate == 'year'){
       this.topdatestring = 'THIS YEAR';
     }
-    else if(this.topdate == 'alltimesearch'){
+    else if(this.topdate == 'alltime'){
       this.topdatestring = 'ALL TIME';
     }
     
     this.comments = [];
     this.tagcomments = [];
-    this.loadPost(this.topdate, this.r_searchedtext);
+    this.loadPost(this.topdate);
     this.loadTagComment();
   }
 
-
   
-  toBack(){
-    this.navCtrl.pop();
+  searchedtext:string;
+  searchedtexturi:string;
+
+  onKeydown(event){
+    if (event.key == "Enter") {
+      console.log(event);
+      
+      this.searchedtext = event.target.value;
+      this.searchedtexturi = encodeURI(this.searchedtext);
+
+      console.log(this.searchedtext);
+      console.log(this.searchedtexturi);
+
+      //this.router.navigate(['r//'+r_thread+'/']);
+      //this.router.navigate(['r/search/'+this.searchedtexturi+'/']);
+      //this.router.navigate(['r/home/search/'+this.searchedtexturi+'/']);
+      this.navCtrl.navigateForward(['r/home/search/'+this.searchedtexturi+'/'],{animated: false});
+      event.target.value = '';
+    }
   }
 
+  /*
+  info:string="000";
 
+  async um(){
+    this.info = (await Device.getInfo()).appBuild;
+    Keyboard.show();
+  }
 
-
-
+  im(){
+    Keyboard.hide();
+  }
+*/
+  
 
   
 
@@ -579,6 +597,10 @@ listoso:any[];
 
   toFolder(){
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
   }
 
   toAdmin_doc(){

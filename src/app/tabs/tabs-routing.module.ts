@@ -55,6 +55,24 @@ const routes: Routes = [
         
       },
 
+      { path: 'admin_user',
+      children: [
+          { path: '', loadChildren: () => import('../admin_user/admin_user.module').then( m => m.Admin_userPageModule)},
+        ]
+      },
+
+      { path: 'admin_post',
+      children: [
+          { path: '', loadChildren: () => import('../admin_post/admin_post.module').then( m => m.Admin_postPageModule)},
+        ]
+      },
+
+      { path: 'admin_doc',
+      children: [
+          { path: '', loadChildren: () => import('../admin_doc/admin_doc.module').then( m => m.Admin_docPageModule)},
+        ]
+      },
+      
       { path: ':r_username',
       children: [
           { path: '', loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule) },
@@ -62,11 +80,7 @@ const routes: Routes = [
         ]
       },
 
-      { path: 'admin_user',
-      children: [
-          { path: '', loadChildren: () => import('../admin_user/admin_user.module').then(m => m.Admin_userPageModule) }
-        ]
-      }
+      
     ]
   }
   

@@ -548,6 +548,10 @@ getselectedtag(){
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toAdmin_doc(){
+    this.navCtrl.navigateRoot(['r/admin_doc/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }
