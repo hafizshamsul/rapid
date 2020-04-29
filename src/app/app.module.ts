@@ -19,6 +19,7 @@ import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 import { QuillModule } from 'ngx-quill';
 
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { QuillModule } from 'ngx-quill';
     PostProvider,
     ImagesProvider,
     DocumentViewer,
+    PreviewAnyFile,
     //DocumentPicker,
     //IOSFilePicker,
     //AlertController,
