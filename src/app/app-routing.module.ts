@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)},
   //{ path: 'thread/:r_thread', loadChildren: () => import('./thread/thread.module').then( m => m.ThreadPageModule)},
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: 'admin_user', loadChildren: () => import('./admin_user/admin_user.module').then( m => m.Admin_userPageModule)},
     
   //{ path: ':r_username', loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule) },
   //{ path: ':r_username/:r_folderid/', loadChildren: () => import('./file/file.module').then( m => m.FilePageModule)},

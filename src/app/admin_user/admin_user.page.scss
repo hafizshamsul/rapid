@@ -1,0 +1,165 @@
+#griditem2{
+  grid-template-columns: 244px auto 0;
+  //grid-template-columns: auto 70% auto;
+
+  @media (max-width: 576px) {
+      grid-template-columns: auto 100% auto;
+  }
+}
+
+#sidemenu{
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+#innercontent{
+  padding: 0 14px 0 0;
+
+  @media (max-width: 576px) {
+    padding: 0;
+  }
+}
+
+
+
+
+
+#menuitem{
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 510;
+  clear: both;
+  padding: 12px 24px;
+  color: rgb(100,100,100);
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  margin-right: 8px;
+}
+#menuitem:hover{
+  background:rgb(247,247,247);
+}
+
+#currentmenuitem{
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 700;
+  clear: both;
+  padding: 12px 24px;
+  color: #4b7fda;
+  cursor: pointer;
+  //background:#e8f0fe;
+  background: rgb(246,246,246);
+  border-radius: 0 4px 4px 0;
+  margin-right: 8px;
+}
+#currentmenuitem:hover{
+  cursor: pointer;
+}
+
+#gapicontext{
+  display: grid;
+  grid-template-columns: 34px auto;
+}
+
+
+
+
+
+#listgrandparent{
+  background: white;
+  cursor: pointer;
+  
+}
+
+#listgrandparent:hover{
+  background:rgb(253,253,255);
+}
+
+#listgrandparent:active{
+  background:rgb(252,252,254);
+}
+
+#collapselist{
+  grid-template-columns: 1fr 1fr 1fr 1fr 80px; 
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr 1fr 1fr 80px; 
+  }
+}
+
+#hiddencolumn{
+  @media (max-width: 576px) {
+    display:none;
+  }
+}
+
+
+#popupfore{
+  grid-template-columns: auto 400px auto;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 20px auto 20px;
+  }
+}
+
+#popupbg {
+  -webkit-animation: fadein 200ms;
+  -moz-animation: fadein 200ms;
+  -ms-animation: fadein 200ms;
+  -o-animation: fadein 200ms;
+  animation: fadein 200ms;
+}
+
+@keyframes fadein {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }
+}
+@-moz-keyframes fadein {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }
+}
+@-webkit-keyframes fadein {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }
+}
+@-ms-keyframes fadein {
+ from {
+   opacity: 0;
+ }
+ to {
+   opacity: 1;
+ }
+}
+@-o-keyframes fadein {
+ from {
+   opacity: 0;
+ }
+ to {
+  opacity: 1;
+}
+}
+
+ion-item {
+  --padding-end: 20px;
+  --inner-padding-end: 20px;
+  // here other custom CSS from documentation
+}
+
+#clickbtn{
+}
+#clickbtn:active{
+  background:rgb(246,246,246);
+}
