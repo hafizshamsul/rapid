@@ -10,6 +10,8 @@ import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+
 @Component({
   selector: 'app-admin_doc',
   templateUrl: './admin_doc.page.html',
@@ -64,6 +66,7 @@ export class Admin_docPage implements OnInit {
     public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
+    private previewAnyFile: PreviewAnyFile,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       
       
@@ -297,6 +300,7 @@ export class Admin_docPage implements OnInit {
     this.start = 0;
 
     console.log(this.comments);
+    this.lul();
   }
 
   addCustomer(){
@@ -664,6 +668,13 @@ export class Admin_docPage implements OnInit {
 
   deletefolder(folderfileid){
     this.counting(folderfileid);
+  }
+
+
+  lul(){
+    this.previewAnyFile.preview('http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1580368746847.pptx')
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
   }
 
 }
