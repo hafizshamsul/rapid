@@ -60,6 +60,12 @@ const routes: Routes = [
           { path: '', loadChildren: () => import('../folder/folder.module').then(m => m.FolderPageModule) },
           { path: ':r_folderid', loadChildren: () => import('../file/file.module').then(m => m.FilePageModule) }
         ]
+      },
+
+      { path: 'admin_user',
+      children: [
+          { path: '', loadChildren: () => import('../admin_user/admin_user.module').then(m => m.Admin_userPageModule) }
+        ]
       }
     ]
   }

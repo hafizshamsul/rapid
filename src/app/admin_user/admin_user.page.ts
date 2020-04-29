@@ -4,27 +4,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
-import { GlobalService } from "../..//providers/global.service";
+import { GlobalService } from "../../providers/global.service";
 import { IonicPage } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
 @Component({
-  selector: 'app-folder',
-  templateUrl: './folder.page.html',
-  styleUrls: ['./folder.page.scss'],
+  selector: 'app-admin_user',
+  templateUrl: './admin_user.page.html',
+  styleUrls: ['./admin_user.page.scss'],
 })
 
 
 
-export class FolderPage implements OnInit {
+export class Admin_userPage implements OnInit {
   
   r_username: string;
   r_folderid: string;
 
   current_users: any[];
-  users: any[];
+  
   folders: any[];
   hiks: any = [];
   customers: any = [];
@@ -58,6 +58,17 @@ export class FolderPage implements OnInit {
   type: string;
   icon: string;
   folderdata_id: number;
+
+  //table_column
+  id_users: number;
+  username_users: string;
+  passwordhash_users: string;
+  displayname_users: string;
+  role_users: string;
+  dateregistered_users: string;
+  status_users: string;
+
+
   
   constructor(
     public navCtrl: NavController,
@@ -139,6 +150,16 @@ export class FolderPage implements OnInit {
       //this.thread = data.thread;
 
       //console.log(data);
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.id_users = data.id_users;
+      this.username_users = data.username_users;
+      this.passwordhash_users = data.passwordhash_users;
+      this.displayname_users = data.displayname_users;
+      this.role_users = data.role_users;
+      this.dateregistered_users = data.dateregistered_users;
+      this.status_users = data.status_users;
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -280,8 +301,8 @@ export class FolderPage implements OnInit {
     this.current_users = [];
     this.loadCurrentUser(this.global.username);
     
-    this.users = [];
-    this.loadUser(this.r_username, this.global.password);
+    //this.users = [];
+    //this.loadUser(this.r_username, this.global.password);
     
     this.folders = [];
     this.loadFolder(this.r_username);
@@ -292,6 +313,8 @@ export class FolderPage implements OnInit {
     this.comments = [];
     this.loadFolderFile();
     
+    this.users = [];
+    this.loadUsers();
 
     this.customers = [];
     this.start = 0;
@@ -448,6 +471,7 @@ export class FolderPage implements OnInit {
   }
 
   comments: any[];
+  users: any[];
 
   treeify(listo, idAttr, parentAttr, childrenAttr) {
     if (!idAttr) idAttr = 'folderfileid';
@@ -484,6 +508,20 @@ export class FolderPage implements OnInit {
         }
         this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
         //console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
+
+  loadUsers(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getusers',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let user of data.result){
+          this.users.push(user);
+        }
         resolve(true);
       });
     });

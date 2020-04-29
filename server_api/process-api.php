@@ -585,6 +585,29 @@
     
     }
 
+    elseif($postjson['action']=='getusers'){
+        $data = array();
+        $query = mysqli_query($mysqli, "select * from users");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id_users' => $row['id'],
+                'username_users' => $row['username'],
+                'passwordhash_users' => $row['passwordhash'],
+                'displayname_users' => $row['displayname'],
+                'role_users' => $row['role'],
+                'dateregistered_users' => $row['dateregistered'],
+                'status_users' => $row['status']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getpostall'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and comment.id='$postjson[passededitid]' order by dateuploaded desc) d order by dateuploaded desc");
