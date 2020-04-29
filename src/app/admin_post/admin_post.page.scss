@@ -1,0 +1,283 @@
+#listitem{
+    width:70%;
+    border-radius: 6px;
+
+    @media (max-width: 576px) {
+        width:100%;
+        border-radius: 0px;  
+    }
+}
+
+#listitem2{
+    width:100%;
+    border-radius: 3px;
+    //border-radius: 6px;
+    cursor:pointer;
+    background:white;
+
+    @media (max-width: 576px) {
+        width:100%;
+        border-radius: 0px;  
+    }
+}
+
+#listitem2:hover{
+  background: rgb(253,253,255);
+  @media (max-width: 576px) {
+    background: white;
+  }
+}
+
+#listitem2:active{
+  background: rgb(252,252,254);
+  @media (max-width: 576px) {
+    background: white;
+  }
+}
+
+#griditem2{
+  grid-template-columns: 244px auto 0;
+    //grid-template-columns: auto 70% auto;
+
+    @media (max-width: 576px) {
+        grid-template-columns: auto 100% auto;
+    }
+}
+
+#topnav{
+  //grid-template-columns: 244px auto 0;
+  
+  display: none;
+
+    @media (max-width: 576px) {
+      display: grid;  
+      grid-template-columns: auto 100% auto;
+    }
+}
+
+#searchnav{
+  grid-template-columns: 278px auto 34px;
+
+    @media (max-width: 576px) {
+        grid-template-columns: 34px auto 34px;
+    }
+}
+
+#sidemenu{
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+#innercontent{
+  padding: 0 14px 0 0;
+  //padding: 0 14px;
+
+  @media (max-width: 576px) {
+    padding: 0;
+  }
+}
+
+#textcmt{
+    font-size: 13px;
+    letter-spacing: -0.0025em; 
+
+    @media (max-width: 576px) {
+        font-size: 12px;
+        letter-spacing: 0em; 
+    }
+}
+
+#tinydot{
+    padding-top: 4.5px;
+
+    @media (max-width: 576px) {
+        padding-top: 5.5px;
+    }
+}
+
+
+
+
+/* styles for '...' */ 
+.block-with-text {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative; 
+    /* use this value to count block height */
+    line-height: 1.3em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 3.9em; 
+    /* fix problem when last visible word doesn't adjoin right side  */
+    text-align: left;  
+    /* place for '...' */
+    margin-right: 0em;
+    padding-right: 1em;
+  }
+  /* create the ... */
+  .block-with-text:before {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+  }
+  /* hide ... if we have text, which is less than or equal to max lines */
+  .block-with-text:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: white;
+  }
+
+  #edit{
+    color:rgb(200,200,200);
+  }
+
+  #edit:hover{
+    color:rgb(53, 53, 53);
+    cursor: pointer;
+  }
+
+  #trash{
+    color:rgb(200,200,200);
+  }
+
+  #trash:hover{
+    color:#d91e18;
+    cursor: pointer;
+  }
+
+  
+
+
+  #menuitem{
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 510;
+    clear: both;
+    padding: 12px 24px;
+    color: rgb(100,100,100);
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    margin-right: 8px;
+}
+#menuitem:hover{
+    background:rgb(247,247,247);
+}
+
+#currentmenuitem{
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 700;
+    clear: both;
+    padding: 12px 24px;
+    color: #4b7fda;
+    cursor: pointer;
+    //background:#e8f0fe;
+    background: rgb(249,249,249);
+    border-radius: 0 4px 4px 0;
+    margin-right: 8px;
+}
+#currentmenuitem:hover{
+    cursor: pointer;
+}
+
+#gapicontext{
+    display: grid;
+    grid-template-columns: 34px auto;
+}
+
+#topposttoday{
+  color:rgb(150,150,150);
+}
+
+#topposttoday:hover{
+  color:rgb(120,120,120);
+}
+
+#topposttoday:active{
+  color:rgb(90,90,90);
+}
+
+#toppostsub{
+  color: rgb(150,150,150);padding: 9px 16px;text-decoration: none;display: block;
+}
+
+#toppostsub:hover{
+  color: rgb(150,150,150);padding: 9px 16px;text-decoration: none;display: block; background: rgb(246,246,246);
+}
+
+#toppostsub:active{
+  color: rgb(150,150,150);padding: 9px 16px;text-decoration: none;display: block; background: rgb(243,243,243);
+}
+
+#toppostsubcontainer{
+  display: block;
+  position: absolute;
+  top:24px;
+  right:16px;
+  z-index: 1;
+  background: white;
+  width: 120px;
+  box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.4);
+}
+
+#headertitle{
+  display: grid;
+  grid-template-columns: 10px auto;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+#toolbarborder{
+  border-bottom: 1px solid rgb(240,240,240);
+  
+  @media (max-width: 576px) {
+    border-bottom: none;
+  }
+}
+
+#inputsearch{
+
+}
+#inputsearch:focus{
+  outline: none;
+}
+
+#inputsearch::-webkit-input-placeholder {
+  font-family: 'Inter';
+  font-size: 14px;
+  color:rgb(180,180,180);
+}
+
+#inputsearch:-ms-input-placeholder {
+  font-family: 'Inter';
+  font-size: 14px;
+  color:rgb(180,180,180);
+}
+
+#inputsearch:-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 14px;
+  color:rgb(180,180,180);
+}
+
+#inputsearch::-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 14px;
+  color:rgb(180,180,180);
+}

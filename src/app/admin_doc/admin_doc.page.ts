@@ -5,26 +5,25 @@ import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../../providers/global.service";
+import { IonicPage } from 'ionic-angular';
+import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
-
-import { Observable } from 'rxjs';
-
-import * as $ from 'jquery';
-import { LineUtil } from 'leaflet';
+import { stringify } from 'querystring';
 
 @Component({
-  selector: 'app-file',
-  templateUrl: './file.page.html',
-  styleUrls: ['./file.page.scss'],
+  selector: 'app-admin_doc',
+  templateUrl: './admin_doc.page.html',
+  styleUrls: ['./admin_doc.page.scss'],
 })
 
-export class FilePage implements OnInit {
 
 
-
+export class Admin_docPage implements OnInit {
+  
   r_username: string;
   r_folderid: string;
 
+  current_users: any[];
   users: any[];
   folders: any[];
   hiks: any = [];
@@ -34,10 +33,14 @@ export class FilePage implements OnInit {
   start: number = 0;
   lol: String = "25 Jan 2020";
 
-  private _SUFFIX : string = 'txt'; //database
-  public image : any = 'this.image'; //database
+  private _SUFFIX : string;
+  public image : string;
   public isSelected : boolean =	false;
-  public enter : boolean;
+  
+  current_userid: number;
+  current_username: string;
+  current_passwordhash: string;
+  current_displayname: string;
 
   userid: number;
   username: string;
@@ -53,14 +56,18 @@ export class FilePage implements OnInit {
   name: string;
   decoded: string;
   type: string;
-  icon: string = 'doc'; //database
+  icon: string;
   folderdata_id: number;
   
   constructor(
     public navCtrl: NavController,
+    public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
-    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
+      
+      
+    }
 
     folderfileid:number;
     folderfilename:string;
@@ -70,17 +77,34 @@ export class FilePage implements OnInit {
     folder_id:number;
     folderfileusers_id:number;
     dateuploaded:string;
+    visibility:string;
+
+  ngOnDestroy(){
+    console.log('ngOnDestroy folder');
+  }
 
   ngOnInit() {
+    console.log(this.comments);
+    
+    console.log('ngOnInit folder');
+
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
-    
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.current_userid = data.current_id;
+      this.current_username = data.current_username;
+      this.current_passwordhash = data.current_passwordhash;
+      this.current_displayname = data.current_displayname;
+      //console.log(data);
+    });
+
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
       this.passwordhash = data.passwordhash;
       this.displayname = data.displayname;
-      console.log(data);
+      //console.log(data);
     });
     
     this.actRoute.params.subscribe((data: any) =>{
@@ -88,7 +112,7 @@ export class FilePage implements OnInit {
       this.foldername = data.foldername;
       this.description = data.description;
       this.users_id = data.users_id;
-      console.log(data);
+      //console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -98,9 +122,8 @@ export class FilePage implements OnInit {
       this.type = data.type;
       this.icon = data.icon;
       this.folderdata_id = data.folderdata_id;
-      console.log(data);
+      //console.log(data);
     });
-
 
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -112,12 +135,11 @@ export class FilePage implements OnInit {
       this.folder_id = data.folder_id;
       this.folderfileusers_id = data.folderfileusers_id;
       this.dateuploaded = data.dateuploaded;
+      this.visibility = data.visibility;
       //this.thread = data.thread;
 
       //console.log(data);
     });
-
-    
 
     this.actRoute.params.subscribe((data: any) =>{
       this.deletelist = data;
@@ -126,20 +148,13 @@ export class FilePage implements OnInit {
       //console.log(data);
     });
 
+  
   }
-  
+
   deletelist:string;
-
   
-  tup:string = "lmao";
-
   selectFileToUpload(event) : void {
-    this.tup = event.target.files[0].name;
-    this.originalname = event.target.files[0].name;
-    //console.log(event.target.files[0].name);
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
-      //console.log(event.target.files[0].name);
-      //console.log(res);
       this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
       if(this._SUFFIX == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
@@ -189,11 +204,8 @@ export class FilePage implements OnInit {
       }
 
       if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
-          this.image = res;
-          
-        //this.originalname = 'hehhe';
-        
         this.isSelected = true;
+        this.image = res;
       }
       else {
         this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
@@ -205,9 +217,7 @@ export class FilePage implements OnInit {
     });
   }
  
-  originalname:string = 'Untitled.txt';
-
-    uploadFile() : void {
+   uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
     
     if(['ai', 'bmp', 'gif', 'jpeg', 'png', 'psd', 'svg', 'tiff'].includes(this._SUFFIX)){
@@ -228,35 +238,27 @@ export class FilePage implements OnInit {
     else if(['zip'].includes(this._SUFFIX)){
       this.icon = 'zip';
     }
-
-    
-
-    let body: any = {
-      action : 'addfolderfile_file',
-      originalname : this.originalname, //namebeforeuploaded
-      rename : 'kehkeh.png', //displayname
-      name : this.name, //storeduniquename
-      file : this.image, //actual file, not available in iOS*****
-      type : this._SUFFIX, //suffix from actual file, not available in iOS*****
-      icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
-      folder_id : this.r_folderid //parentfolder
-    };  
   
-    this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
-      this.displayAlert(res.message);
-      this.isSelected = false;
+    let body: any = {
+      action : "add" ,
+      name : this.name,
+      file : this.image,
+      type : this._SUFFIX,
+      icon : this.icon,
+      rename : "kehkeh.png"
+    };  
+    
+      this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
+        this.displayAlert(res.message);
+        this.isSelected = false;
+      },
+      (error : any) => {
+         console.dir(error);
+         this.displayAlert(error.message);
+      });
+   }
 
-      setTimeout(()=>{
-        this.ionViewDidEnter();
-      }, 240);
-    },
-    (error : any) => {
-        console.dir(error);
-        this.displayAlert(error.message);
-    });
-  }
-
-  async presentAlert() {
+   async presentAlert() {
     let alert : any = await this.alertCtrl.create({
     message: 'Low battery',
     subHeader: '10% of battery remaining',
@@ -275,28 +277,26 @@ export class FilePage implements OnInit {
    }
 
   ionViewWillEnter(){
+    this.current_users = [];
+    this.loadCurrentUser(this.global.username);
     
-
-    //this.enter = false;
-  }
-
-  ionViewDidEnter(){
     this.users = [];
-    this.loadUser(this.global.username, this.global.password);
+    this.loadUser(this.r_username, this.global.password);
     
     this.folders = [];
-    this.loadFolder(this.global.username);
+    this.loadFolder(this.r_username);
 
     this.hiks = [];
     this.loadFile(this.r_username, this.r_folderid);
-
+    
     this.comments = [];
     this.loadFolderFile();
+    
 
     this.customers = [];
     this.start = 0;
-    
-    //this.enter = true;
+
+    console.log(this.comments);
   }
 
   addCustomer(){
@@ -316,27 +316,23 @@ export class FilePage implements OnInit {
   }
 
   showFolder(folderfileid, folderfileicon){
-    //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
+    //this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
+
     if(folderfileicon == 'folder'){
       //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
-      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
-
+      
       this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
+      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
     }
     
-  }
-
-  toBack(){
-    //this.navCtrl.back( { animated: false, });
-    this.navCtrl.pop();
   }
 
   home(){
     this.router.navigate(['/homepage']);
   }
 
-  file(){
-    this.router.navigate(['/file']);
+  folder(){
+    this.router.navigate(['/folder']);
   }
 
   loginform(){
@@ -409,7 +405,7 @@ export class FilePage implements OnInit {
       let body = {
         action : 'getfile',
         username : username,
-        folderid: folderid
+        folderid : folderid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let hik of data.result){
@@ -436,11 +432,20 @@ export class FilePage implements OnInit {
     });
   }
 
-
-
-
-
-
+  loadCurrentUser(username){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getcurrentuser',
+        username : username
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let current_user of data.result){
+            this.current_users.push(current_user);
+        }
+        resolve(true);
+      });
+    });
+  }
 
   comments: any[];
 
@@ -485,7 +490,6 @@ export class FilePage implements OnInit {
   }
 
 
-
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
   }
@@ -498,17 +502,20 @@ export class FilePage implements OnInit {
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
+  }
+
   toAdmin_doc(){
     this.navCtrl.navigateRoot(['r/admin_doc/']);
   }
 
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
-  }
-
-
-  deletefolder(folderfileid){
-    this.counting(folderfileid);
   }
 
 
@@ -556,7 +563,7 @@ export class FilePage implements OnInit {
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
     this.CDpopup = true;
-    console.log('CDpopup: '+this.CDpopup);
+    console.log(this.CDpopup);
   }
 
   //CLOSE POPUP
@@ -576,6 +583,7 @@ export class FilePage implements OnInit {
     console.log(this.CDpopup);
   }
 
+
   //CLOSE POPUP BUTTON
   closepopupbtn(){
     event.cancelBubble = true;
@@ -583,7 +591,7 @@ export class FilePage implements OnInit {
     this.popup = false;
     console.log(this.popup);
   }
-  
+
   UDclosepopupbtn(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
@@ -606,46 +614,40 @@ export class FilePage implements OnInit {
     this.counting(this.selectedid);
 
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
     this.UDpopup = false;
-
-    this.popuprename = 'Untitled';
-    this.currparent = '0';
   }
 
   //ACTION FOR ADDING FOLDER
   popuprename:string = 'Untitled';
-  currparent:string = '12';
-
+  
   addetc(){
-  this.currparent  = this.r_folderid;
-  this.addfolderfile_subfolder(this.popuprename, this.currparent);
+    this.addfolderfile_folder(this.popuprename);
     
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
     
     this.popup = false;
 
     this.popuprename = 'Untitled';
-    this.currparent = '0';
   }
 
-  addfolderfile_subfolder(name, parent){
+  addfolderfile_folder(name){
     return new Promise(resolve => {
       let body = {
-        action : 'addfolderfile_subfolder',
-        name : name,
-        parent : parent
+        action : 'addfolderfile_folder',
+        name : name
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         resolve(true);
       });
     });
   }
+  //END OF CODE
 
   counting(folderfileid){
     return new Promise(resolve => {
@@ -660,21 +662,8 @@ export class FilePage implements OnInit {
     });
   }
 
-  //enter:boolean = true;
-
-  selectit(){
-    this.isSelected = true;
+  deletefolder(folderfileid){
+    this.counting(folderfileid);
   }
-
-
-  target:string = "eh";
-
-
-
-  tar(event: any){
-    this.target = event.target.value;
-    console.log(event.target.value);
-  }
-
 
 }
