@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { StripHtmlPipe } from '../app/striphtml.pipe';
 import { SafeHtmlPipe } from '../app/safe-html.pipe';
+import { SafePipe } from '../app/safe.pipe';
 import { CommonModule } from '@angular/common';  
 
 @NgModule({
@@ -8,10 +9,10 @@ import { CommonModule } from '@angular/common';
         CommonModule
     ],
     declarations: [
-        StripHtmlPipe, SafeHtmlPipe
+        StripHtmlPipe, SafeHtmlPipe, SafePipe
     ],
     exports: [
-        StripHtmlPipe, SafeHtmlPipe
+        StripHtmlPipe, SafeHtmlPipe, SafePipe
     ]
 })
 export class SharedModule {}

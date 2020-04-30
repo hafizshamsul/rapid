@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FilePageRoutingModule } from './file-routing.module';
 
 import { FilePage } from './file.page';
+import { SharedModule } from '../SharedModule';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FilePageRoutingModule
+    FilePageRoutingModule,
+    SharedModule
   ],
   declarations: [FilePage]
 })
