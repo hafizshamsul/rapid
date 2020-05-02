@@ -53,6 +53,9 @@
                 "input": "./node_modules/quill/dist/quill.js"
               },
               {
+                "input": "./node_modules/recordrtc/RecordRTC.js"
+              },
+              {
                 "input": "./node_modules/@yaireo/tagify/dist/tagify.min.js"
               },
               {
