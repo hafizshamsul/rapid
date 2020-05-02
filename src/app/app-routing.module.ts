@@ -19,7 +19,13 @@ const routes: Routes = [
   { path: 'loginform', loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule) },
   { path: 'registerform', loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule) },
   
-  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+  //{ path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+
+  {
+    path: '',
+    loadChildren: () => import('./record-rtc/record-rtc.module').then( m => m.RecordRtcPageModule)
+  },
+
   { path: 'submitpost', loadChildren: () => import('./submitpost/submitpost.module').then( m => m.SubmitpostPageModule) },
   
   {
@@ -30,6 +36,11 @@ const routes: Routes = [
     path: 'messenger',
     loadChildren: () => import('./messenger/messenger.module').then( m => m.MessengerPageModule)
   },
+  {
+    path: 'record-rtc',
+    loadChildren: () => import('./record-rtc/record-rtc.module').then( m => m.RecordRtcPageModule)
+  },
+
   /*
   {
     path: 'search/:r_searchedtexturi',
