@@ -1,0 +1,29 @@
+<head>
+  <!--
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/broadcast.js"></script>
+  -->
+  
+</head>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>watch</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="display: grid; grid-template-rows: auto auto;">
+    <div>
+      <video #video class="video" playsinline autoplay muted></video>
+    </div>
+
+    <div>
+      <ion-button style="float: left;" (click)="startRecording()"> Record </ion-button>
+      <ion-button style="float: left;" (click) ="stopRecording()"> Stop</ion-button>
+      <ion-button style="float: left;" (click)="download()"> Download</ion-button>
+    </div>
+  </div>
+  
+  
+</ion-content>
