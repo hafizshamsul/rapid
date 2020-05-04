@@ -300,7 +300,6 @@ export class Admin_docPage implements OnInit {
     this.start = 0;
 
     console.log(this.comments);
-    this.lul();
   }
 
   addCustomer(){
@@ -671,10 +670,6 @@ export class Admin_docPage implements OnInit {
   }
 
 
-  lul(){
-    this.previewAnyFile.preview('http://192.168.0.137/rapidkl/rapid/upload_api/uploads/1580368746847.pptx')
-      .then((res: any) => console.log(res))
-      .catch((error: any) => console.error(error));
-  }
+ 
 
 }
