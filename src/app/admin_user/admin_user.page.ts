@@ -552,6 +552,10 @@ export class Admin_userPage implements OnInit {
     this.navCtrl.navigateRoot(['r/admin_doc/']);
   }
 
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }

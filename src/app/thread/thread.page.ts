@@ -245,6 +245,10 @@ listoso:any[];
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }
