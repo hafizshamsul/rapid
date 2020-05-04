@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 let RecordRTC = require('recordrtc/RecordRTC');
 import { Socket } from 'ngx-socket-io';
+import { NavController } from '@ionic/angular';
+import { GlobalService } from "../..//providers/global.service";
+
 
 @Component({
   selector: 'app-watch',
@@ -10,6 +13,8 @@ import { Socket } from 'ngx-socket-io';
 export class WatchPage implements OnInit {
 
   constructor(
+    public navCtrl: NavController,
+    public global: GlobalService,
     private io: Socket
   ) { }
 
@@ -27,6 +32,10 @@ export class WatchPage implements OnInit {
   }*/
 
   ngOnInit() {
+    this.watch();
+  }
+
+  watch(){
     let peerConnection;
     const config = {
       iceServers: [
@@ -50,7 +59,7 @@ export class WatchPage implements OnInit {
         });
       peerConnection.ontrack = event => {
         video.srcObject = event.streams[0];
-        console.log(video.srcObject);
+        
       };
       peerConnection.onicecandidate = event => {
         if (event.candidate) {
@@ -82,6 +91,41 @@ export class WatchPage implements OnInit {
     window.onunload = window.onbeforeunload = () => {
       socket.close();
     };
+
+  }
+
+
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
+  }
+
+  toAdmin_doc(){
+    this.navCtrl.navigateRoot(['r/admin_doc/']);
+  }
+
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
   }
 
 

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 let RecordRTC = require('recordrtc/RecordRTC');
 //let RecordRTCs = require('../../../WebSocketsVideoBroadcast/node_modules/socket.io-client/dist/socket.io');
 import { Socket } from 'ngx-socket-io';
+import { NavController } from '@ionic/angular';
+import { GlobalService } from "../..//providers/global.service";
 
 @Component({
   selector: 'app-broadcast',
@@ -11,6 +13,8 @@ import { Socket } from 'ngx-socket-io';
 export class BroadcastPage implements OnInit {
 
   constructor(
+    public navCtrl: NavController,
+    public global: GlobalService,
     private io: Socket
     ) { }
 
@@ -20,6 +24,10 @@ export class BroadcastPage implements OnInit {
     private stream: MediaStream;
 
   ngOnInit() {    
+    
+  }
+
+  start(){
     const peerConnections = {};
     const config = {
       iceServers: [
@@ -72,6 +80,7 @@ export class BroadcastPage implements OnInit {
           socket.emit("candidate", id, event.candidate);
         }
       };
+
     });
 
     socket.on("candidate", (id, candidate) => {
@@ -81,11 +90,16 @@ export class BroadcastPage implements OnInit {
     socket.on("disconnectPeer", id => {
       peerConnections[id] && peerConnections[id].close();
       delete peerConnections[id];
+      console.log(video.srcObject);
     });
 
     window.onunload = window.onbeforeunload = () => {
       socket.close();
     };
+
+
+    
+
   }
 
   
@@ -156,7 +170,37 @@ private stream: MediaStream;
     
    
   
+   toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
 
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
+  }
+
+  toAdmin_doc(){
+    this.navCtrl.navigateRoot(['r/admin_doc/']);
+  }
+
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
+  }
    
 
 }
