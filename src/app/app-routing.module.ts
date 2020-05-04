@@ -19,12 +19,13 @@ const routes: Routes = [
   { path: 'loginform', loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule) },
   { path: 'registerform', loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule) },
   
-  //{ path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+  { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
 
+  /*
   {
     path: '',
     loadChildren: () => import('./record-rtc/record-rtc.module').then( m => m.RecordRtcPageModule)
-  },
+  },*/
 
   { path: 'submitpost', loadChildren: () => import('./submitpost/submitpost.module').then( m => m.SubmitpostPageModule) },
   
@@ -39,14 +40,19 @@ const routes: Routes = [
   {
     path: 'record-rtc',
     loadChildren: () => import('./record-rtc/record-rtc.module').then( m => m.RecordRtcPageModule)
-  },  {
+  },
+  {
     path: 'broadcast',
     loadChildren: () => import('./broadcast/broadcast.module').then( m => m.BroadcastPageModule)
   },
   {
     path: 'watch',
     loadChildren: () => import('./watch/watch.module').then( m => m.WatchPageModule)
+  },  {
+    path: 'stream',
+    loadChildren: () => import('./stream/stream.module').then( m => m.StreamPageModule)
   },
+
 
 
   /*

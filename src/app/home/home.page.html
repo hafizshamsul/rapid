@@ -1,7 +1,7 @@
 <head>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.0/css/all.css">
 
-  <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+  <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.11.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
 
@@ -107,7 +107,7 @@
 -->
 
 
-<ion-content (click)="clickcontent()" style="--background:rgb(246,246,246);--padding-top: 4px;  --padding:10px">
+<ion-content (click)="clickcontent()" style="--background:rgb(246, 246, 246);--padding-top: 4px;  --padding:10px">
   <div id="innercontent" style="margin-top: 6px;">
     <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-10px; ">
 
@@ -166,6 +166,15 @@
                     <div class="fas fa-folder" style="font-size: 18px"></div>
                     <div style="padding-top: 2px">
                         Files
+                    </div>
+                </div>
+              </div>
+
+              <div (click)="toStream()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-record-vinyl" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Streams
                     </div>
                 </div>
               </div>

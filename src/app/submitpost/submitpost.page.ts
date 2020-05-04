@@ -271,6 +271,10 @@ export class SubmitpostPage implements OnInit {
   toAdmin_doc(){
     this.navCtrl.navigateRoot(['r/admin_doc/']);
   }
+  
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
 
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
