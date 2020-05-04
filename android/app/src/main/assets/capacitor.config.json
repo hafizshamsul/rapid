@@ -4,9 +4,9 @@
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "plugins":{
+  "plugins": {
     "Keyboard": {
-    "resize": "none"
+      "resize": "none"
     }
   },
   "SplashScreen": {
@@ -35,5 +35,3 @@
     }
   }
 }
-
-
