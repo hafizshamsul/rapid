@@ -1,3 +1,5 @@
+
+
 #listitem{
     width:70%;
     border-radius: 6px;
@@ -52,6 +54,7 @@
     @media (max-width: 576px) {
       display: grid;  
       grid-template-columns: auto 100% auto;
+
     }
 }
 
@@ -59,9 +62,10 @@
   grid-template-columns: 278px auto 34px;
 
     @media (max-width: 576px) {
-        grid-template-columns: 34px auto 34px;
+      grid-template-columns: 34px auto 34px;
     }
 }
+
 
 #sidemenu{
   @media (max-width: 576px) {
@@ -252,7 +256,6 @@
 }
 
 #inputsearch{
-
 }
 #inputsearch:focus{
   outline: none;
@@ -260,24 +263,24 @@
 
 #inputsearch::-webkit-input-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:rgb(188,188,188);
 }
 
 #inputsearch:-ms-input-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:rgb(188,188,188);
 }
 
 #inputsearch:-moz-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:rgb(188,188,188);
 }
 
 #inputsearch::-moz-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:rgb(188,188,188);
 }
