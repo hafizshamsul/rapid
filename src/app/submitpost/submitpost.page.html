@@ -42,88 +42,145 @@
 </ion-tabs>
 
 <ion-header id="pcheader" no-border>
-  <ion-toolbar>
-    <ion-title id="titleupload" style="color: rgb(30,30,30);" text-center></ion-title>
-    <ion-buttons slot="primary" (click)="login()">
-      <ion-button color="green">
-        <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar id="toolbarborder">
+    <div id="searchnav" style="display: grid;">
+      
+      <div>
+        <div id="headertitle" style="padding: 7px 0 0 26px">
+          <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
+          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+        </div>
+        
+      </div>
+
+      <div>
+        <div style="background: rgb(246,246,246); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
+          <div style="display: grid; grid-template-columns: 26px auto; padding: 0px 0 0 16px;">
+            <!--
+              <div style="font-family: Inter; font-size: 13px; color:rgb(150,150,150)">Search</div>
+            -->
+            <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 9px;"></div>
+            <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
+            
+            
+          </div>
+          
+        </div>
+      </div>
+
+      <!--
+        <div></div>
+
+      <div id="displayname" style="grid-template-rows: 1fr auto 1fr;">
+        <div></div>
+        <div style="display: grid; grid-template-columns: 36px 120px 36px; height: 30px;">
+          <div style="display: grid; grid-template-rows: 1fr auto 1fr;">
+            <div></div>
+            <div>
+              <img src="https://pbs.twimg.com/profile_images/1182841677687377920/Uaf25dwZ_400x400.jpg" style="height:22px; display: block; border-radius: 100%;">
+            </div>
+            <div></div>
+          </div>
+          <div style="display: grid; grid-template-rows: 1fr auto 1fr;">
+            <div></div>
+            <div style="font-family: Inter; font-size: 13px; color: rgb(30,30,30);">
+              Muhammad Hafiz
+            </div>
+            <div></div>
+          </div>
+          <div style="display: grid; grid-template-rows: 1fr auto 1fr;">
+            <div></div>
+            <div>
+              <div class="bx bx-chevron-down" style="font-size: 19px;"></div>
+            </div>
+            <div></div>
+          </div>
+          
+        </div>
+        
+        <div></div>
+      </div>
+      -->
+ 
+
+      <div>
+        <ion-buttons slot="primary" (click)="login()">
+          <ion-button color="green">
+            <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="--padding-top: 4px;  --padding:10px; --background:rgb(246,246,246)">
   <div id="innercontent">
-    <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
+    <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
       <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
-          <div id="gapicontext" style="">
-              <div class="fas fa-home" style="font-size: 18px"></div>
-                <div style="padding-top: 2px">
+          <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-home-circle" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
                     Home
                 </div>
-            </div>
-        </div>
+              </div>
+          </div>
 
+          <div (click)="toSubmitpost()" id="currentmenuitem" style="">
+              <div id="gapicontext" style="">
+                <div class="bx bx-upload" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; ">
+                      Uploads
+                  </div>
+              </div>
+          </div>
 
+          <div (click)="toFolder()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-folder" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Folders
+                  </div>
+              </div>
+          </div>
 
-
-            <div (click)="toSubmitpost()" id="currentmenuitem" style="">
-                <div id="gapicontext" style="">
-                    <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
-                    <div style="padding-top: 2px">
-                        Uploads
-                    </div>
+          <div (click)="toAdmin_user()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-user" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
+                    Users
                 </div>
             </div>
- 
+          </div>
 
-
-            <div (click)="toFolder()" id="menuitem" style="">
-                <div id="gapicontext" style="">
-                    <div class="fas fa-folder-open" style="font-size: 18px"></div>
-                    <div style="padding-top: 2px">
-                        Folders
-                    </div>
+          <div (click)="toAdmin_post()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-outline" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
+                    Threads
                 </div>
             </div>
+          </div>
 
-
-            <div (click)="toAdmin_user()" id="menuitem" style="">
-              <div id="gapicontext" style="">
-                <div class="fas fa-user" style="font-size: 18px"></div>
-                  <div style="padding-top: 2px">
-                      Users
-                  </div>
-              </div>
+          <div (click)="toAdmin_doc()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-dock-left" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
+                    Files
+                </div>
             </div>
+          </div>
 
-            <div (click)="toAdmin_post()" id="menuitem" style="">
-              <div id="gapicontext" style="">
-                  <div class="fas fa-align-center" style="font-size: 18px"></div>
-                  <div style="padding-top: 2px">
-                      Threads
-                  </div>
-              </div>
+          <div (click)="toStream()" id="menuitem" style="">
+            <div id="gapicontext" style="">
+              <div class="bx bx-bullseye" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px">
+                    Streams
+                </div>
             </div>
-
-            <div (click)="toAdmin_doc()" id="menuitem" style="">
-              <div id="gapicontext" style="">
-                  <div class="fas fa-folder" style="font-size: 18px"></div>
-                  <div style="padding-top: 2px">
-                      Files
-                  </div>
-              </div>
-            </div>
-
-            <div (click)="toStream()" id="menuitem" style="">
-              <div id="gapicontext" style="">
-                  <div class="fas fa-record-vinyl" style="font-size: 18px"></div>
-                  <div style="padding-top: 2px">
-                      Streams
-                  </div>
-              </div>
-            </div>
+          </div>
 
 
             <!--
@@ -139,6 +196,7 @@
             
 
     </div>
+
   <div id="griditem2" style="display:grid;">
     <div></div>
     <div style="background: white; height:78vh; padding:0 20px">
