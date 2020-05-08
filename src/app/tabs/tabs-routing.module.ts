@@ -72,6 +72,12 @@ const routes: Routes = [
           { path: '', loadChildren: () => import('../admin_doc/admin_doc.module').then( m => m.Admin_docPageModule)},
         ]
       },
+
+      { path: 'bookmark',
+      children: [
+          { path: '', loadChildren: () => import('../bookmark/bookmark.module').then( m => m.BookmarkPageModule)},
+        ]
+      },
       
       { path: ':r_username',
       children: [

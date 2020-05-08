@@ -459,6 +459,46 @@
     
     }
 
+    elseif($postjson['action']=='getbookmark'){
+        $data = array();
+        //$query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
+        $query = mysqli_query($mysqli, "select bookmark.id, bookmark.folderfile_id, bookmark.users_id, folderfile.icon as folderfile_icon, folderfile.name as folderfile_name from bookmark inner join folderfile on bookmark.folderfile_id = folderfile.id where bookmark.users_id='$postjson[users_id]'");
+
+        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
+        
+        //$diff = $date2->diff($date1);
+        //$hours = $diff->h;
+        //$hours = $hours + ($diff->days*24);
+
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'bookmarkid' => $row['id'],
+                'folderfile_id' => $row['folderfile_id'],
+                'bookmark_users_id' => $row['users_id'],
+                'folderfile_icon' => $row['folderfile_icon'],
+                'folderfile_name' => $row['folderfile_name']
+                //'folderfile_id' => $row['folderfile_id'],
+                //inner join
+                /*'folderfileid' => $row['folderfile.id'],
+                'folderfilename' => $row['folderfile.name'],
+                'filename' => $row['folderfile.filename'],
+                'folderfiletype' => $row['folderfile.type'],
+                'folderfileicon' => $row['folderfile.icon'],
+                'folder_id' => $row['folderfile.folder_id'],
+                'folderfileusers_id' => $row['folderfile.users_id'],
+                'dateuploaded' => $row['folderfile.dateuploaded'],
+                'visibility' => $row['folderfile.visibility']*/
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='addfolderfile_folder'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 1");

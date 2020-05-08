@@ -599,6 +599,10 @@ listoso:any[];
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toBookmark(){
+    this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
   toAdmin_user(){
     this.navCtrl.navigateRoot(['admin_user/']);
   }
