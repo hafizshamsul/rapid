@@ -17,12 +17,12 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 @Component({
-  selector: 'app-file',
-  templateUrl: './file.page.html',
-  styleUrls: ['./file.page.scss'],
+  selector: 'app-bookmark',
+  templateUrl: './bookmark.page.html',
+  styleUrls: ['./bookmark.page.scss'],
 })
 
-export class FilePage implements OnInit {
+export class BookmarkPage implements OnInit {
 
 
 
@@ -134,8 +134,24 @@ export class FilePage implements OnInit {
       //console.log(data);
     });
 
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.bookmarkid = data.bookmarkid;
+      this.folderfile_id = data.folderfile_id;
+      //this.folderfile_icon = data.folderfile_icon;
+      this.folderfile_icon = data.folderfile_icon;
+      this.bookmark_users_id = data.bookmark_users_id;
+      this.folderfile_name = data.folderfile_name;
+    });
   }
   
+  bookmarkid:number;
+  folderfile_id:number;
+  //folderfile_icon:string;
+  folderfile_icon:string;
+  bookmark_users_id:string;
+  folderfile_name:string;
+
   deletelist:string;
 
   
@@ -302,6 +318,9 @@ export class FilePage implements OnInit {
     this.comments = [];
     this.loadFolderFile();
 
+    this.bookmarks = [];
+    this.loadBookmark(this.global.userid);
+
     this.customers = [];
     this.start = 0;
     
@@ -447,6 +466,7 @@ export class FilePage implements OnInit {
 
 
   comments: any[];
+  bookmarks: any[];
 
   treeify(listo, idAttr, parentAttr, childrenAttr) {
     if (!idAttr) idAttr = 'folderfileid';
@@ -488,6 +508,24 @@ export class FilePage implements OnInit {
     });
   }
 
+  //listosobookmark:any[];
+  loadBookmark(users_id){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getbookmark',
+        users_id : users_id
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let bookmark of data.result){
+          this.bookmarks.push(bookmark);
+        }
+        //this.listosobookmark = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        //console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
+
 
 
   toHome(){
@@ -500,10 +538,6 @@ export class FilePage implements OnInit {
 
   toFolder(){
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
-  }
-
-  toBookmark(){
-    this.navCtrl.navigateRoot(['r/bookmark/']);
   }
 
   toAdmin_doc(){

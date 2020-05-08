@@ -163,7 +163,7 @@
     
     <!--POPUP FOR UPDATING, DELETING FOLDER-->
     <div *ngIf="UDpopup == true">
-      <div id="popupbg" (click)="UDclosepopupbg()" style="display:grid; grid-template-rows: auto 170px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+      <div id="popupbg" (click)="UDclosepopupbg()" style="display:grid; grid-template-rows: auto 200px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
       <div></div>
 
       <div>
@@ -179,9 +179,13 @@
               </div>
 
               <div style="clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
+                <div class="far fa-bookmark" style="cursor:pointer; font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
+                <div>Add to Bookmarks</div>
+              </div>
+
+              <div style="clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
                 <div class="far fa-edit" style="cursor:pointer; font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
                 <div>Rename</div>
-                
               </div>
 
               <div (click)="showdeleteid()" style="cursor:pointer;clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
@@ -203,7 +207,7 @@
 
     <!--POPUP FOR CONFIRM DELETING FOLDER-->
     <div *ngIf="CDpopup == true">
-      <div id="popupbg" (click)="CDclosepopupbg()" style="display:grid; grid-template-rows: auto 170px auto; background: rgba(0,0,0,0); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+      <div id="popupbg" (click)="CDclosepopupbg()" style="display:grid; grid-template-rows: auto 170px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
       <div></div>
 
       <div>
@@ -343,6 +347,15 @@
                       </div>
                   </div>
               </div>
+
+              <div (click)="toBookmark()" id="menuitem" style="">
+                <div id="gapicontext" style="color: rgb(120,120,120);">
+                  <div class="bx bx-bookmark" style="font-size: 19px;"></div>
+                    <div style="padding-top: 2px; font-weight: 500;">
+                        Bookmarks
+                    </div>
+                </div>
+            </div>
     
               <div (click)="toAdmin_user()" id="menuitem" style="">
                 <div id="gapicontext" style="color: rgb(120,120,120);">
