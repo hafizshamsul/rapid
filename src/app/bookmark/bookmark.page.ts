@@ -540,6 +540,10 @@ export class BookmarkPage implements OnInit {
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toBookmark(){
+    this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
   toAdmin_doc(){
     this.navCtrl.navigateRoot(['r/admin_doc/']);
   }
@@ -652,6 +656,23 @@ export class BookmarkPage implements OnInit {
     console.log(this.UDpopup);
   }
 
+  //ACTION FOR DELETING BOOKMARK
+  deletebookmark(){
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+
+    this.deletebookmark_impl(this.selectedid);
+    
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    this.CDpopup = false;
+    this.UDpopup = false;
+
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
+  }
+
   //ACTION FOR DELETING FOLDER
   delete(){
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
@@ -708,6 +729,19 @@ export class BookmarkPage implements OnInit {
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         this.deletelist = data;
+        resolve(true);
+      });
+    });
+  }
+
+  deletebookmark_impl(folderfile_id){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletebookmark',
+        folderfile_id : folderfile_id
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
         resolve(true);
       });
     });
