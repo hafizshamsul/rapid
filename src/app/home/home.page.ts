@@ -483,7 +483,7 @@ listoso:any[];
     {
       'value': 'today',
       'menu': 'Today',
-      'selected': true
+      'selected': false
     },
     {
       'value': 'week',
@@ -498,7 +498,7 @@ listoso:any[];
     {
       'value': 'year',
       'menu': 'This year',
-      'selected': false
+      'selected': true
     },
     {
       'value': 'alltime',
@@ -507,8 +507,8 @@ listoso:any[];
     }
   ];
 
-  topdate:string = 'today';
-  topdatestring:string = 'POST TODAY';
+  topdate:string = 'year';
+  topdatestring:string = 'THIS YEAR';
   topsortedby(topdate){
     //this.topdate = 'alltime';
     this.topdate = topdate;
