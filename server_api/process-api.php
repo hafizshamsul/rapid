@@ -499,6 +499,18 @@
     
     }
 
+    elseif($postjson['action']=='addbookmark'){
+        $data = array();
+        $query = mysqli_query($mysqli, "insert into bookmark set folderfile_id = '$postjson[folderfile_id]', users_id = '$postjson[users_id]'");
+    
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='addfolderfile_folder'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 1");
@@ -622,6 +634,17 @@
     
     //echo $result;
     echo $data;
+    
+    }
+
+    elseif($postjson['action']=='deletebookmark'){
+        $data = array();
+        $query = mysqli_query($mysqli, "delete from bookmark where folderfile_id = '$postjson[folderfile_id]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+        else $result = json_encode(array('success'=>false));
+        
+        echo $result;
     
     }
 
