@@ -78,6 +78,12 @@ const routes: Routes = [
           { path: '', loadChildren: () => import('../bookmark/bookmark.module').then( m => m.BookmarkPageModule)},
         ]
       },
+
+      { path: 'activity',
+      children: [
+          { path: '', loadChildren: () => import('../activity/activity.module').then( m => m.ActivityPageModule)},
+        ]
+      },
       
       { path: ':r_username',
       children: [

@@ -23,24 +23,26 @@
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
   <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <ion-tabs>
-  <ion-tab-bar slot="bottom" style="height:42px">
+  <ion-tab-bar slot="bottom" style="height:44px">
     <ion-tab-button (click)="toHome()">
-      <div class="fas fa-home" style="font-size: 24px; color:rgb(160,160,160)"></div>
+      <div class="bx bx-home-circle" style="font-size: 25px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toActivity()">
+      <div class="bx bx-list-plus" style="font-size: 26px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
     <ion-tab-button (click)="toSubmitpost()">
-      <div class="fas fa-plus-square" style="font-size: 24px; color:rgb(160,160,160);"></div>
+      <div class="bx bx-upload" style="font-size: 25px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
     <ion-tab-button (click)="toFolder()">
-      <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50) "></div>
+      <div class="bx bxs-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
-    <ion-tab-button (click)="toAdmin_user()">
-      <div class="fas fa-user" style="font-size: 24px;color:rgb(160,160,160)"></div>
-    </ion-tab-button>
-    <ion-tab-button (click)="toAdmin_doc()">
-      <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
+    <ion-tab-button (click)="toBookmark()">
+      <div id="bookmarkicon" class="bx bxs-bookmark" style="font-size: 23px;color:rgb(50,50,50)"></div>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
@@ -556,7 +558,7 @@
 
               </div>
 
-              
+              <input id="datepicker" type="text">
 
 
             </div>
@@ -565,6 +567,44 @@
         </div>
       </div>
       
+      
+      
+<!--
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+
+  <ion-item>
+    <ion-label>
+      Item 1
+    </ion-label>
+    <ion-reorder slot="start"></ion-reorder>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Item 2
+    </ion-label>
+    <ion-reorder slot="start"></ion-reorder>
+  </ion-item>
+  <ion-item>
+    <ion-reorder slot="start"></ion-reorder>
+    <ion-label>
+      Item 3
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-reorder slot="start"></ion-reorder>
+    <ion-label>
+      Item 4
+    </ion-label>
+  </ion-item>
+</ion-reorder-group>
+-->
+
+  
+
+
+
 
     </ion-content>
 

@@ -19,30 +19,18 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 @Component({
-  selector: 'app-bookmark',
-  templateUrl: './bookmark.page.html',
-  styleUrls: ['./bookmark.page.scss'],
+  selector: 'app-activity',
+  templateUrl: './activity.page.html',
+  styleUrls: ['./activity.page.scss'],
 })
 
-export class BookmarkPage implements OnInit {
-
-  @ViewChild(IonReorderGroup, {static: false}) reorderGroup: IonReorderGroup;
-
-  @ViewChild(IonReorderGroup, {static: false}) element: any;
+export class ActivityPage implements OnInit {
 
 
-
-  doReorder(ev: any) {
-    console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
-
-    ev.detail.complete();
-  }
-
-  toggleReorderGroup() {
-    this.reorderGroup.disabled = !this.reorderGroup.disabled;
-  }
-
-
+  task_name:any;
+  datepicker:any;
+  task_start:any;
+  task_end:any;
 
   r_username: string;
   r_folderid: string;
@@ -51,6 +39,7 @@ export class BookmarkPage implements OnInit {
   folders: any[];
   hiks: any = [];
   customers: any = [];
+  tasks: any[];
 
   limit: number = 10;
   start: number = 0;
@@ -77,6 +66,11 @@ export class BookmarkPage implements OnInit {
   type: string;
   icon: string = 'doc'; //database
   folderdata_id: number;
+
+  taskid: number;
+  taskname: string;
+  taskstart: string;
+  taskend: string;
   
   constructor(
     public navCtrl: NavController,
@@ -162,12 +156,24 @@ export class BookmarkPage implements OnInit {
       this.folderfile_name = data.folderfile_name;
     });
 
+    this.actRoute.params.subscribe((data: any) =>{
+      this.taskid = data.taskid;
+      this.taskname = data.taskname;
+      this.taskstart = data.taskstart;
+      this.taskend = data.taskend;
+    });
 
 
     //flatpickr
     flatpickr("#datepicker",
       {
-        mode: "range"
+        mode: "range",
+        enableTime: true,
+        defaultDate: new Date(),
+        dateFormat: "Y-m-d",
+        onChange: (start) => {
+            console.log(start[0].toDateString());
+        }
       },
     );
   }
@@ -347,6 +353,9 @@ export class BookmarkPage implements OnInit {
 
     this.bookmarks = [];
     this.loadBookmark(this.global.userid);
+
+    this.tasks = [];
+    this.loadTask();
 
     this.customers = [];
     this.start = 0;
@@ -553,6 +562,22 @@ export class BookmarkPage implements OnInit {
     });
   }
 
+  loadTask(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettask'
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let task of data.result){
+          this.tasks.push(task);
+        }
+        //this.listosobookmark = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        //console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
+
 
 
   toHome(){
@@ -577,10 +602,6 @@ export class BookmarkPage implements OnInit {
 
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
-  }
-
-  toActivity(){
-    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toMessenger(){
@@ -817,15 +838,17 @@ export class BookmarkPage implements OnInit {
     
   }
 
-
-
   target:string = "eh";
-
-
 
   tar(event: any){
     this.target = event.target.value;
     console.log(event.target.value);
+  }
+
+  addtask(){
+    console.log(this.task_name);
+    //console.log(this.taskstart);
+    //console.log(this.taskend);
   }
 
 
