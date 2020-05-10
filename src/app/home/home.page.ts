@@ -603,6 +603,10 @@ listoso:any[];
     this.navCtrl.navigateRoot(['r/bookmark/']);
   }
 
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
+  }
+
   toAdmin_user(){
     this.navCtrl.navigateRoot(['admin_user/']);
   }

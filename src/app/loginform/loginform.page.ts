@@ -14,7 +14,7 @@ export class LoginformPage implements OnInit {
   constructor(public global: GlobalService, private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
 
   users:any[];
-  id:string;
+  id:number;
   username:string;
   password:string;
   displayname:string;
@@ -65,6 +65,7 @@ export class LoginformPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
+        id : this.id,
         username: this.logusername,
         password: this.logpassword
       };
@@ -81,9 +82,11 @@ export class LoginformPage implements OnInit {
         else{
           this.isValidated = false;
           this.isCorrect = true;
-          this.users=[];
+          ;
           
           this.global.username = this.logusername;
+          this.global.userid = this.users[0].id;
+          this.users=[]
           this.router.navigate(['r/home']);
           this.isCorrect = false;
           this.logusername=null;
