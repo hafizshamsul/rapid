@@ -10,7 +10,7 @@ import { WatchPage } from './watch.page';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:4000', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.0.137:4000', options: {} };
 
 @NgModule({
   imports: [

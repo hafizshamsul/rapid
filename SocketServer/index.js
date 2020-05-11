@@ -13,13 +13,19 @@ io.on('connection', (socket) => {
     io.emit('users-changed', {user: name, event: 'joined'});    
   });
   
+
+  var d = new Date();
+    var hour = d.getHours();
+    var min = d.getMinutes();
+
   socket.on('send-message', (message) => {
-    io.emit('message', {msg: message.text, user: socket.username, createdAt: new Date()});    
+    
+    io.emit('message', {msg: message.text, user: socket.username, createdAt: d});    
   });
 });
  
 var port = process.env.PORT || 3001;
  
-server.listen(port, function(){
+server.listen(port, '0.0.0.0', function(){
    console.log('listening in http://localhost:' + port);
 });

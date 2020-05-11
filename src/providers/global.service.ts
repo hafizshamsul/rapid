@@ -12,4 +12,15 @@ export class GlobalService {
   public password: string = 'lolol';
 
   public popup:boolean = false;
+
+  ngOnInit(){
+    localStorage.setItem('username', this.username);
+  }
+  
+  getusername(){
+    const username = localStorage.getItem('username');
+
+    return username;
+  }
+  
 }

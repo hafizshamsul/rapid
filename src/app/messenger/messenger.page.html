@@ -1,8 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Messenger
-    </ion-title>
+<ion-header no-border>
+  <ion-toolbar style="--background:white">
+    <div id="searchnav" style="display: grid;">
+      
+      <div>
+        <div id="headertitle" style="padding: 7px 0 0 26px">
+          <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
+          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+        </div>
+        
+      </div>
+
+      <div>
+        
+      </div>
+
+      <div>
+        <ion-buttons slot="primary" (click)="login()">
+          <ion-button color="green">
+            <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+    </div>
   </ion-toolbar>
 </ion-header>
  
@@ -16,43 +36,175 @@
     </ion-header>
   </ion-menu>
 
+
+ 
+
     <ion-content>
+      <div>
+        <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+          <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px;">
+            <div id="gapicontext" style="">
+                <div class="bx bx-home-circle" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px;">
+                      Home
+                  </div>
+                </div>
+            </div>
   
-    <ion-grid>
-      <ion-text color="medium" text-center>
-        <p>You joined the chat as {{ currentUser }}</p>
-      </ion-text>
-      <ion-row *ngFor="let message of messages">
+            <div (click)="toSubmitpost()" id="menuitem" style="">
+                <div id="gapicontext" style="color: rgb(120,120,120);">
+                  <div class="bx bx-upload" style="font-size: 19px;"></div>
+                    <div style="padding-top: 2px; font-weight: 500;">
+                        Uploads
+                    </div>
+                </div>
+            </div>
   
-        <ion-col size="9" *ngIf="message.user !== currentUser" class="message other-message">
-          <b>{{ message.user }}</b><br>
-          <span>{{ message.msg }}</span>
-          <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
-        </ion-col>
+            <div (click)="toFolder()" id="menuitem" style="">
+                <div id="gapicontext" style="color: rgb(120,120,120);">
+                  <div class="bx bx-folder" style="font-size: 19px;"></div>
+                    <div style="padding-top: 2px; font-weight: 500;">
+                        Folders
+                    </div>
+                </div>
+            </div>
   
-        <ion-col offset="3" size="9" *ngIf="message.user === currentUser" class="message my-message">
-          <b>{{ message.user }}</b><br>
-          <span>{{ message.msg }}</span>
-          <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
-        </ion-col>
+            <div (click)="toBookmark()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-bookmark" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Bookmarks
+                  </div>
+              </div>
+          </div>
   
-      </ion-row>
-    </ion-grid>
+          <div (click)="toActivity()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-list-plus" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
+                    Tasks
+                </div>
+            </div>
+        </div>
   
+            <div (click)="toAdmin_user()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-user" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Users
+                  </div>
+              </div>
+            </div>
+  
+            <div (click)="toAdmin_post()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-outline" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Threads
+                  </div>
+              </div>
+            </div>
+  
+            <div (click)="toAdmin_doc()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-dock-left" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Files
+                  </div>
+              </div>
+            </div>
+  
+            <div (click)="toStream()" id="menuitem" style="">
+              <div id="gapicontext" style="">
+                <div class="bx bx-bullseye" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Streams
+                  </div>
+              </div>
+            </div>
+  
+  
+              <!--
+                <div (click)="toMessenger()" id="menuitem" style="">
+                  <div id="gapicontext" style="">
+                      <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
+                      <div style="padding-top: 0px">
+                          Messenger
+                      </div>
+                  </div>
+              </div>
+              -->
+            
+            
+        </div>
+
+        <div id="griditem2" style="display:grid;">
+          <div></div>
+
+          <div>
+            <ion-grid style="padding: 16px;">
+              <ion-row *ngFor="let message of messages">
+        
+                <ion-col no-padding style="padding:1.5px 0">
+                  <div style="float: left;" *ngIf="message.user !== currentUser" class="message other-message">
+                  <div class="otherlabel" style="clear: both;">{{ message.user }}</div>
+                  <span>{{ message.msg }}</span>
+                  <div class="time" text-right><br>
+                    {{ message.createdAt | date:'shortTime' }}
+                  </div>
+                </div>
+                </ion-col>
+                
+                <ion-col no-padding style="padding:1.5px 0">
+                  <div style="float: right;" *ngIf="message.user === currentUser" class="message my-message">
+                    <span>{{ message.msg }}</span>
+                    <div class="time" text-right><br>
+                      {{ message.createdAt | date:'shortTime' }}
+                      <div class="fas fa-check" style="margin-left:1px; font-size: 11px; color:rgb(190,190,190);"></div>
+                    </div>
+                  </div>
+                </ion-col>
+        
+              
+          
+              </ion-row>
+            </ion-grid>
+
+            
+
+              <div class="sendbox" style="display: grid; grid-template-columns: auto; position:fixed; bottom:0; right:0; background: purple;">
+              
+                <ion-footer no-border>
+                  <ion-toolbar style="--background:#f0f0f0; padding-left: 70px;">
+                    <ion-row align-items-center>
+                      <ion-col size="11">
+                        <ion-textarea auto-grow class="message-input" placeholder="Type a message" rows="1" [(ngModel)]="message"></ion-textarea>
+                      </ion-col>
+                      <ion-col size="1">
+                        <ion-button expand="block" fill="clear" color="primary" [disabled]="message === ''" class="msg-btn"
+                          (click)="sendMessage()">
+                          <ion-icon name="ios-send" slot="icon-only"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-toolbar>
+                </ion-footer>
+            </div>
+           
+          
+          </div>
+
+          <div></div>
+        </div>
+      </div>
+   
+      
+      
+  
+      
+     
+      
+
   </ion-content>
   
-  <ion-footer>
-    <ion-toolbar color="light">
-      <ion-row align-items-center>
-        <ion-col size="10">
-          <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message"></ion-textarea>
-        </ion-col>
-        <ion-col size="2">
-          <ion-button expand="block" fill="clear" color="primary" [disabled]="message === ''" class="msg-btn"
-            (click)="sendMessage()">
-            <ion-icon name="ios-send" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-toolbar>
-  </ion-footer>
+  

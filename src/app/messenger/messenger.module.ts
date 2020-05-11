@@ -10,7 +10,7 @@ import { MessengerPage } from './messenger.page';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.0.137:3001', options: {} };
 
 @NgModule({
   imports: [

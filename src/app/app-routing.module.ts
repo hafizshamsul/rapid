@@ -19,7 +19,14 @@ const routes: Routes = [
   { path: 'loginform', loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule) },
   { path: 'registerform', loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule) },
   
+  
   { path: '', loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule) },
+  
+/*
+ {
+  path: '',
+  loadChildren: () => import('./watch/watch.module').then( m => m.WatchPageModule)
+},*/
 
   /*
   {
@@ -48,7 +55,8 @@ const routes: Routes = [
   {
     path: 'watch',
     loadChildren: () => import('./watch/watch.module').then( m => m.WatchPageModule)
-  },  {
+  },
+  {
     path: 'stream',
     loadChildren: () => import('./stream/stream.module').then( m => m.StreamPageModule)
   },
