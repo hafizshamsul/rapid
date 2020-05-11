@@ -85,6 +85,7 @@ export class LoginformPage implements OnInit {
           ;
           
           this.global.username = this.logusername;
+          localStorage.setItem('username', this.logusername);
           this.global.userid = this.users[0].id;
           this.users=[]
           this.router.navigate(['r/home']);

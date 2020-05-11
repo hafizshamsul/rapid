@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
+import { GlobalService } from "../..//providers/global.service";
 
 @Component({
   selector: 'app-messenger',
@@ -9,16 +10,28 @@ import { ToastController } from '@ionic/angular';
 })
 export class MessengerPage implements OnInit {
 
-  constructor(private socket: Socket, private toastCtrl: ToastController) { }
+  constructor(
+    private socket: Socket,
+    private toastCtrl: ToastController,
+    public global: GlobalService,
+    ) { }
 
   message = '';
   messages = [];
   currentUser = '';
 
+  name:string = this.global.username;
+  
+
   ngOnInit() {
+    let usernamest = localStorage.getItem('username');
+
     this.socket.connect;
 
-    let name = 'User-'+new Date().getTime();
+    //let name = 'User-'+new Date().getTime();
+    let name = usernamest;
+    console.log(name);
+
     this.currentUser = name;
 
     this.socket.emit('set-name', name);
@@ -56,7 +69,7 @@ export class MessengerPage implements OnInit {
       position: 'top',
       duration: 2000
     });
-    toast.present();
+    //toast.present();
   }
 
 }

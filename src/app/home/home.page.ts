@@ -211,6 +211,9 @@ listoso:any[];
 
 
   ngOnInit() {
+    let usernamest = localStorage.getItem('username');
+    console.log(usernamest);
+    
     this.currentnav.currentpage = 'home';
 
     console.log('ngOnInit home');
