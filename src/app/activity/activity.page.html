@@ -117,7 +117,7 @@
 
           <div (click)="showdeleteid()" style="cursor:pointer;clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
             <div class="far fa-trash-alt" style=" font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
-            <div>Remove from Bookmarks</div>
+            <div>Remove Task</div>
           </div>
         </div>
         
@@ -144,7 +144,7 @@
       <div (click)="CDopenpopup()" style="background: white; width:100%; text-align: center; border-radius: 6px;">
         <div style="display: grid; grid-template-columns: auto; height:50px">
           <div style="clear: both; padding:24px 0 0 24px; font-size: 16px;color:rgb(20,20,20); font-weight: 500; text-align: left;">
-            <div style="padding-bottom: 18px;">Remove from Bookmarks</div>
+            <div style="padding-bottom: 18px;">Remove Task</div>
           </div>
 
           <div style="clear: both; padding:12px 0 0 24px; font-size: 12px;color:rgb(150,150,150); font-weight: 500; text-align: left;">
@@ -155,7 +155,7 @@
           <div style="display: grid; grid-template-columns: auto 100px 100px; height:64px; padding:6px 12px 0 24px; font-size: 14px;font-weight: 500;">
             <div></div>
             <div (click)="CDclosepopupbtn()" id="clickbtn" style="border-radius:8px;cursor:pointer; margin:3px; color:rgb(150,150,150);padding-top: 10px;">Cancel</div>
-            <div (click)="deletebookmark()" id="clickbtn" style="border-radius:8px;cursor:pointer; margin:3px;margin:3px; color:#2d98da;padding-top: 10px;font-size: 15px;">Remove</div>
+            <div (click)="deletetask()" id="clickbtn" style="border-radius:8px;cursor:pointer; margin:3px;margin:3px; color:#2d98da;padding-top: 10px;font-size: 15px;">Remove</div>
           </div>
 
             
@@ -457,7 +457,7 @@
 
                 <div id="listgrandparent" *ngFor="let item of tasks" style="font-family:Inter; margin:0px auto; display:block;  background: white; border-radius: 8px;">
     
-                  <div (click)="showFolder(item.folderfile_id, item.folderfile_icon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 3px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
+                  <div style="cursor:pointer; display: grid; grid-template-columns: 3px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
                     <div style="display: grid; align-items: center; text-align: center; background:#6d91fe; width:100%; height:34px">
                       <!--
                         <div *ngIf="item.folderfile_icon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
@@ -470,7 +470,7 @@
                       {{item.taskname}}
                     </div>
 
-                    <div (click)="showid(item.folderfile_id, item.folderfile_name)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
+                    <div (click)="showid(item.taskid, item.taskname)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
                       <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px;"></div>
                     </div>
                   </div>
@@ -482,7 +482,7 @@
 
               </div>
 
-              <ion-input [(ngModel)]="taskname" placeholder="Task name"></ion-input>
+              <ion-input [(ngModel)]="task_name" placeholder="Task name"></ion-input>
               <input id="datepicker" [(ngModel)]="datepicker" type="text">
               <ion-button (click)="addtask()"></ion-button>
 

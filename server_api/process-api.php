@@ -537,6 +537,19 @@
     
     }
 
+    elseif($postjson['action']=='addtask'){
+        $data = array();
+        $query = mysqli_query($mysqli, "insert into task set name = '$postjson[task_name]'");
+    
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+
     elseif($postjson['action']=='addfolderfile_folder'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 1");
@@ -666,6 +679,17 @@
     elseif($postjson['action']=='deletebookmark'){
         $data = array();
         $query = mysqli_query($mysqli, "delete from bookmark where folderfile_id = '$postjson[folderfile_id]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+        else $result = json_encode(array('success'=>false));
+        
+        echo $result;
+    
+    }
+
+    elseif($postjson['action']=='deletetask'){
+        $data = array();
+        $query = mysqli_query($mysqli, "delete from task where id = '$postjson[taskid]'");
 
         if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
         else $result = json_encode(array('success'=>false));
