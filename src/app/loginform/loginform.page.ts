@@ -18,6 +18,9 @@ export class LoginformPage implements OnInit {
   username:string;
   password:string;
   displayname:string;
+  role:string;
+  dateregistered:string;
+  status:string;
 
   logusername:string;
   logpassword:string;
@@ -28,7 +31,10 @@ export class LoginformPage implements OnInit {
       this.username = data.username;
       this.password = data.password;
       this.displayname = data.displayname;
-      console.log(data);
+      this.role = data.role;
+      this.dateregistered = data.dateregistered;
+      this.status = data.status;
+      //console.log(data);
     });
   }
 
@@ -49,8 +55,8 @@ export class LoginformPage implements OnInit {
     //this.global.userid = 2;
     //this.router.navigate(['/'+'hafizshamsul']);
     
-    console.log(this.logusername);
-    console.log(this.logpassword);
+    //console.log(this.logusername);
+    //console.log(this.logpassword);
     this.getUser();
     
 
@@ -64,7 +70,7 @@ export class LoginformPage implements OnInit {
   getUser(){
     return new Promise(resolve => {
       let body = {
-        action : 'getuser',
+        action : 'authenticate',
         id : this.id,
         username: this.logusername,
         password: this.logpassword
@@ -79,15 +85,32 @@ export class LoginformPage implements OnInit {
           this.isValidated = true;
           this.users=[];
         }
-        else{
+        else{ //correct password
           this.isValidated = false;
           this.isCorrect = true;
-          ;
+          
           
           this.global.username = this.logusername;
-          localStorage.setItem('username', this.logusername);
+
+          //local-based authentication
+          sessionStorage.setItem('users-id', this.users[0].id);
+          sessionStorage.setItem('users-username', this.users[0].username);
+          sessionStorage.setItem('users-passwordhash', this.users[0].password);
+          sessionStorage.setItem('users-displayname', this.users[0].displayname);
+          sessionStorage.setItem('users-role', this.users[0].role);
+          sessionStorage.setItem('users-dateregistered', this.users[0].dateregistered);
+          sessionStorage.setItem('users-status', this.users[0].status);
+
+          console.log(sessionStorage.getItem('users-id'));
+          console.log(sessionStorage.getItem('users-username'));
+          console.log(sessionStorage.getItem('users-passwordhash'));
+          console.log(sessionStorage.getItem('users-displayname'));
+          console.log(sessionStorage.getItem('users-role'));
+          console.log(sessionStorage.getItem('users-dateregistered'));
+          console.log(sessionStorage.getItem('users-status'));
+
           this.global.userid = this.users[0].id;
-          this.users=[]
+          this.users=[];
           this.router.navigate(['r/home']);
           this.isCorrect = false;
           this.logusername=null;

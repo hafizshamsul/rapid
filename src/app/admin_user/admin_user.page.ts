@@ -299,7 +299,7 @@ export class Admin_userPage implements OnInit {
 
   ionViewWillEnter(){
     this.current_users = [];
-    this.loadCurrentUser(this.global.username);
+    this.loadCurrentUser(sessionStorage.getItem('users-username'));
     
     //this.users = [];
     //this.loadUser(this.r_username, this.global.password);
@@ -537,7 +537,7 @@ export class Admin_userPage implements OnInit {
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toAdmin_user(){

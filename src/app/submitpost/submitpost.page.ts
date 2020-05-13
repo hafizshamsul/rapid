@@ -144,7 +144,7 @@ export class SubmitpostPage implements OnInit {
 
   onSubmit(){
     this.editorContent = this.editorForm.get('editor').value;
-    console.log("comment.users_id: "+this.global.userid);
+    console.log("comment.users_id: "+sessionStorage.getItem('users-id'));
     console.log("comment.title: "+this.getTitle);
     //console.log("comment.textcmt: "+this.editorContent);
     console.log(this.editorForm.get('editor').value);
@@ -153,7 +153,7 @@ export class SubmitpostPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'newaddpost',
-        users_id: this.global.userid,
+        users_id: sessionStorage.getItem('users-id'),
         title: this.getTitle,
         textcmt: this.editorContent,
         contoh2: this.contoh2,
@@ -257,11 +257,15 @@ export class SubmitpostPage implements OnInit {
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toBookmark(){
     this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toAdmin_user(){
@@ -275,13 +279,9 @@ export class SubmitpostPage implements OnInit {
   toAdmin_doc(){
     this.navCtrl.navigateRoot(['r/admin_doc/']);
   }
-  
+
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
-  }
-
-  toActivity(){
-    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toMessenger(){

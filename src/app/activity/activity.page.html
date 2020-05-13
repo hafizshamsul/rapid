@@ -342,7 +342,7 @@
       </ion-fab-button>
     </ion-fab>
     -->
-      <div id="innercontent" style="margin-top:10px">
+      <div id="innercontent" style="margin-top: 9px;">
         <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
@@ -390,35 +390,17 @@
               </div>
           </div>
     
-              <div (click)="toAdmin_user()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-user" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Users
-                    </div>
+          <div (click)="toMessenger()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-message-square-dots" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px">
+                    Messenger
                 </div>
-              </div>
-    
-              <div (click)="toAdmin_post()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-outline" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Threads
-                    </div>
-                </div>
-              </div>
-    
-              <div (click)="toAdmin_doc()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-dock-left" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Files
-                    </div>
-                </div>
-              </div>
-    
+            </div>
+        </div>
+
               <div (click)="toStream()" id="menuitem" style="">
-                <div id="gapicontext" style="">
+                <div id="gapicontext" style="color: rgb(120,120,120);">
                   <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                     <div style="padding-top: 2px; font-weight: 500;">
                         Streams
@@ -427,16 +409,9 @@
               </div>
     
     
-                <!--
-                  <div (click)="toMessenger()" id="menuitem" style="">
-                    <div id="gapicontext" style="">
-                        <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
-                        <div style="padding-top: 0px">
-                            Messenger
-                        </div>
-                    </div>
-                </div>
-                -->
+                
+                  
+                
                 
     
         </div>

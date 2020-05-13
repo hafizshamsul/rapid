@@ -252,21 +252,69 @@
     -->
 
     <ion-header no-border>
-      <ion-toolbar>
-
-        <ion-buttons slot="start">
-          <ion-back-button (click)="toBack()" color="green"></ion-back-button>
-        </ion-buttons>
-
-        <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
-
-        <ion-buttons slot="primary" (click)="addCustomer()">
-          <ion-button color="tertiary">
-            <ion-icon text-center name="add"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+      <ion-toolbar id="toolbarborder">
+        <div id="searchnav" style="display: grid;">
+          
+          <div>
+            <div id="headertitle" style="padding: 7px 0 0 26px">
+              <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
+              <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+            </div>
+            
+          </div>
+    
+          <div>
+            <div style="background: rgb(246,246,246); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
+              <div style="display: grid; grid-template-columns: 26px auto; padding: 0px 0 0 16px;">
+    
+                <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 9px;"></div>
+                <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
+                
+                
+              </div>
+              
+            </div>
+          </div>
+    
+        
+    
+          <div>
+            <ion-buttons slot="primary" (click)="login()">
+              <ion-button color="green">
+                <i class="fas fa-sign-out-alt" style="font-size: 16px"></i>
+              </ion-button>
+            </ion-buttons>
+          </div>
+    
+        </div>
       </ion-toolbar>
-</ion-header>
+      <div id="topnav">
+        <div></div>
+        <div>
+          <div style="display:grid; grid-template-columns: 33.33% 33.33% 33.33%; font-size: 14.5px; text-align: center;margin:11px 0 11px 0; font-weight: 600;">
+            <div style="color:rgb(160,160,160);">
+              News
+            </div>
+            <div style="color:rgb(50,50,50);">
+              Home
+            </div>
+            <div style="color:rgb(160,160,160)">
+              Popular
+            </div>
+            </div>
+            <div style="display:grid; grid-template-columns: 33.33% 33.33% 33.33%; background: white; height:2px; border-bottom: 1px solid rgb(240,240,240)">
+              <div>
+              </div>
+              <div>
+                <div style="background: rgb(29, 161, 242); width:50%; height:100%; margin:0 auto"></div>
+              </div>
+              <div>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+    </ion-header>
 
 <!--
   <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
@@ -294,7 +342,7 @@
       </ion-fab-button>
     </ion-fab>
     -->
-      <div id="innercontent" style="margin-top:10px">
+      <div id="innercontent" style="margin-top: 9px;">
         <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
@@ -332,36 +380,27 @@
                     </div>
                 </div>
             </div>
-    
-              <div (click)="toAdmin_user()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-user" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Users
-                    </div>
-                </div>
+            
+            <div (click)="toActivity()" id="menuitem" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
+                <div class="bx bx-list-plus" style="font-size: 19px;"></div>
+                  <div style="padding-top: 2px; font-weight: 500;">
+                      Tasks
+                  </div>
               </div>
-    
-              <div (click)="toAdmin_post()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-outline" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Threads
-                    </div>
+          </div>
+              
+          <div (click)="toMessenger()" id="menuitem" style="">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
+              <div class="bx bx-message-square-dots" style="font-size: 19px;"></div>
+                <div style="padding-top: 2px; font-weight: 500;">
+                    Messenger
                 </div>
-              </div>
-    
-              <div (click)="toAdmin_doc()" id="menuitem" style="">
-                <div id="gapicontext" style="color: rgb(120,120,120);">
-                  <div class="bx bx-dock-left" style="font-size: 19px;"></div>
-                    <div style="padding-top: 2px; font-weight: 500;">
-                        Files
-                    </div>
-                </div>
-              </div>
-    
+            </div>
+        </div>
+
               <div (click)="toStream()" id="menuitem" style="">
-                <div id="gapicontext" style="">
+                <div id="gapicontext" style="color: rgb(120,120,120);">
                   <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                     <div style="padding-top: 2px; font-weight: 500;">
                         Streams
@@ -370,16 +409,9 @@
               </div>
     
     
-                <!--
-                  <div (click)="toMessenger()" id="menuitem" style="">
-                    <div id="gapicontext" style="">
-                        <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
-                        <div style="padding-top: 0px">
-                            Messenger
-                        </div>
-                    </div>
-                </div>
-                -->
+                
+                  
+              
                 
     
         </div>

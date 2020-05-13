@@ -278,16 +278,16 @@ export class FolderPage implements OnInit {
 
   ionViewWillEnter(){
     this.current_users = [];
-    this.loadCurrentUser(this.global.username);
+    this.loadCurrentUser(sessionStorage.getItem('users-username'));
     
     this.users = [];
-    this.loadUser(this.r_username, this.global.password);
+    this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
     this.folders = [];
-    this.loadFolder(this.r_username);
+    this.loadFolder(sessionStorage.getItem('users-username'));
 
     this.hiks = [];
-    this.loadFile(this.r_username, this.r_folderid);
+    this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
     
     this.comments = [];
     this.loadFolderFile();
@@ -499,11 +499,15 @@ export class FolderPage implements OnInit {
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toBookmark(){
     this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toAdmin_user(){
@@ -520,10 +524,6 @@ export class FolderPage implements OnInit {
 
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
-  }
-
-  toActivity(){
-    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toMessenger(){
@@ -627,7 +627,7 @@ export class FolderPage implements OnInit {
     
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
 
-    this.addtobookmark_impl(this.selectedid, this.global.userid);
+    this.addtobookmark_impl(this.selectedid, sessionStorage.getItem('users-id'));
 
     setTimeout(()=>{
       this.ionViewWillEnter();

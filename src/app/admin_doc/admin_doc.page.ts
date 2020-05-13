@@ -281,16 +281,16 @@ export class Admin_docPage implements OnInit {
 
   ionViewWillEnter(){
     this.current_users = [];
-    this.loadCurrentUser(this.global.username);
+    this.loadCurrentUser(sessionStorage.getItem('users-username'));
     
     this.users = [];
-    this.loadUser(this.r_username, this.global.password);
+    this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
     this.folders = [];
-    this.loadFolder(this.r_username);
+    this.loadFolder(sessionStorage.getItem('users-username'));
 
     this.hiks = [];
-    this.loadFile(this.r_username, this.r_folderid);
+    this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
     
     this.comments = [];
     this.loadFolderFile();
@@ -502,7 +502,7 @@ export class Admin_docPage implements OnInit {
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toAdmin_user(){

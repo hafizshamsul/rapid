@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { GlobalService } from "../..//providers/global.service";
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-messenger',
@@ -12,6 +13,7 @@ export class MessengerPage implements OnInit {
 
   constructor(
     private socket: Socket,
+    public navCtrl: NavController,
     private toastCtrl: ToastController,
     public global: GlobalService,
     ) { }
@@ -20,11 +22,11 @@ export class MessengerPage implements OnInit {
   messages = [];
   currentUser = '';
 
-  name:string = this.global.username;
+  name:string = sessionStorage.getItem('users-username');
   
 
   ngOnInit() {
-    let usernamest = localStorage.getItem('username');
+    let usernamest = sessionStorage.getItem('users-username');
 
     this.socket.connect;
 
@@ -70,6 +72,46 @@ export class MessengerPage implements OnInit {
       duration: 2000
     });
     //toast.present();
+  }
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
+  }
+
+  toBookmark(){
+    this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
+  }
+
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
+  }
+
+  toAdmin_doc(){
+    this.navCtrl.navigateRoot(['r/admin_doc/']);
+  }
+
+  toStream(){
+    this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
   }
 
 }
