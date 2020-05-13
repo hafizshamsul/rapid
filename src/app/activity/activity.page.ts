@@ -17,6 +17,7 @@ import { stringify } from 'querystring';
 
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-activity',
@@ -640,9 +641,9 @@ export class ActivityPage implements OnInit {
   selectedid:number;
   selectedname:string;
 
-  showid(folderfileid, folderfilename){
-    this.selectedid = folderfileid;
-    this.selectedname = folderfilename;
+  showid(taskid, taskname){
+    this.selectedid = taskid;
+    this.selectedname = taskname;
     this.UDopenpopup();
   }
 
@@ -720,6 +721,23 @@ export class ActivityPage implements OnInit {
     console.log(this.UDpopup);
   }
 
+  //ACTION FOR DELETING TASK
+  deletetask(){
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+
+    this.deletetask_impl(this.selectedid);
+
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    this.CDpopup = false;
+    this.UDpopup = false;
+
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
+  }
+
   //ACTION FOR DELETING BOOKMARK
   deletebookmark(){
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
@@ -785,6 +803,37 @@ export class ActivityPage implements OnInit {
     });
   }
 
+  //ACTION FOR ADDING TASK
+  addtask(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
+    //console.log('id: '+this.selectedid+', name: '+this.selectedname);
+    console.log(this.task_name);
+
+    this.addtask_impl(this.task_name);
+
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    
+    this.UDpopup = false;
+  }
+
+  addtask_impl(task_name){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addtask',
+        task_name : task_name
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
+        resolve(true);
+      });
+    });
+  }
+
   counting(folderfileid){
     return new Promise(resolve => {
       let body = {
@@ -811,7 +860,18 @@ export class ActivityPage implements OnInit {
     });
   }
 
-  //enter:boolean = true;
+  deletetask_impl(taskid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletetask',
+        taskid : taskid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
+        resolve(true);
+      });
+    });
+  }
 
   selectit(){
     this.isSelected = true;
@@ -857,11 +917,11 @@ export class ActivityPage implements OnInit {
     console.log(event.target.value);
   }
 
-  addtask(){
-    console.log(this.task_name);
+  //addtask(){
+    //console.log(this.task_name);
     //console.log(this.taskstart);
     //console.log(this.taskend);
-  }
+  //}
 
 
 }
