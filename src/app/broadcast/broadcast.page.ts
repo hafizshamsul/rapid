@@ -179,7 +179,15 @@ private stream: MediaStream;
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
+  }
+
+  toBookmark(){
+    this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
   }
 
   toAdmin_user(){
