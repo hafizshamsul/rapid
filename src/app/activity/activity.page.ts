@@ -306,7 +306,7 @@ export class ActivityPage implements OnInit {
       this.isSelected = false;
 
       setTimeout(()=>{
-        this.ionViewDidEnter();
+        this.ionViewWillEnter();
       }, 240);
     },
     (error : any) => {
@@ -333,13 +333,13 @@ export class ActivityPage implements OnInit {
       alert.present();
    }
 
-  ionViewWillEnter(){
+  //ionViewWillEnter(){
     
 
     //this.enter = false;
-  }
+  //}
 
-  ionViewDidEnter(){
+  ionViewWillEnter(){
     this.users = [];
     this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
@@ -538,7 +538,7 @@ export class ActivityPage implements OnInit {
         for(let comment of data.result){
           this.comments.push(comment);
         }
-        this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        //this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
         //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
@@ -563,6 +563,10 @@ export class ActivityPage implements OnInit {
     });
   }
 
+
+  //listoso:any[];
+  listosotask:any[];
+
   loadTask(){
     return new Promise(resolve => {
       let body = {
@@ -574,6 +578,8 @@ export class ActivityPage implements OnInit {
         }
         //this.listosobookmark = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
         //console.log(JSON.stringify(this.listoso));
+        this.listosotask = this.tasks;
+        
         resolve(true);
       });
     });
@@ -728,7 +734,7 @@ export class ActivityPage implements OnInit {
     this.deletetask_impl(this.selectedid);
 
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
@@ -745,7 +751,7 @@ export class ActivityPage implements OnInit {
     this.deletebookmark_impl(this.selectedid);
     
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
@@ -762,7 +768,7 @@ export class ActivityPage implements OnInit {
     this.counting(this.selectedid);
 
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
@@ -781,7 +787,7 @@ export class ActivityPage implements OnInit {
   this.addfolderfile_subfolder(this.popuprename, this.currparent);
     
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
     
     this.popup = false;
@@ -814,11 +820,12 @@ export class ActivityPage implements OnInit {
     this.addtask_impl(this.task_name);
 
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
-    
     this.UDpopup = false;
+
+    this.task_name = '';
   }
 
   addtask_impl(task_name){

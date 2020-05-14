@@ -299,7 +299,7 @@ export class BookmarkPage implements OnInit {
       this.isSelected = false;
 
       setTimeout(()=>{
-        this.ionViewDidEnter();
+        this.ionViewWillEnter();
       }, 240);
     },
     (error : any) => {
@@ -326,13 +326,13 @@ export class BookmarkPage implements OnInit {
       alert.present();
    }
 
-  ionViewWillEnter(){
+  //ionViewWillEnter(){
     
 
     //this.enter = false;
-  }
+  //}
 
-  ionViewDidEnter(){
+  ionViewWillEnter(){
     this.users = [];
     this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
@@ -535,7 +535,8 @@ export class BookmarkPage implements OnInit {
     });
   }
 
-  //listosobookmark:any[];
+  listosobookmark:any[];
+
   loadBookmark(users_id){
     return new Promise(resolve => {
       let body = {
@@ -548,6 +549,8 @@ export class BookmarkPage implements OnInit {
         }
         //this.listosobookmark = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
         //console.log(JSON.stringify(this.listoso));
+
+        this.listosobookmark = this.bookmarks;
         resolve(true);
       });
     });
@@ -702,7 +705,7 @@ export class BookmarkPage implements OnInit {
     this.deletebookmark_impl(this.selectedid);
     
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
@@ -719,7 +722,7 @@ export class BookmarkPage implements OnInit {
     this.counting(this.selectedid);
 
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
 
     this.CDpopup = false;
@@ -738,7 +741,7 @@ export class BookmarkPage implements OnInit {
   this.addfolderfile_subfolder(this.popuprename, this.currparent);
     
     setTimeout(()=>{
-      this.ionViewDidEnter();
+      this.ionViewWillEnter();
     }, 240);
     
     this.popup = false;

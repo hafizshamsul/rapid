@@ -62,7 +62,15 @@
   grid-template-columns: 278px auto 34px;
 
     @media (max-width: 576px) {
-      grid-template-columns: 34px auto 34px;
+      grid-template-columns: 39px auto 34px;
+    }
+}
+
+#searchnavmsg{
+  display: none;
+
+    @media (max-width: 576px) {
+      display: block;
     }
 }
 

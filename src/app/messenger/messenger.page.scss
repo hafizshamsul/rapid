@@ -75,8 +75,8 @@ ion-content{
 
   
   .msg-btn {
-    --padding-start: 0.5em;
-    --padding-end: 0.5em;
+    //--padding-start: 0.5em;
+    // --padding-end: 0.5em;
   }
 
 
@@ -144,9 +144,27 @@ ion-content{
 
 .sendbox{
   width:calc(100% - 230px);
+  display: block;
 
   @media (max-width: 576px) {
     width:100%;
+    display: none;
+  }
+}
+
+.sendbox2{
+  display: block;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
+.sendbox3{
+  display: none;
+
+  @media (max-width: 576px) {
+    display: block;
   }
 }
 
@@ -154,7 +172,15 @@ ion-content{
   grid-template-columns: 278px auto 34px;
 
     @media (max-width: 576px) {
-      grid-template-columns: 34px auto 34px;
+      grid-template-columns: 39px auto 34px;
+    }
+}
+
+#searchnavmsg{
+  display: none;
+
+    @media (max-width: 576px) {
+      display:block;
     }
 }
 
