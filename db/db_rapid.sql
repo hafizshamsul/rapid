@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 10:24 PM
+-- Generation Time: May 14, 2020 at 06:21 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_rapid`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookmark`
+--
+
+CREATE TABLE `bookmark` (
+  `id` int(11) NOT NULL,
+  `folderfile_id` int(11) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookmark`
+--
+
+INSERT INTO `bookmark` (`id`, `folderfile_id`, `users_id`) VALUES
+(3, 195, 2),
+(25, 236, 1),
+(27, 194, 2),
+(28, 219, 2),
+(29, 220, 2),
+(31, 194, 1);
 
 -- --------------------------------------------------------
 
@@ -78,7 +102,8 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (256, '<p>Usually I would expect a&nbsp;<code style=\"background-color: var(--black-075);\">String.contains()</code>&nbsp;method, but there doesn\'t seem to be one.</p><p>What is a reasonable way to check for this?</p>', 1, NULL, 'How to check whether a string contains a substring in JavaScript?', '2020-04-27 12:14:55', NULL, NULL, 256),
 (257, '<pre class=\"ql-syntax\" spellcheck=\"false\">string hello = “hello world”;\n</pre><p>i have error here. Help.</p>', 1, NULL, 'Sarah try', '2020-04-23 19:32:20', NULL, NULL, 257),
 (258, '<p>try testing</p><pre class=\"ql-syntax\" spellcheck=\"false\">int a = 55;\n</pre><p>terima kasih</p>', 1, NULL, 'Try test', '2020-04-27 14:42:23', NULL, NULL, 258),
-(259, '<pre class=\"ql-syntax\" spellcheck=\"false\">int a = 2;\nstring b = “hello”;\n</pre><p>hello 2</p>', 1, NULL, 'Testingg', '2020-04-26 15:42:42', NULL, NULL, 259);
+(259, '<pre class=\"ql-syntax\" spellcheck=\"false\">int a = 2;\nstring b = “hello”;\n</pre><p>hello 2</p>', 1, NULL, 'Testingg', '2020-04-26 15:42:42', NULL, NULL, 259),
+(261, '<p>Lololol</p><pre class=\"ql-syntax\" spellcheck=\"false\">echo “lel”;\n</pre><p>aahaja</p>', 1, NULL, 'Lololol', '2020-05-07 00:42:19', NULL, NULL, 261);
 
 -- --------------------------------------------------------
 
@@ -158,35 +183,43 @@ CREATE TABLE `folderfile` (
   `folder_id` int(11) DEFAULT NULL,
   `users_id` int(11) DEFAULT NULL,
   `dateuploaded` date DEFAULT NULL,
-  `visibility` varchar(10) DEFAULT NULL
+  `visibility` varchar(10) DEFAULT NULL,
+  `originalname` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `folderfile`
 --
 
-INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`, `visibility`) VALUES
-(1, 'readme', 'readme.txt', 'txt', 'txt', NULL, 1, NULL, 'hidden'),
-(2, 'Advanced Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
-(3, 'SubCLP', NULL, NULL, 'folder', 2, 1, NULL, NULL),
-(4, 'Chapter 1-3', NULL, NULL, 'folder', 2, 1, NULL, NULL),
-(5, 'Subchapter', NULL, NULL, 'folder', 4, 1, NULL, NULL),
-(6, 'References', NULL, NULL, 'folder', 4, 1, NULL, NULL),
-(7, 'IEEE', 'IEEE.pdf', 'pdf', 'pdf', 6, 1, NULL, NULL),
-(8, 'Chapter 1', 'chapter1.pdf', 'pdf', 'pdf', 5, 1, NULL, NULL),
-(9, 'CLP', 'CLP.pdf', 'pdf', 'pdf', 3, 1, NULL, NULL),
-(10, 'APA', 'APA.pdf', 'pdf', 'pdf', 6, 1, NULL, NULL),
-(11, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
-(12, 'Ubiquitous Computing', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
-(78, 'Untitled', NULL, NULL, 'folder', 12, 1, NULL, NULL),
-(80, 'Untitled', NULL, NULL, 'folder', 12, 1, NULL, NULL),
-(81, 'Untitled', NULL, NULL, 'folder', 12, 1, NULL, NULL),
-(107, 'Final Year Project', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
-(113, 'fsm.docx', 'fsm.docx', 'docx', 'doc', 107, NULL, NULL, NULL),
-(115, 'Assignment 23 April 2020.docx', 'Assignment 23 April 2020.docx', 'docx', 'doc', 107, NULL, NULL, NULL),
-(116, 'Assignment 23 April 2020.docx', 'Assignment 23 April 2020.docx', 'docx', 'doc', 107, NULL, NULL, NULL),
-(117, 'Assignment 23 April 2020.docx', 'Assignment 23 April 2020.docx', 'docx', 'doc', 107, NULL, NULL, NULL),
-(119, 'Assignment 23 April 2020.docx', 'Assignment 23 April 2020.docx', 'docx', 'doc', 107, NULL, NULL, NULL);
+INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`, `visibility`, `originalname`) VALUES
+(194, 'Software Testing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(195, 'Advanced Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(201, 'Chapter 1 - Fundamentals.pdf', '1588208091866.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 1 - Fundamentals.pdf'),
+(202, 'Chapter 2 - Lifecycle.pdf', '1588208101827.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 2 - Lifecycle.pdf'),
+(203, 'Chapter 3 - Static Test.pdf', '1588208110331.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 3 - Static Test.pdf'),
+(204, 'Chapter 4 - Black Box.pdf', '1588208117760.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 4 - Black Box.pdf'),
+(205, 'Chapter 5 - White Box.pdf', '1588208127499.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 5 - White Box.pdf'),
+(206, 'Chapter 6 - Test Management.pdf', '1588208138762.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 6 - Test Management.pdf'),
+(207, 'Chapter 7 - Tools.pdf', '1588208146859.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 7 - Tools.pdf'),
+(208, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf', '1588208283229.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf'),
+(209, 'Lab Exercise 2 - Creating a Simple Data-Entry Application.pdf', '1588208291786.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 2 - Creating a Simple Data-Entry Appl'),
+(210, 'Lab Exercise 3 - Array.pdf', '1588208299034.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 3 - Array.pdf'),
+(211, 'Lab Exercise 4 - Collection.pdf', '1588208306136.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 4 - Collection.pdf'),
+(212, 'Lab Exercise 5 - ADO.NET - Displaying List and Details.pdf', '1588208312929.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 5 - ADO.NET - Displaying List and Det'),
+(213, 'Lab Exercise 6 - ADO.NET - Creating, Editing and Deleting.pdf', '1588208319792.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 6 - ADO.NET - Creating, Editing and D'),
+(214, 'Lab Exercise 7 - LINQ.pdf', '1588208326736.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 7 - LINQ.pdf'),
+(215, 'Lab Exercise 8 - Entity Framework - Displaying List.pdf', '1588208334242.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 8 - Entity Framework - Displaying Lis'),
+(216, 'Lab Exercise 9 - Entity Framework - Paging, Searching and Details.pdf', '1588208343051.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 9 - Entity Framework - Paging, Search'),
+(217, 'Lab Exercise 10 - Entity Framework - Creating, Editing and Deleting Data.pdf', '1588208351992.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 10 - Entity Framework - Creating, Edi'),
+(219, 'Ubiquitous Computing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(220, 'Research Methodology', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(221, 'Web Application Development', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(222, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(224, 'Untitled', NULL, NULL, 'folder', 220, 1, NULL, NULL, NULL),
+(225, 'Untitled', NULL, NULL, 'folder', 222, 1, NULL, NULL, NULL),
+(236, 'Untitled', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
+(242, 'Untitled', NULL, NULL, 'folder', 194, 1, NULL, NULL, NULL),
+(250, 'Lelel', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -350,7 +383,33 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (657, 256, 4),
 (658, 257, 6),
 (659, 258, 8),
-(660, 259, 9);
+(660, 259, 9),
+(663, 261, 1),
+(664, 261, 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task`
+--
+
+CREATE TABLE `task` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `task`
+--
+
+INSERT INTO `task` (`id`, `name`, `start`, `end`) VALUES
+(1, 'Internet Programming Project', NULL, NULL),
+(2, 'Software Testing Assignment 1', NULL, NULL),
+(6, 'Ubiquitous Computing Assignment 2', NULL, NULL),
+(7, 'dede', NULL, NULL),
+(9, 'huhuhu', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -362,21 +421,36 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(15) DEFAULT NULL,
   `passwordhash` varchar(100) DEFAULT NULL,
-  `displayname` varchar(20) DEFAULT NULL
+  `displayname` varchar(20) DEFAULT NULL,
+  `role` varchar(10) DEFAULT NULL,
+  `dateregistered` date DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `passwordhash`, `displayname`) VALUES
-(1, 'hafizshamsul', 'lolol', NULL),
-(2, 'aminshamsul', 'lolol', NULL),
-(4, 'user', 'pass', NULL);
+INSERT INTO `users` (`id`, `username`, `passwordhash`, `displayname`, `role`, `dateregistered`, `status`) VALUES
+(1, 'hafizshamsul', 'lolol', 'Muhammad Hafiz', 'User', '2020-02-07', 'Active'),
+(2, 'aminshamsul', 'lolol', 'Muhammad Amin', 'User', '2020-02-07', 'Active'),
+(4, 'user', 'pass', 'User1', 'User', '2020-02-07', 'Active'),
+(5, 'admin', 'lolol', 'Muhammad Admin', 'Admin', '2020-04-07', 'Active'),
+(6, 'sarahshamsul', 'lolol', 'Siti Sarah', 'User', '2020-04-07', 'Active'),
+(7, 'aishahshamsul', 'lolol', 'Siti Aishah', 'User', '2020-04-07', 'Inactive'),
+(8, 'shahidshamsul', 'lolol', 'Muhammad Shahid', 'User', '2020-03-07', 'Inactive');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bookmark`
+--
+ALTER TABLE `bookmark`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `folderfile_id` (`folderfile_id`),
+  ADD KEY `users_id` (`users_id`);
 
 --
 -- Indexes for table `comment`
@@ -436,6 +510,12 @@ ALTER TABLE `tagcomment`
   ADD KEY `tag_id` (`tag_id`);
 
 --
+-- Indexes for table `task`
+--
+ALTER TABLE `task`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -447,10 +527,16 @@ ALTER TABLE `users` ADD FULLTEXT KEY `username` (`username`);
 --
 
 --
+-- AUTO_INCREMENT for table `bookmark`
+--
+ALTER TABLE `bookmark`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -468,7 +554,7 @@ ALTER TABLE `folderdata`
 -- AUTO_INCREMENT for table `folderfile`
 --
 ALTER TABLE `folderfile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
@@ -492,17 +578,30 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=663;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=666;
+
+--
+-- AUTO_INCREMENT for table `task`
+--
+ALTER TABLE `task`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bookmark`
+--
+ALTER TABLE `bookmark`
+  ADD CONSTRAINT `bookmark_ibfk_1` FOREIGN KEY (`folderfile_id`) REFERENCES `folderfile` (`id`),
+  ADD CONSTRAINT `bookmark_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `comment`
