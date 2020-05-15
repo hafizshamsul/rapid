@@ -216,3 +216,11 @@ ion-content{
   font-size: 13px;
   color:rgb(188,188,188);
 }
+
+#iostab{
+  display: none;
+  
+  @media (max-width: 576px) {
+    display: block;
+  }
+}

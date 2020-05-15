@@ -23,7 +23,7 @@
 </head>
 
 
-<ion-tabs>
+<ion-tabs id="iostab">
   <ion-tab-bar slot="bottom" style="height:42px">
     <ion-tab-button (click)="toHome()">
       <div class="fas fa-home" style="font-size: 24px; color:rgb(160,160,160)"></div>
@@ -166,11 +166,29 @@
           </div>
       </div>
 
-          <div (click)="toStream()" id="currentmenuitem" style="">
+          <div (click)="toStream()" id="currentmenuitem" style="background: white;">
             <div id="gapicontext" style="">
               <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                 <div style="padding-top: 2px">
                     Streams
+                </div>
+            </div>
+          </div>
+
+          <div (click)="toBroadcast()" id="menuitem" style="background: rgb(250,250,250);">
+            <div id="gapicontext"  style="color: rgb(120,120,120);">
+              <div></div>  
+              <div style="padding-top: 2px; font-weight: 500;">
+                    Broadcast
+                </div>
+            </div>
+          </div>
+
+          <div (click)="toWatch()" id="menuitem" style="background: rgb(250,250,250);">
+            <div id="gapicontext" style="">
+              <div></div>  
+              <div style="padding-top: 2px; font-weight: 600;">
+                    Watch
                 </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 let RecordRTC = require('recordrtc/RecordRTC');
 import { Socket } from 'ngx-socket-io';
 import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 import { GlobalService } from "../..//providers/global.service";
 
 
@@ -15,8 +16,13 @@ export class WatchPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public global: GlobalService,
+    private router: Router,
     private io: Socket
-  ) { }
+  ) {
+    if(sessionStorage.getItem('users-role') == 'Admin'){
+      this.router.navigate(['/r/admin_user']);
+    }
+  }
 
   @ViewChild('video', {static: false}) video: any;
 
@@ -40,7 +46,8 @@ export class WatchPage implements OnInit {
     const config = {
       iceServers: [
         {
-          urls: ["stun:stun.l.google.com:19302"]
+          urls: ["stun:stun.l.google.com:19302"
+          ]
         }
       ]
     };
@@ -56,10 +63,13 @@ export class WatchPage implements OnInit {
         .then(sdp => peerConnection.setLocalDescription(sdp))
         .then(() => {
           socket.emit("answer", id, peerConnection.localDescription);
-        });
+        })
+        //.then(this.successCallback, this.failureCallback)
+        ;
+
       peerConnection.ontrack = event => {
         video.srcObject = event.streams[0];
-        
+        console.log(event.streams[0]);
       };
       peerConnection.onicecandidate = event => {
         if (event.candidate) {
@@ -94,7 +104,34 @@ export class WatchPage implements OnInit {
 
   }
 
+  successCallback(){
 
+  }
+
+  failureCallback(e){
+    console.log(e);
+  }
+
+  login(){
+    //local-based authentication
+    sessionStorage.setItem('users-id', 'null');
+    sessionStorage.setItem('users-username', 'null');
+    sessionStorage.setItem('users-passwordhash', 'null');
+    sessionStorage.setItem('users-displayname', 'null');
+    sessionStorage.setItem('users-role', 'null');
+    sessionStorage.setItem('users-dateregistered', 'null');
+    sessionStorage.setItem('users-status', 'null');
+
+    console.log(sessionStorage.getItem('users-id'));
+    console.log(sessionStorage.getItem('users-username'));
+    console.log(sessionStorage.getItem('users-passwordhash'));
+    console.log(sessionStorage.getItem('users-displayname'));
+    console.log(sessionStorage.getItem('users-role'));
+    console.log(sessionStorage.getItem('users-dateregistered'));
+    console.log(sessionStorage.getItem('users-status'));
+
+    this.router.navigate(['/loginform']);
+  }
 
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
@@ -130,6 +167,14 @@ export class WatchPage implements OnInit {
 
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toBroadcast(){
+    this.navCtrl.navigateRoot(['broadcast/']);
+  }
+
+  toWatch(){
+    this.navCtrl.navigateRoot(['watch/']);
   }
 
   toMessenger(){

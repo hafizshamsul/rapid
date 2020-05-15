@@ -25,7 +25,9 @@ import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot({animated: false}),
+  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot(
+    {animated: true}
+    ),
     AppRoutingModule, QuillModule.forRoot(
       {
         modules: {
