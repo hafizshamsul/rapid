@@ -526,6 +526,14 @@ export class FilePage implements OnInit {
     this.navCtrl.navigateRoot(['stream/']);
   }
 
+  toBroadcast(){
+    this.navCtrl.navigateRoot(['broadcast/']);
+  }
+
+  toWatch(){
+    this.navCtrl.navigateRoot(['watch/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }

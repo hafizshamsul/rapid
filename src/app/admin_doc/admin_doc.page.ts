@@ -68,8 +68,9 @@ export class Admin_docPage implements OnInit {
     private actRoute: ActivatedRoute,
     private previewAnyFile: PreviewAnyFile,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      
-      
+      if(sessionStorage.getItem('users-role') != 'Admin'){
+        this.router.navigate(['/r/home']);
+      }
     }
 
     folderfileid:number;
@@ -505,6 +506,10 @@ export class Admin_docPage implements OnInit {
     this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
+  login(){
+    this.router.navigate(['/loginform']);
+  }
+
   toAdmin_user(){
     this.navCtrl.navigateRoot(['admin_user/']);
   }
@@ -527,7 +532,7 @@ export class Admin_docPage implements OnInit {
 
 
   //HTML ID
-  @ViewChild('rename', {static: false}) rename;
+  @ViewChild('rename', {static: false}) rename: any;
 
   //LOGIC VARIABLE
   popup:boolean = false;

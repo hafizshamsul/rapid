@@ -40,8 +40,9 @@ export class Admin_postPage{
     public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      console.log('constructor home');
-      
+      if(sessionStorage.getItem('users-role') != 'Admin'){
+        this.router.navigate(['/r/home']);
+      }
     }
 
 
@@ -597,6 +598,10 @@ listoso:any[];
 
   toFolder(){
     this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['admin_post/']);
   }
 
   toAdmin_user(){

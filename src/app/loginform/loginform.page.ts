@@ -110,8 +110,18 @@ export class LoginformPage implements OnInit {
           console.log(sessionStorage.getItem('users-status'));
 
           this.global.userid = this.users[0].id;
-          this.users=[];
-          this.router.navigate(['r/home']);
+          
+          if(this.users[0].role == 'User'){
+            this.users=[];
+            this.router.navigate(['r/home']);
+          }
+          else if(this.users[0].role == 'Admin'){
+            this.users=[];
+            this.router.navigate(['r/admin_user']);
+          }
+
+          
+          
           this.isCorrect = false;
           this.logusername=null;
           this.logpassword=null;

@@ -3,6 +3,7 @@ import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { GlobalService } from "../..//providers/global.service";
 import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-messenger',
@@ -16,7 +17,13 @@ export class MessengerPage implements OnInit {
     public navCtrl: NavController,
     private toastCtrl: ToastController,
     public global: GlobalService,
-    ) { }
+    private router: Router,
+    private actRoute: ActivatedRoute
+    ) {
+      if(sessionStorage.getItem('users-role') == 'Admin'){
+        this.router.navigate(['/r/admin_user']);
+      }
+    }
 
   message = '';
   messages = [];
@@ -74,6 +81,27 @@ export class MessengerPage implements OnInit {
     //toast.present();
   }
 
+  login(){
+    //local-based authentication
+    sessionStorage.setItem('users-id', 'null');
+    sessionStorage.setItem('users-username', 'null');
+    sessionStorage.setItem('users-passwordhash', 'null');
+    sessionStorage.setItem('users-displayname', 'null');
+    sessionStorage.setItem('users-role', 'null');
+    sessionStorage.setItem('users-dateregistered', 'null');
+    sessionStorage.setItem('users-status', 'null');
+
+    console.log(sessionStorage.getItem('users-id'));
+    console.log(sessionStorage.getItem('users-username'));
+    console.log(sessionStorage.getItem('users-passwordhash'));
+    console.log(sessionStorage.getItem('users-displayname'));
+    console.log(sessionStorage.getItem('users-role'));
+    console.log(sessionStorage.getItem('users-dateregistered'));
+    console.log(sessionStorage.getItem('users-status'));
+
+    this.router.navigate(['/loginform']);
+  }
+
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
   }
@@ -108,6 +136,14 @@ export class MessengerPage implements OnInit {
 
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toBroadcast(){
+    this.navCtrl.navigateRoot(['broadcast/']);
+  }
+
+  toWatch(){
+    this.navCtrl.navigateRoot(['watch/']);
   }
 
   toMessenger(){
