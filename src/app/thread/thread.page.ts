@@ -10,6 +10,7 @@ import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 import { QuillModule } from 'ngx-quill';
 
+
 @Component({
   selector: 'app-thread',
   templateUrl: 'thread.page.html',

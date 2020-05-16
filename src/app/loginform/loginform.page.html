@@ -24,11 +24,11 @@
     <div class="item" style="overflow-y: scroll;">
       <img id="img-login" src="assets/svg/logform.svg" style="margin-top: 4em; height: 100px; margin-bottom: 0;" />
       <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 1.6em 1.2em">Sign in</h1>
-      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logusername" placeholder="Enter your username" style="position: relative; font-family: 'Inter var', sans-serif">
+      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logusername" placeholder="Enter your username" style="position: relative">
         <i *ngIf="isValidated" class="fas fa-exclamation-circle" style="font-size: 18px; color:rgb(223, 96, 96); right:17px; top:17px; position:absolute; z-index: 2;"></i>
         <i *ngIf="isCorrect" class="fas fa-check-circle" style="font-size: 18px; color:rgb(37, 156, 117); right:17px; top:17px; position:absolute; z-index: 2;"></i>
       </ion-input>     
-      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logpassword" placeholder="Enter your password" type="password" style="position: relative; font-family: 'Inter var', sans-serif">
+      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logpassword" placeholder="Enter your password" type="password" style="position: relative;">
         <i *ngIf="isValidated" class="fas fa-exclamation-circle" style="font-size: 18px; color:rgb(223, 96, 96); right:17px; top:17px; position:absolute; z-index: 2;"></i>
         <i *ngIf="isCorrect" class="fas fa-check-circle" style="font-size: 18px; color:rgb(37, 156, 117); right:17px; top:17px; position:absolute; z-index: 2;"></i>
       </ion-input>
