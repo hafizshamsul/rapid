@@ -138,38 +138,6 @@ ion-content{
 
 
 
-#menuitem{
-    font-family: 'Inter';
-    font-size: 12px;
-    font-weight: 510;
-    clear: both;
-    padding: 12px 24px;
-    color: rgb(100,100,100);
-    cursor: pointer;
-    border-radius: 0 4px 4px 0;
-    margin-right: 8px;
-}
-#menuitem:hover{
-    background:rgb(247,247,247);
-}
-
-#currentmenuitem{
-    font-family: 'Inter';
-    font-size: 12px;
-    font-weight: 700;
-    clear: both;
-    padding: 12px 24px;
-    color: #4b7fda;
-    cursor: pointer;
-    //background:#e8f0fe;
-    background: rgb(246,246,246);
-    border-radius: 0 4px 4px 0;
-    margin-right: 8px;
-}
-#currentmenuitem:hover{
-    cursor: pointer;
-}
-
 #gapicontext{
     display: grid;
     grid-template-columns: 34px auto;

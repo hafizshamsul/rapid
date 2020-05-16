@@ -44,25 +44,23 @@
 </ion-tabs>
 
 <ion-header no-border>
-  <ion-toolbar id="toolbarborder">
+  <ion-toolbar id="toolbarborder" style="--background: var(--toolbarbg); --min-height:var(--toolbarheight)">
     <div id="searchnav" style="display: grid;">
       
       <div>
-        <div id="headertitle" style="padding: 7px 0 0 26px">
-          <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+        <div id="headertitle" style="padding: 7px 0 0 26px; color:var(--logocolor)">
+          <div class="fas fa-book" style="font-size: 16px; padding-top: 3px;"></div>
+          <ion-title class="ion-text-left" style="font-weight: 800px; font-size: 18px;">Edushare</ion-title>
         </div>
         
       </div>
 
       <div>
-        <div style="background: rgb(246,246,246); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
+        <div style="background:  var(--searchbg); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
           <div style="display: grid; grid-template-columns: 26px auto; padding: 0px 0 0 16px;">
-            <!--
-              <div style="font-family: Inter; font-size: 13px; color:rgb(150,150,150)">Search</div>
-            -->
+            
             <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 9px;"></div>
-            <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
+            <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
             
             
           </div>
@@ -108,9 +106,9 @@
   
 </ion-header>
 
-<ion-content style="--padding-top: 4px;  --padding:10px; --background:rgb(246,246,246)">
+<ion-content style="--padding-top: 4px;  --padding:10px; --background:var(--contentbg)">
   <div id="innercontent" style="margin-top:9px">
-    <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+    <div id="sidemenu" style="background: var(--sidemenubg); position: fixed; width:var(--sidemenuwidth); height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
       <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
           <div id="gapicontext" style="color: rgb(120,120,120);">
@@ -166,7 +164,7 @@
           </div>
       </div>
 
-          <div (click)="toStream()" id="currentmenuitem" style="background: white;">
+          <div (click)="toBroadcast()" id="currentmenuitem" style="background: white;">
             <div id="gapicontext" style="">
               <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                 <div style="padding-top: 2px">
@@ -175,7 +173,7 @@
             </div>
           </div>
 
-          <div (click)="toBroadcast()" id="menuitem" style="background: rgb(250,250,250);">
+          <div (click)="toBroadcast()" id="menuitem" style="">
             <div id="gapicontext"  style="color: rgb(120,120,120);">
               <div></div>  
               <div style="padding-top: 2px; font-weight: 500;">
@@ -184,7 +182,7 @@
             </div>
           </div>
 
-          <div (click)="toWatch()" id="menuitem" style="background: rgb(250,250,250);">
+          <div (click)="toWatch()" id="currentmenuitem" style="">
             <div id="gapicontext" style="">
               <div></div>  
               <div style="padding-top: 2px; font-weight: 600;">
@@ -201,15 +199,15 @@
     <div>
       <div style="display: grid; grid-template-columns: 18px 128px auto;">
         <div class="fas fa-record-vinyl" style="font-size: 15px; color:rgba(182, 93, 93,0.7);padding:3px 0 0 6px"></div>
-        <div style="font-family:Inter; font-size:15px; font-weight:600; color:rgb(60,60,60); padding: 0 0 0 12px;margin: 0px 0 10px 0;">Now Watching</div>
-        <div style="font-family:Inter; font-size:13px; font-weight:400; color:rgb(60,60,60); padding: 3px 0 0 12px;margin: 0px 0 10px 0;">ISB40303 Advanced Programming Lecture&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Monday, 4 May 2020</div>
+        <div style="font-size:15px; font-weight:600; color:rgb(60,60,60); padding: 0 0 0 12px;margin: 0px 0 10px 0;">Now Watching</div>
+        <div style="font-size:13px; font-weight:400; color:rgb(60,60,60); padding: 3px 0 0 12px;margin: 0px 0 10px 0;">ISB40303 Advanced Programming Lecture&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Monday, 4 May 2020</div>
       </div>
       
       <div style="display:grid; grid-template-columns: 70% 30%;background: white; border-radius: 6px; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.08);">
       
         <div style="position: relative;">
           <div style="position: absolute; right:0; top:0; z-index: 9999; padding: 8px 8px 0 0">
-            <div style="text-align: center; background: rgba(250,2,83,0.8); border-radius: 2px; padding-top: 2px; color:rgba(250,250,250,0.98); width:30px; height:16px; font-family: Inter; font-size: 9px; font-weight: 600;">LIVE</div>
+            <div style="text-align: center; background: rgba(250,2,83,0.8); border-radius: 2px; padding-top: 2px; color:rgba(250,250,250,0.98); width:30px; height:16px; font-size: 9px; font-weight: 600;">LIVE</div>
           </div>
 
           <video #video class="video" playsinline autoplay muted>

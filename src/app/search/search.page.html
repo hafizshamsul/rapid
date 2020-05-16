@@ -15,7 +15,7 @@
       <div>
         <div id="headertitle" style="padding: 7px 0 0 26px">
           <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">WEdushare</ion-title>
+          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-weight: 800px; font-size: 18px;">WEdushare</ion-title>
         </div>
         
       </div>
@@ -35,7 +35,7 @@
         <div style="background: rgb(246,246,246); border-radius: 3px; width:284px; height:100%; display:block; margin:0 auto; display:block">
           <div style="display: grid; grid-template-columns: 20px auto; padding: 7px 0 0 16px">
             <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 2px;"></div>
-            <div style="font-family: Inter; font-size: 13px; color:rgb(150,150,150)">Search</div>
+            <div style="font-size: 13px; color:rgb(150,150,150)">Search</div>
           </div>
           
         </div>
@@ -172,7 +172,7 @@
       
     <div></div>
     <div>
-      <div style="display: grid; grid-template-columns: auto 160px; margin: 6px 0 15px 14px; font-family: 'Inter var', sans-serif; font-size: 10.5px; font-weight: 700; color:rgb(150,150,150)">
+      <div style="display: grid; grid-template-columns: auto 160px; margin: 6px 0 15px 14px; font-size: 10.5px; font-weight: 700; color:rgb(150,150,150)">
         <div style="font-size: 14px; margin-left: 2px;">
           <div class="fas fa-search" style="margin-right:10px; float:left;"></div>
           <div style="font-size: 11px;">Results for "{{r_searchedtext}}"</div>
@@ -212,7 +212,7 @@
         <ng-template #recursiveList let-listoso>
           <div *ngFor="let item of listoso">
             <div id="listitem2" style="padding:10px 20px;  display:block; margin-left: auto; border-bottom:1px solid rgb(236,236,236);" (click)="toThread(item.commentid)">
-              <ion-label style="font-family: 'Inter var', sans-serif;">
+              <ion-label style="">
                 <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
                   {{item.username}}
                 </div>
@@ -239,7 +239,7 @@
                   <!--
                     title color:hsl(24,24%,11%)
                   -->
-                <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 14.5px; letter-spacing: -0.011em; color:rgb(60,60,60); padding:0; font-weight: 600">
+                <p style="margin-bottom: 4px; font-size: 14.5px; letter-spacing: -0.011em; color:rgb(60,60,60); padding:0; font-weight: 600">
                   {{item.title}}
                 </p>
                 <p class="block-with-text" style="color:rgb(120,120,120); margin-bottom:7px; padding:0;">

@@ -1,21 +1,4 @@
-<!--
-  <ion-content>
-  <p>lollololololololololololololololololololololol</p>
-  </ion-content>
-  <ion-menu side="start" menuId="first">
-    <ion-content>
-      <ion-list>
-        <ion-item id="haha">haha</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-      
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet main></ion-router-outlet>
--->
+
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -252,23 +235,23 @@
     -->
 
     <ion-header no-border>
-      <ion-toolbar id="toolbarborder">
+      <ion-toolbar id="toolbarborder" style="--background: var(--toolbarbg); --min-height:var(--toolbarheight)">
         <div id="searchnav" style="display: grid;">
           
           <div>
-            <div id="headertitle" style="padding: 7px 0 0 26px">
-              <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-              <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+            <div id="headertitle" style="padding: 7px 0 0 26px; color:var(--logocolor)">
+              <div class="fas fa-book" style="font-size: 16px; padding-top: 3px;"></div>
+              <ion-title class="ion-text-left" style="font-weight: 800px; font-size: 18px;">Edushare</ion-title>
             </div>
             
           </div>
     
           <div>
-            <div style="background: rgb(246,246,246); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
+            <div style="background:  var(--searchbg); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
               <div style="display: grid; grid-template-columns: 26px auto; padding: 0px 0 0 16px;">
     
                 <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 9px;"></div>
-                <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
+                <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
                 
                 
               </div>
@@ -316,19 +299,10 @@
       
     </ion-header>
 
-<!--
-  <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
-      <a (click)="cancel()">Cancel</a>
-      <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
-      <img [src]="image" style="height: 60px; width: 60px;">
-    </ion-content>
--->
-    
-
 
     
 
-    <ion-content style="--background:rgb(246,246,246);--padding-top: 4px; --padding:10px">
+    <ion-content style="--background:var(--contentbg);--padding-top: 4px; --padding:10px">
 
 
     
@@ -343,7 +317,7 @@
     </ion-fab>
     -->
       <div id="innercontent" style="margin-top: 9px;">
-        <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+        <div id="sidemenu" style="background: var(--sidemenubg); position: fixed; width:var(--sidemenuwidth); height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
               <div id="gapicontext" style="color: rgb(120,120,120);">
@@ -473,7 +447,7 @@
                 </div>
               -->
               
-              <div style="display: grid; grid-template-columns: 140px auto 100px 100px; font-family: Inter;">
+              <div style="display: grid; grid-template-columns: 140px auto 100px 100px">
                 <div style="font-size: 13px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 10px 18px">
                   Bookmarks
                 </div>
@@ -482,46 +456,19 @@
 
 
                 <div>
-                  <!--
-                    <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
-                  <label for="file" for="file">NEW FILE</label>
-                  -->
                   
                 </div>
 
                 <div>
-                  <!--
-                    <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
-                  NEW FOLDER
-                </div>
-                  -->
+                 
                 </div>
                 
 
               </div>
 
-              <!--
-                <div style="display: grid; grid-template-columns: 220px auto; width: 100%; height:46px">
-                <div>
-                  <div *ngIf="isSelected == true">
-                    <ion-button color="primary" (click)="uploadFile()" style="float: left; padding-left: 10px;">Upload</ion-button>
-                  </div>
-                </div>
-              </div>
-              -->
-              
-              
-              
-              
-              <!--
-                <img [src]="image" style="height: 60px; width: 60px;">
-              -->
-              
-
-              
 
               <div style="background: white; border-radius: 5px 5px 0 0; border:1px solid rgb(240,240,240)">
-                <div style="font-family:Inter; margin:0px auto; display:block;">
+                <div style="margin:0px auto; display:block;">
                   <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns: auto 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
         
                     <div style="color:rgb(60,60,60);font-weight:500; font-size: 11.2px;padding-left: 5px;clear:both;">
@@ -534,7 +481,7 @@
                 </div>
 
 
-                <div id="listgrandparent" *ngFor="let item of listosobookmark" style="font-family:Inter; margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
+                <div id="listgrandparent" *ngFor="let item of listosobookmark" style="margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
     
                   <div (click)="showFolder(item.folderfile_id, item.folderfile_icon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
                     <div style="display: grid; align-items: center; text-align: center;">
@@ -553,49 +500,6 @@
 
                 </div>
 
-                <!--
-                  <ng-template #recursiveList let-listoso>
-                  <div *ngFor="let item of listoso">
-                    <div *ngIf="item.folder_id==r_folderid">
-                      
-                      <div id="listgrandparent" style="font-family:Inter; margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
-      
-                        <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
-                          <div style="display: grid; align-items: center; text-align: center;">
-                            <div *ngIf="item.folderfileicon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
-                            <img *ngIf="item.folderfileicon != 'folder'" src="assets/svg/svg_icons/pdf_color.svg" style="height: 17px; display:block; margin:0 auto" />
-                          </div>
-      
-                          <div style="color:rgb(60,60,60);font-weight:400; font-size: 12.4px;padding-left: 10px;clear:both;">
-                            {{item.folderfilename}}
-                          </div>
-      
-                          <div (click)="showid(item.folderfileid, item.folderfilename)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
-                            <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px;"></div>
-                          </div>
-                        </div>
-      
-                      </div>
-                      
-
-                    </div>
-                    
-                      <div *ngIf="item.children.length > 0">
-                        <div *ngIf="item.folder_id != 2" style="width: 100%; display:block; margin-left: auto;">
-                          
-                          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-                        </div>
-                        <div *ngIf="item.folder_id == 2" style="width: 100%; display:block; margin-left: auto;">
-                          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-                        </div>
-      
-                      </div>
-
-                  </div>
-                </ng-template>
-                -->
-                
-
                 <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listoso }"></ng-container>
 
               </div>
@@ -609,99 +513,5 @@
       </div>
       
       
-      
-<!--
-  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-
-  <ion-item>
-    <ion-label>
-      Item 1
-    </ion-label>
-    <ion-reorder slot="start"></ion-reorder>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>
-      Item 2
-    </ion-label>
-    <ion-reorder slot="start"></ion-reorder>
-  </ion-item>
-  <ion-item>
-    <ion-reorder slot="start"></ion-reorder>
-    <ion-label>
-      Item 3
-    </ion-label>
-  </ion-item>
-
-  <ion-item>
-    <ion-reorder slot="start"></ion-reorder>
-    <ion-label>
-      Item 4
-    </ion-label>
-  </ion-item>
-</ion-reorder-group>
--->
-
-  
-
-
-
-
     </ion-content>
 
-
- 
-
-<!--
-  <ion-header>
-  <ion-toolbar>
-    <ion-title text-center>Stations</ion-title>
-    <ion-buttons slot="primary" (click)="addCustomer()">
-      <ion-button color="tertiary">
-        <ion-icon text-center name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-round-down"
-      pullingText=""
-      refreshingSpinner="circles"
-      refreshingText="">
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-list>
-    <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
-      <ion-item>
-        <ion-label>{{customer.name_customer}}</ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
-      
-        <ion-item-option color="danger" (click)="delCustomer(customer.customer_id)">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="Home" (click)="toHome()">
-        <ion-icon name="home"></ion-icon>
-      </ion-tab-button>
-      <ion-tab-button tab="contact">
-        <ion-icon name="call"></ion-icon>
-      </ion-tab-button>
-      <ion-tab-button tab="settings">
-        <ion-icon name="settings"></ion-icon>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-content>
--->

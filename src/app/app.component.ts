@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from "../providers/global.service";
 import { CurrentNavService } from "../providers/currentnav.service";
+import { Config } from '@ionic/angular';
 
 import { Platform,
 //  AlertController
@@ -24,6 +25,7 @@ export class AppComponent {
     public global: GlobalService,
     public currentnav: CurrentNavService,
     private platform: Platform,
+    private config: Config,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
@@ -61,6 +63,11 @@ export class AppComponent {
 
 
   ngOnInit(){
+    if(this.platform.is("desktop")) {
+      //this.config.set('navAnimation', null);
+      this.config.set('animated', false);
+    }
+    
     //console.log(this.viewCtrl.instance);
     //this.navCtrl.
     //this.currentpage = this.currentnav.currentpage;
