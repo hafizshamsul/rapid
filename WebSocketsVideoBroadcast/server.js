@@ -15,11 +15,13 @@ io.sockets.on("error", e => console.log(e));
 
 //Connecting to server
 io.sockets.on("connection", socket => {
+  
   //Initialise Broadcaster connection
   socket.on("broadcaster", () => {
     broadcaster = socket.id;
     socket.broadcast.emit("broadcaster");
   });
+
   //Initialise Watcher connection
   socket.on("watcher", () => {
     socket.to(broadcaster).emit("watcher", socket.id);
@@ -30,15 +32,15 @@ io.sockets.on("connection", socket => {
     socket.to(id).emit("offer", socket.id, message);
   });
   
+  //Candidate
   socket.on("candidate", (id, message) => {
     socket.to(id).emit("candidate", socket.id, message);
   });
 
+  //Answer
   socket.on("answer", (id, message) => {
     socket.to(id).emit("answer", socket.id, message);
   });
-
-  
 
   //Disconecting from server
   socket.on("disconnect", () => {
