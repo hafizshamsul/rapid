@@ -39,9 +39,14 @@ export class WatchPage implements OnInit {
 
   ngOnInit() {
     this.watch();
+    console.log('ngoninit watch');
+    
   }
 
   watch(){
+    const socket = this.io.connect();
+    const video = document.querySelector("video");
+    
     let peerConnection;
     const config = {
       iceServers: [
@@ -52,52 +57,73 @@ export class WatchPage implements OnInit {
       ]
     };
 
-    const socket = this.io.connect();
-    const video = document.querySelector("video");
-
+    //offer
     socket.on("offer", (id, description) => {
       peerConnection = new RTCPeerConnection(config);
-      peerConnection
-        .setRemoteDescription(description)
-        .then(() => peerConnection.createAnswer())
-        .then(sdp => peerConnection.setLocalDescription(sdp))
-        .then(() => {
-          socket.emit("answer", id, peerConnection.localDescription);
-        })
-        //.then(this.successCallback, this.failureCallback)
+      
+      try{
+        peerConnection
+          .setRemoteDescription(description)
+          .then(() => peerConnection.createAnswer())
+          .then(sdp => peerConnection.setLocalDescription(sdp))
+          .then(() => {
+            socket.emit("answer", id, peerConnection.localDescription);
+          })
+          //.then(this.successCallback, this.failureCallback)
+          .catch(e => console.error(e));
         ;
+      }
+      catch(e){
+        console.log(e);
+      }
+      
 
       peerConnection.ontrack = event => {
         video.srcObject = event.streams[0];
-        console.log(event.streams[0]);
+        console.log(video.srcObject);
+        if(video.srcObject != null){
+          console.log('Video is received');
+        }
+        else{
+          console.log('Video is NOT received');
+        }
       };
+
       peerConnection.onicecandidate = event => {
         if (event.candidate) {
           socket.emit("candidate", id, event.candidate);
+          console.log('on ice');
         }
       };
+
+      peerConnection.oniceconnectionstatechange = function(){
+        console.log('ICE state: ',peerConnection.iceConnectionState);
+      }
     });
 
+    //candidate
     socket.on("candidate", (id, candidate) => {
       peerConnection
         .addIceCandidate(new RTCIceCandidate(candidate))
         .catch(e => console.error(e));
     });
 
+    //connect
     socket.on("connect", () => {
       socket.emit("watcher");
     });
 
+    //broadcaster
     socket.on("broadcaster", () => {
       socket.emit("watcher");
     });
 
-    
-
+    //disconnect peer
     socket.on("disconnectPeer", () => {
       peerConnection.close();
     });
 
+    //close socket
     window.onunload = window.onbeforeunload = () => {
       socket.close();
     };

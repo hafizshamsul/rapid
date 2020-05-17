@@ -31,56 +31,71 @@ export class BroadcastPage implements OnInit {
     private stream: MediaStream;
 
   ngOnInit() {    
-    
+    console.log('ngoninit broadcast');
+    //this.start();
+  }
+
+  ngOnDestroy(){
+    console.log('ngondestroy broadcast');
   }
 
   start(){
+    const socket = this.io.connect();
+    const video = document.querySelector("video");
+    
     const peerConnections = {};
     const config = {
       iceServers: [
         {
-          urls: ["stun:stun.l.google.com:19302"]
-        }
+          urls: ["stun:stun.l.google.com:19302", "turn:13.250.13.83:3478?transport=udp"], "username": "YzYNCouZM1mhqhmseWk6",
+          "credential": "YzYNCouZM1mhqhmseWk6"
+        },
       ]
     };
-
-    const socket = this.io.connect();
-    const video = document.querySelector("video");
-
-    // Media contrains
     const constraints = {
-      video: { facingMode: "user" },
-    // Uncomment to enable audio
-    //   audio: true,
+      video:true,
+      audio:true
+      //video: { facingMode: "user" },// Uncomment to enable audio//   audio: true,
     };
 
     const mediaDevices = navigator.mediaDevices as any;
-
-    mediaDevices
-      .getDisplayMedia(constraints)
-      .then(stream => {
+    mediaDevices.getDisplayMedia(constraints).then(stream => {
         video.srcObject = stream;
         socket.emit("broadcaster");
-      })
-      .catch(error => console.error(error));
-
-    socket.on("answer", (id, description) => {
-      peerConnections[id].setRemoteDescription(description);
-    });
+    }).catch(error => console.error(error));
 
     socket.on("watcher", id => {
       const peerConnection = new RTCPeerConnection(config);
       peerConnections[id] = peerConnection;
 
+      
+
       let stream = video.srcObject;
       (<MediaStream>stream).getTracks().forEach(track => peerConnection.addTrack(track, (<MediaStream>stream)));
 
-      peerConnection
-        .createOffer()
-        .then(sdp => peerConnection.setLocalDescription(sdp))
-        .then(() => {
-          socket.emit("offer", id, peerConnection.localDescription);
-        });
+      var isNegotiating = false;  // Workaround for Chrome: skip nested negotiations
+      peerConnection.onnegotiationneeded = async e =>{
+        if (isNegotiating) {
+          console.log("SKIP nested negotiations");
+          return;
+        }
+        isNegotiating = true;
+        try {
+          peerConnection.createOffer().then(sdp => peerConnection.setLocalDescription(sdp))
+          .then(() => {
+            //SOCKET
+            socket.emit("offer", id, peerConnection.localDescription);
+          })
+          .catch(e => console.error(e));
+        }
+        catch(e){
+          console.log(e);
+        }
+      } 
+
+      peerConnection.onsignalingstatechange = (e) => {  // Workaround for Chrome: skip nested negotiations
+        isNegotiating = (peerConnection.signalingState != "stable");
+      }
 
       peerConnection.onicecandidate = event => {
         if (event.candidate) {
@@ -90,22 +105,26 @@ export class BroadcastPage implements OnInit {
 
     });
 
+    //answer
+    socket.on("answer", (id, description) => {
+      peerConnections[id].setRemoteDescription(description);
+    });
+
+    //candidate
     socket.on("candidate", (id, candidate) => {
       peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
     });
 
+    //disconnect peer
     socket.on("disconnectPeer", id => {
       peerConnections[id] && peerConnections[id].close();
       delete peerConnections[id];
-      console.log(video.srcObject);
     });
 
+    //close socket
     window.onunload = window.onbeforeunload = () => {
       socket.close();
     };
-
-
-    
 
   }
 
