@@ -20,12 +20,13 @@ import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 import { QuillModule } from 'ngx-quill';
 
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { BottomSheetComponent, BottomSheetModule } from "ionic-custom-bottom-sheet";
 
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, HttpModule, HttpClientModule, IonicModule.forRoot(
+  entryComponents: [BottomSheetComponent],
+  imports: [BrowserModule, HttpModule, HttpClientModule, BottomSheetModule, IonicModule.forRoot(
     {animated: true}
     ),
     AppRoutingModule, QuillModule.forRoot(

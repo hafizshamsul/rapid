@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, HostListener } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -10,6 +10,7 @@ import { CurrentNavService } from "../..//providers/currentnav.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
+import { SheetStates } from "ionic-custom-bottom-sheet";
 
 import { Plugins } from '@capacitor/core';
 const { Device } = Plugins;
@@ -42,6 +43,44 @@ export class HomePage{
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       if(sessionStorage.getItem('users-role') == 'Admin'){
         this.router.navigate(['/r/admin_user']);
+      }
+    }
+
+    public BottomSheetState: SheetStates = SheetStates.Closed;
+    
+    public OpenSheet(){
+      if(this.BottomSheetState != SheetStates.Opened){
+        this.BottomSheetState = SheetStates.Opened;
+      }
+      else{
+        this.BottomSheetState = SheetStates.Closed;
+      } 
+      
+    }
+
+    public StateChanged(event){
+      if (event == SheetStates.Closed){
+          console.log("Sheet Closed");
+      }
+    }
+
+
+    btn:any = document.getElementById("myBtn");
+    span:any = document.getElementsByClassName("close")[0];
+    
+    
+    clickbtn(){
+      document.getElementById("myModal").style.display = "grid";
+    }
+
+    clickspan(){
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    @HostListener('window:click', ['$event'])
+    methodToExecuteOnEvent(event){
+      if (event.target == document.getElementById("myModal")) {
+        document.getElementById("myModal").style.display = "none";
       }
     }
 
@@ -214,6 +253,7 @@ listoso:any[];
   ngOnInit() {
     //let usernamest = localStorage.getItem('username');
     //console.log(usernamest);
+    document.getElementById("myModal").style.display = "none";
     
     this.currentnav.currentpage = 'home';
 

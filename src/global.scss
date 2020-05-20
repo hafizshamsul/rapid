@@ -43,17 +43,29 @@ html { font-family: 'Inter', sans-serif; }
 #menuitem{
   font-family: 'Inter';
   font-size: 12px;
-  font-weight: 510;
+  font-weight: 500;
   clear: both;
-  padding: 12px 12px;
-  color: rgb(100,100,100);
+  padding: 10px 12px;
+  margin: 2px 0px;
+  color: rgb(120,120,120);
   cursor: pointer;
   border-radius: 8px;
   margin-right: 8px;
   margin-left: 8px;
+  /*font-family: 'Inter';
+  font-size: 13px;
+  font-weight:300;
+  clear: both;
+  padding: 12px 12px;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-left: 8px;*/
 }
 #menuitem:hover{
   background:rgb(251,251,251);
+  //background:rgb(251,251,251);
 }
 
 #currentmenuitem{
@@ -61,38 +73,63 @@ html { font-family: 'Inter', sans-serif; }
   font-size: 12px;
   font-weight: 600;
   clear: both;
-  padding: 12px 12px;
+  padding: 10px 12px;
+  margin: 2px 0px;
   color: var(--currentmenucolor);
   cursor: pointer;
   //background:#e8f0fe;
-  background: rgb(247,247,247);
+  background: #f4f5f7;
   border-radius: 8px;
   margin-right: 8px;
   margin-left: 8px;
+  /*font-family: 'Inter';
+  font-size: 13px;
+  font-weight: 300;
+  clear: both;
+  padding: 12px 12px;
+  color: rgba(255,255,255,0.95);
+  cursor: pointer;
+  //background:#e8f0fe;
+  background: #161d2e;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-left: 8px;*/
 }
 #currentmenuitem:hover{
   cursor: pointer;
+  //cursor: pointer;
 }
 
 
 :root{
   //main layout
-  //--sidemenubg: #d7dce6;
-  --sidemenubg: #ffffff;
-  //--sidemenubg: #f6fafb;
-  --sidemenuwidth: 230px;
-  //  --currentmenucolor: #4b7fda;
-  --currentmenucolor: rgb(40,40,40);
-  --contentbg: #f7f7f7;
-  //--toolbarbg: #333556;
-  //--toolbarbg: #5c5c8e;
-  --toolbarbg: #ffffff;
-  --toolbarheight: 49px;
+  //--sidemenubg: #d7dce6;//--sidemenubg: #ffffff;//--sidemenubg: #f6fafb;
+  //--currentmenucolor: #4b7fda;
+  //--toolbarbg: #333556;//--toolbarbg: #5c5c8e;
   //--searchbg: rgba(255,255,255,0.2);
-  --searchbg: rgb(244,244,244);
   //--searchph: rgba(255,255,255,0.5);
-  --searchph: rgb(170,170,170);
   //--logocolor: rgba(255,255,255,1);
+
+  //white layout
+  --sidemenubg: #ffffff;
+  --sidemenuwidth: 230px;
+  --currentmenucolor: rgb(40,40,40);
+  //--contentbg: #f7f7f7;
+  --contentbg:#f4f5f7;
+  --toolbarbg: #ffffff;
+  --toolbarheight: 59px;
+  --searchbg: rgb(244,244,244);
+  --searchph: rgb(170,170,170);
   --logocolor: rgb(70,70,70);
   
+  //dark white layout
+  /*--sidemenubg: #252f3f;
+  --sidemenuwidth: 210px;
+  --menucolor: #f1f2f3;
+  --contentbg: #f7f7f7;
+  --toolbarbg: #ffffff;
+  --toolbarheight: 59px;
+  --searchbg: rgb(244,244,244);
+  --searchph: rgb(170,170,170);
+  --logocolor: rgb(70,70,70);*/
 }
