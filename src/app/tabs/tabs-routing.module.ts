@@ -5,7 +5,7 @@ import { TabsPage } from './tabs.page';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/r/home', pathMatch: 'full' },  
+  { path: '', redirectTo: '/r/room', pathMatch: 'full' },  
   {
     path: 'r', component: TabsPage, children: [
       { path: '', redirectTo: '/r/home', pathMatch: 'full' },
@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: 'room',
       children: [
           { path: '', loadChildren: () => import('../room/room.module').then( m => m.RoomPageModule)},
+          { path: ':r_tblroom_id', loadChildren: () => import('../roomname/roomname.module').then( m => m.RoomnamePageModule)},
         ]
       },
       { path: 'roomcreate',

@@ -5,66 +5,44 @@ import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../../providers/global.service";
-import { IonicPage } from 'ionic-angular';
-import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
+
+import { Observable } from 'rxjs';
+
+import * as $ from 'jquery';
+import { LineUtil } from 'leaflet';
 import { stringify } from 'querystring';
 
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+
 @Component({
-  selector: 'app-room',
-  templateUrl: './room.page.html',
-  styleUrls: ['./room.page.scss'],
+  selector: 'app-roomname',
+  templateUrl: './roomname.page.html',
+  styleUrls: ['./roomname.page.scss'],
 })
 
+export class RoomnamePage implements OnInit {
 
 
-export class RoomPage implements OnInit {
-  
+
   r_username: string;
   r_folderid: string;
 
-  current_users: any[];
   users: any[];
   folders: any[];
-  rooms: any[];
   hiks: any = [];
+  rooms: any[];
   customers: any = [];
 
   limit: number = 10;
   start: number = 0;
   lol: String = "25 Jan 2020";
 
-  cardcolors:any = [
-    {
-      "color": "#ed6b52"
-    },
-    {
-      "color": "#7962aa"
-    },
-    {
-      "color": "#e8305f"
-    },
-    {
-      "color": "#8fa3ae"
-    },
-    {
-      "color": "#005b92"
-    },
-    {
-      "color": "#8f51d5"
-    },
-  ]
-
-  
-
-  private _SUFFIX : string;
-  public image : string;
+  private _SUFFIX : string = 'txt'; //database
+  public image : any = 'this.image'; //database
   public isSelected : boolean =	false;
-  
-  current_userid: number;
-  current_username: string;
-  current_passwordhash: string;
-  current_displayname: string;
+  public enter : boolean;
 
   userid: number;
   username: string;
@@ -80,7 +58,7 @@ export class RoomPage implements OnInit {
   name: string;
   decoded: string;
   type: string;
-  icon: string;
+  icon: string = 'doc'; //database
   folderdata_id: number;
   
   active = "room";
@@ -88,16 +66,13 @@ export class RoomPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
+    //private document: DocumentViewer,
+    private previewAnyFile: PreviewAnyFile,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       
-      
     }
-
-    tblroom_id:number;
-    tblroom_name:number;
 
     folderfileid:number;
     folderfilename:string;
@@ -107,43 +82,59 @@ export class RoomPage implements OnInit {
     folder_id:number;
     folderfileusers_id:number;
     dateuploaded:string;
-    visibility:string;
+    originalname:string = 'Untitled.txt';
 
-  ngOnDestroy(){
-    console.log('ngOnDestroy folder');
-  }
+    tblroom_id:number;
+    tblroom_name:string;
+    tblroom_description:string;
 
-  
+    r_tblroom_id:any;
+
+    cardcolors:any = [
+      {
+        "color": "#ed6b52"
+      },
+      {
+        "color": "#7962aa"
+      },
+      {
+        "color": "#e8305f"
+      },
+      {
+        "color": "#8fa3ae"
+      },
+      {
+        "color": "#005b92"
+      },
+      {
+        "color": "#8f51d5"
+      },
+    ]
 
   ngOnInit() {
+    this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
+
     
     
-    console.log(this.comments);
-    
-    console.log('ngOnInit folder');
+    console.log('refresh');
+
 
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
-
+    
     this.actRoute.params.subscribe((data: any) =>{
       this.tblroom_id = data.tblroom_id;
       this.tblroom_name = data.tblroom_name;
+      this.tblroom_description = data.tblroom_description;
     });
-
-    this.actRoute.params.subscribe((data: any) =>{
-      this.current_userid = data.current_id;
-      this.current_username = data.current_username;
-      this.current_passwordhash = data.current_passwordhash;
-      this.current_displayname = data.current_displayname;
-      //console.log(data);
-    });
+    
 
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
       this.passwordhash = data.passwordhash;
       this.displayname = data.displayname;
-      //console.log(data);
+      console.log(data);
     });
     
     this.actRoute.params.subscribe((data: any) =>{
@@ -151,7 +142,7 @@ export class RoomPage implements OnInit {
       this.foldername = data.foldername;
       this.description = data.description;
       this.users_id = data.users_id;
-      //console.log(data);
+      console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -161,8 +152,9 @@ export class RoomPage implements OnInit {
       this.type = data.type;
       this.icon = data.icon;
       this.folderdata_id = data.folderdata_id;
-      //console.log(data);
+      console.log(data);
     });
+
 
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -174,11 +166,13 @@ export class RoomPage implements OnInit {
       this.folder_id = data.folder_id;
       this.folderfileusers_id = data.folderfileusers_id;
       this.dateuploaded = data.dateuploaded;
-      this.visibility = data.visibility;
+      this.originalname  = data.originalname;
       //this.thread = data.thread;
 
       //console.log(data);
     });
+
+    
 
     this.actRoute.params.subscribe((data: any) =>{
       this.deletelist = data;
@@ -187,13 +181,22 @@ export class RoomPage implements OnInit {
       //console.log(data);
     });
 
-  
   }
-
-  deletelist:string;
   
+  deletelist:string;
+
+  
+  tup:string = "lmao";
+
   selectFileToUpload(event) : void {
+    document.getElementById('uploadbutton').style.display = 'block';
+    
+    this.tup = event.target.files[0].name;
+    this.originalname = event.target.files[0].name;
+    //console.log(event.target.files[0].name);
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
+      //console.log(event.target.files[0].name);
+      //console.log(res);
       this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
       if(this._SUFFIX == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
@@ -243,8 +246,11 @@ export class RoomPage implements OnInit {
       }
 
       if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
+          this.image = res;
+          
+        //this.originalname = 'hehhe';
+        
         this.isSelected = true;
-        this.image = res;
       }
       else {
         this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
@@ -256,7 +262,9 @@ export class RoomPage implements OnInit {
     });
   }
  
-   uploadFile() : void {
+  
+
+    uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
     
     if(['ai', 'bmp', 'gif', 'jpeg', 'png', 'psd', 'svg', 'tiff'].includes(this._SUFFIX)){
@@ -277,27 +285,47 @@ export class RoomPage implements OnInit {
     else if(['zip'].includes(this._SUFFIX)){
       this.icon = 'zip';
     }
-  
-    let body: any = {
-      action : "add" ,
-      name : this.name,
-      file : this.image,
-      type : this._SUFFIX,
-      icon : this.icon,
-      rename : "kehkeh.png"
-    };  
-    
-      this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
-        this.displayAlert(res.message);
-        this.isSelected = false;
-      },
-      (error : any) => {
-         console.dir(error);
-         this.displayAlert(error.message);
-      });
-   }
 
-   async presentAlert() {
+    this.originalname = 'hoioi';
+    this.rename = 'ehh';
+    this.rename = this.originalname;
+
+    console.log(this.originalname);
+    console.log(this.rename);
+    console.log(this.name);
+    console.log(this.image);
+    console.log(this._SUFFIX);
+    console.log(this.icon);
+    console.log(this.r_folderid);
+    console.log(sessionStorage.getItem('users-id'));
+
+    let body: any = {
+      action : 'addfolderfile_file',
+      originalname : this.originalname, //namebeforeuploaded
+      rename : this.rename, //displayname
+      name : this.name, //storeduniquename
+      file : this.image, //actual file, not available in iOS*****
+      type : this._SUFFIX, //suffix from actual file, not available in iOS*****
+      icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
+      folder_id : this.r_folderid, //parentfolder
+      users_id : sessionStorage.getItem('users-id')
+    };  
+  
+    this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
+      this.displayAlert(res.message);
+      this.isSelected = false;
+
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
+    },
+    (error : any) => {
+        console.dir(error);
+        this.displayAlert(error.message);
+    });
+  }
+
+  async presentAlert() {
     let alert : any = await this.alertCtrl.create({
     message: 'Low battery',
     subHeader: '10% of battery remaining',
@@ -316,9 +344,12 @@ export class RoomPage implements OnInit {
    }
 
   ionViewWillEnter(){
-    this.current_users = [];
-    this.loadCurrentUser(sessionStorage.getItem('users-username'));
     
+
+    //this.enter = false;
+  }
+
+  ionViewDidEnter(){
     this.users = [];
     this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
@@ -327,18 +358,50 @@ export class RoomPage implements OnInit {
 
     this.hiks = [];
     this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
-    
+
     this.comments = [];
     this.loadFolderFile();
-    
+
     this.rooms = [];
     this.loadRoom();
 
     this.customers = [];
     this.start = 0;
 
-    console.log(this.comments);
+    console.log(this.rooms);
+    console.log(this.jo);
+    
+    //document.getElementById('uploadbutton').style.display = 'none';
+    //this.enter = true;
   }
+
+  jo:any=[
+    {
+      "tblroom_description" : "lol",
+      "tblroom_id": "1",
+      "tblroom_name": "Real-Time and Embedded"
+    },
+    {
+      "tblroom_description" : "lol",
+      "tblroom_id": "2",
+      "tblroom_name": "Real-Time and Embedded"
+    },
+    {
+      "tblroom_description" : "lol",
+      "tblroom_id": "3",
+      "tblroom_name": "Real-Time and Embedded"
+    },
+    {
+      "tblroom_description" : "lol",
+      "tblroom_id": "4",
+      "tblroom_name": "Real-Time and Embedded"
+    },
+    {
+      "tblroom_description" : "lol",
+      "tblroom_id": "5",
+      "tblroom_name": "Real-Time and Embedded"
+    }
+  ];
 
   addCustomer(){
     this.router.navigate(['/addcustomer']);
@@ -356,24 +419,23 @@ export class RoomPage implements OnInit {
     this.router.navigate(['/showcustomer/'+id]);
   }
 
-  showFolder(folderfileid, folderfileicon){
-    //this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
+  
 
-    if(folderfileicon == 'folder'){
-      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
-      
-      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
-      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
-    }
-    
+  
+
+
+
+  toBack(){
+    //this.navCtrl.back( { animated: false, });
+    this.navCtrl.pop();
   }
 
   home(){
     this.router.navigate(['/homepage']);
   }
 
-  folder(){
-    this.router.navigate(['/folder']);
+  file(){
+    this.router.navigate(['/file']);
   }
 
   loginform(){
@@ -426,20 +488,6 @@ export class RoomPage implements OnInit {
     });
   }
 
-  loadRoom(){
-    return new Promise(resolve => {
-      let body = {
-        action : 'getroom'
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        for(let room of data.result){
-          this.rooms.push(room);
-        }
-        resolve(true);
-      });
-    });
-  }
-
   loadFolder(username){
     return new Promise(resolve => {
       let body = {
@@ -460,7 +508,7 @@ export class RoomPage implements OnInit {
       let body = {
         action : 'getfile',
         username : username,
-        folderid : folderid
+        folderid: folderid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let hik of data.result){
@@ -487,20 +535,11 @@ export class RoomPage implements OnInit {
     });
   }
 
-  loadCurrentUser(username){
-    return new Promise(resolve => {
-      let body = {
-        action : 'getcurrentuser',
-        username : username
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        for(let current_user of data.result){
-            this.current_users.push(current_user);
-        }
-        resolve(true);
-      });
-    });
-  }
+
+
+
+
+
 
   comments: any[];
 
@@ -531,7 +570,8 @@ export class RoomPage implements OnInit {
   loadFolderFile(){
     return new Promise(resolve => {
       let body = {
-        action : 'getfolderfile',
+        action : 'getroomfolderfile',
+        r_tblroom_id : this.r_tblroom_id
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
@@ -544,26 +584,7 @@ export class RoomPage implements OnInit {
     });
   }
 
-  login(){
-    //local-based authentication
-    sessionStorage.setItem('users-id', 'null');
-    sessionStorage.setItem('users-username', 'null');
-    sessionStorage.setItem('users-passwordhash', 'null');
-    sessionStorage.setItem('users-displayname', 'null');
-    sessionStorage.setItem('users-role', 'null');
-    sessionStorage.setItem('users-dateregistered', 'null');
-    sessionStorage.setItem('users-status', 'null');
 
-    console.log(sessionStorage.getItem('users-id'));
-    console.log(sessionStorage.getItem('users-username'));
-    console.log(sessionStorage.getItem('users-passwordhash'));
-    console.log(sessionStorage.getItem('users-displayname'));
-    console.log(sessionStorage.getItem('users-role'));
-    console.log(sessionStorage.getItem('users-dateregistered'));
-    console.log(sessionStorage.getItem('users-status'));
-
-    this.router.navigate(['/loginform']);
-  }
 
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
@@ -614,15 +635,18 @@ export class RoomPage implements OnInit {
   }
 
 
+  
+
+
   //HTML ID
-  @ViewChild('naming', {static: false}) naming;
   @ViewChild('rename', {static: false}) rename;
 
   //LOGIC VARIABLE
   popup:boolean = false;
   UDpopup:boolean = false;
   CDpopup:boolean = false;
-  CRpopup:boolean = false;
+  PDFpopup:boolean = false;
+  PDFpopupnative:boolean = false;
 
   //VARIABLE PASSED TO POPUP
   selectedid:number;
@@ -631,17 +655,11 @@ export class RoomPage implements OnInit {
   showid(folderfileid, folderfilename){
     this.selectedid = folderfileid;
     this.selectedname = folderfilename;
-    console.log(this.selectedname);
     this.UDopenpopup();
   }
 
   showdeleteid(){
     this.CDopenpopup();
-  }
-
-  showrenameid(){
-    this.CRopenpopup();
-    this.popuprename = this.selectedname;
   }
 
   //OPEN POPUP
@@ -651,7 +669,7 @@ export class RoomPage implements OnInit {
     this.popup = true;
     console.log(this.popup);
     setTimeout(()=>{
-      this.naming.setFocus();
+      this.rename.setFocus();
     },150);
   }
 
@@ -665,21 +683,8 @@ export class RoomPage implements OnInit {
   CDopenpopup(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
-    //this.UDpopup = false;
     this.CDpopup = true;
-    console.log(this.CDpopup);
-  }
-
-  CRopenpopup(){
-    event.cancelBubble = true;
-    if(event.stopPropagation) event.stopPropagation();
-    //this.UDpopup = false;
-    //this.popuprename = this.selectedname;
-    console.log(this.CRpopup);
-    this.CRpopup = true;
-    setTimeout(()=>{
-      this.rename.setFocus();
-    },150);
+    console.log('CDpopup: '+this.CDpopup);
   }
 
   //CLOSE POPUP
@@ -699,12 +704,10 @@ export class RoomPage implements OnInit {
     console.log(this.CDpopup);
   }
 
-  CRclosepopupbg(){
-    //this.CRpopup = false;
-    //this.UDpopup = false;
-    console.log(this.CRpopup);
+  PDFclosepopupbg(){
+    this.PDFpopup = false;
+    console.log(this.popup);
   }
-
 
   //CLOSE POPUP BUTTON
   closepopupbtn(){
@@ -713,7 +716,7 @@ export class RoomPage implements OnInit {
     this.popup = false;
     console.log(this.popup);
   }
-
+  
   UDclosepopupbtn(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
@@ -725,17 +728,6 @@ export class RoomPage implements OnInit {
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
     this.CDpopup = false;
-    this.UDpopup = false;
-    console.log(this.UDpopup);
-  }
-
-  CRclosepopupbtn(){
-    event.cancelBubble = true;
-    if(event.stopPropagation) event.stopPropagation();
-
-    this.popuprename = this.selectedname;
-
-    this.CRpopup = false;
     this.UDpopup = false;
     console.log(this.UDpopup);
   }
@@ -757,69 +749,47 @@ export class RoomPage implements OnInit {
     this.UDpopup = false;
   }
 
-  //ACTION FOR RENAMING FOLDER
-  popuprename:string = 'Untitled';
-  
-  rename_method(){
-    event.cancelBubble = true;
-    if(event.stopPropagation) event.stopPropagation();
-    
-
-    console.log('id: '+this.selectedid+', name: '+this.selectedname);
-
-    this.rename_impl(this.selectedid, this.popuprename);
-
-    setTimeout(()=>{
-      this.ionViewWillEnter();
-    }, 240);
-
-    this.CRpopup = false;
-    this.UDpopup = false;
-
-    this.popuprename = 'Untitled';
-  }
-
   //ACTION FOR DELETING FOLDER
   delete(){
-    event.cancelBubble = true;
-    if(event.stopPropagation) event.stopPropagation();
-    
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
     
     this.counting(this.selectedid);
 
     setTimeout(()=>{
-      this.ionViewWillEnter();
+      this.ionViewDidEnter();
     }, 240);
 
     this.CDpopup = false;
     this.UDpopup = false;
+
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
   }
 
   //ACTION FOR ADDING FOLDER
-  popupnaming:string = 'Untitled';
-  
+  popuprename:string = 'Untitled';
+  currparent:string = '12';
+
   addetc(){
-    event.cancelBubble = true;
-    if(event.stopPropagation) event.stopPropagation();
-    
-    this.addfolderfile_folder(this.popupnaming);
+  this.currparent  = this.r_folderid;
+  this.addfolderfile_subfolder(this.popuprename, this.currparent);
     
     setTimeout(()=>{
-      this.ionViewWillEnter();
+      this.ionViewDidEnter();
     }, 240);
     
     this.popup = false;
 
-    this.popupnaming = 'Untitled';
+    this.popuprename = 'Untitled';
+    this.currparent = '0';
   }
 
-  //ADD FOLDER IMPLEMENTATION
-  addfolderfile_folder(name){
+  addfolderfile_subfolder(name, parent){
     return new Promise(resolve => {
       let body = {
-        action : 'addfolderfile_folder',
-        name : name
+        action : 'addfolderfile_subfolder',
+        name : name,
+        parent : parent
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         resolve(true);
@@ -827,7 +797,6 @@ export class RoomPage implements OnInit {
     });
   }
 
-  //DELETE FOLDER IMPLEMENTATION
   counting(folderfileid){
     return new Promise(resolve => {
       let body = {
@@ -845,19 +814,6 @@ export class RoomPage implements OnInit {
     this.counting(folderfileid);
   }
 
-  rename_impl(folderfile_id, rename){
-    return new Promise(resolve => {
-      let body = {
-        action : 'renamefolderfile',
-        folderfile_id : folderfile_id,
-        rename : rename
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        resolve(true);
-      });
-    });
-  }
-
   //ADD TO BOOKMARK IMPLEMENTATION
   addtobookmark_impl(folderfile_id, users_id){
     return new Promise(resolve => {
@@ -872,12 +828,69 @@ export class RoomPage implements OnInit {
     });
   }
 
-  toRoomcreate(){
-    this.navCtrl.navigateRoot(['r/roomcreate/']);
+  //enter:boolean = true;
+
+  selectit(){
+    this.isSelected = true;
   }
 
-  toRoomname(tblroom_id){
-    //this.navCtrl.navigateRoot(['r/room/'+tblroom_id+'/']);
-    this.router.navigate(['r/room/'+tblroom_id+'/']);
+  selectedfilename:string;
+  src:any;
+  srcnative:string;
+
+  showFolder(folderfileid, folderfileicon, filename){
+    //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
+    if(folderfileicon == 'folder'){
+      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+      //this.navCtrl.navigateRoot(['r/'+this.r_username +'/'+folderfileid+'/']);
+      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
+    }
+    else{
+      this.selectedfilename = filename;
+      this.src = "http://192.168.0.137/rapidkl/rapid/web/viewer.html?file=/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+      this.srcnative = "http://192.168.0.137/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+
+      if (matchMedia('only screen and (max-width: 576px)').matches) {
+        this.PDFpopupnative = true;
+        console.log(this.selectedfilename);
+        this.previewAnyFile.preview(this.srcnative)
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
+        }
+      else{
+        this.PDFpopup = true;
+      }
+      
+      
+    }
+    
   }
+
+
+
+  target:string = "eh";
+
+
+
+  tar(event: any){
+    this.target = event.target.value;
+    console.log(event.target.value);
+  }
+
+
+  loadRoom(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getroom'
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let room of data.result){
+          this.rooms.push(room);
+        }
+        resolve(true);
+      });
+    });
+  }
+
 }
