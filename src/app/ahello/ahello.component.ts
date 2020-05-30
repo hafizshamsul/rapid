@@ -21,19 +21,19 @@ export class AhelloComponent implements OnInit {
   items:any = [
     {
       "name": "home",
-      "label": "Home",
+      "label": "Discussions",
       "icon": "bx bx-home-circle",
       "link": "toHome()"
     },
     {
       "name": "submitpost",
-      "label": "Uploads",
+      "label": "Add Discussion",
       "icon": "bx bx-upload",
       "link": "toSubmitpostS()"
     },
     {
       "name": "folder",
-      "label": "Folders",
+      "label": "Documents",
       "icon": "bx bx-folder",
       "link": "toSubmitpostS()"
     },

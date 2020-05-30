@@ -616,6 +616,7 @@
         $data = json_encode($reversed);
 
         for($i=0; $i<count($reversed); $i++){
+            $querydeletefk = mysqli_query($mysqli, "DELETE FROM bookmark WHERE folderfile_id = $reversed[$i]");
             $querydelete = mysqli_query($mysqli, "DELETE FROM folderfile WHERE id = $reversed[$i]");
         }
 
