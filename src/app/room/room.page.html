@@ -275,7 +275,7 @@
 
               <div id="roomlist" style="margin: 0 0 14px 0">
                 <div *ngFor="let room of rooms; let i = index" style="">
-                  <ion-card>
+                  <ion-card (click)="toRoomname(room.tblroom_id)" style="cursor: pointer;">
                     <div [ngStyle]="{'background': cardcolors[i].color}"style="display: block; overflow:auto">
                       <ion-card-header>
                         <ion-card-title style="font-size: 15px;color:white">{{room.tblroom_name}}</ion-card-title>
