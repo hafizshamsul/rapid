@@ -31,7 +31,11 @@ const routes: Routes = [
           { path: '', loadChildren: () => import('../room/room.module').then( m => m.RoomPageModule)},
         ]
       },
-
+      { path: 'roomcreate',
+      children: [
+          { path: '', loadChildren: () => import('../roomcreate/roomcreate.module').then( m => m.RoomcreatePageModule)},
+        ]
+      },
       { 
         path: 'submitpost',
         children: [

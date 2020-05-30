@@ -11,14 +11,14 @@ import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
 @Component({
-  selector: 'app-room',
-  templateUrl: './room.page.html',
-  styleUrls: ['./room.page.scss'],
+  selector: 'app-roomcreate',
+  templateUrl: './roomcreate.page.html',
+  styleUrls: ['./roomcreate.page.scss'],
 })
 
 
 
-export class RoomPage implements OnInit {
+export class RoomcreatePage implements OnInit {
   
   r_username: string;
   r_folderid: string;
@@ -97,7 +97,8 @@ export class RoomPage implements OnInit {
     }
 
     tblroom_id:number;
-    tblroom_name:number;
+    tblroom_name:string;
+    tblroom_description:string;
 
     folderfileid:number;
     folderfilename:string;
@@ -124,6 +125,7 @@ export class RoomPage implements OnInit {
     this.actRoute.params.subscribe((data: any) =>{
       this.tblroom_id = data.tblroom_id;
       this.tblroom_name = data.tblroom_name;
+      this.tblroom_description = data.tblroom_description;
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -433,6 +435,22 @@ export class RoomPage implements OnInit {
         }
         resolve(true);
       });
+    });
+  }
+
+  addRoom(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addroom',
+        tblroom_name : this.tblroom_name,
+        tblroom_description : this.tblroom_description
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+      this.tblroom_name ='';
+      this.tblroom_description ='';
+      this.navCtrl.navigateRoot(['r/room/']);
     });
   }
 
@@ -868,8 +886,6 @@ export class RoomPage implements OnInit {
     });
   }
 
-  toRoomcreate(){
-    this.navCtrl.navigateRoot(['r/roomcreate/']);
-  }
+  
 
 }
