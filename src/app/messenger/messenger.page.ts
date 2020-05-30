@@ -12,6 +12,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MessengerPage implements OnInit {
 
+  active = "messenger";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     private socket: Socket,
     public navCtrl: NavController,

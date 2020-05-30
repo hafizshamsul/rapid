@@ -64,6 +64,8 @@ const routes: Routes = [
     path: 'collabeditor',
     loadChildren: () => import('./collabeditor/collabeditor.module').then( m => m.CollabeditorPageModule)
   },
+  
+
 
 
 

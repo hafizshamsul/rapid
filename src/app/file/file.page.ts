@@ -60,6 +60,9 @@ export class FilePage implements OnInit {
   icon: string = 'doc'; //database
   folderdata_id: number;
   
+  active = "folder";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public global: GlobalService, 

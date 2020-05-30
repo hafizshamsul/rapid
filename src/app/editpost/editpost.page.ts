@@ -20,6 +20,8 @@ import { NavController } from '@ionic/angular';
 export class EditpostPage implements OnInit {
   //state$: Observable<object>;
   
+  active = "home";
+  session = sessionStorage.getItem('users-username');
 
   constructor(
     public navCtrl: NavController,

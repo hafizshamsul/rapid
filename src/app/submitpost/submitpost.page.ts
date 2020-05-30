@@ -15,6 +15,9 @@ import { NavController } from '@ionic/angular';
 })
 export class SubmitpostPage implements OnInit {
 
+  active = "submitpost";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public global: GlobalService,

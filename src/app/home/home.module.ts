@@ -16,6 +16,7 @@ import { BottomSheetModule } from "ionic-custom-bottom-sheet";
     IonicModule,
     SharedModule,
     BottomSheetModule,
+    
     RouterModule.forChild([
       {
         path: '',
@@ -23,6 +24,6 @@ import { BottomSheetModule } from "ionic-custom-bottom-sheet";
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
 })
 export class HomePageModule {}
