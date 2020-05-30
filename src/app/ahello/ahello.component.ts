@@ -20,16 +20,16 @@ export class AhelloComponent implements OnInit {
 
   items:any = [
     {
-      "name": "home",
-      "label": "Discussions",
+      "name": "room",
+      "label": "Rooms",
       "icon": "bx bx-home-circle",
       "link": "toHome()"
     },
     {
-      "name": "submitpost",
-      "label": "Add Discussion",
-      "icon": "bx bx-upload",
-      "link": "toSubmitpostS()"
+      "name": "home",
+      "label": "Discussions",
+      "icon": "bx bx-message-square-dots",
+      "link": "toHome()"
     },
     {
       "name": "folder",
@@ -45,14 +45,20 @@ export class AhelloComponent implements OnInit {
     },
     {
       "name": "activity",
-      "label": "Tasks",
+      "label": "Projects",
       "icon": "bx bx-list-plus",
       "link": "toSubmitpostS()"
     },
     {
       "name": "messenger",
-      "label": "Messenger",
-      "icon": "bx bx-message-square-dots",
+      "label": "Messages",
+      "icon": "bx bx-envelope",
+      "link": "toSubmitpostS()"
+    },
+    {
+      "name": "submitpost",
+      "label": "Add Discussion",
+      "icon": "bx bx-add-to-queue",
       "link": "toSubmitpostS()"
     },
     {
@@ -71,7 +77,10 @@ export class AhelloComponent implements OnInit {
   }
 
   link(name, currsession){
-    if(name=='home'){
+    if(name=='room'){
+      this.navCtrl.navigateRoot(['r/room/']);
+    }
+    else if(name=='home'){
       this.navCtrl.navigateRoot(['r/home/']);
     }
     else if(name=='submitpost'){

@@ -111,6 +111,21 @@ html { font-family: 'Inter', sans-serif; }
   }
 }
 
+#roomlist{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+
+  @media (max-width: 576px) {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+}
+
 :root{
   //main layout
   //--sidemenubg: #d7dce6;//--sidemenubg: #ffffff;//--sidemenubg: #f6fafb;
