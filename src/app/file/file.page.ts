@@ -67,9 +67,11 @@ export class FilePage implements OnInit {
     public navCtrl: NavController,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
-    private document: DocumentViewer,
+    //private document: DocumentViewer,
     private previewAnyFile: PreviewAnyFile,
-    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
+      
+    }
 
     folderfileid:number;
     folderfilename:string;
@@ -82,9 +84,14 @@ export class FilePage implements OnInit {
     originalname:string = 'Untitled.txt';
 
   ngOnInit() {
+    console.log('refresh');
+
+
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
     
+    
+
     this.actRoute.params.subscribe((data: any) =>{
       this.userid = data.id;
       this.username = data.username;
@@ -145,6 +152,8 @@ export class FilePage implements OnInit {
   tup:string = "lmao";
 
   selectFileToUpload(event) : void {
+    document.getElementById('uploadbutton').style.display = 'block';
+    
     this.tup = event.target.files[0].name;
     this.originalname = event.target.files[0].name;
     //console.log(event.target.files[0].name);
@@ -240,7 +249,18 @@ export class FilePage implements OnInit {
       this.icon = 'zip';
     }
 
+    this.originalname = 'hoioi';
+    this.rename = 'ehh';
     this.rename = this.originalname;
+
+    console.log(this.originalname);
+    console.log(this.rename);
+    console.log(this.name);
+    console.log(this.image);
+    console.log(this._SUFFIX);
+    console.log(this.icon);
+    console.log(this.r_folderid);
+    console.log(sessionStorage.getItem('users-id'));
 
     let body: any = {
       action : 'addfolderfile_file',
@@ -308,6 +328,7 @@ export class FilePage implements OnInit {
     this.customers = [];
     this.start = 0;
     
+    //document.getElementById('uploadbutton').style.display = 'none';
     //this.enter = true;
   }
 
@@ -750,7 +771,7 @@ export class FilePage implements OnInit {
     if(folderfileicon == 'folder'){
       //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
       //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
-
+      //this.navCtrl.navigateRoot(['r/'+this.r_username +'/'+folderfileid+'/']);
       this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
     }
     else{
