@@ -21,11 +21,15 @@ import { QuillModule } from 'ngx-quill';
 
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { BottomSheetComponent, BottomSheetModule } from "ionic-custom-bottom-sheet";
-
+import 'bulma/css/bulma.css';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [BottomSheetComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   imports: [BrowserModule, HttpModule, HttpClientModule, BottomSheetModule, IonicModule.forRoot(
     {animated: true}
     ),

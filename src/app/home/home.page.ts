@@ -10,7 +10,6 @@ import { CurrentNavService } from "../..//providers/currentnav.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
-import { SheetStates } from "ionic-custom-bottom-sheet";
 
 import { Plugins } from '@capacitor/core';
 const { Device } = Plugins;
@@ -19,6 +18,7 @@ import { KeyboardInfo } from '@capacitor/core';
 const { Keyboard } = Plugins;
 
 declare var $: any;
+import { AhelloComponent } from '../ahello/ahello.component';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +33,9 @@ export class HomePage{
     return value.replace(/<.*?>/g, ''); // replace tags
 }
 
+  active = "home";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public route: AppRoutingModule,
@@ -44,45 +47,10 @@ export class HomePage{
       if(sessionStorage.getItem('users-role') == 'Admin'){
         this.router.navigate(['/r/admin_user']);
       }
-    }
-
-    public BottomSheetState: SheetStates = SheetStates.Closed;
-    
-    public OpenSheet(){
-      if(this.BottomSheetState != SheetStates.Opened){
-        this.BottomSheetState = SheetStates.Opened;
-      }
-      else{
-        this.BottomSheetState = SheetStates.Closed;
-      } 
-      
-    }
-
-    public StateChanged(event){
-      if (event == SheetStates.Closed){
-          console.log("Sheet Closed");
-      }
+      console.log(sessionStorage.getItem('users-username'));
     }
 
 
-    btn:any = document.getElementById("myBtn");
-    span:any = document.getElementsByClassName("close")[0];
-    
-    
-    clickbtn(){
-      document.getElementById("myModal").style.display = "grid";
-    }
-
-    clickspan(){
-      document.getElementById("myModal").style.display = "none";
-    }
-
-    @HostListener('window:click', ['$event'])
-    methodToExecuteOnEvent(event){
-      if (event.target == document.getElementById("myModal")) {
-        document.getElementById("myModal").style.display = "none";
-      }
-    }
 
 
     //tagifyclone
@@ -253,7 +221,6 @@ listoso:any[];
   ngOnInit() {
     //let usernamest = localStorage.getItem('username');
     //console.log(usernamest);
-    document.getElementById("myModal").style.display = "none";
     
     this.currentnav.currentpage = 'home';
 

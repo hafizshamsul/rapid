@@ -23,6 +23,9 @@ export class ThreadPage {
   r_thread: string;
   coba:string = "<pre class='highlightSpan'>test</pre>";
 
+  active = "home";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     private ref: ChangeDetectorRef,
     public navCtrl: NavController,

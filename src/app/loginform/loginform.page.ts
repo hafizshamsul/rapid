@@ -13,6 +13,8 @@ export class LoginformPage implements OnInit {
 
   constructor(public global: GlobalService, private postprovider: PostProvider, private router: Router, private actRoute: ActivatedRoute) { }
 
+  public sessionStorage = sessionStorage;
+
   users:any[];
   id:number;
   username:string;

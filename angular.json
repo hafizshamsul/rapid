@@ -46,6 +46,9 @@
               },
               {
                 "input": "./node_modules/@yaireo/tagify/dist/tagify.css"
+              },
+              {
+                "input": "node_modules/bulma/css/bulma.css"
               }
             ],
             "scripts": [

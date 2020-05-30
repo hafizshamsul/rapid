@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { SharedModule } from '../SharedModule';
 import { IonicModule } from '@ionic/angular';
 
 import { EditpostPageRoutingModule } from './editpost-routing.module';
@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    SharedModule,
     QuillModule.forRoot({
       modules: {
         syntax: false

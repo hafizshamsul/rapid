@@ -59,6 +59,9 @@ export class FolderPage implements OnInit {
   icon: string;
   folderdata_id: number;
   
+  active = "folder";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public route: AppRoutingModule,
