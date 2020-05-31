@@ -17,12 +17,12 @@ import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-vi
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 @Component({
-  selector: 'app-roomname',
-  templateUrl: './roomname.page.html',
-  styleUrls: ['./roomname.page.scss'],
+  selector: 'app-roomnamesub',
+  templateUrl: './roomnamesub.page.html',
+  styleUrls: ['./roomnamesub.page.scss'],
 })
 
-export class RoomnamePage implements OnInit {
+export class RoomnamesubPage implements OnInit {
 
 
 
@@ -113,14 +113,13 @@ export class RoomnamePage implements OnInit {
 
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
+    this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
+    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
 
-    
-    
     console.log('refresh');
 
 
-    this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
-    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
+    
     
     this.actRoute.params.subscribe((data: any) =>{
       this.tblroom_id = data.tblroom_id;
@@ -361,7 +360,7 @@ export class RoomnamePage implements OnInit {
     this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
 
     this.comments = [];
-    this.loadFolderFile();
+    this.loadFolderFile(this.r_tblroom_id, this.r_folderid);
 
     this.rooms = [];
     this.loadRoom();
@@ -568,11 +567,12 @@ export class RoomnamePage implements OnInit {
 
   listoso:any[]; 
 
-  loadFolderFile(){
+  loadFolderFile(r_tblroom_id, r_folderid){
     return new Promise(resolve => {
       let body = {
-        action : 'getroomfolderfile',
-        r_tblroom_id : this.r_tblroom_id
+        action : 'getroomsubfolderfile',
+        r_tblroom_id : this.r_tblroom_id,
+        r_folderid : this.r_folderid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
@@ -846,7 +846,7 @@ export class RoomnamePage implements OnInit {
       //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
       //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
       //this.navCtrl.navigateRoot(['r/'+this.r_username +'/'+folderfileid+'/']);
-      this.router.navigate(['r/room/'+this.r_tblroom_id +'/'+folderfileid+'/']);
+      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
     }
     else{
       this.selectedfilename = filename;
