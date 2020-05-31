@@ -286,8 +286,8 @@ export class RoomnamePage implements OnInit {
       this.icon = 'zip';
     }
 
-    this.originalname = 'hoioi';
-    this.rename = 'ehh';
+    //this.originalname = 'hoioi';
+    //this.rename = 'ehh';
     this.rename = this.originalname;
 
     console.log(this.originalname);
@@ -308,7 +308,8 @@ export class RoomnamePage implements OnInit {
       type : this._SUFFIX, //suffix from actual file, not available in iOS*****
       icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
       folder_id : this.r_folderid, //parentfolder
-      users_id : sessionStorage.getItem('users-id')
+      users_id : sessionStorage.getItem('users-id'),
+      r_tblroom_id : this.r_tblroom_id
     };  
   
     this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
@@ -772,7 +773,7 @@ export class RoomnamePage implements OnInit {
 
   addetc(){
   this.currparent  = this.r_folderid;
-  this.addfolderfile_subfolder(this.popuprename, this.currparent);
+  this.addfolderfile_subfolder(this.popuprename, this.currparent, this.r_tblroom_id);
     
     setTimeout(()=>{
       this.ionViewDidEnter();
@@ -784,12 +785,13 @@ export class RoomnamePage implements OnInit {
     this.currparent = '0';
   }
 
-  addfolderfile_subfolder(name, parent){
+  addfolderfile_subfolder(name, parent, r_tblroom_id){
     return new Promise(resolve => {
       let body = {
-        action : 'addfolderfile_subfolder',
+        action : 'addroomfolderfile_subfolder',
         name : name,
-        parent : parent
+        parent : parent,
+        r_tblroom_id : r_tblroom_id
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         resolve(true);
