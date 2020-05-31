@@ -29,7 +29,18 @@ const routes: Routes = [
       { path: 'room',
       children: [
           { path: '', loadChildren: () => import('../room/room.module').then( m => m.RoomPageModule)},
-          { path: ':r_tblroom_id', loadChildren: () => import('../roomname/roomname.module').then( m => m.RoomnamePageModule)},
+          {
+            path: ':r_tblroom_id',
+            children:[
+              {
+                path: '', loadChildren: () => import('../roomname/roomname.module').then( m => m.RoomnamePageModule)
+              },
+              {
+                path: ':r_tblroom_id_sub', loadChildren: () => import('../roomnamesub/roomnamesub.module').then( m => m.RoomnamesubPageModule)
+              }
+            ]
+            
+          },
         ]
       },
       { path: 'roomcreate',
