@@ -258,6 +258,10 @@ listoso:any[];
     this.navCtrl.navigateRoot(['r/home/']);
   }
 
+  toRoom(){
+    this.navCtrl.navigateRoot(['r/room/']);
+  }
+
   toSubmitpost(){
     this.navCtrl.navigateRoot(['r/submitpost/']);
   }

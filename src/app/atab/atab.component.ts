@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-ahello',
-  templateUrl: './ahello.component.html',
-  styleUrls: ['./ahello.component.scss'],
+  selector: 'app-atab',
+  templateUrl: './atab.component.html',
+  styleUrls: ['./atab.component.scss'],
 })
-export class AhelloComponent implements OnInit {
+export class AtabComponent implements OnInit {
 
   @Input() currpage: string;
   @Input() currsession: string;
