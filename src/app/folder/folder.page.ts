@@ -480,6 +480,7 @@ export class FolderPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'getfolderfile',
+        folder_id : 0
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){

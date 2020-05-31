@@ -500,12 +500,14 @@ export class FilePage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action : 'getfolderfile',
+        folder_id : 999
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let comment of data.result){
           this.comments.push(comment);
         }
-        this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        
+        //this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
         //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
