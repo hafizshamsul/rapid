@@ -598,7 +598,25 @@
 
     elseif($postjson['action']=='addfolderfile_subfolder'){
         $data = array();
-        $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', folder_id = '$postjson[parent]', users_id = 1");
+        
+$query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', folder_id = '$postjson[parent]', users_id = 1");
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+    elseif($postjson['action']=='addroomfolderfile_subfolder'){
+        $data = array();
+
+        if($postjson['parent']==0){
+            $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 1, room_id='$postjson[r_tblroom_id]'");
+        }
+        else{
+            $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', folder_id = '$postjson[parent]', users_id = 1, room_id='$postjson[r_tblroom_id]'");
+        }
+        
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));

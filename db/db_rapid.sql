@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 06:21 PM
+-- Generation Time: May 31, 2020 at 07:48 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -39,8 +39,6 @@ CREATE TABLE `bookmark` (
 --
 
 INSERT INTO `bookmark` (`id`, `folderfile_id`, `users_id`) VALUES
-(3, 195, 2),
-(25, 236, 1),
 (27, 194, 2),
 (28, 219, 2),
 (29, 220, 2),
@@ -103,7 +101,24 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (257, '<pre class=\"ql-syntax\" spellcheck=\"false\">string hello = “hello world”;\n</pre><p>i have error here. Help.</p>', 1, NULL, 'Sarah try', '2020-04-23 19:32:20', NULL, NULL, 257),
 (258, '<p>try testing</p><pre class=\"ql-syntax\" spellcheck=\"false\">int a = 55;\n</pre><p>terima kasih</p>', 1, NULL, 'Try test', '2020-04-27 14:42:23', NULL, NULL, 258),
 (259, '<pre class=\"ql-syntax\" spellcheck=\"false\">int a = 2;\nstring b = “hello”;\n</pre><p>hello 2</p>', 1, NULL, 'Testingg', '2020-04-26 15:42:42', NULL, NULL, 259),
-(261, '<p>Lololol</p><pre class=\"ql-syntax\" spellcheck=\"false\">echo “lel”;\n</pre><p>aahaja</p>', 1, NULL, 'Lololol', '2020-05-07 00:42:19', NULL, NULL, 261);
+(261, '<p>Lololol</p><pre class=\"ql-syntax\" spellcheck=\"false\">echo “lel”;\n</pre><p>aahaja</p>', 1, NULL, 'Lololol', '2020-05-07 00:42:19', NULL, NULL, 261),
+(265, '<p>e3e3e3e</p>', 1, NULL, 'e3e3e3', '2020-05-15 12:58:10', NULL, NULL, 265),
+(266, '<p>dedededf</p>', 1, NULL, 'dededed', '2020-05-15 12:58:34', NULL, NULL, 266),
+(268, '<p>huhu</p>', 1, NULL, 'HAHA', '2020-05-15 12:59:59', NULL, NULL, 268),
+(270, '<p>Huji</p>', 1, NULL, 'Huji', '2020-05-15 13:03:36', NULL, NULL, 270),
+(271, '<p>Frfrfr</p>', 2, NULL, 'Boy', '2020-05-15 13:04:04', NULL, NULL, 271),
+(273, '', 1, NULL, '', '2020-05-30 17:53:24', NULL, NULL, 273),
+(274, '', 1, NULL, '', '2020-05-30 17:53:25', NULL, NULL, 274),
+(275, '', 1, NULL, '', '2020-05-30 17:53:27', NULL, NULL, 275),
+(276, '', 1, NULL, '', '2020-05-30 17:53:30', NULL, NULL, 276),
+(277, '', 1, NULL, '', '2020-05-30 17:53:30', NULL, NULL, 277),
+(278, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 278),
+(279, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 279),
+(280, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 280),
+(281, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 281),
+(282, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 282),
+(283, '', 1, NULL, '', '2020-05-30 17:53:32', NULL, NULL, 283),
+(284, '', 1, NULL, '', '2020-05-30 17:53:32', NULL, NULL, 284);
 
 -- --------------------------------------------------------
 
@@ -184,42 +199,47 @@ CREATE TABLE `folderfile` (
   `users_id` int(11) DEFAULT NULL,
   `dateuploaded` date DEFAULT NULL,
   `visibility` varchar(10) DEFAULT NULL,
-  `originalname` varchar(50) DEFAULT NULL
+  `originalname` varchar(50) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `folderfile`
 --
 
-INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`, `visibility`, `originalname`) VALUES
-(194, 'Software Testing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(195, 'Advanced Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(201, 'Chapter 1 - Fundamentals.pdf', '1588208091866.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 1 - Fundamentals.pdf'),
-(202, 'Chapter 2 - Lifecycle.pdf', '1588208101827.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 2 - Lifecycle.pdf'),
-(203, 'Chapter 3 - Static Test.pdf', '1588208110331.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 3 - Static Test.pdf'),
-(204, 'Chapter 4 - Black Box.pdf', '1588208117760.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 4 - Black Box.pdf'),
-(205, 'Chapter 5 - White Box.pdf', '1588208127499.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 5 - White Box.pdf'),
-(206, 'Chapter 6 - Test Management.pdf', '1588208138762.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 6 - Test Management.pdf'),
-(207, 'Chapter 7 - Tools.pdf', '1588208146859.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 7 - Tools.pdf'),
-(208, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf', '1588208283229.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf'),
-(209, 'Lab Exercise 2 - Creating a Simple Data-Entry Application.pdf', '1588208291786.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 2 - Creating a Simple Data-Entry Appl'),
-(210, 'Lab Exercise 3 - Array.pdf', '1588208299034.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 3 - Array.pdf'),
-(211, 'Lab Exercise 4 - Collection.pdf', '1588208306136.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 4 - Collection.pdf'),
-(212, 'Lab Exercise 5 - ADO.NET - Displaying List and Details.pdf', '1588208312929.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 5 - ADO.NET - Displaying List and Det'),
-(213, 'Lab Exercise 6 - ADO.NET - Creating, Editing and Deleting.pdf', '1588208319792.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 6 - ADO.NET - Creating, Editing and D'),
-(214, 'Lab Exercise 7 - LINQ.pdf', '1588208326736.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 7 - LINQ.pdf'),
-(215, 'Lab Exercise 8 - Entity Framework - Displaying List.pdf', '1588208334242.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 8 - Entity Framework - Displaying Lis'),
-(216, 'Lab Exercise 9 - Entity Framework - Paging, Searching and Details.pdf', '1588208343051.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 9 - Entity Framework - Paging, Search'),
-(217, 'Lab Exercise 10 - Entity Framework - Creating, Editing and Deleting Data.pdf', '1588208351992.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 10 - Entity Framework - Creating, Edi'),
-(219, 'Ubiquitous Computing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(220, 'Research Methodology', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(221, 'Web Application Development', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(222, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(224, 'Untitled', NULL, NULL, 'folder', 220, 1, NULL, NULL, NULL),
-(225, 'Untitled', NULL, NULL, 'folder', 222, 1, NULL, NULL, NULL),
-(236, 'Untitled', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL),
-(242, 'Untitled', NULL, NULL, 'folder', 194, 1, NULL, NULL, NULL),
-(250, 'Lelel', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL);
+INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`, `visibility`, `originalname`, `room_id`) VALUES
+(194, 'Software Testing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 1),
+(195, 'Advanced Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
+(201, 'Chapter 1 - Fundamentals.pdf', '1588208091866.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 1 - Fundamentals.pdf', 1),
+(202, 'Chapter 2 - Lifecycle.pdf', '1588208101827.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 2 - Lifecycle.pdf', 1),
+(203, 'Chapter 3 - Static Test.pdf', '1588208110331.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 3 - Static Test.pdf', 1),
+(204, 'Chapter 4 - Black Box.pdf', '1588208117760.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 4 - Black Box.pdf', 1),
+(205, 'Chapter 5 - White Box.pdf', '1588208127499.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 5 - White Box.pdf', 1),
+(206, 'Chapter 6 - Test Management.pdf', '1588208138762.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 6 - Test Management.pdf', 1),
+(207, 'Chapter 7 - Tools.pdf', '1588208146859.pdf', 'pdf', 'pdf', 194, 1, NULL, NULL, 'Chapter 7 - Tools.pdf', 1),
+(208, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf', '1588208283229.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 1 - Introduction to ASP.NET MVC.pdf', NULL),
+(209, 'Lab Exercise 2 - Creating a Simple Data-Entry Application.pdf', '1588208291786.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 2 - Creating a Simple Data-Entry Appl', NULL),
+(210, 'Lab Exercise 3 - Array.pdf', '1588208299034.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 3 - Array.pdf', NULL),
+(211, 'Lab Exercise 4 - Collection.pdf', '1588208306136.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 4 - Collection.pdf', NULL),
+(212, 'Lab Exercise 5 - ADO.NET - Displaying List and Details.pdf', '1588208312929.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 5 - ADO.NET - Displaying List and Det', NULL),
+(213, 'Lab Exercise 6 - ADO.NET - Creating, Editing and Deleting.pdf', '1588208319792.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 6 - ADO.NET - Creating, Editing and D', NULL),
+(214, 'Lab Exercise 7 - LINQ.pdf', '1588208326736.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 7 - LINQ.pdf', NULL),
+(215, 'Lab Exercise 8 - Entity Framework - Displaying List.pdf', '1588208334242.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 8 - Entity Framework - Displaying Lis', NULL),
+(216, 'Lab Exercise 9 - Entity Framework - Paging, Searching and Details.pdf', '1588208343051.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 9 - Entity Framework - Paging, Search', NULL),
+(217, 'Lab Exercise 10 - Entity Framework - Creating, Editing and Deleting Data.pdf', '1588208351992.pdf', 'pdf', 'pdf', 195, 1, NULL, NULL, 'Lab Exercise 10 - Entity Framework - Creating, Edi', NULL),
+(219, 'Ubiquitous Computing', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
+(220, 'Research Methodology', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
+(221, 'Web Application Development', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
+(222, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
+(350, 'Untitled', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 1),
+(354, 'setA.png', '1590903548536.png', 'png', 'images', NULL, 1, NULL, NULL, 'setA.png', 1),
+(355, 'setB.png', '1590903554743.png', 'png', 'images', NULL, 1, NULL, NULL, 'setB.png', 1),
+(356, 'Week 1', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(357, 'Week 2', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(358, 'Week 3', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(359, 'Week 4', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(360, 'Week 5', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(361, 'Week 6', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -286,6 +306,30 @@ INSERT INTO `master_customer` (`customer_id`, `name_customer`, `desc_customer`, 
 (45, 'dede', 'dede', '2020-01-29'),
 (46, 'de', 'de', '2020-01-29'),
 (47, 'a', 'b', '2020-02-05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `name`, `description`) VALUES
+(1, 'Real-Time and Embedded', 'lol'),
+(2, 'Final Year Project 1', 'lol'),
+(3, 'Research Methodology', 'lol'),
+(4, 'IT Project Management', 'lol'),
+(5, 'Software Testing', 'lol'),
+(9, 'ihiy', 'iuhihiju');
 
 -- --------------------------------------------------------
 
@@ -385,7 +429,12 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (659, 258, 8),
 (660, 259, 9),
 (663, 261, 1),
-(664, 261, 8);
+(664, 261, 8),
+(668, 265, 1),
+(669, 266, 2),
+(671, 268, 1),
+(674, 270, 8),
+(675, 271, 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +458,9 @@ INSERT INTO `task` (`id`, `name`, `start`, `end`) VALUES
 (2, 'Software Testing Assignment 1', NULL, NULL),
 (6, 'Ubiquitous Computing Assignment 2', NULL, NULL),
 (7, 'dede', NULL, NULL),
-(9, 'huhuhu', NULL, NULL);
+(9, 'huhuhu', NULL, NULL),
+(35, 'hai', NULL, NULL),
+(37, 'lol', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -481,13 +532,20 @@ ALTER TABLE `folderdata`
 -- Indexes for table `folderfile`
 --
 ALTER TABLE `folderfile`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `master_customer`
 --
 ALTER TABLE `master_customer`
   ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student`
@@ -530,13 +588,13 @@ ALTER TABLE `users` ADD FULLTEXT KEY `username` (`username`);
 -- AUTO_INCREMENT for table `bookmark`
 --
 ALTER TABLE `bookmark`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=263;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -554,13 +612,19 @@ ALTER TABLE `folderdata`
 -- AUTO_INCREMENT for table `folderfile`
 --
 ALTER TABLE `folderfile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=365;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
 --
 ALTER TABLE `master_customer`
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -578,13 +642,13 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=666;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=678;
 
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -621,6 +685,12 @@ ALTER TABLE `filedata`
 --
 ALTER TABLE `folderdata`
   ADD CONSTRAINT `folderdata_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `folderfile`
+--
+ALTER TABLE `folderfile`
+  ADD CONSTRAINT `folderfile_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
 -- Constraints for table `tagcomment`
