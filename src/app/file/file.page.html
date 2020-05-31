@@ -406,46 +406,35 @@
                   </div>
                 </div>
 
-                <ng-template #recursiveList let-listoso>
+                
                 <div *ngFor="let item of listoso">
-                  <div *ngIf="item.folder_id==r_folderid">
-                    
+                  lol
+                </div>
+
+                <div *ngFor="let comment of comments">
+                  <div *ngIf="comment.folder_id==r_folderid">
                     <div id="listgrandparent" style="margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
     
-                      <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
+                      <div (click)="showFolder(comment.folderfileid, comment.folderfileicon, comment.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
                         <div style="display: grid; align-items: center; text-align: center;">
-                          <div *ngIf="item.folderfileicon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
-                          <img *ngIf="item.folderfileicon != 'folder'" src="assets/svg/svg_icons/pdf_color.svg" style="height: 17px; display:block; margin:0 auto" />
+                          <div *ngIf="comment.folderfileicon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
+                          <img *ngIf="comment.folderfileicon != 'folder'" src="assets/svg/svg_icons/pdf_color.svg" style="height: 17px; display:block; margin:0 auto" />
                         </div>
     
                         <div style="color:rgb(60,60,60);font-weight:400; font-size: 12.4px;padding-left: 10px;clear:both;">
-                          {{item.folderfilename}}
+                          {{comment.folderfilename}}
                         </div>
     
-                        <div (click)="showid(item.folderfileid, item.folderfilename)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
+                        <div (click)="showid(comment.folderfileid, comment.folderfilename)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
                           <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px;"></div>
                         </div>
                       </div>
     
                     </div>
-                    
-
                   </div>
-                   
-                    <div *ngIf="item.children.length > 0">  <!-- item.subnodes.length -->
-                      <div *ngIf="item.folder_id != 2" style="width: 100%; display:block; margin-left: auto;">
-                        
-                        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-                      </div>
-                      <div *ngIf="item.folder_id == 2" style="width: 100%; display:block; margin-left: auto;">
-                        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
-                      </div>
-    
-                    </div>
+                  
+                </div>
 
-                  </div>
-                </ng-template>
-              <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listoso }"></ng-container>
 
               </div>
 

@@ -113,8 +113,12 @@ export class RoomnamesubPage implements OnInit {
 
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
+    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_tblroom_id_sub');
+    
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
-    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
+    
+
+    //console.log('try'+this.r_folderid);
 
     console.log('refresh');
 
@@ -570,7 +574,7 @@ export class RoomnamesubPage implements OnInit {
   loadFolderFile(r_tblroom_id, r_folderid){
     return new Promise(resolve => {
       let body = {
-        action : 'getroomsubfolderfile',
+        action : 'getroomfolderfile',
         r_tblroom_id : this.r_tblroom_id,
         r_folderid : this.r_folderid
       };
@@ -846,7 +850,8 @@ export class RoomnamesubPage implements OnInit {
       //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
       //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
       //this.navCtrl.navigateRoot(['r/'+this.r_username +'/'+folderfileid+'/']);
-      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
+      //this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
+      this.router.navigate(['r/room/'+this.r_tblroom_id +'/'+folderfileid+'/']);
     }
     else{
       this.selectedfilename = filename;

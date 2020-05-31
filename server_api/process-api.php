@@ -435,7 +435,19 @@
     elseif($postjson['action']=='getfolderfile'){
         $data = array();
         //$query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
-        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id is null order by id asc");
+
+        if($postjson['folder_id']!=999){
+            if($postjson['folder_id']==0){
+            $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id is null and folder_id is null order by id asc");
+            }
+            else{
+                $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id is null and folder_id is null order by id asc");
+            }
+        }
+        else{
+            $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id is null order by id asc");
+        }
+        
 
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
@@ -490,7 +502,7 @@
     }
     elseif($postjson['action']=='getroomsubfolderfile'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id = '$postjson[r_tblroom_id]' and folder_id = '$postjson[r_folder_id]' order by id asc");
+        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id = 1 and folder_id = 194 order by id asc");
 
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
