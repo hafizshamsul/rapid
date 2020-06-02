@@ -115,7 +115,8 @@ export class LoginformPage implements OnInit {
           
           if(this.users[0].role == 'User'){
             this.users=[];
-            this.router.navigate(['r/home']);
+            //this.router.navigate(['r/home']);
+            this.router.navigate(['r/room']);
           }
           else if(this.users[0].role == 'Admin'){
             this.users=[];
