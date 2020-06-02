@@ -21,7 +21,7 @@ import { QuillModule } from 'ngx-quill';
 
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { BottomSheetComponent, BottomSheetModule } from "ionic-custom-bottom-sheet";
-import 'bulma/css/bulma.css';
+//import 'bulma/css/bulma.css';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @NgModule({
