@@ -350,17 +350,17 @@ export class ActivityPage implements OnInit {
     this.users = [];
     this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
-    this.folders = [];
-    this.loadFolder(sessionStorage.getItem('users-username'));
+    //this.folders = [];
+    //this.loadFolder(sessionStorage.getItem('users-username'));
 
-    this.hiks = [];
-    this.loadFile(this.r_username, this.r_folderid);
+    //this.hiks = [];
+    //this.loadFile(this.r_username, this.r_folderid);
 
-    this.comments = [];
-    this.loadFolderFile();
+    //this.comments = [];
+    //this.loadFolderFile();
 
-    this.bookmarks = [];
-    this.loadBookmark(sessionStorage.getItem('users-id'));
+    //this.bookmarks = [];
+    //this.loadBookmark(sessionStorage.getItem('users-id'));
 
     this.tasks = [];
     this.loadTask();
