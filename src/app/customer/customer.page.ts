@@ -150,7 +150,14 @@ export class CustomerPage implements OnInit {
     }
    
    uploadFile() : void {
-      this._IMAGES.uploadImageSelection(this.image, this._SUFFIX).subscribe((res) => {        
+        let body = {
+          action: 'added',
+          name: this.name,
+          decoded: this.decoded,
+          rename: 'kehkeh.png'
+        };  
+
+        this._IMAGES.uploadImageSelection(body, this.image, this._SUFFIX).subscribe((res) => {        
         
         this.displayAlert(res.message);
         //this.createdProcess();
@@ -161,7 +168,7 @@ export class CustomerPage implements OnInit {
       });
    }
 
-   
+  
   /*async createdProcess(){
     return new Promise(resolve => {
       let body = {
