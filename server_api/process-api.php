@@ -969,6 +969,22 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='getroom'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT id, name FROM room");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'tblroom_id' => $row['id'],
+                'tblroom_name' => $row['name'],
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    }
     elseif($postjson['action']=='getfolder'){
         $data = array();
         $query = mysqli_query($mysqli, "SELECT folderdata.id, name, description, users_id, users.username, users.passwordhash, users.displayname FROM folderdata INNER JOIN users ON folderdata.users_id = users.id WHERE users.username='$postjson[username]'");

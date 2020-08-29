@@ -26,6 +26,11 @@ const routes: Routes = [
           }
         ] 
       },
+      { path: 'room',
+      children: [
+          { path: '', loadChildren: () => import('../room/room.module').then( m => m.RoomPageModule)},
+        ]
+      },
 
       { 
         path: 'submitpost',
@@ -97,6 +102,8 @@ const routes: Routes = [
           { path: ':r_folderid', loadChildren: () => import('../file/file.module').then(m => m.FilePageModule) }
         ]
       },
+
+      
 
       
     ]
