@@ -7,7 +7,12 @@
           <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
           <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
         </div>
-        
+
+        <ion-buttons id="searchnavmsg" slot="end" style="float: right;padding-right: 4px;">
+          <ion-button color="green" (click)="toHome()">
+            <i class="fas fa-chevron-left" style="font-size: 20px"></i>
+          </ion-button>
+        </ion-buttons>
       </div>
 
       <div>
@@ -154,18 +159,19 @@
 
             
 
-              <div class="sendbox" style="display: grid; grid-template-columns: auto; position:fixed; bottom:0; right:0; background: purple;">
+            <!---
+            -->
+              <div class="sendbox" style="display: grid; grid-template-columns: auto; position:fixed; bottom:0; right:0;">
               
-                <ion-footer no-border>
-                  <ion-toolbar style="--background:#f0f0f0; padding-left: 70px;">
+                <ion-footer class="sendbox2" no-border>
+                  <ion-toolbar style="--background:#f0f0f0;">
                     <ion-row align-items-center>
-                      <ion-col size="11">
+                      <ion-col>
                         <ion-textarea auto-grow class="message-input" placeholder="Type a message" rows="1" [(ngModel)]="message"></ion-textarea>
                       </ion-col>
-                      <ion-col size="1">
-                        <ion-button expand="block" fill="clear" color="primary" [disabled]="message === ''" class="msg-btn"
-                          (click)="sendMessage()">
-                          <ion-icon name="ios-send" slot="icon-only"></ion-icon>
+                      <ion-col size="32px">
+                        <ion-button color="primary" [disabled]="message === ''" class="msg-btn" (click)="sendMessage()">
+                          <div class="bx bx-send" style="font-size: 19px;"></div>
                         </ion-button>
                       </ion-col>
                     </ion-row>
@@ -181,12 +187,19 @@
       </div>
    
       
-      
-  
-      
-     
-      
-
   </ion-content>
   
-  
+  <ion-footer class="sendbox3" no-border>
+    <ion-toolbar style="--background:#f0f0f0;">
+      <ion-row align-items-center>
+        <ion-col>
+          <ion-textarea auto-grow class="message-input" placeholder="Type a message" rows="1" [(ngModel)]="message"></ion-textarea>
+        </ion-col>
+        <ion-col size="32px">
+          <ion-button color="primary" [disabled]="message === ''" class="msg-btn" (click)="sendMessage()">
+            <div class="bx bx-send" style="font-size: 19px;"></div>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-footer>

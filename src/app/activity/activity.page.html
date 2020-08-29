@@ -431,13 +431,21 @@
                 <div></div>
 
                 <div>
-                  <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
-                  <label for="file" for="file">NEW FILE</label>
+                  <!--
+                    <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
+                    <label for="file" for="file">NEW FILE</label>
+                  -->
                 </div>
 
-                <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
-                  NEW FOLDER
+                <div>
+                  <!--
+                    <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
+                      NEW FOLDER
+                    </div>
+                  -->
+                  
                 </div>
+                
               </div>
 
              
@@ -455,7 +463,7 @@
                 </div>
 
 
-                <div id="listgrandparent" *ngFor="let item of tasks" style="font-family:Inter; margin:0px auto; display:block;  background: white; border-radius: 8px;">
+                <div id="listgrandparent" *ngFor="let item of listosotask" style="font-family:Inter; margin:0px auto; display:block;  background: white; border-radius: 8px;">
     
                   <div style="cursor:pointer; display: grid; grid-template-columns: 3px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
                     <div style="display: grid; align-items: center; text-align: center; background:#6d91fe; width:100%; height:34px">
