@@ -11,23 +11,16 @@
 
 <ion-content id="ion-content-login" scrollY="false">
   <div id="div-login">
-    <!--
-      <p style="font-weight: 700; font-size: 1.2em; word-wrap: break-word; margin: 1.3em auto">Edushare</p>
-    -->
     <h1 style="font-weight: 800; font-size: 1.2em;  word-wrap: break-word; margin: 1.8em 1.2em 0 0.8em; color: rgb(51,175,133);">Edushare</h1>
     <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 0 1.2em">Welcome, learners!</h1>
     <p style="font-weight: 400; font-size: 1.1em; word-wrap: break-word; margin: 1.3em 1.1em">Online community for teachers and students to learn, share and explore educational contents </p>
     <div class="item">
       <img id="img-login" src="assets/svg/log.svg" />
-      <ion-button id="btnGetStarted" text-capitalize="false">Get Started</ion-button>
-      <ion-button id="btnLogin" text-capitalize="false">Already registered? Sign In.</ion-button>
+      <ion-button  id="btnGetStarted" style="text-transform: none">Get Started</ion-button>
+      <ion-button id="btnLogin" (click)="loginform()" color="none" style="text-transform: none">Already registered? Sign In.</ion-button>
     </div>
   </div>
   <div>
     
   </div>
-  
- 
-
-  
 </ion-content>

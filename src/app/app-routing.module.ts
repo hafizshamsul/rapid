@@ -9,6 +9,15 @@ const routes: Routes = [
   { path: 'showcustomer/:id/:name/:desc', loadChildren: () => import('./showcustomer/showcustomer.module').then( m => m.ShowcustomerPageModule)},
   { path: 'login', loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)},
   { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)},
+  {
+    path: 'loginform',
+    loadChildren: () => import('./loginform/loginform.module').then( m => m.LoginformPageModule)
+  },
+  {
+    path: 'registerform',
+    loadChildren: () => import('./registerform/registerform.module').then( m => m.RegisterformPageModule)
+  },
+
 
 
 ];
