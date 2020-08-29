@@ -311,7 +311,7 @@
 
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc, tag.tagname");
+        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 20 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded asc, tag.tagname");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -331,7 +331,23 @@
 
     elseif($postjson['action']=='getpost'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null order by dateuploaded desc limit 8 offset 0) d order by dateuploaded desc");
+
+        if($postjson['topsort']=='today'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 DAY order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort']=='week'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 WEEK order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort']=='month'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 MONTH order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort']=='year'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and dateuploaded >= now()-INTERVAL 1 YEAR order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+        else if($postjson['topsort']=='alltime'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null order by dateuploaded asc limit 20 offset 0) d order by dateuploaded asc");
+        }
+
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
@@ -351,27 +367,27 @@
             $minutes = round(($end - $start) / 60 );
 
             if($minutes<60){
-                $ago = $minutes . " minutes ago";
+                $ago = $minutes . " min ago";
             }
             elseif($minutes<1440){
                 $hour = floor($minutes / 60);
-                $ago = $hour . " hours ago";
+                $ago = $hour . " hr ago";
             }
             elseif($minutes<10080){
                 $day = floor($minutes/1440);
-                $ago = $day . " days ago";
+                $ago = $day . " d ago";
             }
             elseif($minutes<43800){
                 $week = floor($minutes/(10080));
-                $ago = $week . " weeks ago";
+                $ago = $week . " wk ago";
             }
             elseif($minutes<525600){
                 $month = floor($minutes/(43800));
-                $ago = $month . " months ago";
+                $ago = $month . " mo ago";
             }
             else{
                 $year = floor($minutes/(525600));
-                $ago = $year . " years ago";
+                $ago = $year . " y ago";
             }
 
             $vote = $row['upvote'] - $row['downvote'];
