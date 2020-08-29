@@ -192,6 +192,70 @@
                   </ion-item>
                 </ion-item-sliding>
               </ion-list>
+
+
+
+              <ng-template #recursiveList let-listoso>
+                <div *ngFor="let item of listoso">
+                  <div *ngIf="item.folder_id==r_folderid">
+                    <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:6px">
+                        <ion-label style="font-family: 'Inter var', sans-serif;">
+                          <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
+                            {{item.folderfilename}}
+                          </div>      
+                        </ion-label>
+                    </div>
+                  </div>
+                   
+                    <div *ngIf="item.children.length > 0">  <!-- item.subnodes.length -->
+                      <div *ngIf="item.folder_id != 2" style="width: 100%; display:block; margin-left: auto;">
+                        
+                        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+                      </div>
+                      <div *ngIf="item.folder_id == 2" style="width: 94%; display:block; margin-left: auto;">
+                        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+                      </div>
+    
+                    </div>
+                  </div>
+                </ng-template>
+              <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listoso }"></ng-container>
+
+
+
+
+
+              <div  id="listgrandparent" *ngFor="let item of listoso" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
+                <div (click)="showFolder(item.folderfileid)">
+                  <div style="display: grid; grid-template-columns: 38px auto; ">
+                  <div>
+                    <div *ngIf="item.folderfileicon == 'folder'">
+                      <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                    </div>
+                    <div *ngIf="item.folderfileicon != 'folder'">
+                      <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                    </div>
+                    
+                    </div>
+                    <div>
+                      <ion-label style="font-family: 'Nunito Sans', sans-serif;">
+                        {{item.folderfilename}}
+                      </ion-label>
+                    </div>
+                  </div>
+                </div>
+
+                
+                
+                
+                
+              </div>
+
+              <ion-button (click)="deletefolder(1)">Delete 1 - Ubiquitous</ion-button>
+              <div>
+                {{deletelist}}
+              </div>
+
             </div>
           </div>
           <div></div>

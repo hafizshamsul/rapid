@@ -54,6 +54,15 @@ export class FilePage implements OnInit {
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
+    folderfileid:number;
+    folderfilename:string;
+    filename:string;
+    folderfiletype:string;
+    folderfileicon:string;
+    folder_id:number;
+    folderfileusers_id:number;
+    dateuploaded:string;
+
   ngOnInit() {
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
@@ -83,8 +92,36 @@ export class FilePage implements OnInit {
       this.folderdata_id = data.folderdata_id;
       console.log(data);
     });
+
+
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.folderfileid = data.folderfileid;
+      this.folderfilename = data.folderfilename;
+      this.filename = data.filename;
+      this.folderfiletype = data.folderfiletype;
+      this.folderfileicon = data.folderfileicon;
+      this.folder_id = data.folder_id;
+      this.folderfileusers_id = data.folderfileusers_id;
+      this.dateuploaded = data.dateuploaded;
+      //this.thread = data.thread;
+
+      //console.log(data);
+    });
+
+    
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.deletelist = data;
+      //this.thread = data.thread;
+
+      //console.log(data);
+    });
+
   }
   
+  deletelist:string;
+
   selectFileToUpload(event) : void {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
       this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
@@ -218,6 +255,9 @@ export class FilePage implements OnInit {
     this.hiks = [];
     this.loadFile(this.r_username, this.r_folderid);
 
+    this.comments = [];
+    this.loadFolderFile();
+
     this.customers = [];
     this.start = 0;
   }
@@ -346,6 +386,53 @@ export class FilePage implements OnInit {
 
 
 
+
+
+
+  comments: any[];
+
+  treeify(listo, idAttr, parentAttr, childrenAttr) {
+    if (!idAttr) idAttr = 'folderfileid';
+    if (!parentAttr) parentAttr = 'folder_id';
+
+    if (!childrenAttr) childrenAttr = 'children';
+
+    var treeList = [];
+    var lookup = {};
+    listo.forEach(function(obj) {
+        lookup[obj[idAttr]] = obj;
+        obj[childrenAttr] = [];
+    });
+    listo.forEach(function(obj) {
+        if (obj[parentAttr] != null) {
+            lookup[obj[parentAttr]][childrenAttr].push(obj);
+        } else {
+            treeList.push(obj);
+        }
+      });
+      return treeList;
+  };
+
+  listoso:any[]; 
+
+  loadFolderFile(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getfolderfile',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let comment of data.result){
+          this.comments.push(comment);
+        }
+        this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
+
+
+
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
   }
@@ -360,5 +447,25 @@ export class FilePage implements OnInit {
 
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
+  }
+
+
+  deletefolder(folderfileid){
+    this.counting(folderfileid);
+  }
+
+  //kaun:any = [];
+
+  counting(folderfileid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletefolderfile',
+        folderfileid : folderfileid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        this.deletelist = data;
+        resolve(true);
+      });
+    });
   }
 }
