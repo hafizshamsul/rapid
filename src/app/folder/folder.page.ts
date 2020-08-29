@@ -265,7 +265,7 @@ export class FolderPage implements OnInit {
   }
 
   showFolder(folderid){
-    this.router.navigate(['/r'+'/folder/'+this.r_username +'/'+folderid]);
+    this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
   }
 
   home(){
