@@ -290,14 +290,17 @@ export class FilePage implements OnInit {
   showFolder(folderfileid, folderfileicon){
     //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
     if(folderfileicon == 'folder'){
-      this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
       //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+
+      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
     }
     
   }
 
   toBack(){
-    this.navCtrl.back( { animated: false, });
+    //this.navCtrl.back( { animated: false, });
+    this.navCtrl.pop();
   }
 
   home(){
