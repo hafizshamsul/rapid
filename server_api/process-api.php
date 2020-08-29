@@ -46,7 +46,7 @@
 
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 4)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc");
+        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -66,7 +66,7 @@
 
     elseif($postjson['action']=='getpost'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id order by dateuploaded desc limit 8 offset 4) d order by dateuploaded desc");
+        $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id order by dateuploaded desc limit 8 offset 0) d order by dateuploaded desc");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         

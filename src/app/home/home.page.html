@@ -43,8 +43,8 @@
     <div></div>
     <div>
       <div>
-        <ng-template #recursiveList let-listos>
-          <div *ngFor="let item of listos">
+        <ng-template #recursiveList let-listoso>
+          <div *ngFor="let item of listoso">
             <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px">
               {{item.title}}
               {{item.textcmt}}
@@ -55,7 +55,7 @@
               </div>
             </div>
           </ng-template>
-        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listos }"></ng-container>
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: listoso }"></ng-container>
       </div>
     </div>
     <div></div>   
