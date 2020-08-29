@@ -39,7 +39,7 @@
     <div style="background: white; height:78vh">
       
 
-      <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+      <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="presentAlertMultipleButtons()">
         <div class="form-group">
           <label for="editor">
             <h5 style="text-align: center;">Edit Post</h5>
@@ -60,7 +60,7 @@
           <span *ngIf="editorForm.get('editor').value != null">{{ 1000 - editorForm.get('editor').value.length }}</span>
         </div>
         
-        <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Upload</ion-button>
+        <ion-button style="display: block; float:right; width: 40%; margin-top:10px; margin-right:10px" type="submit">Update</ion-button>
       </form>
 
       <h5 style="text-align: center; margin-top:50px">Preview</h5>

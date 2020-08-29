@@ -8,6 +8,7 @@ import { GlobalService } from "../..//providers/global.service";
 import { MyNavService } from "../..//providers/mynavservice.service";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class EditpostPage implements OnInit {
   constructor(
     public global: GlobalService,
     public myNavService: MyNavService,
+    public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
       console.log(this.getSelectedSubject);
       
@@ -192,13 +194,35 @@ export class EditpostPage implements OnInit {
 
 
 
+  async presentAlertMultipleButtons() {
+    //let leh: number = r_thread;
+
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    const alert = await this.alertCtrl.create({
+      header: 'Update Post',
+      message: 'Are you sure you want to update this post?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Update',
+          handler: () => {
+            this.onUpdate();
+            console.log('Update is clicked');
+            //window.location.href = window.location.href;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
-
-
-  
-
-  onSubmit(){
+  onUpdate(){
     this.editorContent = this.editorForm.get('editor').value;
     console.log("comment.users_id: "+this.global.userid);
     console.log("comment.title: "+this.getTitle);
@@ -208,8 +232,8 @@ export class EditpostPage implements OnInit {
 
     return new Promise(resolve => {
       let body = {
-        action : 'addpost',
-        users_id: this.global.userid,
+        action : 'updatepost',
+        commentid: this.passededitid,
         title: this.getTitle,
         textcmt: this.editorContent,
         contoh: this.contoh,
@@ -222,9 +246,9 @@ export class EditpostPage implements OnInit {
       });
       this.loopTagComment();
       //window.location.reload(true);
-      window.location.href = window.location.href;
+      //window.location.href = window.location.href;
       
-      //this.router.navigate(['r/submitpost/']);
+      //this.router.navigate(['r/home/']);
       //this.getTitle = "";
       
     }
