@@ -144,6 +144,8 @@ export class FolderPage implements OnInit {
 
       //console.log(data);
     });
+
+  
   }
 
   deletelist:string;

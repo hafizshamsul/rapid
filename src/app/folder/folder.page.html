@@ -177,12 +177,31 @@
                 </ion-item-sliding>
               </ion-list>
 
-              <div *ngFor="let item of listoso">
+              
+              <div id="listgrandparent" *ngFor="let item of listoso" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
                 
-                {{item.folderfileid}} - {{item.folderfilename}}
+                <div style="display: grid; grid-template-columns: 38px auto; ">
+                  <div>
+                    <div *ngIf="item.folderfileicon == 'folder'">
+                      <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                    </div>
+                    <div *ngIf="item.folderfileicon != 'folder'">
+                      <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                    </div>
+                    
+                  </div>
+                  <div>
+                    <ion-label style="font-family: 'Nunito Sans', sans-serif;">
+                      {{item.folderfilename}}
+                    </ion-label>
+                  </div>
+                </div>
+                
+                
+                
               </div>
 
-              <ion-button (click)="deletefolder(2)">Delete 2 - Ubiquitous</ion-button>
+              <ion-button (click)="deletefolder(1)">Delete 1 - Ubiquitous</ion-button>
               <div>
                 {{deletelist}}
               </div>
