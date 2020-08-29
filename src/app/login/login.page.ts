@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -16,6 +16,10 @@ export class LoginPage implements OnInit {
 
   loginform(){
     this.router.navigate(['/loginform']);
+  }
+
+  registerform(){
+    this.router.navigate(['/registerform']);
   }
 
 }

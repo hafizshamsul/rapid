@@ -11,9 +11,9 @@
 <ion-content id="ion-content-login" scrollY="false">
   <div id="div-login">
     <div class="item" style="text-align:left">
-      <a (click)="login()" style="color:rgb(80,80,80)">
-        <ion-icon id="icon-back" name="arrow-back" style="font-size:30px;"></ion-icon>
-      </a>
+      <ion-button id="btnBack" (click)="login()" color="none" style="color:rgb(80,80,80)">
+        <ion-icon id="icon-back" name="arrow-back" style="background: none; font-size:30px; padding: 0px; margin: 0px;"></ion-icon>
+      </ion-button>
       
     </div>
 
@@ -22,8 +22,8 @@
       <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 1.6em 1.2em">Sign in</h1>
       <ion-input id="input-loginform" placeholder="Enter your email"></ion-input>
       <ion-input id="input-loginform" placeholder="Enter your password"></ion-input>
-      <ion-button id="btnGetStarted" style="text-transform: none; margin-top: 1.7em;">Sign in</ion-button>
-      <ion-button id="btnLogin" color="none" style="text-transform: none; box-shadow: none;">Don't have an account? Sign up here</ion-button>
+      <ion-button id="btnGetStarted" (click)="customer()" style="text-transform: none; margin-top: 1.7em;">Sign in</ion-button>
+      <ion-button id="btnLogin" (click)="registerform()" color="none" style="text-transform: none; box-shadow: none;">Don't have an account? Sign Up here</ion-button>
     </div>    
   </div>
   <div>

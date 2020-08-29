@@ -1,4 +1,100 @@
+<!--
+  <ion-content>
+  <p>lollololololololololololololololololololololol</p>
+  </ion-content>
+  <ion-menu side="start" menuId="first">
+    <ion-content>
+      <ion-list>
+        <ion-item id="haha">haha</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+        <ion-item>Menu Item</ion-item>
+      </ion-list>
+      
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet main></ion-router-outlet>
+-->
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+</head>
+
 <ion-header>
+      <ion-toolbar>
+        <ion-title text-center>Stations</ion-title>
+        <ion-buttons slot="primary" (click)="addCustomer()">
+          <ion-button color="tertiary">
+            <ion-icon text-center name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-header>
+    
+<ion-split-pane contentId="menu-content">
+  <!--  our side menu  -->
+  <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px;">
+
+    
+    <ion-list style="margin-top: 64px;">
+
+      <ion-item (click)="home()"><i class="fas fa-home" style="margin-left: 4px; font-size:1.1em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px;  font-size: 0.85em;  font-family: 'Nunito Sans', sans-serif">
+          Home
+        </span>
+      </ion-item>
+
+      <ion-item (click)="customer()"><i class="fas fa-cloud-upload-alt" style="margin-left: 4px; font-size:1.0em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px;  font-size: 0.85em; font-family: 'Nunito Sans', sans-serif">
+          My uploads
+        </span>
+      </ion-item>
+
+      <ion-item (click)="loginform()"><i class="fas fa-sign-out-alt" style="margin-left: 6px; font-size:1.2em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px; font-size: 0.85em; font-family: 'Nunito Sans', sans-serif">
+          Sign out
+        </span>
+      </ion-item>
+    </ion-list>
+  </ion-menu>
+
+  <!-- the main content -->
+  <ion-router-outlet id="menu-content">
+    
+    
+    <ion-content style="--padding-top: 70px; --padding-start: 10px; --padding-end: 10px; --padding:10px">
+      <ion-list>
+        <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
+          <ion-item style="--padding-end: 14px">
+            <ion-label>{{customer.name_customer}}</ion-label>
+          </ion-item>
+    
+          <ion-item-options side="end">
+            <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
+          
+            <ion-item-option color="danger" (click)="delCustomer(customer.customer_id)">Delete</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    
+      <ion-infinite-scroll (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+    </ion-content>
+  </ion-router-outlet>
+</ion-split-pane>
+
+
+
+<!--
+  <ion-header>
   <ion-toolbar>
     <ion-title text-center>Stations</ion-title>
     <ion-buttons slot="primary" (click)="addCustomer()">
@@ -42,7 +138,6 @@
   </ion-infinite-scroll>
 
   <ion-tabs>
-    <!-- Tab bar -->
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="Home" (click)="toHome()">
         <ion-icon name="home"></ion-icon>
@@ -56,3 +151,5 @@
     </ion-tab-bar>
   </ion-tabs>
 </ion-content>
+-->
+
