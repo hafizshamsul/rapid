@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title text-center>{{id}}</ion-title>
+    <ion-title *ngFor="let hik of hiks" text-center>{{hik.name}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="" color="tertiary" fill="outline"></ion-back-button>
     </ion-buttons>
