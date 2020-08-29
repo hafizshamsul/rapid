@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController } from '@ionic/angular';
+import { NavController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
-
-
+//import { IOSFilePicker } from '@ionic-native/file-picker';
+//import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 
 @Component({
   selector: 'app-customer',
@@ -13,8 +14,8 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ['./customer.page.scss'],
 })
 export class CustomerPage implements OnInit {
-  @ViewChild('nav',  {static: false}) nav: NavController;
-  @ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
+  //@ViewChild('nav',  {static: false}) nav: NavController;
+  //@ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
   
   customers: any = [];
   limit: number = 10;
@@ -24,10 +25,71 @@ export class CustomerPage implements OnInit {
   public image : string;
   public isSelected : boolean =	false;
 
-  constructor(private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) { }
+  constructor(
+    //private docPicker: DocumentPicker,
+    //private filePicker: IOSFilePicker, 
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) { }
 
   ngOnInit() {
   }
+
+  file: any;
+  lol: String = "25 Jan 2020";
+  private files: any[] = [
+    {
+      "name": "Chapter 1",
+      "type": "pdf_color.svg",
+      "id": "1"
+    },
+
+    {
+      "name": "Chapter 2",
+      "type": "pdf_color.svg",
+      "id": "2"
+    },
+
+    {
+      "name": "Chapter 3",
+      "type": "pdf_color.svg",
+      "id": "3"
+    },
+
+    {
+      "name": "Chapter 4",
+      "type": "pdf_color.svg",
+      "id": "4"
+    },
+  
+    {
+      "name": "Chapter 5",
+      "type": "pdf_color.svg",
+      "id": "5"
+    },
+
+    {
+      "name": "Image 1",
+      "type": "images_color.svg",
+      "id": "6"
+    },
+
+    {
+      "name": "Image 2",
+      "type": "images_color.svg",
+      "id": "7"
+    },
+
+    {
+      "name": "CLP Course",
+      "type": "doc_color.svg",
+      "id": "8"
+    },
+
+    {
+      "name": "Project Rubric",
+      "type": "doc_color.svg",
+      "id": "9"
+    }
+  ];
 
   selectFileToUpload(event) : void {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
@@ -38,33 +100,44 @@ export class CustomerPage implements OnInit {
           this.image = res;
         }
         else {
-          //this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
+          this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
         }
       },
       (error) => {
         console.dir(error);
-        //this.displayAlert(error.message);
+        this.displayAlert(error.message);
       });
     }
    
    uploadFile() : void {
       this._IMAGES.uploadImageSelection(this.image, this._SUFFIX).subscribe((res) => {
-         //this.displayAlert(res.message);
+         this.displayAlert(res.message);
       },
       (error : any) => {
          console.dir(error);
-         //this.displayAlert(error.message);
+         this.displayAlert(error.message);
       });
    }
 
-   /*displayAlert(message : string) : void {
-      let alert : any   = this._ALERT.create({
-         title 		: 'Heads up!',
-         subTitle 	: message,
-         buttons 	: ['Got it']
+   async presentAlert() {
+    let alert : any = await this.alertCtrl.create({
+    message: 'Low battery',
+    subHeader: '10% of battery remaining',
+    buttons: ['Dismiss']
+   });
+   await alert.present(); 
+  }
+
+   async displayAlert(message : string) {
+      let alert : any = await this.alertCtrl.create({
+        header 		: 'Heads up!',
+        subHeader 	: message,
+        buttons 	: ['Got it']
       });
       alert.present();
-   }*/
+   }
+
+   
    
 
   ionViewWillEnter(){
