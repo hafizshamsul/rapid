@@ -92,7 +92,7 @@
 
 <!--POPUP FOR UPDATING, DELETING FOLDER-->
 <div *ngIf="UDpopup == true">
-  <div id="popupbg" (click)="UDclosepopupbg()" style="display:grid; grid-template-rows: auto 170px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+  <div id="popupbg" (click)="UDclosepopupbg()" style="display:grid; grid-template-rows: auto 200px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
   <div></div>
 
   <div>
@@ -107,10 +107,14 @@
             
           </div>
 
-          <div style="clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
-            <div class="far fa-edit" style="cursor:pointer; font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
+          <div (click)="addtobookmark()" style="cursor:pointer; clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
+            <div class="far fa-bookmark" style="font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
+            <div>Add to Bookmarks</div>
+          </div>
+
+          <div style="cursor:pointer; clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
+            <div class="far fa-edit" style="font-size: 16px; margin-right: 14px; float:left; width:20px"></div>
             <div>Rename</div>
-            
           </div>
 
           <div (click)="showdeleteid()" style="cursor:pointer;clear: both; padding:24px 0 0 24px; font-size: 13px;color:rgb(90,90,90); font-weight: 500; text-align: left;">
@@ -440,7 +444,7 @@
                 </div>
               </div>
 
-              <!--
+              
                 <div style="display: grid; grid-template-columns: 220px auto; width: 100%; height:46px">
                 <div>
                   <div *ngIf="isSelected == true">
@@ -448,7 +452,7 @@
                   </div>
                 </div>
               </div>
-              -->
+            
               
               
               
