@@ -26,6 +26,7 @@ export class HomePage {
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
     }
 
+
   current_users: any[];
   comments: any[];
   tagcomments: any[];
@@ -43,6 +44,11 @@ export class HomePage {
   tagcommentid: number;
   comment_id: number;
   tag_id: number;
+
+  pass(index){
+    console.log(index);
+  }
+
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
@@ -100,10 +106,9 @@ export class HomePage {
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let tagcomment of data.result){
-          
+          //if(tagcomment.comment_id == 10){
             this.tagcomments.push(tagcomment);
-          
-          
+          //}
         }
         resolve(true);
       });
