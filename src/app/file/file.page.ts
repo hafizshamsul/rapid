@@ -4,15 +4,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
-import { GlobalService } from "../..//providers/global.service";
+import { GlobalService } from "../../providers/global.service";
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.page.html',
-  styleUrls: ['./customer.page.scss'],
+  selector: 'app-file',
+  templateUrl: './file.page.html',
+  styleUrls: ['./file.page.scss'],
 })
 
-export class CustomerPage implements OnInit {
+export class FilePage implements OnInit {
   
   users: any[];
   folders: any[];
@@ -234,8 +234,8 @@ export class CustomerPage implements OnInit {
     this.router.navigate(['/homepage']);
   }
 
-  customer(){
-    this.router.navigate(['/customer']);
+  file(){
+    this.router.navigate(['/file']);
   }
 
   loginform(){
