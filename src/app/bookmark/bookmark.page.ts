@@ -346,11 +346,11 @@ export class BookmarkPage implements OnInit {
     this.folders = [];
     this.loadFolder(sessionStorage.getItem('users-username'));
 
-    this.hiks = [];
-    this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
+    //this.hiks = [];
+    //this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
 
-    this.comments = [];
-    this.loadFolderFile();
+    //this.comments = [];
+    //this.loadFolderFile();
 
     this.bookmarks = [];
     this.loadBookmark(sessionStorage.getItem('users-id'));
