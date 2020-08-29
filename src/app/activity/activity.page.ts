@@ -73,6 +73,9 @@ export class ActivityPage implements OnInit {
   taskstart: string;
   taskend: string;
   
+  active = "activity";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public global: GlobalService, 

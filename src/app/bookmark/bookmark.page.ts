@@ -78,6 +78,9 @@ export class BookmarkPage implements OnInit {
   icon: string = 'doc'; //database
   folderdata_id: number;
   
+  active = "bookmark";
+  session = sessionStorage.getItem('users-username');
+
   constructor(
     public navCtrl: NavController,
     public global: GlobalService, 
