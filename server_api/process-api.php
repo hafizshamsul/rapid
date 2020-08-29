@@ -29,6 +29,69 @@
         echo $result;
     }
 
+    elseif($postjson['action'] == 'adduser'){
+        $query = mysqli_query($mysqli, "insert into users(username, passwordhash) values('$postjson[username]','$postjson[password]')");
+
+        $id = mysqli_insert_id($mysqli);
+
+        if($query){
+            $result = json_encode(array('success'=>true, 'id'=>$id));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
+    elseif($postjson['action'] == 'getusername'){
+        $query = mysqli_query($mysqli, "select * from users where username='$postjson[username]'");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id' => $row['id'],
+                'username' => $row['username'],
+                'password' => $row['passwordhash'],
+                'displayname' => $row['displayname']
+            );
+        }
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+        else $result = json_encode(array('success'=>false));
+        
+        echo $result;
+    }
+
+
+    elseif($postjson['action'] == 'getuser'){
+        $query = mysqli_query($mysqli, "select * from users where username='$postjson[username]' and passwordhash='$postjson[password]'");
+
+        if ($query->num_rows > 0) {
+            while($row = mysqli_fetch_array($query)){
+                $data[] = array(
+                    'id' => $row['id'],
+                    'username' => $row['username'],
+                    'password' => $row['passwordhash'],
+                    'displayname' => 'hehe'
+                );
+            }
+        }
+        else{
+            $data[] = array(
+                'id' => null,
+                'username' => null,
+                'password' => null,
+                'displayname' => null
+            );
+        }
+        
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+        else $result = json_encode(array('success'=>false));
+        
+        echo $result;
+    }
+
     elseif($postjson['action'] == 'addfolder'){
         $query = mysqli_query($mysqli, "INSERT INTO folderdata SET name = '$postjson[foldername]', description = '$postjson[description]', users_id = '$postjson[users_id]'");
 
