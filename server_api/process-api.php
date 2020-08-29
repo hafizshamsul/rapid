@@ -49,7 +49,7 @@
     }
     elseif($postjson['action']=='getit'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM filedata ORDER BY id DESC");
+        $query = mysqli_query($mysqli, "SELECT * FROM filedata WHERE folderdata_id=$postjson[folder] ORDER BY id DESC");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -57,7 +57,8 @@
                 'name' => $row['name'],
                 'decoded' => $row['decoded'],
                 'type' => $row['type'],
-                'icon' => $row['icon']
+                'icon' => $row['icon'],
+                'folderdata_id' => $row['folderdata_id']
             );
         }
 
