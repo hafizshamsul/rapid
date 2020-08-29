@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2020 at 05:34 PM
+-- Generation Time: Feb 05, 2020 at 03:46 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -32,8 +32,23 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `textcmt` varchar(200) DEFAULT NULL,
   `users_id` int(11) DEFAULT NULL,
-  `replyto` int(11) DEFAULT NULL
+  `replyto` int(11) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`) VALUES
+(1, 'The CREATE DATABASE statement is used to create a new SQL database.', 1, NULL, 'How to Create DB'),
+(2, 'The DROP DATABASE statement is used to drop an existing SQL database.', 2, NULL, 'How to Drop DB'),
+(5, 'The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.', 2, NULL, 'How to backup DB'),
+(6, 'The CREATE TABLE statement is used to create a new table in a database.', 2, NULL, 'How to create DB table'),
+(7, 'The DROP TABLE statement is used to drop an existing table in a database.', 2, NULL, 'How to drop DB table'),
+(8, 'The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. The ALTER TABLE statement is also used to add and drop various constraints on an existing table.', 2, NULL, 'How to alter DB table'),
+(9, 'SQL constraints are used to specify rules for data in a table. Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABL', 2, NULL, 'SQL Constraints'),
+(10, 'By default, a column can hold NULL values. The NOT NULL constraint enforces a column to NOT accept NULL values. This enforces a field to always contain a value, which means that you cannot insert a ne', 2, NULL, 'SQL NOT NULL');
 
 -- --------------------------------------------------------
 
@@ -92,7 +107,10 @@ INSERT INTO `folderdata` (`id`, `name`, `description`, `users_id`) VALUES
 (1, 'Internet Programming', 'Developing web application using PHP', 1),
 (2, 'Advanced Programming', 'Developing web application using ASP.NET MVC', 1),
 (3, 'Ubiquitous Computing', 'Developing mobile application using Android Java', 2),
-(4, 'Web Application Development', 'Developing mobile application using ASP.NET Web Forms', 2);
+(4, 'Web Application Development', 'Developing mobile application using ASP.NET Web Forms', 2),
+(11, 'Software Testing', 'Testing softwares', 1),
+(12, 'OOP', 'Developing system using Object-Oriented Approach', 1),
+(13, 'SRS', 'Documenting with SRS', 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +175,19 @@ INSERT INTO `master_customer` (`customer_id`, `name_customer`, `desc_customer`, 
 (43, '', 'add', '2020-01-27'),
 (44, 'dede', 'add', '2020-01-29'),
 (45, 'dede', 'dede', '2020-01-29'),
-(46, 'de', 'de', '2020-01-29');
+(46, 'de', 'de', '2020-01-29'),
+(47, 'a', 'b', '2020-02-05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `studid` int(11) NOT NULL,
+  `studname` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -213,6 +243,12 @@ ALTER TABLE `master_customer`
   ADD PRIMARY KEY (`customer_id`);
 
 --
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`studid`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -226,7 +262,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -238,13 +274,19 @@ ALTER TABLE `filedata`
 -- AUTO_INCREMENT for table `folderdata`
 --
 ALTER TABLE `folderdata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
 --
 ALTER TABLE `master_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `studid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
