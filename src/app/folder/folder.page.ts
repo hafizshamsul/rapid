@@ -19,6 +19,7 @@ import {AppRoutingModule} from '../app-routing.module';
 export class FolderPage implements OnInit {
   
   r_username: string;
+  r_folderid: string;
 
 
   current_users: any[];
@@ -68,7 +69,8 @@ export class FolderPage implements OnInit {
 
   ngOnInit() {
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
-    
+    this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
+
     this.actRoute.params.subscribe((data: any) =>{
       this.current_userid = data.current_id;
       this.current_username = data.current_username;
@@ -238,7 +240,7 @@ export class FolderPage implements OnInit {
     this.loadFolder(this.r_username);
 
     this.hiks = [];
-    this.loadFile();
+    this.loadFile(this.r_username, this.r_folderid);
 
     this.customers = [];
     this.start = 0;
@@ -337,11 +339,12 @@ export class FolderPage implements OnInit {
     });
   }
      
-   loadFile(){
+   loadFile(username, folderid){
     return new Promise(resolve => {
       let body = {
         action : 'getit',
-        folder: 1
+        username : username,
+        folderid : folderid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let hik of data.result){
