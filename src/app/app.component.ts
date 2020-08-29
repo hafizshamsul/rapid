@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { GlobalService } from "../providers/global.service";
@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TabsPage } from '../app/tabs/tabs.page';
 
 import 'bulma/css/bulma.css';
+//declare var $: any;
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    rootNode: ElementRef
     //private alertController: AlertController
   ) {
     this.initializeApp();

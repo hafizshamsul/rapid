@@ -85,8 +85,44 @@ input[type="file"] {
   background:rgb(241,241,244);
 }
 
+#searchnav{
+  grid-template-columns: 278px auto 34px;
 
+    @media (max-width: 576px) {
+        grid-template-columns: 34px auto 34px;
+    }
+}
 
+#inputsearch{
+
+}
+#inputsearch:focus{
+  outline: none;
+}
+
+#inputsearch::-webkit-input-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:var(--searchph);
+}
+
+#inputsearch:-ms-input-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:var(--searchph);
+}
+
+#inputsearch:-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:var(--searchph);
+}
+
+#inputsearch::-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:var(--searchph);
+}
 
 
 #popupbg {

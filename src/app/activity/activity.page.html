@@ -165,15 +165,22 @@
 </div>
 
 
-  <!--
+  
     <ion-header no-border>
       <ion-toolbar id="toolbarborder" style="--background: var(--toolbarbg); --min-height:var(--toolbarheight)">
         <div id="searchnav" style="display: grid;">
           
           <div>
             <div id="headertitle" style="padding: 7px 0 0 26px; color:var(--logocolor)">
-              <div class="fas fa-book" style="font-size: 16px; padding-top: 3px;"></div>
+
+              <div>
+                <img src="assets/svg/edusharelogo.svg" style="height:22px; margin-bottom: 0;" />
+              </div>
+              <!--
+                <div class="fas fa-book" style="font-size: 16px; padding-top: 3px;"></div>
               <ion-title class="ion-text-left" style="font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+              -->
+              
             </div>
             
           </div>
@@ -206,7 +213,7 @@
      
       
     </ion-header>
-  -->
+  
     
 
 
@@ -259,11 +266,16 @@
 
                 <div id="listgrandparent" *ngFor="let item of listosotask" style="margin:0px auto; display:block;  background: white; border-radius: 8px;">
     
-                  <div style="cursor:pointer; display: grid; grid-template-columns: 3px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
-                    <div style="display: grid; align-items: center; text-align: center; background:#6d91fe; width:100%; height:34px">
-                     
-                      
+                  <div style="cursor:pointer; display: grid; grid-template-columns: 24px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
+                    
+                    <!--
+                      <div style="display: grid; align-items: center; text-align: center; background:#6d91fe; width:100%; height:34px"> 
                     </div>
+                    -->
+                    
+
+                    <div class='bx bxs-checkbox-checked' style="color:#2de2c3; font-size: 32px;"></div>
+
 
                     <div style="color:rgb(60,60,60);font-weight:400; font-size: 12.4px;padding-left: 16px;clear:both;">
                       {{item.taskname}}

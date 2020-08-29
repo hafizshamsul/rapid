@@ -1,11 +1,13 @@
 <div id="sidemenu" style="background: var(--sidemenubg); position: fixed; width:var(--sidemenuwidth); height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+  
+  
   <div style="display: block;height:12px"></div>
 
   <div *ngFor="let item of items">
     <div *ngIf="item.name==currpage">
       <div (click)="link(item.name, currsession)" id="currentmenuitem" style="">
         <div id="gapicontext" style="">
-          <div class="{{item.icon}}" style="font-size: 19px;"></div>
+          <div class="{{item.iconcurr}}" style="font-size: 19px;"></div>
             <div style="padding-top: 2px;">
               {{item.label}}
             </div>

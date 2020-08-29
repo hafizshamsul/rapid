@@ -141,7 +141,7 @@ ion-item {
 
 #headertitle{
   display: grid;
-  grid-template-columns: 10px auto;
+  grid-template-columns: auto;
 
   @media (max-width: 576px) {
     display: none;
@@ -166,25 +166,25 @@ ion-item {
 #inputsearch::-webkit-input-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch:-ms-input-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch:-moz-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch::-moz-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #quickaccess{
@@ -212,4 +212,39 @@ ion-item {
   -o-animation: fadein 200ms;
   animation: fadein 200ms;
   transition-timing-function: cubic-bezier(.17,.67,.83,.67);*/
+}
+
+
+table{
+  background:white;
+  width:100%;
+  font-family: Inter;
+  font-size: 12.4px;
+  color:rgb(60,60,60);
+  font-weight: 400;
+  border: 1px solid rgb(240,240,240);
+  border-radius: 5px;
+}
+
+table>tbody{
+  border-top: 1px solid rgb(240,240,240);
+}
+
+table>tbody>tr{
+  height:50px;
+}
+
+table>tbody>tr>td{
+  border-top: 1px solid rgb(240,240,240);
+  padding-top: 15px;
+  padding-left: 18px;
+}
+
+table>thead>tr{
+  font-size: 11.2px;
+  font-weight: 500;
+}
+
+table>thead>tr>td{
+  padding-left: 18px;
 }
