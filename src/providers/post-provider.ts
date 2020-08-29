@@ -13,22 +13,6 @@ export class PostProvider {
 
     }
 
-    handleImageSelection(event : any) : Observable<any> {
-        let file: any = event.target.files[0];
-    
-        this._READER.readAsDataURL(file);
-        return Observable.create((observer) => {
-            this._READER.onloadend = () => {
-              observer.next(this._READER.result);
-              observer.complete();
-            }
-        });
-      }
-    
-    isCorrectFileType(file) {
-    return (/^(gif|pdf|jpg|jpeg|png)$/i).test(file);
-    }
-
     postData(body, file){
         let type = "application/json; charset=UTF-8";
         let headers = new Headers({'Content-Type': type});
