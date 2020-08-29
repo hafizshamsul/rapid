@@ -1,7 +1,18 @@
-<ion-tabs selectedIndex="0">
-  <ion-tab [root]="tab1Root" tabTitle="Folder" tabIcon="home">
-  </ion-tab>
+<ion-tabs>
 
-  <ion-tab [root]="tab2Root" tabTitle="File" tabIcon="incformation-circle">
-  </ion-tab>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="folder/{{r_username}}">
+      <ion-icon name="folder"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon name="send"></ion-icon>
+      <ion-label>Tab Three</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
 </ion-tabs>
