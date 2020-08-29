@@ -389,6 +389,62 @@
     
     }
 
+    elseif($postjson['action']=='deletefolderfile'){
+        $query = mysqli_query($mysqli, "SELECT COUNT(id) FROM folderfile WHERE folder_id = 2");
+        $query2 = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = 2");
+        $query3 = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = 3");
+        $query4 = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = 4");
+        
+        //$count = mysqli_num_rows($query2);
+
+        $deletelist = array();
+        $curr = array();
+        
+
+        $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = 2");
+        while($row = mysqli_fetch_array($querya)){
+            array_push($deletelist, $row['id']);
+            array_push($curr, $row['id']);
+            $data = json_encode($deletelist);
+        }
+        
+        for($i=0; $i<count($curr); $i++){
+            $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = $curr[$i]");
+            while($row = mysqli_fetch_array($querya)){
+                array_push($deletelist, $row['id']);
+                array_push($curr, $row['id']);
+                $data = json_encode($deletelist);
+            }
+        }
+
+        $reversed = array_reverse($deletelist);
+        array_push($reversed, 2);
+        $data = json_encode($reversed);
+
+        /*
+        $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = $curr[0]");
+        while($row = mysqli_fetch_array($querya)){
+            array_push($deletelist, $row['id']);
+            $data = json_encode($deletelist);
+        }
+
+        $querya = mysqli_query($mysqli, "SELECT id FROM folderfile WHERE folder_id = $curr[1]");
+        while($row = mysqli_fetch_array($querya)){
+            array_push($deletelist, $row['id']);
+            $data = json_encode($deletelist);
+        }*/
+
+        
+
+    if($query)
+        $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    //echo $result;
+    echo $data;
+    
+    }
+
     elseif($postjson['action']=='getpostall'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id where replyto is null and comment.id='$postjson[passededitid]' order by dateuploaded desc) d order by dateuploaded desc");
