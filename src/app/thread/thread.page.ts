@@ -8,6 +8,7 @@ import { GlobalService } from "../..//providers/global.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
+import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-thread',
@@ -16,8 +17,10 @@ import { NavController } from '@ionic/angular';
 })
 
 
+
 export class ThreadPage {
   r_thread: string;
+  coba:string = "<pre class='highlightSpan'>test</pre>";
 
   constructor(
     private ref: ChangeDetectorRef,
@@ -25,6 +28,7 @@ export class ThreadPage {
     public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
+    private qull: QuillModule,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
     
       
