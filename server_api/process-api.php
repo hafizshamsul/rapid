@@ -124,7 +124,7 @@
 
     elseif($postjson['action'] == 'addtagcomment'){
         //$idx = mysqli_insert_id($mysqli);
-        $query = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 30, tag_id = '$postjson[tag_id]'");
+        $query = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 40, tag_id = '$postjson[tag_id]'");
 
         $id = mysqli_insert_id($mysqli);
 
