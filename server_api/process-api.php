@@ -550,31 +550,20 @@
     }
 
 
+    elseif($postjson['action']=='renamefolderfile'){
+        $data = array();
+        $query = mysqli_query($mysqli, "update folderfile set name = '$postjson[rename]' where id = '$postjson[folderfile_id]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='addfolderfile_folder'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', users_id = 1");
-    
-        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
-        
-        //$diff = $date2->diff($date1);
-        //$hours = $diff->h;
-        //$hours = $hours + ($diff->days*24);
-
-
-        /*
-        while($row = mysqli_fetch_array($query)){
-            $data[] = array(
-                'folderfileid' => $row['id'],
-                'folderfilename' => $row['name'],
-                'filename' => $row['filename'],
-                'folderfiletype' => $row['type'],
-                'folderfileicon' => $row['icon'],
-                'folder_id' => $row['folder_id'],
-                'folderfileusers_id' => $row['users_id'],
-                'dateuploaded' => $row['dateuploaded'],
-                'visibility' => $row['visibility']
-            );
-        }*/
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));
@@ -586,28 +575,6 @@
     elseif($postjson['action']=='addfolderfile_subfolder'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[name]', icon = 'folder', folder_id = '$postjson[parent]', users_id = 1");
-    
-        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
-        
-        //$diff = $date2->diff($date1);
-        //$hours = $diff->h;
-        //$hours = $hours + ($diff->days*24);
-
-
-        /*
-        while($row = mysqli_fetch_array($query)){
-            $data[] = array(
-                'folderfileid' => $row['id'],
-                'folderfilename' => $row['name'],
-                'filename' => $row['filename'],
-                'folderfiletype' => $row['type'],
-                'folderfileicon' => $row['icon'],
-                'folder_id' => $row['folder_id'],
-                'folderfileusers_id' => $row['users_id'],
-                'dateuploaded' => $row['dateuploaded'],
-                'visibility' => $row['visibility']
-            );
-        }*/
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));

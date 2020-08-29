@@ -533,12 +533,14 @@ export class FolderPage implements OnInit {
 
 
   //HTML ID
+  @ViewChild('naming', {static: false}) naming;
   @ViewChild('rename', {static: false}) rename;
 
   //LOGIC VARIABLE
   popup:boolean = false;
   UDpopup:boolean = false;
   CDpopup:boolean = false;
+  CRpopup:boolean = false;
 
   //VARIABLE PASSED TO POPUP
   selectedid:number;
@@ -547,11 +549,17 @@ export class FolderPage implements OnInit {
   showid(folderfileid, folderfilename){
     this.selectedid = folderfileid;
     this.selectedname = folderfilename;
+    console.log(this.selectedname);
     this.UDopenpopup();
   }
 
   showdeleteid(){
     this.CDopenpopup();
+  }
+
+  showrenameid(){
+    this.CRopenpopup();
+    this.popuprename = this.selectedname;
   }
 
   //OPEN POPUP
@@ -561,7 +569,7 @@ export class FolderPage implements OnInit {
     this.popup = true;
     console.log(this.popup);
     setTimeout(()=>{
-      this.rename.setFocus();
+      this.naming.setFocus();
     },150);
   }
 
@@ -575,9 +583,21 @@ export class FolderPage implements OnInit {
   CDopenpopup(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
-    this.UDpopup = false;
+    //this.UDpopup = false;
     this.CDpopup = true;
     console.log(this.CDpopup);
+  }
+
+  CRopenpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    //this.UDpopup = false;
+    //this.popuprename = this.selectedname;
+    console.log(this.CRpopup);
+    this.CRpopup = true;
+    setTimeout(()=>{
+      this.rename.setFocus();
+    },150);
   }
 
   //CLOSE POPUP
@@ -595,6 +615,12 @@ export class FolderPage implements OnInit {
     this.CDpopup = false;
     this.UDpopup = false;
     console.log(this.CDpopup);
+  }
+
+  CRclosepopupbg(){
+    //this.CRpopup = false;
+    //this.UDpopup = false;
+    console.log(this.CRpopup);
   }
 
 
@@ -621,6 +647,17 @@ export class FolderPage implements OnInit {
     console.log(this.UDpopup);
   }
 
+  CRclosepopupbtn(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    this.popuprename = this.selectedname;
+
+    this.CRpopup = false;
+    this.UDpopup = false;
+    console.log(this.UDpopup);
+  }
+
   //ACTION FOR ADDING TO BOOKMARK
   addtobookmark(){
     event.cancelBubble = true;
@@ -638,8 +675,33 @@ export class FolderPage implements OnInit {
     this.UDpopup = false;
   }
 
+  //ACTION FOR RENAMING FOLDER
+  popuprename:string = 'Untitled';
+  
+  rename_method(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
+
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+
+    this.rename_impl(this.selectedid, this.popuprename);
+
+    setTimeout(()=>{
+      this.ionViewWillEnter();
+    }, 240);
+
+    this.CRpopup = false;
+    this.UDpopup = false;
+
+    this.popuprename = 'Untitled';
+  }
+
   //ACTION FOR DELETING FOLDER
   delete(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
     
     this.counting(this.selectedid);
@@ -653,10 +715,13 @@ export class FolderPage implements OnInit {
   }
 
   //ACTION FOR ADDING FOLDER
-  popuprename:string = 'Untitled';
+  popupnaming:string = 'Untitled';
   
   addetc(){
-    this.addfolderfile_folder(this.popuprename);
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
+    this.addfolderfile_folder(this.popupnaming);
     
     setTimeout(()=>{
       this.ionViewWillEnter();
@@ -664,7 +729,7 @@ export class FolderPage implements OnInit {
     
     this.popup = false;
 
-    this.popuprename = 'Untitled';
+    this.popupnaming = 'Untitled';
   }
 
   //ADD FOLDER IMPLEMENTATION
@@ -696,6 +761,19 @@ export class FolderPage implements OnInit {
 
   deletefolder(folderfileid){
     this.counting(folderfileid);
+  }
+
+  rename_impl(folderfile_id, rename){
+    return new Promise(resolve => {
+      let body = {
+        action : 'renamefolderfile',
+        folderfile_id : folderfile_id,
+        rename : rename
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+    });
   }
 
   //ADD TO BOOKMARK IMPLEMENTATION
