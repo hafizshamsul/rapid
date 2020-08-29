@@ -1,0 +1,30 @@
+#menuitem{
+    font-family: 'Inter';
+    font-size: 13px;
+    font-weight: 510;
+    clear: both;
+    padding: 12px 28px;
+    color: rgb(100,100,100);
+    cursor: pointer;
+    border-radius: 0 20px 20px 0;
+    
+}
+#menuitem:hover{
+    background:rgb(247,247,247);
+    border-radius: 0 20px 20px 0;
+}
+
+#currentmenuitem{
+    font-family: 'Inter';
+    font-size: 13px;
+    font-weight: 700;
+    clear: both;
+    padding: 12px 28px;
+    color: #4b7fda;
+    cursor: context-menu;
+    background:#e8f0fe;
+    border-radius: 0 20px 20px 0;
+}
+#currentmenuitem:hover{
+    cursor: context-menu;
+}

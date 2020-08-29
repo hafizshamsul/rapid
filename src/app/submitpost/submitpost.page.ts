@@ -5,6 +5,7 @@ import { QuillModule } from 'ngx-quill';
 import { Tagify } from '@yaireo/tagify';
 import { PostProvider } from '../../providers/post-provider';
 import { GlobalService } from "../..//providers/global.service";
+import { CurrentNavService } from "../..//providers/currentnav.service";
 
 
 @Component({
@@ -15,7 +16,8 @@ import { GlobalService } from "../..//providers/global.service";
 export class SubmitpostPage implements OnInit {
 
   constructor(
-    public global: GlobalService, 
+    public global: GlobalService,
+    public currentnav: CurrentNavService,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
 
   //tag
@@ -53,6 +55,8 @@ export class SubmitpostPage implements OnInit {
   }
 
   ngOnInit() {
+    this.currentnav.currentpage = 'submitpost';
+    
     this.editorForm = new FormGroup({
       'editor': new FormControl(null)
     });
