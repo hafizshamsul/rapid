@@ -508,9 +508,7 @@ export class FolderPage implements OnInit {
   }
 
 
-  deletefolder(folderfileid){
-    this.counting(folderfileid);
-  }
+  
 
   //kaun:any = [];
 
@@ -607,6 +605,8 @@ export class FolderPage implements OnInit {
   delete(){
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
     
+    this.counting(this.selectedid);
+
     setTimeout(()=>{
       this.ionViewWillEnter();
     }, 240);
@@ -654,6 +654,8 @@ export class FolderPage implements OnInit {
     });
   }
 
-  
+  deletefolder(folderfileid){
+    this.counting(folderfileid);
+  }
 
 }
