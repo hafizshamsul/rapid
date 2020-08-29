@@ -10,7 +10,7 @@ const port = 4000;
 const http = require("http");
 const server = http.createServer(app);
 const io = require("socket.io")(server);
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname));
 io.sockets.on("error", e => console.log(e));
 
 //Connecting to server
@@ -29,12 +29,16 @@ io.sockets.on("connection", socket => {
   socket.on("offer", (id, message) => {
     socket.to(id).emit("offer", socket.id, message);
   });
-  socket.on("answer", (id, message) => {
-    socket.to(id).emit("answer", socket.id, message);
-  });
+  
   socket.on("candidate", (id, message) => {
     socket.to(id).emit("candidate", socket.id, message);
   });
+
+  socket.on("answer", (id, message) => {
+    socket.to(id).emit("answer", socket.id, message);
+  });
+
+  
 
   //Disconecting from server
   socket.on("disconnect", () => {
