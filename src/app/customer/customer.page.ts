@@ -34,10 +34,13 @@ export class CustomerPage implements OnInit {
   private _SUFFIX : string;
   public image : string;
   public isSelected : boolean =	false;
-
+  
+  idc: number;
   name: string = "l";
   decoded: string = "l";
-  idc: number;
+  type: string = "l";
+  icon: string;
+  
 
   constructor(
     //private docPicker: DocumentPicker,
@@ -50,6 +53,8 @@ export class CustomerPage implements OnInit {
       this.idc = data.idc;
       this.name = data.name;
       this.decoded = data.decoded;
+      this.type = data.type;
+      this.icon = data.icon;
       console.log(data);
     });
     /*
@@ -139,6 +144,52 @@ export class CustomerPage implements OnInit {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
         this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
 
+      if(this._SUFFIX == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
+        this._SUFFIX = 'docx';
+      }
+      else if(this._SUFFIX == 'postscript'){
+        this._SUFFIX = 'ai';
+      }
+      else if(this._SUFFIX == 'x-windows-bmp'){
+        this._SUFFIX = 'bmp';
+      }
+      else if(this._SUFFIX == 'jpg'){
+        this._SUFFIX = 'jpeg';
+      }
+      else if(this._SUFFIX == 'octet-stream'){
+        this._SUFFIX = 'psd';
+      }
+      else if(this._SUFFIX == 'tif'){
+        this._SUFFIX = 'tiff';
+      }
+      else if(this._SUFFIX == 'postscript'){
+        this._SUFFIX = 'ai';
+      }
+      else if(this._SUFFIX == 'msword'){
+        this._SUFFIX = 'doc';
+      }
+      else if(this._SUFFIX == 'vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+        this._SUFFIX = 'xlsx';
+      }
+      else if(this._SUFFIX == 'vnd.ms-excel'){
+        this._SUFFIX = 'xls';
+      }
+      else if(this._SUFFIX == 'vnd.openxmlformats-officedocument.presentationml.presentation'){
+        this._SUFFIX = 'pptx';
+      }
+      else if(this._SUFFIX == 'vnd.ms-powerpoint'){
+        this._SUFFIX = 'ppt';
+      }
+      else if(this._SUFFIX == 'vnd.ms-access'){
+        this._SUFFIX = 'mdb';
+      }
+      else if(this._SUFFIX == 'plain'){
+        this._SUFFIX = 'txt';
+      }
+      else if(this._SUFFIX == 'x-zip-compressed'){
+        this._SUFFIX = 'zip';
+      }
+
         if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
           this.isSelected = true;
           this.image = res;
@@ -152,13 +203,36 @@ export class CustomerPage implements OnInit {
         this.displayAlert(error.message);
       });
     }
-   
+ 
    uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
+    
+    if(['ai', 'bmp', 'gif', 'jpeg', 'png', 'psd', 'svg', 'tiff'].includes(this._SUFFIX)){
+      this.icon = 'images';
+    }
+    else if(['doc', 'docx', 'rtf', 'txt'].includes(this._SUFFIX)){
+      this.icon = 'doc';
+    }
+    else if(['pdf'].includes(this._SUFFIX)){
+      this.icon = 'pdf';
+    }
+    else if(['xls', 'xlsx'].includes(this._SUFFIX)){
+      this.icon = 'excel';
+    }
+    else if(['ppt', 'pptx'].includes(this._SUFFIX)){
+      this.icon = 'presentation';
+    }
+    else if(['zip'].includes(this._SUFFIX)){
+      this.icon = 'zip';
+    }
+    
+    
     let body: any = {
       action : "add" ,
       name : this.name,
       file : this.image,
+      type : this._SUFFIX,
+      icon : this.icon,
       rename : "kehkeh.png"
     };  
     

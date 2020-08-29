@@ -68,7 +68,7 @@
       <div *ngIf="!isSelected">
         <h2>Select image and upload</h2>
         <input
-          type="file"
+          type="file" 
           (change)="selectFileToUpload($event)">
     </div>
 
@@ -100,7 +100,7 @@
               </div>
             </div>-->
             
-            <img src="assets/svg/svg_icons/images_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+            <img src="assets/svg/svg_icons/{{hik.icon}}_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
             <ion-label  style="font-family: 'Nunito Sans', sans-serif;">
               <!--
                 <a href="http://192.168.0.137/rapidkl/rapid/upload_api/uploads/{{hik.name}}">
