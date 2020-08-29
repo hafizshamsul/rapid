@@ -570,6 +570,10 @@ export class RoomPage implements OnInit {
     this.navCtrl.navigateRoot(['r/home/']);
   }
 
+  toRoom(){
+    this.navCtrl.navigateRoot(['r/room/']);
+  }
+
   toSubmitpost(){
     this.navCtrl.navigateRoot(['r/submitpost/']);
   }
