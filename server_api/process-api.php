@@ -195,10 +195,12 @@
 
         //$query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
         
+        $query_deletetagcomment = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = 193");
+
         for($i=0; $i<count($postjson['contoh']); $i++){
             $curr = $postjson['contoh'][$i]['id'];
             //$query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_updatepost, tag_id = $curr");
-            //$query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = 1");
+            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = $curr");
         }
         /*for($i=0; $i<count($postjson['contoh']); $i++){
             $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = 1");

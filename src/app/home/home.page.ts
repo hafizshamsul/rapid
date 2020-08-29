@@ -261,14 +261,13 @@ listoso:any[];
     "textcmt": "lel",
     "tags": ["hur"],
     "tagsname": ["hur"],
-    "generaltags":{
-      "tagid": 0,
-      "tagname": "hur"
-    }
+    "generaltags":{"tagid": 0, "tagname": "hur"},
+    "newtags":{"tagid": 0, "tagname": "hur"}
   }
 
   collecttag: any=[];
   collecttagname: any=[];
+  collectnewtags: any=[];
 
   public async toEdit(commentid, title, textcmt){
     event.cancelBubble = true;
@@ -284,21 +283,25 @@ listoso:any[];
         console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
         this.collecttag.push(tagcomment.tag_id);
         this.collecttagname.push(tagcomment.tag_tagname);
+        this.collectnewtags.push({"tagid": tagcomment.tag_id, "tagname": tagcomment.tag_tagname});
       }
     }
     console.log(this.collecttag);
     console.log(this.collecttagname);
+    console.log(this.collectnewtags);
 
     this.locs.tags = this.collecttag;
     this.locs.tagsname = this.collecttagname;
     this.locs.generaltags.tagid = this.collecttag;
     this.locs.generaltags.tagname = this.collecttagname;
+    this.locs.newtags = this.collectnewtags;
 
     this.myNavService.myParam = {locs:this.locs};
     //await this.navCtrl.goForward('/map-page');
     
     this.collecttag =[];
     this.collecttagname =[];
+    this.collectnewtags =[];
 
     await this.router.navigateByUrl('/editpost');
 
