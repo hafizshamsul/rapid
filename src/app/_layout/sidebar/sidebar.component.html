@@ -1,0 +1,106 @@
+
+    <ion-menu contentId="main" style="min-width: 230px; max-width: 230px;">
+        <ion-header no-border style="border-bottom: 1px solid rgb(230,230,230);">
+            <ion-toolbar>
+                <ion-title style="padding: 0 0 0 16px;">{{currentusername}}</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            
+            <ng-container *ngIf="currentpage == 'home';else home">
+                <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px;">
+                    <div id="gapicontext" style="">
+                        <div class="fas fa-home" style="font-size: 18px"></div>
+                        <div style="padding-top: 2px">
+                            Home
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #home>
+                <ng-container *ngIf="currentpage != 'home'">
+                    <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
+                        <div id="gapicontext" style="">
+                            <div class="fas fa-home" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Home
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <ng-container *ngIf="currentpage == 'submitpost';else submitpost">
+                <div (click)="toSubmitpost()" id="currentmenuitem" style="">
+                    <div id="gapicontext" style="">
+                        <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
+                        <div style="padding-top: 2px">
+                            Uploads
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #submitpost>
+                <ng-container *ngIf="currentpage != 'submitpost'">
+                    <div (click)="toSubmitpost()" id="menuitem" style="">
+                        <div id="gapicontext" style="">
+                            <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Uploads
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <ng-container *ngIf="currentpage == 'folder';else folder">
+                <div (click)="toFolder()" id="currentmenuitem" style="">
+                    <div id="gapicontext" style="">
+                        <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                        <div style="padding-top: 2px">
+                            Folders
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #folder>
+                <ng-container *ngIf="currentpage != 'folder'">
+                    <div (click)="toFolder()" id="menuitem" style="">
+                        <div id="gapicontext" style="">
+                            <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                            <div style="padding-top: 2px">
+                                Folders
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <ng-container *ngIf="currentpage == 'messenger';else messenger">
+                <div (click)="toMessenger()" id="currentmenuitem" style="">
+                    <div id="gapicontext" style="">
+                        <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
+                        <div style="padding-top: 0px;">
+                            Messenger
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #messenger>
+                <ng-container *ngIf="currentpage != 'messenger'">
+                    <div (click)="toMessenger()" id="menuitem" style="">
+                        <div id="gapicontext" style="">
+                            <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
+                            <div style="padding-top: 0px">
+                                Messenger
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            
+        </ion-content>
+        
+    </ion-menu>
+

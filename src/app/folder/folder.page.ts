@@ -395,4 +395,23 @@ export class FolderPage implements OnInit {
   }
 
   
+
+
+
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
+  }
 }
