@@ -199,7 +199,10 @@
 
   <div id="griditem2" style="display:grid;">
     <div></div>
-    <div style="background: white; height:78vh; padding:0 20px">
+    <div>
+      <div id="headeruploadpost" style="font-family: Inter; font-weight: 600; font-size:15px; color:rgb(90,90,90); margin: 0 0 10px 12px;">Upload Post</div>
+
+      <div style="background: white; height:78vh; padding:8px 20px; border-radius: 3px;">
       
 
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
@@ -277,16 +280,18 @@
         <ion-button id="formsubmit" type="submit">Update</ion-button>
       </form>
       
-      <!--
-        <ion-button (click)="checkselected()" style="display: block; float:left; width: 40%; margin-top:10px; margin-right:10px" >Check selected</ion-button>
-      -->
+        <!--
+          <ion-button (click)="checkselected()" style="display: block; float:left; width: 40%; margin-top:10px; margin-right:10px" >Check selected</ion-button>
+        -->
 
-      <!--
-        <h5 style="text-align: center; margin-top:50px">Preview</h5>
-        <p [innerHTML]="editorContent"></p>
-      -->
-      
+        <!--
+          <h5 style="text-align: center; margin-top:50px">Preview</h5>
+          <p [innerHTML]="editorContent"></p>
+        -->
+        
+      </div>
     </div>
+    
     <div></div>   
   </div>
 </div>

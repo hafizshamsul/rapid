@@ -52,12 +52,14 @@
 }
 
 ion-content{
-    --background:hsl(24,20%,95%);
+  --background:hsl(24,20%,95%);
 
     @media (max-width: 576px) {
         --background:white;
     }
 }
+
+
 
 #sidemenu{
     @media (max-width: 576px) {
@@ -66,9 +68,17 @@ ion-content{
   }
 
 #uploadpost{
+    display:none;
+
     @media (max-width: 576px) {
-        display: none;
+      display: none;
     }
+}
+
+#headeruploadpost{
+  @media (max-width: 576px) {
+    display: none;
+  }
 }
 
 #innercontent{

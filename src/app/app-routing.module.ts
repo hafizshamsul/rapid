@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'stream',
     loadChildren: () => import('./stream/stream.module').then( m => m.StreamPageModule)
   },
+  {
+    path: 'collabeditor',
+    loadChildren: () => import('./collabeditor/collabeditor.module').then( m => m.CollabeditorPageModule)
+  },
 
 
 
