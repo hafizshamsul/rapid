@@ -14,6 +14,7 @@ import { LineUtil } from 'leaflet';
 import { stringify } from 'querystring';
 
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 
 @Component({
   selector: 'app-file',
@@ -64,6 +65,7 @@ export class FilePage implements OnInit {
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
     private document: DocumentViewer,
+    private previewAnyFile: PreviewAnyFile,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
     folderfileid:number;
@@ -677,6 +679,7 @@ export class FilePage implements OnInit {
 
   selectedfilename:string;
   src:any;
+  srcnative:string;
 
   showFolder(folderfileid, folderfileicon, filename){
     //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
@@ -689,10 +692,15 @@ export class FilePage implements OnInit {
     else{
       this.selectedfilename = filename;
       this.src = "http://192.168.0.137/rapidkl/rapid/web/viewer.html?file=/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+      this.srcnative = "http://192.168.0.137/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
 
       if (matchMedia('only screen and (max-width: 576px)').matches) {
         this.PDFpopupnative = true;
-      }
+        console.log(this.selectedfilename);
+        this.previewAnyFile.preview(this.srcnative)
+          .then((res: any) => console.log(res))
+          .catch((error: any) => console.error(error));
+        }
       else{
         this.PDFpopup = true;
       }
