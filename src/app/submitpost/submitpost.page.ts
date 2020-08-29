@@ -146,8 +146,8 @@ export class SubmitpostPage implements OnInit {
     this.editorContent = this.editorForm.get('editor').value;
     console.log("comment.users_id: "+this.global.userid);
     console.log("comment.title: "+this.getTitle);
-    console.log("comment.textcmt: "+this.editorContent);
-
+    //console.log("comment.textcmt: "+this.editorContent);
+    console.log(this.editorForm.get('editor').value);
     
 
     return new Promise(resolve => {
@@ -166,7 +166,21 @@ export class SubmitpostPage implements OnInit {
       });
       //this.loopTagComment();
       //window.location.reload(true);
-      window.location.href = window.location.href;
+      
+      //window.location.href = window.location.href; oriiii
+      this.getTitle = '';
+      this.editorForm.get('editor').setValue('');
+
+      for(let item of this.contoh2){
+        if(item.selected == true){
+          this.totalselected--;
+          item.selected = false;
+        }
+      }
+
+      //this.contoh2 = [];
+      //this.tags = [];
+      //this.loadTag();
       
       //this.router.navigate(['r/submitpost/']);
       //this.getTitle = "";

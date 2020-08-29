@@ -373,6 +373,10 @@ listoso:any[];
         }
         this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
         console.log('Delete is clicked');
+        this.comments = [];
+        this.tagcomments = [];
+        this.loadPost();
+        this.loadTagComment();
         resolve(true);
       });
     });
@@ -434,7 +438,13 @@ listoso:any[];
           handler: (r_thread) => {
             this.deletePost(leh);
             
-            window.location.href = window.location.href;
+            //window.location.href = window.location.href; oriiii
+            
+            /*setTimeout(() => {
+              this.navCtrl.navigateRoot(['r/home']);
+            }, 1000);*/
+            
+
           }
         }
       ]
