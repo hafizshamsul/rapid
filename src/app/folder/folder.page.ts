@@ -617,6 +617,23 @@ export class FolderPage implements OnInit {
     console.log(this.UDpopup);
   }
 
+  //ACTION FOR ADDING TO BOOKMARK
+  addtobookmark(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
+    console.log('id: '+this.selectedid+', name: '+this.selectedname);
+
+    this.addtobookmark_impl(this.selectedid, this.global.userid);
+
+    setTimeout(()=>{
+      this.ionViewWillEnter();
+    }, 240);
+
+    
+    this.UDpopup = false;
+  }
+
   //ACTION FOR DELETING FOLDER
   delete(){
     console.log('id: '+this.selectedid+', name: '+this.selectedname);
@@ -646,6 +663,7 @@ export class FolderPage implements OnInit {
     this.popuprename = 'Untitled';
   }
 
+  //ADD FOLDER IMPLEMENTATION
   addfolderfile_folder(name){
     return new Promise(resolve => {
       let body = {
@@ -657,8 +675,8 @@ export class FolderPage implements OnInit {
       });
     });
   }
-  //END OF CODE
 
+  //DELETE FOLDER IMPLEMENTATION
   counting(folderfileid){
     return new Promise(resolve => {
       let body = {
@@ -675,5 +693,21 @@ export class FolderPage implements OnInit {
   deletefolder(folderfileid){
     this.counting(folderfileid);
   }
+
+  //ADD TO BOOKMARK IMPLEMENTATION
+  addtobookmark_impl(folderfile_id, users_id){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addbookmark',
+        folderfile_id : folderfile_id,
+        users_id : users_id
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+    });
+  }
+
+  
 
 }
