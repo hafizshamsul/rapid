@@ -260,6 +260,10 @@ export class SubmitpostPage implements OnInit {
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }
