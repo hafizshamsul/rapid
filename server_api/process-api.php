@@ -238,6 +238,43 @@
         echo $result;
     }
 
+
+    elseif($postjson['action'] == 'newaddpost'){
+        $postjson['textcmt'] = mysqli_real_escape_string($mysqli, $postjson['textcmt']);
+        //$query_updatepost = mysqli_query($mysqli, "UPDATE comment SET title = '$postjson[title]', textcmt = '$postjson[textcmt]' WHERE id = '$postjson[commentid]'");
+        $query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+
+        $id_addpost = mysqli_insert_id($mysqli);
+        $addone = mysqli_insert_id($mysqli)+1;
+
+        $query_updatethread = mysqli_query($mysqli, "UPDATE comment SET thread = $id_addpost WHERE id=$id_addpost");
+
+        /*
+        for($i=0; $i<count($postjson['contoh']); $i++){
+            $curr = $postjson['contoh'][$i]['tagid'];
+            if($postjson['contoh'][$i]['selected'] == true){
+                $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $postjson[commentid], tag_id = $curr");
+            }    
+        }*/
+
+        for($i=0; $i<count($postjson['contoh2']); $i++){
+            $curr = $postjson['contoh2'][$i]['tagid'];
+            if($postjson['contoh2'][$i]['selected'] == true){
+                $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_addpost, tag_id = $curr");
+            }
+        }
+            
+        if($query_addpost){
+            $result = json_encode(array('success'=>true, 'id'=>$id_addpost));
+        }
+        else{
+            $result = json_encode(array('success'=>false));
+        }
+
+        echo $result;
+    }
+
+    
     elseif($postjson['action'] == 'addtagcomment'){
         $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 56, tag_id = '$postjson[tag_id]'");
 

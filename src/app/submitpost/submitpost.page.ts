@@ -116,7 +116,7 @@ export class SubmitpostPage implements OnInit {
 
   changeselection(itemid){
   
-    for(let item of this.contoh){
+    for(let item of this.contoh2){
       if(item.tagid == itemid){
         //select
         if(item.selected == false){
@@ -130,6 +130,10 @@ export class SubmitpostPage implements OnInit {
         }
       }
     }
+  }
+
+  checkselected(){
+    console.log(this.contoh2);
   }
 
   totalselected:number=0;
@@ -148,11 +152,11 @@ export class SubmitpostPage implements OnInit {
 
     return new Promise(resolve => {
       let body = {
-        action : 'addpost',
+        action : 'newaddpost',
         users_id: this.global.userid,
         title: this.getTitle,
         textcmt: this.editorContent,
-        contoh: this.contoh,
+        contoh2: this.contoh2,
         //contoh: { "name":"John" },
         //contoh: "{ 'id': 1, 'text': 'lol' }",
         jsond: "{\'id\''}"
@@ -160,7 +164,7 @@ export class SubmitpostPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
       });
-      this.loopTagComment();
+      //this.loopTagComment();
       //window.location.reload(true);
       window.location.href = window.location.href;
       

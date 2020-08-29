@@ -310,8 +310,14 @@ export class FolderPage implements OnInit {
     this.router.navigate(['/showcustomer/'+id]);
   }
 
-  showFolder(folderid){
-    this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
+  showFolder(folderfileid, folderfileicon){
+    //this.router.navigate(['/r/'+this.r_username +'/'+folderid]);
+
+    if(folderfileicon == 'folder'){
+      this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+    }
+    
   }
 
   home(){
