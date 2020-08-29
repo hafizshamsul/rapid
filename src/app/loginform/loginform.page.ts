@@ -58,6 +58,9 @@ export class LoginformPage implements OnInit {
 
   }
 
+  isValidated:boolean = false;
+  isCorrect:boolean = false;
+
   getUser(){
     return new Promise(resolve => {
       let body = {
@@ -72,12 +75,16 @@ export class LoginformPage implements OnInit {
         }
         
         if(this.users[0].username==null && this.users[0].password==null){
-          console.log('user does not exist');
+          this.isValidated = true;
           this.users=[];
         }
         else{
-          console.log('proceed to home');
+          this.isValidated = false;
+          this.isCorrect = true;
           this.users=[];
+          
+            this.router.navigate(['/home']);
+         
         }
         
         
@@ -90,5 +97,25 @@ export class LoginformPage implements OnInit {
       );
     });
   }
+
+
+  public focusInput (event): void {
+
+    let total = 0;
+    let container = null;
+
+    const _rec = (obj) => {
+
+        total += obj.offsetTop;
+        const par = obj.offsetParent;
+        if (par && par.localName !== 'ion-content') {
+            _rec(par);
+        } else {
+            container = par;
+        }
+    }
+    _rec(event.target);
+    container.scrollToPoint(0, total - 50, 400);
+}
 
 }

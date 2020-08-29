@@ -2,6 +2,10 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+  <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
 <ion-header>
@@ -17,11 +21,17 @@
       
     </div>
 
-    <div class="item">
+    <div class="item" style="overflow-y: scroll;">
       <img id="img-login" src="assets/svg/logform.svg" style="margin-top: 4em; height: 100px; margin-bottom: 0;" />
       <h1 style="font-weight: 800; font-size: 1.6em;  word-wrap: break-word; margin: 0.8em 1.2em 1.6em 1.2em">Sign in</h1>
-      <ion-input id="input-loginform" [(ngModel)]="logusername" placeholder="Enter your username"></ion-input>
-      <ion-input id="input-loginform" [(ngModel)]="logpassword" placeholder="Enter your password" type="password"></ion-input>
+      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logusername" placeholder="Enter your username" style="position: relative; font-family: 'Inter var', sans-serif">
+        <i *ngIf="isValidated" class="fas fa-exclamation-circle" style="font-size: 18px; color:rgb(223, 96, 96); right:17px; top:17px; position:absolute; z-index: 2;"></i>
+        <i *ngIf="isCorrect" class="fas fa-check-circle" style="font-size: 18px; color:rgb(37, 156, 117); right:17px; top:17px; position:absolute; z-index: 2;"></i>
+      </ion-input>     
+      <ion-input (click)="focusInput($event)" id="input-loginform" [(ngModel)]="logpassword" placeholder="Enter your password" type="password" style="position: relative; font-family: 'Inter var', sans-serif">
+        <i *ngIf="isValidated" class="fas fa-exclamation-circle" style="font-size: 18px; color:rgb(223, 96, 96); right:17px; top:17px; position:absolute; z-index: 2;"></i>
+        <i *ngIf="isCorrect" class="fas fa-check-circle" style="font-size: 18px; color:rgb(37, 156, 117); right:17px; top:17px; position:absolute; z-index: 2;"></i>
+      </ion-input>
       <ion-button id="btnGetStarted" (click)="folder()" style="text-transform: none; margin-top: 1.7em;">Sign in</ion-button>
       <ion-button id="btnLogin" (click)="registerform()" color="none" style="text-transform: none; box-shadow: none;">Don't have an account? Sign Up here</ion-button>
     </div>    
