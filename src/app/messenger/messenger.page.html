@@ -1,11 +1,11 @@
 <ion-header no-border>
-  <ion-toolbar id="toolbarborder" style="--background:white; ">
+  <ion-toolbar id="toolbarborder"  style="--background: var(--toolbarbg); --min-height:var(--toolbarheight)">
     <div id="searchnav" style="display: grid;">
       
       <div>
-        <div id="headertitle" style="padding: 7px 0 0 26px">
-          <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-          <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+        <div id="headertitle" style="padding: 7px 0 0 26px; color:var(--logocolor)">
+          <div class="fas fa-book" style="font-size: 16px;  padding-top: 3px;"></div>
+          <ion-title class="ion-text-left" style=" font-weight: 800px; font-size: 18px;">Edushare</ion-title>
         </div>
 
         <ion-buttons id="searchnavmsg" slot="end" style="float: right;padding-right: 4px;">
@@ -15,7 +15,7 @@
         </ion-buttons>
       </div>
 
-      <div style="text-align: center;padding-top: 8px; font-family: Inter;">
+      <div style="text-align: center;padding-top: 8px;">
         Messenger
       </div>
 
@@ -46,7 +46,7 @@
 
     <ion-content style="--padding-top: 4px;  --padding:10px">
       <div id="innercontent" style="margin-top: 9px;">
-        <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+        <div id="sidemenu" style="background: var(--sidemenubg); position: fixed; width:var(--sidemenuwidth); height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
             <div id="gapicontext" style="color: rgb(120,120,120);">
                 <div class="bx bx-home-circle" style="font-size: 19px;"></div>

@@ -254,7 +254,7 @@
     -->
 
     <ion-header no-border>
-      <ion-toolbar id="toolbarborder">
+      <ion-toolbar id="toolbarborder" style=" --min-height:var(--toolbarheight)">
 
         <ion-buttons slot="start">
           <ion-back-button (click)="toBack()" color="green"></ion-back-button>
@@ -427,7 +427,7 @@
                 </div>
               -->
               
-              <div style="display: grid; grid-template-columns: 140px auto 100px 100px; font-family: Inter;">
+              <div style="display: grid; grid-template-columns: 140px auto 100px 100px;">
                 <div style="font-size: 13px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 10px 18px">
                   Recent Docs
                 </div>
@@ -465,7 +465,7 @@
               
 
               <div style="background: white; border-radius: 5px 5px 0 0; border:1px solid rgb(240,240,240)">
-                <div style="font-family:Inter; margin:0px auto; display:block;">
+                <div style="margin:0px auto; display:block;">
                   <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns: auto 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
         
                     <div style="color:rgb(60,60,60);font-weight:500; font-size: 11.2px;padding-left: 5px;clear:both;">
@@ -481,7 +481,7 @@
                 <div *ngFor="let item of listoso">
                   <div *ngIf="item.folder_id==r_folderid">
                     
-                    <div id="listgrandparent" style="font-family:Inter; margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
+                    <div id="listgrandparent" style="margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
     
                       <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
                         <div style="display: grid; align-items: center; text-align: center;">
@@ -500,56 +500,6 @@
     
                     </div>
                     
-                    <!--
-                      <div  id="listgrandparent" style="font-family:Inter; border-radius:3px; margin:6px auto; display:block">
-                      
-                      <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)">
-                        <div style="display: grid; grid-template-columns: 32px auto 80px; ">
-                          <div style="padding: 10px 0 14px 14px;">
-                            <div style="width:100%; height:28px; border-radius: 8px; margin-top: 7px;">
-                              <div *ngIf="item.folderfileicon == 'folder'">
-                                <div class="bx bxs-folder" style="font-size: 22px; color: #ffc86b"></div>
-                                
-                              </div>
-                              <div *ngIf="item.folderfileicon == 'pdf'">
-                                <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
-                              </div>
-                              <div *ngIf="item.folderfileicon == 'doc'">
-                                <img src="assets/svg/svg_icons/doc_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
-                              </div>
-                            </div>
-
-                          </div>
-
-                          <div style="padding: 10px 0 14px 6px;">
-                            <div style="color:rgb(60,60,60);font-weight:400; font-size: 14px;padding-left: 10px;clear:both; margin-bottom: 4px;">
-                              {{item.folderfilename}}
-                            </div>
-                            <div style="color:rgb(150,150,150);font-weight:400; font-size: 12px;padding-left: 10px; clear:both">
-                              26 Apr 2020
-                            </div>
-                          </div>
-
-                          <div (click)="showid(item.folderfileid, item.folderfilename)" style="cursor:pointer">
-                            <div style="display: grid; grid-template-rows: auto auto auto; height:100%">
-                              <div></div>
-                              <div style="margin:0 auto; display: block;">
-                                <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px"></div>
-                              </div>
-                              <div></div>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                      
-                      
-                    </div>
-                    -->
-                    
-
-                        
-            
 
                   </div>
                    
@@ -571,14 +521,6 @@
               </div>
 
               
-
-
-
-
-
-
-              
-
             </div>
           </div>
           <div></div>

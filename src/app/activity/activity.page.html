@@ -1,21 +1,4 @@
-<!--
-  <ion-content>
-  <p>lollololololololololololololololololololololol</p>
-  </ion-content>
-  <ion-menu side="start" menuId="first">
-    <ion-content>
-      <ion-list>
-        <ion-item id="haha">haha</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-      
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet main></ion-router-outlet>
--->
+
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
@@ -61,12 +44,6 @@
           <div style="padding:24px 24px 0 24px; font-size: 16px;color:rgb(20,20,20); font-weight: 500; text-align: center;">
             New folder
           </div>
-          
-          <!--
-            <div (click)="closepopupbtn()" style="padding:20px 10px 0 10px; height:100%; cursor: pointer">
-            <div class="fas fa-times" style="font-size: 16px;color:rgb(150,150,150)"></div>
-          </div>
-          -->
           
         </div>
         
@@ -189,86 +166,24 @@
 
 
 
-
-
-
-
-    
-  <!--  our side menu  -->
-  <!--
-      <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px; --background: white">
-    <ion-list>
-
-      <ion-item style="--background: white">
-        <ion-label>
-          <p style="margin-top: 18px;">
-            <ion-menu-toggle>
-              <ion-icon name="md-close" style="font-size:1.9em; color:rgb(170,170,170)"></ion-icon>
-            </ion-menu-toggle>
-            
-          </p>
-          <p style="text-align: center; margin-top: 0px;">
-            <ion-menu-toggle>
-              <div class="image-cropper" style="width: 74px; height: 74px; display: block; margin: 0 auto;">
-                <img class="image" height="74px" width="74px" style="object-fit: cover; display: block; margin: 0 auto;" src="https://cdn0-production-images-kly.akamaized.net/RqAbEaFbTq3_lSGzyGLwUKJ7mLc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3006266/original/009046400_1577386107-Chelsea_Vs_Southampton_07.jpg">
-              </div>
-          </ion-menu-toggle>
-          </p>
-          <p *ngFor="let user of users" style="text-align:center;font-size: 1.05em; font-weight: 700; margin-left: 2px; margin-top:10px; color:black; font-family: 'Nunito Sans', sans-serif">
-            {{user.username}}
-          </p>
-        </ion-label>
-      </ion-item>
-
-      <ion-item (click)="home()" style="--background: white"><i class="fas fa-home" style="margin-left: 4px; font-size:1.1em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px;  font-size: 1em;  font-family: 'Nunito Sans', sans-serif">
-          Home
-        </span>
-      </ion-item>
-
-      <ion-item (click)="file()" style="--background: white"><i class="fas fa-cloud-upload-alt" style="margin-left: 4px; font-size:1.0em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px;  font-size: 1em; font-family: 'Nunito Sans', sans-serif">
-          My uploads
-        </span>
-      </ion-item>
-
-      <ion-item (click)="loginform()" style="--background: white;"><i class="fas fa-sign-out-alt" style="margin-left: 6px; font-size:1.2em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px; font-size: 1em; font-family: 'Nunito Sans', sans-serif">
-          Sign out
-        </span>
-      </ion-item>
-    </ion-list>
-  </ion-menu>
-  -->
-
-
-  <!-- the main content -->
-    
-  
-    <!--
-      <div *ngIf="!isSelected">
-        <input type="file" (change)="selectFileToUpload($event)" style="position: sticky; bottom:0;">
-    </div>
-    -->
-
     <ion-header no-border>
-      <ion-toolbar id="toolbarborder">
+      <ion-toolbar id="toolbarborder" style="--background: var(--toolbarbg); --min-height:var(--toolbarheight)">
         <div id="searchnav" style="display: grid;">
           
           <div>
-            <div id="headertitle" style="padding: 7px 0 0 26px">
-              <div class="fas fa-book" style="font-size: 16px; color:rgb(29, 161, 242); padding-top: 3px;"></div>
-              <ion-title class="ion-text-left" style="color: rgb(29, 161, 242); font-family: Inter; font-weight: 800px; font-size: 18px;">Edushare</ion-title>
+            <div id="headertitle" style="padding: 7px 0 0 26px; color:var(--logocolor)">
+              <div class="fas fa-book" style="font-size: 16px; padding-top: 3px;"></div>
+              <ion-title class="ion-text-left" style="font-weight: 800px; font-size: 18px;">Edushare</ion-title>
             </div>
             
           </div>
     
           <div>
-            <div style="background: rgb(246,246,246); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
+            <div style="background:  var(--searchbg); border-radius: 6px; min-width:284px; max-width:760px; height:100%; display:block; margin:0 auto 0 0; display:block;">
               <div style="display: grid; grid-template-columns: 26px auto; padding: 0px 0 0 16px;">
     
                 <div class="fas fa-search" style="font-size: 14px; color:rgb(180,180,180); padding-top: 9px;"></div>
-                <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; font-family:Inter;color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
+                <input id="inputsearch" (keydown)="onKeydown($event)" type="text" style="font-size:13px;padding-top: 8px; color:rgb(80,80,80);border: none; background: rgba(0,0,0,0); padding-bottom: 3px;" placeholder="Search for posts, documents, streams etc">
                 
                 
               </div>
@@ -316,34 +231,15 @@
       
     </ion-header>
 
-<!--
-  <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding:10px">
-      <a (click)="cancel()">Cancel</a>
-      <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
-      <img [src]="image" style="height: 60px; width: 60px;">
-    </ion-content>
--->
-    
 
 
     
 
-    <ion-content style="--background:rgb(246,246,246);--padding-top: 4px; --padding:10px">
+    <ion-content style="--background:var(--contentbg);--padding-top: 4px; --padding:10px">
 
 
-    
-    <!--
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-      <ion-fab-button style="--background:rgb(37, 156, 117); display:block; height:68px; width:68px; padding-right: 10px; padding-bottom: 10px; margin-bottom: 64px;">
-        <label for="input">
-          <ion-icon style="padding-top:3px;font-size:28px" name="add"></ion-icon>
-        </label>
-        <input id="input" type="file" class="hideInput" (change)="selectFileToUpload($event)">
-      </ion-fab-button>
-    </ion-fab>
-    -->
       <div id="innercontent" style="margin-top: 9px;">
-        <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
+        <div id="sidemenu" style="background: var(--sidemenubg); position: fixed; width:var(--sidemenuwidth); height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
 
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
               <div id="gapicontext" style="color: rgb(120,120,120);">
@@ -423,7 +319,7 @@
               
           
               
-              <div style="display: grid; grid-template-columns: 140px auto 100px 100px; font-family: Inter;">
+              <div style="display: grid; grid-template-columns: 140px auto 100px 100px">
                 <div style="font-size: 13px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 10px 18px">
                   Tasks
                 </div>
@@ -431,19 +327,11 @@
                 <div></div>
 
                 <div>
-                  <!--
-                    <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
-                    <label for="file" for="file">NEW FILE</label>
-                  -->
+                  
                 </div>
 
                 <div>
-                  <!--
-                    <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
-                      NEW FOLDER
-                    </div>
-                  -->
-                  
+                 
                 </div>
                 
               </div>
@@ -451,20 +339,7 @@
              
               <div style="border-radius: 5px 5px 0 0;">
                 
-                <!--
-                  <div style="font-family:Inter; margin:0px auto; display:block;">
-                  <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns: auto 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
-        
-                    <div style="color:rgb(60,60,60);font-weight:500; font-size: 11.2px;padding-left: 5px;clear:both;">
-                      Name
-                    </div>
-
-                    <div (click)="showid(item.folderfileid, item.folderfilename)" style="text-align:center;display: grid; align-items: center">
-                    </div>
-                  </div>
-                </div>
-                -->
-                
+              
                 <div style="display: grid; grid-template-columns: auto 30px;padding: 0 26px 0 18px">
                   <div>
                     <ion-input [(ngModel)]="task_name" placeholder="Task name"></ion-input>
@@ -474,14 +349,11 @@
                   </div>
                 </div>
 
-                <div id="listgrandparent" *ngFor="let item of listosotask" style="font-family:Inter; margin:0px auto; display:block;  background: white; border-radius: 8px;">
+                <div id="listgrandparent" *ngFor="let item of listosotask" style="margin:0px auto; display:block;  background: white; border-radius: 8px;">
     
                   <div style="cursor:pointer; display: grid; grid-template-columns: 3px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
                     <div style="display: grid; align-items: center; text-align: center; background:#6d91fe; width:100%; height:34px">
-                      <!--
-                        <div *ngIf="item.folderfile_icon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
-                      <img *ngIf="item.folderfile_icon != 'folder'" src="assets/svg/svg_icons/pdf_color.svg" style="height: 17px; display:block; margin:0 auto" />
-                      -->
+                     
                       
                     </div>
 
@@ -502,14 +374,10 @@
               </div>
 
               
-              
-              
               <!--
                 <input id="datepicker" [(ngModel)]="datepicker" type="text">
               -->
               
-              
-
 
             </div>
           </div>
@@ -519,65 +387,7 @@
       
 
   
-
-
-
-
     </ion-content>
 
 
  
-
-<!--
-  <ion-header>
-  <ion-toolbar>
-    <ion-title text-center>Stations</ion-title>
-    <ion-buttons slot="primary" (click)="addCustomer()">
-      <ion-button color="tertiary">
-        <ion-icon text-center name="add"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-round-down"
-      pullingText=""
-      refreshingSpinner="circles"
-      refreshingText="">
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-list>
-    <ion-item-sliding *ngFor="let customer of customers" (click)="showCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">
-      <ion-item>
-        <ion-label>{{customer.name_customer}}</ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option (click)="updateCustomer(customer.customer_id, customer.name_customer, customer.desc_customer)">Update</ion-item-option>
-      
-        <ion-item-option color="danger" (click)="delCustomer(customer.customer_id)">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="Home" (click)="toHome()">
-        <ion-icon name="home"></ion-icon>
-      </ion-tab-button>
-      <ion-tab-button tab="contact">
-        <ion-icon name="call"></ion-icon>
-      </ion-tab-button>
-      <ion-tab-button tab="settings">
-        <ion-icon name="settings"></ion-icon>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-content>
--->

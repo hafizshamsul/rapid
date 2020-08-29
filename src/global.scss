@@ -34,3 +34,65 @@ html { font-family: 'Inter', sans-serif; }
 
 @import '~quill/dist/quill.core.css';
 @import '~quill/dist/quill.snow.css';
+
+* {
+  font-family: 'Inter var', sans-serif;
+}
+
+
+#menuitem{
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 510;
+  clear: both;
+  padding: 12px 12px;
+  color: rgb(100,100,100);
+  cursor: pointer;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+#menuitem:hover{
+  background:rgb(251,251,251);
+}
+
+#currentmenuitem{
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 600;
+  clear: both;
+  padding: 12px 12px;
+  color: var(--currentmenucolor);
+  cursor: pointer;
+  //background:#e8f0fe;
+  background: rgb(247,247,247);
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+#currentmenuitem:hover{
+  cursor: pointer;
+}
+
+
+:root{
+  //main layout
+  //--sidemenubg: #d7dce6;
+  --sidemenubg: #ffffff;
+  //--sidemenubg: #f6fafb;
+  --sidemenuwidth: 230px;
+  //  --currentmenucolor: #4b7fda;
+  --currentmenucolor: rgb(40,40,40);
+  --contentbg: #f7f7f7;
+  //--toolbarbg: #333556;
+  //--toolbarbg: #5c5c8e;
+  --toolbarbg: #ffffff;
+  --toolbarheight: 49px;
+  //--searchbg: rgba(255,255,255,0.2);
+  --searchbg: rgb(244,244,244);
+  //--searchph: rgba(255,255,255,0.5);
+  --searchph: rgb(170,170,170);
+  //--logocolor: rgba(255,255,255,1);
+  --logocolor: rgb(70,70,70);
+  
+}
