@@ -7,5 +7,5 @@ export class CurrentNavService {
 
   constructor() { }
 
-  public currentpage: string = 'home';
+  public currentpage: string;
 }

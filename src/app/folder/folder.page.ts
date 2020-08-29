@@ -69,7 +69,13 @@ export class FolderPage implements OnInit {
       
     }
 
+  ngOnDestroy(){
+    console.log('ngOnDestroy folder');
+  }
+
   ngOnInit() {
+    console.log('ngOnInit folder');
+
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
     this.r_folderid = this.actRoute.snapshot.paramMap.get('r_folderid');
 
@@ -78,7 +84,7 @@ export class FolderPage implements OnInit {
       this.current_username = data.current_username;
       this.current_passwordhash = data.current_passwordhash;
       this.current_displayname = data.current_displayname;
-      console.log(data);
+      //console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -86,7 +92,7 @@ export class FolderPage implements OnInit {
       this.username = data.username;
       this.passwordhash = data.passwordhash;
       this.displayname = data.displayname;
-      console.log(data);
+      //console.log(data);
     });
     
     this.actRoute.params.subscribe((data: any) =>{
@@ -94,7 +100,7 @@ export class FolderPage implements OnInit {
       this.foldername = data.foldername;
       this.description = data.description;
       this.users_id = data.users_id;
-      console.log(data);
+      //console.log(data);
     });
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -104,7 +110,7 @@ export class FolderPage implements OnInit {
       this.type = data.type;
       this.icon = data.icon;
       this.folderdata_id = data.folderdata_id;
-      console.log(data);
+      //console.log(data);
     });
   }
   
