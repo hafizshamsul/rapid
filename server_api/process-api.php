@@ -107,6 +107,25 @@
         echo $result;
     }
 
+    elseif($postjson['action']=='gettag'){
+        $data = array();
+        $query = mysqli_query($mysqli, "select * from tag");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id' => $row['id'],
+                'tagname' => $row['tagname'],
+                'tagdesc' => $row['tagdesc']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc");

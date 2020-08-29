@@ -49,11 +49,11 @@
     <div></div>
     <div style="background: white; height:78vh">
 
-<ion-select  [(ngModel)]="getSelectedSubject" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
-
-            <ion-select-option value="English">English</ion-select-option>
-            <ion-select-option value="Mathematics">Mathematics</ion-select-option>
-          </ion-select>
+      <ion-select  [(ngModel)]="getSelectedSubject" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="Select subject">
+        <div *ngFor="let item of tags">
+          <ion-select-option value={{item.tagname}}>{{item.tagname}}</ion-select-option>
+        </div>
+      </ion-select>
 
       <form style="font-family: Inter;" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
         <div class="form-group">

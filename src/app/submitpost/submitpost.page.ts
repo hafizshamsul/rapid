@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { Tagify } from '@yaireo/tagify';
+import { PostProvider } from '../../providers/post-provider';
 
 
 @Component({
@@ -12,7 +13,11 @@ import { Tagify } from '@yaireo/tagify';
 })
 export class SubmitpostPage implements OnInit {
 
-  constructor(private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
+  constructor(private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
+
+  id: number;
+  tagname: string;
+  tagdesc: string;
 
   dis: string = "lol";
 
@@ -27,11 +32,23 @@ export class SubmitpostPage implements OnInit {
       "id": "database"
     }
   ]
-  
+
+  tags:any = [
+    {
+      "id": 1,
+      "tagname": "sql",
+      "tagdesc" : "lol"
+    },
+    {
+      "id": 2,
+      "tagname": "database",
+      "tagdesc" : "lol"
+    }
+  ]
 
   editorForm: FormGroup;
   editorContent: string;
-
+  
   //input = document.querySelector('input[name=basic]');
   //tagify = new Tagify(this.input);
 
@@ -51,6 +68,20 @@ export class SubmitpostPage implements OnInit {
     this.editorForm = new FormGroup({
       'editor': new FormControl(null)
     });
+
+    /*this.actRoute.params.subscribe((data: any) =>{
+      this.id = data.id;
+      this.tagname = data.tagname;
+      this.tagdesc = data.tagdesc;
+
+      console.log(data);
+    });*/
+  }
+
+  ionViewWillEnter(){
+    //this.tags = [];
+    //this.loadTag();
+    //console.log(this.tags);
   }
 
   onSubmit(){
@@ -64,18 +95,32 @@ export class SubmitpostPage implements OnInit {
     }
   }
 
-  lul:any = [];
-
+  
+  selectedtags: any = [];
   getSelectedSubjectValue(getSelectedSubject){
-    this.lul = getSelectedSubject;
+    this.selectedtags = getSelectedSubject;
     this.kah();
     //console.log(this.lul);
   }
 
   kah(){
-    for(let val of this.lul){
+    for(let val of this.selectedtags){
       console.log("Add tag of value: "+val);
+      console.log();
     }
   }
   
+  loadTag(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettag',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let tag of data.result){
+          this.tags.push(tag);
+        }
+        resolve(true);
+      });
+    });
+  }
 }
