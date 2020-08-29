@@ -428,7 +428,7 @@
 
     elseif($postjson['action']=='getfolderfile'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from folderfile");
+        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         
@@ -446,9 +446,43 @@
                 'folderfileicon' => $row['icon'],
                 'folder_id' => $row['folder_id'],
                 'folderfileusers_id' => $row['users_id'],
-                'dateuploaded' => $row['dateuploaded']
+                'dateuploaded' => $row['dateuploaded'],
+                'visibility' => $row['visibility']
             );
         }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+    elseif($postjson['action']=='addfolderfile_folder'){
+        $data = array();
+        $query = mysqli_query($mysqli, "insert into folderfile set name = 'etc', icon = 'folder', users_id = 'etc'");
+    
+        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
+        
+        //$diff = $date2->diff($date1);
+        //$hours = $diff->h;
+        //$hours = $hours + ($diff->days*24);
+
+
+        /*
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'folderfileid' => $row['id'],
+                'folderfilename' => $row['name'],
+                'filename' => $row['filename'],
+                'folderfiletype' => $row['type'],
+                'folderfileicon' => $row['icon'],
+                'folder_id' => $row['folder_id'],
+                'folderfileusers_id' => $row['users_id'],
+                'dateuploaded' => $row['dateuploaded'],
+                'visibility' => $row['visibility']
+            );
+        }*/
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));

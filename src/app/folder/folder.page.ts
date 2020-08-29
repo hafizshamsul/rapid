@@ -78,12 +78,15 @@ export class FolderPage implements OnInit {
     folder_id:number;
     folderfileusers_id:number;
     dateuploaded:string;
+    visibility:string;
 
   ngOnDestroy(){
     console.log('ngOnDestroy folder');
   }
 
   ngOnInit() {
+    console.log(this.comments);
+    
     console.log('ngOnInit folder');
 
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
@@ -133,6 +136,7 @@ export class FolderPage implements OnInit {
       this.folder_id = data.folder_id;
       this.folderfileusers_id = data.folderfileusers_id;
       this.dateuploaded = data.dateuploaded;
+      this.visibility = data.visibility;
       //this.thread = data.thread;
 
       //console.log(data);
@@ -292,6 +296,8 @@ export class FolderPage implements OnInit {
 
     this.customers = [];
     this.start = 0;
+
+    console.log(this.comments);
   }
 
   addCustomer(){
@@ -476,7 +482,7 @@ export class FolderPage implements OnInit {
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
-        console.log(JSON.stringify(this.listoso));
+        //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });
     });
@@ -505,6 +511,29 @@ export class FolderPage implements OnInit {
   }
 
   //kaun:any = [];
+
+  addetc(){
+    this.addfolderfile_folder();
+    console.log(this.comments);
+    this.listoso = [];
+    this.comments = [];
+    console.log(this.comments);
+    this.loadFolderFile();
+    console.log(this.comments);
+    //this.loadFolderFile();
+  }
+
+  addfolderfile_folder(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addfolderfile_folder',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+    });
+  }
+
 
   counting(folderfileid){
     return new Promise(resolve => {
