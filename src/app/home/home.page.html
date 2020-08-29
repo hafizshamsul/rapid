@@ -52,28 +52,20 @@
           
           <ion-label style="font-family: 'Inter var', sans-serif;">
 
-            <div style="font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
+            <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
               {{comment.username}}
             </div>
             <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
-            <div style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+            <div style="margin-right: 4px; font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
               {{comment.dateuploaded}}
             </div>
             
               <div *ngFor="let tagcomment of tagcomments">
-              <div *ngIf="tagcomment.comment_id==comment.commentid" style="float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
-                {{tagcomment.tag_id}}
-                
+                <div *ngIf="tagcomment.comment_id==comment.commentid" style="background:rgb(237,237,237); padding:1px 6px 3px 6px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
+                  {{tagcomment.tag_tagname}}
+                </div>
               </div>
-              </div>
-
-              
-              <div>
-                .
-              </div>            
-            
-            
-
+              <div style="width:0px; clear:both"></div>
 
             <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
               {{comment.title}}
