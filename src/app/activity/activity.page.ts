@@ -79,7 +79,11 @@ export class ActivityPage implements OnInit {
     private actRoute: ActivatedRoute,
     private document: DocumentViewer,
     private previewAnyFile: PreviewAnyFile,
-    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
+    public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
+      if(sessionStorage.getItem('users-role') == 'Admin'){
+        this.router.navigate(['/r/admin_user']);
+      }
+    }
 
     folderfileid:number;
     folderfilename:string;
@@ -399,7 +403,24 @@ export class ActivityPage implements OnInit {
     this.router.navigate(['/file']);
   }
 
-  loginform(){
+  login(){
+    //local-based authentication
+    sessionStorage.setItem('users-id', 'null');
+    sessionStorage.setItem('users-username', 'null');
+    sessionStorage.setItem('users-passwordhash', 'null');
+    sessionStorage.setItem('users-displayname', 'null');
+    sessionStorage.setItem('users-role', 'null');
+    sessionStorage.setItem('users-dateregistered', 'null');
+    sessionStorage.setItem('users-status', 'null');
+
+    console.log(sessionStorage.getItem('users-id'));
+    console.log(sessionStorage.getItem('users-username'));
+    console.log(sessionStorage.getItem('users-passwordhash'));
+    console.log(sessionStorage.getItem('users-displayname'));
+    console.log(sessionStorage.getItem('users-role'));
+    console.log(sessionStorage.getItem('users-dateregistered'));
+    console.log(sessionStorage.getItem('users-status'));
+    
     this.router.navigate(['/loginform']);
   }
 
@@ -621,6 +642,14 @@ export class ActivityPage implements OnInit {
 
   toStream(){
     this.navCtrl.navigateRoot(['stream/']);
+  }
+
+  toBroadcast(){
+    this.navCtrl.navigateRoot(['broadcast/']);
+  }
+
+  toWatch(){
+    this.navCtrl.navigateRoot(['watch/']);
   }
 
   toMessenger(){

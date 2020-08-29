@@ -4,6 +4,26 @@
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.11.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
+<ion-tabs>
+  <ion-tab-bar slot="bottom" style="height:44px">
+    <ion-tab-button (click)="toHome()">
+      <div id="homeicon" class="bx bxs-home-circle" style="font-size: 25px;color:rgb(50,50,50)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toActivity()">
+      <div class="bx bx-list-plus" style="font-size: 26px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toSubmitpost()">
+      <div class="bx bx-upload" style="font-size: 25px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toFolder()">
+      <div class="bx bx-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toBookmark()">
+      <div class="bx bx-bookmark" style="font-size: 23px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
 <ion-header no-border>
   <ion-toolbar>
 
@@ -83,7 +103,7 @@
           </div>
       </div>
 
-          <div (click)="toStream()" id="menuitem" style="">
+          <div (click)="toBroadcast()" id="menuitem" style="">
             <div id="gapicontext" style="color: rgb(120,120,120);">
               <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                 <div style="padding-top: 2px; font-weight: 500;">
