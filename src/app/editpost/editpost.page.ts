@@ -66,14 +66,15 @@ changeselection(itemid){
 }
 
 getselectedtag(){
-  /*
+  
   this.selectedtag = [];
-  for(let item of this.category){
+  for(let item of this.contoh){
     if(item.selected == true){
-      this.selectedtag.push(item.id);
+      this.selectedtag.push(item.tagid);
     }
   }
-  console.log(this.selectedtag);*/
+  console.log(this.selectedtag);
+  console.log(this.contoh);
 }
   
 

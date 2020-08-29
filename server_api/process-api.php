@@ -195,12 +195,26 @@
 
         //$query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
         
-        $query_deletetagcomment = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = 193");
+        /*$totalselected = 0;
+        for($i=0; $i<count($postjson['contoh']); $i++){
+            if($postjson['contoh'][$i]['selected'] == true){
+                $totalselected++;
+            }
+        }
+
+        if($totalselected>0){
+            $query_deletetagcomment = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = 193");
+        }*/
+        
+        $query_deletetagcomment = mysqli_query($mysqli, "DELETE FROM tagcomment WHERE comment_id = $postjson[commentid]");
 
         for($i=0; $i<count($postjson['contoh']); $i++){
-            $curr = $postjson['contoh'][$i]['id'];
+            $curr = $postjson['contoh'][$i]['tagid'];
             //$query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_updatepost, tag_id = $curr");
-            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = $curr");
+            if($postjson['contoh'][$i]['selected'] == true){
+                $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $postjson[commentid], tag_id = $curr");
+            }
+            
         }
         /*for($i=0; $i<count($postjson['contoh']); $i++){
             $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 193, tag_id = 1");
