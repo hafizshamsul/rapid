@@ -62,7 +62,12 @@
                       {{tagcomment.tag_tagname}}
                     </div>
                   </div>
+                  <div>
+                    <i class="fas fa-chevron-down" (click)="presentAlertMultipleButtons(item.commentid)" style="font-size: 12px; color:rgb(190,190,190);margin:4px 2px 0 0; float:right"></i>
+                  </div>
+                  
                   <div style="width:0px; clear:both"></div>
+                  
     
                 <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
                   {{item.title}}

@@ -213,6 +213,22 @@ listoso:any[];
     });
   }
 
+  deletePost(r_thread){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletepost',
+        commentid : r_thread
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let comment of data.result){
+          this.comments.push(comment);
+        }
+        this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        resolve(true);
+      });
+    });
+  }
+
   loadTagComment(index){
     return new Promise(resolve => {
       let body = {
@@ -228,6 +244,33 @@ listoso:any[];
         resolve(true);
       });
     });
+  }
+
+  async presentAlertMultipleButtons(r_thread) {
+    let leh: number = r_thread;
+
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    const alert = await this.alertCtrl.create({
+      header: 'Delete Post',
+      message: 'Are you sure you want to delete this post?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Delete',
+          handler: (r_thread) => {
+            this.deletePost(leh);
+            console.log('Delete is clicked');
+            window.location.href = window.location.href;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
   
 }

@@ -106,6 +106,8 @@ export class SubmitpostPage implements OnInit {
     console.log("comment.title: "+this.getTitle);
     console.log("comment.textcmt: "+this.editorContent);
 
+    
+
     return new Promise(resolve => {
       let body = {
         action : 'addpost',
@@ -121,8 +123,16 @@ export class SubmitpostPage implements OnInit {
         
       });
       this.loopTagComment();
-      //this.router.navigate(['r/home/']);
-    });
+      //window.location.reload(true);
+      window.location.href = window.location.href;
+      
+      //this.router.navigate(['r/submitpost/']);
+      //this.getTitle = "";
+      
+    }
+    
+    );
+    
   }
 
   maxLength(e){
