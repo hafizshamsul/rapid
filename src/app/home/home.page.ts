@@ -9,6 +9,8 @@ import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 
+declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,7 +18,11 @@ import { NavController } from '@ionic/angular';
 })
 
 
-export class HomePage {
+export class HomePage{
+
+  transform(value: string): any {
+    return value.replace(/<.*?>/g, ''); // replace tags
+}
 
   constructor(
     public navCtrl: NavController,
@@ -138,8 +144,12 @@ listoso:any[];
     console.log(index);
   }
 
-
   ngOnInit() {
+    //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
+    //console.log(htmlString);
+
+    
+    
     console.log(JSON.stringify(this.list));
     console.log(JSON.stringify(this.listos));
 

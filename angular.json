@@ -54,6 +54,9 @@
               },
               {
                 "input": "./node_modules/@yaireo/tagify/dist/tagify.min.js"
+              },
+              {
+                "input": "node_modules/jquery/dist/jquery.min.js"
               }
             ]
           },
@@ -115,7 +118,11 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "styles": [],
-            "scripts": [],
+            "scripts": [
+              {
+                "input": "node_modules/jquery/dist/jquery.min.js"
+              }
+            ],
             "assets": [
               {
                 "glob": "favicon.ico",
