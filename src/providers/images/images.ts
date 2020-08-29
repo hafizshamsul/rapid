@@ -43,13 +43,15 @@ export class ImagesProvider {
   }
 
   uploadImageSelection(file: string, mimeType: string): Observable<any> {
-    let headers: any = new Headers({'Content-Type' : 'application/octet-stream'}),
-    fileName: any = Date.now() + '.' + mimeType,
-    options: any = {"action" : "add" , "name" : fileName, "file" : file, "rename" : "kehkeh.png" };
+    let fileName: any = Date.now() + '.' + mimeType;
 
-    return this.http.post(this._REMOTE_URI, JSON.stringify(options), headers);
+    let type = "application/json; charset=UTF-8";
+    let headers: any = new Headers({'Content-Type' : type});
+    let body: any = {"action" : "add" , "name" : fileName, "file" : file, "rename" : "kehkeh.png" };
+    let options = new RequestOptions({headers: headers});
 
-    //return this.http.post(this.server + file, JSON.stringify(body), options).pipe(map(res=>res.json()));
+    //return this.http.post(this._REMOTE_URI, JSON.stringify(options), headers);
+    return this.htt.post(this._REMOTE_URI, JSON.stringify(body), options).pipe(map(res=>res.json()));
   }
 
   /*posting(body, file){
