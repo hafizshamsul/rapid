@@ -20,51 +20,51 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+  <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 </head>
 
-<ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-toggle>
-            <ion-button menuClose color="tertiary">
-              <div class="image-cropper">
-                <img class="image" height="28px" width="28px" src="https://cdn0-production-images-kly.akamaized.net/RqAbEaFbTq3_lSGzyGLwUKJ7mLc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3006266/original/009046400_1577386107-Chelsea_Vs_Southampton_07.jpg">
-              </div>
-            </ion-button>
-          </ion-menu-toggle>
-        </ion-buttons>
 
-        <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
-
-        <ion-buttons slot="primary" (click)="addCustomer()">
-          <ion-button color="tertiary">
-            <ion-icon text-center name="add"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-</ion-header>
     
 <ion-split-pane contentId="menu-content">
   <!--  our side menu  -->
-  <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px;">
+  <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px; --background: white">
+    <ion-list>
 
-    
-    <ion-list style="margin-top: 64px;">
+      <ion-item style="--background: white">
+        <ion-label>
+          <p style="margin-top: 18px;">
+            <ion-menu-toggle>
+              <ion-icon name="md-close" style="font-size:1.9em; color:rgb(170,170,170)"></ion-icon>
+            </ion-menu-toggle>
+            
+          </p>
+          <p style="text-align: center; margin-top: 12px;">
+            <ion-menu-toggle>
+              <div class="image-cropper" style="width: 74px; height: 74px; display: block; margin: 0 auto;">
+                <img class="image" height="74px" width="74px" style="object-fit: cover; display: block; margin: 0 auto;" src="https://cdn0-production-images-kly.akamaized.net/RqAbEaFbTq3_lSGzyGLwUKJ7mLc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3006266/original/009046400_1577386107-Chelsea_Vs_Southampton_07.jpg">
+              </div>
+          </ion-menu-toggle>
+          </p>
+          <p style="text-align:center;font-size: 1.05em; font-weight: 700; margin-left: 2px; margin-top:4px; color:black; font-family: 'Nunito Sans', sans-serif">
+            {{global.username}}
+          </p>
+        </ion-label>
+      </ion-item>
 
-      <ion-item (click)="home()"><i class="fas fa-home" style="margin-left: 4px; font-size:1.1em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px;  font-size: 0.85em;  font-family: 'Nunito Sans', sans-serif">
+      <ion-item (click)="home()" style="--background: white"><i class="fas fa-home" style="margin-left: 4px; font-size:1.1em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px;  font-size: 1em;  font-family: 'Nunito Sans', sans-serif">
           Home
         </span>
       </ion-item>
 
-      <ion-item (click)="customer()"><i class="fas fa-cloud-upload-alt" style="margin-left: 4px; font-size:1.0em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px;  font-size: 0.85em; font-family: 'Nunito Sans', sans-serif">
+      <ion-item (click)="customer()" style="--background: white"><i class="fas fa-cloud-upload-alt" style="margin-left: 4px; font-size:1.0em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px;  font-size: 1em; font-family: 'Nunito Sans', sans-serif">
           My uploads
         </span>
       </ion-item>
 
-      <ion-item (click)="loginform()"><i class="fas fa-sign-out-alt" style="margin-left: 6px; font-size:1.2em; color:rgb(30,30,30)"></i>
-        <span style="margin-left: 16px; font-size: 0.85em; font-family: 'Nunito Sans', sans-serif">
+      <ion-item (click)="loginform()" style="--background: white;"><i class="fas fa-sign-out-alt" style="margin-left: 6px; font-size:1.2em; color:rgb(30,30,30)"></i>
+        <span style="margin-left: 16px; font-size: 1em; font-family: 'Nunito Sans', sans-serif">
           Sign out
         </span>
       </ion-item>
@@ -81,8 +81,29 @@
     </div>
     -->
 
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-toggle>
+            <ion-button menuClose color="tertiary">
+              <div class="image-cropper">
+                <img class="image" style="object-fit: cover;" height="28px" width="28px" src="https://cdn0-production-images-kly.akamaized.net/RqAbEaFbTq3_lSGzyGLwUKJ7mLc=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3006266/original/009046400_1577386107-Chelsea_Vs_Southampton_07.jpg">
+              </div>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
 
-    <ion-content *ngIf="isSelected" style="--padding-top: 70px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+        <ion-title style="color: rgb(37, 156, 117)" text-center>Edushare</ion-title>
+
+        <ion-buttons slot="primary" (click)="addCustomer()">
+          <ion-button color="tertiary">
+            <ion-icon text-center name="add"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+</ion-header>
+
+    <ion-content *ngIf="isSelected" style="--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
       <a (click)="cancel()">Cancel</a>
       <ion-button color="primary" (click)="uploadFile()">Upload</ion-button>
       <img [src]="image" style="height: 60px; width: 60px;">
@@ -91,7 +112,7 @@
 
     
 
-    <ion-content *ngIf="!isSelected" style="--padding-top: 70px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
+    <ion-content *ngIf="!isSelected" style="--padding-top: 4px; --padding-start: 4px; --padding-end: 16px; --padding:10px">
       <ion-refresher pullMax="this.pullMin+20" style="margin-top: 80px;" slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content
         pullingIcon="arrow-round-down"
@@ -104,7 +125,7 @@
     
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-      <ion-fab-button style="--background:rgb(37, 156, 117); display:block; height:68px; width:68px; padding-right: 10px; padding-bottom: 10px;">
+      <ion-fab-button style="--background:rgb(37, 156, 117); display:block; height:68px; width:68px; padding-right: 10px; padding-bottom: 10px; margin-bottom: 64px;">
         <label for="input">
           <ion-icon style="padding-top:3px;font-size:28px" name="add"></ion-icon>
         </label>
