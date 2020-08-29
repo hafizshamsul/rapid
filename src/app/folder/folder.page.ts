@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../..//providers/global.service";
 import { IonicPage } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-folder',
@@ -59,6 +60,7 @@ export class FolderPage implements OnInit {
   folderdata_id: number;
   
   constructor(
+    public navCtrl: NavController,
     public route: AppRoutingModule,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,

@@ -27,7 +27,9 @@
     
 <ion-split-pane contentId="menu-content">
   <!--  our side menu  -->
-  <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px; --background: white">
+
+  <!--
+     <ion-menu contentId="menu-content" style="min-width: 210px; max-width: 210px; --background: white">
     <ion-list>
 
       <ion-item style="--background: white">
@@ -70,6 +72,8 @@
       </ion-item>
     </ion-list>
   </ion-menu>
+  -->
+ 
 
   <!-- the main content -->
   <ion-router-outlet id="menu-content">
@@ -137,6 +141,7 @@
       <ion-searchbar></ion-searchbar>
     -->
       
+    
       <ion-list>
         <ion-item-sliding (click)="showFolder(folder.folderid)" *ngFor="let folder of folders">
           <ion-item>
