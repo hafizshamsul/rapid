@@ -432,7 +432,7 @@ getselectedtag(){
 
       setTimeout(() => {
         this.navCtrl.navigateRoot(['r/home']);
-      }, 500);
+      }, 1000);
 
       
       //this.navCtrl.
@@ -530,4 +530,20 @@ getselectedtag(){
   }
 
  
+
+  toHome(){
+    this.navCtrl.navigateRoot(['r/home/']);
+  }
+
+  toSubmitpost(){
+    this.navCtrl.navigateRoot(['r/submitpost/']);
+  }
+
+  toFolder(){
+    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+  }
+
+  toMessenger(){
+    this.navCtrl.navigateRoot(['messenger/']);
+  }
 }
