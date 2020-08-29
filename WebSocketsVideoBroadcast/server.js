@@ -47,4 +47,4 @@ io.sockets.on("connection", socket => {
 });
 
 // Socket.io server skeleton
-server.listen(port, () => console.log(`Server is running on port ${port}`));
+server.listen(port, '0.0.0.0', () => console.log(`Server is running on port ${port}`));

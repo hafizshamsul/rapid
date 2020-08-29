@@ -84,6 +84,12 @@ const routes: Routes = [
           { path: '', loadChildren: () => import('../activity/activity.module').then( m => m.ActivityPageModule)},
         ]
       },
+
+      { path: 'messenger',
+      children: [
+          { path: '', loadChildren: () => import('../messenger/messenger.module').then( m => m.MessengerPageModule)},
+        ]
+      },
       
       { path: ':r_username',
       children: [
