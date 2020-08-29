@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 //import { IOSFilePicker } from '@ionic-native/file-picker';
 //import { DocumentPicker } from '@ionic-native/document-picker/ngx';
 
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.page.html',
@@ -243,6 +244,7 @@ export class CustomerPage implements OnInit {
         
 
         this.displayAlert(res.message);
+        this.isSelected = false;
         //this.createdProcess();
       },
       (error : any) => {
@@ -335,7 +337,11 @@ export class CustomerPage implements OnInit {
     setTimeout(()=>{
       this.ionViewWillEnter();
       event.target.complete();
-    }, 140);
+    }, 240);
+  }
+
+  cancel(){
+    this.isSelected = false;
   }
 
   loadData(event:any){

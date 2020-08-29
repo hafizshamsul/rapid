@@ -49,7 +49,7 @@
     }
     elseif($postjson['action']=='getit'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT * FROM filedata");
+        $query = mysqli_query($mysqli, "SELECT * FROM filedata ORDER BY id DESC");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
