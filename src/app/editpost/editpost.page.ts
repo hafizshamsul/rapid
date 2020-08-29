@@ -5,6 +5,9 @@ import { QuillModule } from 'ngx-quill';
 import { Tagify } from '@yaireo/tagify';
 import { PostProvider } from '../../providers/post-provider';
 import { GlobalService } from "../..//providers/global.service";
+import { MyNavService } from "../..//providers/mynavservice.service";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -13,9 +16,14 @@ import { GlobalService } from "../..//providers/global.service";
   styleUrls: ['./editpost.page.scss'],
 })
 export class EditpostPage implements OnInit {
+  //state$: Observable<object>;
+  hello:string = "eh";
+
+  
 
   constructor(
-    public global: GlobalService, 
+    public global: GlobalService,
+    public myNavService: MyNavService,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
 
   //tag
@@ -52,7 +60,14 @@ export class EditpostPage implements OnInit {
     ]
   }
 
+  myObject:any = [];
+  passededitid:number = 0;
+
   ngOnInit() {
+    this.myObject = this.myNavService.myParam;
+    this.passededitid = this.myObject.locs.id;
+    console.log(this.passededitid);
+
     this.editorForm = new FormGroup({
       'editor': new FormControl(null)
     });
@@ -187,4 +202,6 @@ export class EditpostPage implements OnInit {
       });
     });
   }
+
+ 
 }

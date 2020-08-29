@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../..//providers/global.service";
+import { MyNavService } from "../..//providers/mynavservice.service";
 import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
@@ -27,7 +28,8 @@ export class HomePage{
   constructor(
     public navCtrl: NavController,
     public route: AppRoutingModule,
-    public global: GlobalService, 
+    public global: GlobalService,
+    public myNavService: MyNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
     
@@ -199,11 +201,22 @@ listoso:any[];
     }
   }
 
-  toEdit(){
+  locs: any = {
+    "id": 0
+  }
+
+  public async toEdit(commentid){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
 
+    this.locs.id = commentid;
+
+    this.myNavService.myParam = {locs:this.locs};
+    //await this.navCtrl.goForward('/map-page');
+    await this.router.navigateByUrl('/editpost');
+
     this.router.navigate(['editpost/']);
+    //this.router.navigateByUrl('/editpost', { state: { hello: 'world' } });
   }
 
   loadPost(){
