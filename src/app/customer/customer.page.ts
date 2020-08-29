@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
+import { AlertController, NavController } from 'ionic-angular';
+import { ImagesProvider } from '../../providers/images/images';
+import { HttpClient } from "@angular/common/http";
+
+
 
 @Component({
   selector: 'app-customer',
@@ -8,14 +13,59 @@ import { Router } from '@angular/router';
   styleUrls: ['./customer.page.scss'],
 })
 export class CustomerPage implements OnInit {
+  @ViewChild('nav',  {static: false}) nav: NavController;
+  @ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
+  
   customers: any = [];
   limit: number = 10;
   start: number = 0;
 
-  constructor(private postprovider: PostProvider, private router: Router) { }
+  private _SUFFIX : string;
+  public image : string;
+  public isSelected : boolean =	false;
+
+  constructor(private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) { }
 
   ngOnInit() {
   }
+
+  selectFileToUpload(event) : void {
+    this._IMAGES.handleImageSelection(event).subscribe((res) => {
+        this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
+
+        if(this._IMAGES.isCorrectFileType(this._SUFFIX)) {
+          this.isSelected = true;
+          this.image = res;
+        }
+        else {
+          //this.displayAlert('You need to select an image file with one of the following types: jpg, gif or png');
+        }
+      },
+      (error) => {
+        console.dir(error);
+        //this.displayAlert(error.message);
+      });
+    }
+   
+   uploadFile() : void {
+      this._IMAGES.uploadImageSelection(this.image, this._SUFFIX).subscribe((res) => {
+         //this.displayAlert(res.message);
+      },
+      (error : any) => {
+         console.dir(error);
+         //this.displayAlert(error.message);
+      });
+   }
+
+   /*displayAlert(message : string) : void {
+      let alert : any   = this._ALERT.create({
+         title 		: 'Heads up!',
+         subTitle 	: message,
+         buttons 	: ['Got it']
+      });
+      alert.present();
+   }*/
+   
 
   ionViewWillEnter(){
     this.customers = [];

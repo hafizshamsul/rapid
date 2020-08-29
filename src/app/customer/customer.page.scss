@@ -1,3 +1,9 @@
 ion-item:active{
     --background: rgb(230,230,230);
 }
+
+input[type="file"] {
+    background: rgba(230, 230, 230,1);
+    padding: 1em;
+}
+ 
