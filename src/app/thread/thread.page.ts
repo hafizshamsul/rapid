@@ -128,6 +128,7 @@ listoso:any[];
   username: string;
   dateuploaded: string;
   vote: number;
+  thread: number = 7;
 
   tagcommentid: number;
   comment_id: number;
@@ -152,6 +153,7 @@ listoso:any[];
       this.username = data.username;
       this.dateuploaded = data.dateuploaded;
       this.vote = data.vote;
+      this.thread = data.thread;
 
       console.log(data);
     });

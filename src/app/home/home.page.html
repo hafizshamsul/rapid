@@ -39,15 +39,44 @@
 </ion-refresher>
 -->
 <ion-content style="--background:hsl(24,20%,95%);--padding-top: 4px;  --padding:10px">
-  <div style="display:grid; grid-template-columns: auto 70% auto">
+  <div style="margin-top:10px">
+  <div id="griditem2" style="display:grid;">
     <div></div>
     <div>
       <div>
         <ng-template #recursiveList let-listoso>
           <div *ngFor="let item of listoso">
             <div id="listitem2" style="padding:10px 20px; background:white; display:block; margin-left: auto;  margin-bottom:8px">
-              {{item.title}}
-              {{item.textcmt}}
+              <ion-label style="font-family: 'Inter var', sans-serif;">
+                <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
+                  {{item.username}}
+                </div>
+                <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
+                <div style="float:left; margin-right: 4px; font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
+                  {{item.dateuploaded}}
+                </div>
+                
+                  <div *ngFor="let tagcomment of tagcomments">
+                    <div *ngIf="tagcomment.comment_id==item.commentid" style="background:rgb(237,237,237); padding:1px 6px 3px 6px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
+                      {{tagcomment.tag_tagname}}
+                    </div>
+                  </div>
+                  <div style="width:0px; clear:both"></div>
+    
+                <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
+                  {{item.title}}
+                </p>
+                <p id="textcmt" style="color:rgb(30,30,30); margin-bottom:7px; padding:0;">
+                  {{item.textcmt}}
+                </p>
+                <div id="textcmt" style="font-weight: 560; font-size: 12px; letter-spacing: 0em; color:rgb(140,140,140); margin-bottom:2px; padding:0;">
+                  <i class="fas fa-caret-up" style="float:left; font-size: 22px; color:rgb(140,140,140); margin-right: 8px;margin-top: 1px;"></i>
+                  <p style="float:left; padding-top: 4px; font-size: 12px;">
+                    {{item.vote}}
+                  </p>
+                  <i class="fas fa-caret-down" style="font-size: 22px; color:rgb(140,140,140);margin-left: 7px;"></i>
+                </div>       
+              </ion-label >
               </div>
               
               <div *ngIf="item.children.length > 0" style="width: 92%;  display:block; margin-left: auto; ">  <!-- item.subnodes.length -->
@@ -67,49 +96,10 @@
 
 
 
-  <div style="margin-top:10px">
+</div>
       
-      <div *ngFor="let comment of comments; let i=index">
-        <!--
-          <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 0px;" />
-        -->
-        <div (click)="pass(i)" id="listitem" style="padding:10px 20px; background:white; display:block; margin:0 auto;  margin-bottom:8px">
-          
-          
-          <ion-label style="font-family: 'Inter var', sans-serif;">
-
-            <div style="font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 500; float:left; margin-right:4px; margin-bottom: 4px;">
-              {{comment.username}}
-            </div>
-            <i id="tinydot" class="fas fa-circle" style="float:left; font-size: 3px; color:rgb(140,140,140); margin-right:4px; "></i>
-            <div style="float:left; margin-right: 4px; font-size: 11px; letter-spacing: 0.005em; color:rgb(140,140,140); font-weight: 400; margin-bottom: 4px;">
-              {{comment.dateuploaded}}
-            </div>
-            
-              <div *ngFor="let tagcomment of tagcomments">
-                <div *ngIf="tagcomment.comment_id==comment.commentid" style="background:rgb(237,237,237); padding:1px 6px 3px 6px; border-radius:4px; margin:0 2px; float:left; font-size: 10px; letter-spacing: 0.01em; color:rgb(93,93,93); font-weight: 400; margin-bottom: 4px;">
-                  {{tagcomment.tag_tagname}}
-                </div>
-              </div>
-              <div style="width:0px; clear:both"></div>
-
-            <p style="margin-bottom: 4px; font-family: 'Inter var', sans-serif; font-size: 16px; letter-spacing: -0.011em; color:hsl(24,24%,11%); padding:0; font-weight: 600">
-              {{comment.title}}
-            </p>
-            <p id="textcmt" style="color:rgb(30,30,30); margin-bottom:7px; padding:0;">
-              {{comment.textcmt}}
-            </p>
-            <div id="textcmt" style="font-weight: 560; font-size: 12px; letter-spacing: 0em; color:rgb(140,140,140); margin-bottom:2px; padding:0;">
-              <i class="fas fa-caret-up" style="float:left; font-size: 22px; color:rgb(140,140,140); margin-right: 8px;margin-top: 1px;"></i>
-              <p style="float:left; padding-top: 4px; font-size: 12px;">
-                {{comment.vote}}
-              </p>
-              <i class="fas fa-caret-down" style="font-size: 22px; color:rgb(140,140,140);margin-left: 7px;"></i>
-            </div>       
-          </ion-label >
-        </div>
-      </div>
-  </div>
+      
+ 
   
   <!--
     <ion-infinite-scroll (ionInfinite)="loadData($event)" style="margin-top: 30px;">
