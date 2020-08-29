@@ -10,6 +10,7 @@ import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
+
 @Component({
   selector: 'app-room',
   templateUrl: './room.page.html',
@@ -18,6 +19,7 @@ import { stringify } from 'querystring';
 
 export class RoomPage implements OnInit {
   
+
   r_username: string;
   r_folderid: string;
 
@@ -45,6 +47,15 @@ export class RoomPage implements OnInit {
     },
     {
       "color": "#8f51d5"
+    },
+      {
+      "color": "#ed6b52"
+    },
+    {
+      "color": "#7962aa"
+    },
+    {
+      "color": "#e8305f"
     },
   ]
 
@@ -284,6 +295,8 @@ export class RoomPage implements OnInit {
    }
 
   ionViewWillEnter(){
+    
+    
     this.current_users = [];
     this.loadCurrentUser(sessionStorage.getItem('users-username'));
     

@@ -52,6 +52,7 @@ html { font-family: 'Inter', sans-serif; }
   border-radius: 8px;
   margin-right: 8px;
   margin-left: 8px;
+  
   /*font-family: 'Inter';
   font-size: 13px;
   font-weight:300;
@@ -78,7 +79,9 @@ html { font-family: 'Inter', sans-serif; }
   color: var(--currentmenucolor);
   cursor: pointer;
   //background:#e8f0fe;
-  background: #f4f5f7;
+  //background: #f4f5f7;
+  //background: rgb(234,234,234);
+  background: rgb(248,248,248);
   border-radius: 8px;
   margin-right: 8px;
   margin-left: 8px;
@@ -136,11 +139,13 @@ html { font-family: 'Inter', sans-serif; }
   //--logocolor: rgba(255,255,255,1);
 
   //white layout
-  --sidemenubg: #f4f5f7;
+  //--sidemenubg: #f4f5f7;
+  --sidemenubg: white;
   --sidemenuwidth: 230px;
   --currentmenucolor: rgb(40,40,40);
   //--contentbg: #f7f7f7;
-  --contentbg:#ffffff;
+  //--contentbg:#ffffff;
+  --contentbg:rgb(248,248,248);
   --toolbarbg: #ffffff;
   --toolbarheight: 59px;
   --searchbg: rgb(244,244,244);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -10,6 +10,13 @@ import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
+import * as $ from 'jquery';
+import * as dt from 'node_modules/datatables.net/js/jquery.dataTables';
+
+//var $ = require('jquery');
+//declare var $: any;
+//var dt = require('datatables.net');
+
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -19,7 +26,9 @@ import { stringify } from 'querystring';
 
 
 export class FolderPage implements OnInit {
-  
+  @ViewChild('myTable', {static: false}) el:ElementRef;
+  @ViewChild('example', {static: false}) example;
+
   r_username: string;
   r_folderid: string;
 
@@ -69,7 +78,6 @@ export class FolderPage implements OnInit {
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       
-      
     }
 
     folderfileid:number;
@@ -87,6 +95,38 @@ export class FolderPage implements OnInit {
   }
 
   ngOnInit() {
+    //$(this.el).dataTable();
+    /*$(this.myTable).DataTable({
+      "columnDefs": [ {
+        "searchable": true,
+        "orderable": false,
+        "targets": 0,
+    } ],
+    "order": [[ 0, 'asc' ]],
+        "paging": false,
+        "searching": true,
+    });*/
+    //this.myTable.DataTable();
+    
+      //$('#example').DataTable( {
+      //responsive: true
+      //} );
+      //new $.fn.dataTable.FixedHeader( table );
+
+      /*$('button').click(function(){
+        alert('Wass up!');
+      });*/
+
+      $(document).ready(function(){ 
+        /*$("#example").click(function(){ 
+          alert('Wass up!');
+        });*/
+        dt.$("#example").dataTable({
+          responsive: true
+        });
+      }); 
+      
+
     console.log(this.comments);
     
     console.log('ngOnInit folder');
@@ -570,6 +610,7 @@ export class FolderPage implements OnInit {
   //HTML ID
   @ViewChild('naming', {static: false}) naming;
   @ViewChild('rename', {static: false}) rename;
+  
 
   //LOGIC VARIABLE
   popup:boolean = false;

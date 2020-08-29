@@ -218,7 +218,7 @@
 
 #headertitle{
   display: grid;
-  grid-template-columns: 10px auto;
+  grid-template-columns: auto;
 
   @media (max-width: 576px) {
     display: none;

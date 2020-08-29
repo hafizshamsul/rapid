@@ -23,30 +23,29 @@ export class AhelloComponent implements OnInit {
       "name": "room",
       "label": "Rooms",
       "icon": "bx bx-home-circle",
+      "iconcurr": "bx bxs-home-circle",
       "link": "toHome()"
     },
-    {
-      "name": "home",
-      "label": "Discussions",
-      "icon": "bx bx-message-square-dots",
-      "link": "toHome()"
-    },
+    
     {
       "name": "folder",
       "label": "Documents",
       "icon": "bx bx-folder",
+      "iconcurr": "bx bxs-folder",
       "link": "toSubmitpostS()"
     },
     {
       "name": "bookmark",
       "label": "Bookmarks",
       "icon": "bx bx-bookmark",
+      "iconcurr": "bx bxs-bookmark",
       "link": "toSubmitpostS()"
     },
     {
       "name": "activity",
       "label": "Projects",
       "icon": "bx bx-list-plus",
+      "iconcurr": "bx bx-list-plus",
       "link": "toSubmitpostS()"
     },
     /*
@@ -57,9 +56,17 @@ export class AhelloComponent implements OnInit {
       "link": "toSubmitpostS()"
     },*/
     {
+      "name": "home",
+      "label": "Discussions",
+      "icon": "bx bx-message-square-dots",
+      "iconcurr": "bx bxs-message-square-dots",
+      "link": "toHome()"
+    },
+    {
       "name": "submitpost",
       "label": "Add Discussion",
       "icon": "bx bx-add-to-queue",
+      "iconcurr": "bx bxs-add-to-queue",
       "link": "toSubmitpostS()"
     },
     /*

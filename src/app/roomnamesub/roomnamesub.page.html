@@ -159,9 +159,10 @@
   </div>
 </div>
 
-<!--
+
   <ion-header no-border>
-      <ion-toolbar id="toolbarborder" style=" --min-height:var(--toolbarheight)">
+    
+    <ion-toolbar id="toolbarborder" style=" --min-height:var(--toolbarheight)">
 
         <ion-buttons slot="start">
           <ion-back-button (click)="toBack()" color="green"></ion-back-button>
@@ -176,10 +177,10 @@
         </ion-buttons>
       </ion-toolbar>
 </ion-header>
--->
+
     
 
-    <ion-content style="--background:rgb(246,246,246);--padding-top: 4px; --padding:10px">
+    <ion-content style="--background:var(--contentbg);--padding-top: 4px; --padding:10px">
 
       <div id="innercontent" style="margin-top: 9px;">
         <app-ahello [currpage]="active" [currsession]="session"></app-ahello>
