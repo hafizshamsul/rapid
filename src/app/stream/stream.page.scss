@@ -120,17 +120,17 @@ ion-content{
 }
 
 #currentmenuitem{
-    font-family: 'Inter';
-    font-size: 12px;
-    font-weight: 700;
-    clear: both;
-    padding: 12px 24px;
-    color: #4b7fda;
-    cursor: pointer;
-    //background:#e8f0fe;
-    background: rgb(246,246,246);
-    border-radius: 0 4px 4px 0;
-    margin-right: 8px;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 700;
+  clear: both;
+  padding: 12px 24px;
+  color: rgb(10, 142, 223);
+  cursor: pointer;
+  //background:#e8f0fe;
+  background: rgb(242,244,246);
+  border-radius: 0 4px 4px 0;
+  margin-right: 8px;
 }
 #currentmenuitem:hover{
     cursor: pointer;
@@ -188,24 +188,24 @@ ion-content{
   
   #inputsearch::-webkit-input-placeholder {
     font-family: 'Inter';
-    font-size: 14px;
-    color:rgb(180,180,180);
+    font-size: 13px;
+    color:rgb(188,188,188);
   }
   
   #inputsearch:-ms-input-placeholder {
     font-family: 'Inter';
-    font-size: 14px;
-    color:rgb(180,180,180);
+    font-size: 13px;
+    color:rgb(188,188,188);
   }
   
   #inputsearch:-moz-placeholder {
     font-family: 'Inter';
-    font-size: 14px;
-    color:rgb(180,180,180);
+    font-size: 13px;
+    color:rgb(188,188,188);
   }
   
   #inputsearch::-moz-placeholder {
     font-family: 'Inter';
-    font-size: 14px;
-    color:rgb(180,180,180);
+    font-size: 13px;
+    color:rgb(188,188,188);
   }

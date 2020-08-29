@@ -86,6 +86,30 @@
   outline: none;
 }
 
+#inputsearch::-webkit-input-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:rgb(188,188,188);
+}
+
+#inputsearch:-ms-input-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:rgb(188,188,188);
+}
+
+#inputsearch:-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:rgb(188,188,188);
+}
+
+#inputsearch::-moz-placeholder {
+  font-family: 'Inter';
+  font-size: 13px;
+  color:rgb(188,188,188);
+}
+
 #topnav{
   //grid-template-columns: 244px auto 0;
   
