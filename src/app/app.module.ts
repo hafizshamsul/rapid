@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImagesProvider } from '../providers/images/images';
 //import { IOSFilePicker } from '@ionic-native/file-picker';
 import { DocumentPicker } from '@ionic-native/document-picker/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { DocumentPicker } from '@ionic-native/document-picker/ngx';
     SplashScreen,
     PostProvider,
     ImagesProvider,
+    DocumentViewer,
     //DocumentPicker,
     //IOSFilePicker,
     //AlertController,

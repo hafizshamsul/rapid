@@ -1,7 +1,8 @@
 {
   "name": "crudionic",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular",
   "id": "c66e2dc6"
