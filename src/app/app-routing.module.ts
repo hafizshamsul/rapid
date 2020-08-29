@@ -29,6 +29,11 @@ const routes: Routes = [
     path: 'messenger',
     loadChildren: () => import('./messenger/messenger.module').then( m => m.MessengerPageModule)
   },
+  /*
+  {
+    path: 'search/:r_searchedtexturi',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },*/
 
 
 
