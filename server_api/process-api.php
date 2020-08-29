@@ -67,6 +67,25 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='getuser'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id' => $row['id'],
+                'username' => $row['username'],
+                'passwordhash' => $row['passwordhash'],
+                'displayname' => $row['displayname']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
     elseif($postjson['action']=='update'){
         $query = mysqli_query($mysqli, "UPDATE master_customer SET
         name_customer='$postjson[name_customer]',

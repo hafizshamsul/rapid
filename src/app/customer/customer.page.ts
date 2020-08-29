@@ -43,6 +43,10 @@ export class CustomerPage implements OnInit {
   type: string = "l";
   icon: string;
   
+  userid: number;
+  username: string;
+  passwordhash: string;
+  displayname: string;
 
   constructor(
     //private docPicker: DocumentPicker,
@@ -58,6 +62,14 @@ export class CustomerPage implements OnInit {
       this.decoded = data.decoded;
       this.type = data.type;
       this.icon = data.icon;
+      console.log(data);
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.userid = data.id;
+      this.username = data.username;
+      this.passwordhash = data.passwordhash;
+      this.displayname = data.displayname;
       console.log(data);
     });
     /*
@@ -305,6 +317,9 @@ export class CustomerPage implements OnInit {
     
     //this.loadCustomer();
     this.loadFile();
+
+    this.users = [];
+    this.loadUser(this.global.userid);
   }
 
   addCustomer(){
@@ -393,6 +408,31 @@ export class CustomerPage implements OnInit {
         for(let hik of data.result){
           //this.hiks = this.hiks.filter((item) => {return item.id === 84});
           this.hiks.push(hik);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+  users: any[];
+
+  loadUser(userid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getuser',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+
+        for(let user of data.result){
+          this.users = this.users.filter((item) => {
+            return item.id === userid
+          });
+          
+          if(user.id == userid){
+            this.users.push(user);
+          }
+          
         }
         resolve(true);
       });
