@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../..//providers/global.service";
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, Item } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
 
@@ -24,13 +24,13 @@ export class HomePage {
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      
-      
     }
 
   current_users: any[];
   comments: any[];
-  replies: any[];
+  tagcomments: any[];
+
+  done: boolean =true;
 
   commentid: number;
   title: string;
@@ -39,6 +39,10 @@ export class HomePage {
   replyto: number;
   username: string;
   dateuploaded: string;
+
+  tagcommentid: number;
+  comment_id: number;
+  tag_id: number;
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
@@ -52,12 +56,26 @@ export class HomePage {
 
       console.log(data);
     });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tagcommentid = data.tagcommentid;
+      this.comment_id = data.comment_id;
+      this.tag_id = data.tag_id;
+
+      console.log(data);
+    });
   }
 
   ionViewWillEnter(){
     this.comments = [];
-
+    this.tagcomments = [];
     this.loadPost();
+    this.loadTagComment(1);
+  
+  }
+
+  login(){
+    this.router.navigate(['/loginform']);
   }
 
   loadPost(){
@@ -74,5 +92,22 @@ export class HomePage {
     });
   }
 
+  loadTagComment(index){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettagcomment',
+        index : index
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let tagcomment of data.result){
+          
+            this.tagcomments.push(tagcomment);
+          
+          
+        }
+        resolve(true);
+      });
+    });
+  }
   
 }

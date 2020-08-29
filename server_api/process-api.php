@@ -44,9 +44,28 @@
         echo $result;
     }
 
+    elseif($postjson['action']=='gettagcomment'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT id, comment_id, tag_id FROM tagcomment WHERE comment_id = '$postjson[index]'");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'tagcommentid' => $row['id'],
+                'comment_id' => $row['comment_id'],
+                'tag_id' => $row['tag_id'],
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getpost'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NULL");
+        $query = mysqli_query($mysqli, "SELECT comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded FROM comment INNER JOIN users ON comment.users_id = users.id WHERE replyto IS NULL ORDER BY dateuploaded DESC");
     
         //$date1 = new DateTime('2016-11-30 03:55:06');//start time
         

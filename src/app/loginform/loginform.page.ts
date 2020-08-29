@@ -26,6 +26,7 @@ export class LoginformPage implements OnInit {
 
   folder(){
     //this.global.userid = 2;
-    this.router.navigate(['/'+'hafizshamsul']);
+    //this.router.navigate(['/'+'hafizshamsul']);
+    this.router.navigate(['/home']);
   }
 }
