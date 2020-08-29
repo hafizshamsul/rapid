@@ -85,7 +85,7 @@
     
       <ion-searchbar></ion-searchbar>
       <ion-list>
-        <ion-item-sliding *ngFor="let file of files">
+        <ion-item-sliding *ngFor="let hik of hiks">
           <ion-item>
             
             <!--<div class="row">
@@ -100,14 +100,12 @@
               </div>
             </div>-->
             
-               <img src="assets/svg/svg_icons/{{file.type}}" style="height: 22px; margin: 0 12px 0 4px;" />
+           
             <ion-label style="font-family: 'Nunito Sans', sans-serif;">
-              <p style="font-size: 16px;color:black; margin:0; padding:0; ">
-                {{file.name}}
-              </p>
-              <p style="font-size: 13px; color:rgb(100,100,100); margin:0; padding:0;">
-                {{lol}}
-              </p>
+              
+                {{hik.name}}
+              
+
             </ion-label>
           
            

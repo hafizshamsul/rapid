@@ -17,6 +17,7 @@ export class CustomerPage implements OnInit {
   //@ViewChild('nav',  {static: false}) nav: NavController;
   //@ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
   
+  hiks: any = [];
   customers: any = [];
   limit: number = 10;
   start: number = 0;
@@ -205,26 +206,13 @@ export class CustomerPage implements OnInit {
       alert.present();
    }
 
-   /*
-   loadFile(){
-    return new Promise(resolve => {
-      let body = {
-        action : 'getdata',
-      };
-      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data => {
-        for(let customer of data.result){
-          this.files.push(customer);
-        }
-        resolve(true);
-      });
-    });
-  }*/
-   
-
   ionViewWillEnter(){
+    this.hiks = [];
     this.customers = [];
     this.start = 0;
-    this.loadCustomer();
+    
+    //this.loadCustomer();
+    this.loadFile();
   }
 
   addCustomer(){
@@ -287,6 +275,21 @@ export class CustomerPage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let customer of data.result){
           this.customers.push(customer);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+     
+   loadFile(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getit',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let hik of data.result){
+          this.hiks.push(hik);
         }
         resolve(true);
       });

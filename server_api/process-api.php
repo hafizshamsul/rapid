@@ -47,6 +47,24 @@
     echo $result;
     
     }
+    elseif($postjson['action']=='getit'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT * FROM filedata");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'decoded' => $row['decoded']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
     elseif($postjson['action']=='update'){
         $query = mysqli_query($mysqli, "UPDATE master_customer SET
         name_customer='$postjson[name_customer]',
