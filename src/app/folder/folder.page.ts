@@ -8,6 +8,7 @@ import { GlobalService } from "../..//providers/global.service";
 import { IonicPage } from 'ionic-angular';
 import {AppRoutingModule} from '../app-routing.module';
 import { NavController } from '@ionic/angular';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-folder',
@@ -69,6 +70,15 @@ export class FolderPage implements OnInit {
       
     }
 
+    folderfileid:number;
+    folderfilename:string;
+    filename:string;
+    folderfiletype:string;
+    folderfileicon:string;
+    folder_id:number;
+    folderfileusers_id:number;
+    dateuploaded:string;
+
   ngOnDestroy(){
     console.log('ngOnDestroy folder');
   }
@@ -110,6 +120,21 @@ export class FolderPage implements OnInit {
       this.type = data.type;
       this.icon = data.icon;
       this.folderdata_id = data.folderdata_id;
+      //console.log(data);
+    });
+
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.folderfileid = data.folderfileid;
+      this.folderfilename = data.folderfilename;
+      this.filename = data.filename;
+      this.folderfiletype = data.folderfiletype;
+      this.folderfileicon = data.folderfileicon;
+      this.folder_id = data.folder_id;
+      this.folderfileusers_id = data.folderfileusers_id;
+      this.dateuploaded = data.dateuploaded;
+      //this.thread = data.thread;
+
       //console.log(data);
     });
   }
@@ -249,6 +274,10 @@ export class FolderPage implements OnInit {
 
     this.hiks = [];
     this.loadFile(this.r_username, this.r_folderid);
+    
+    this.comments = [];
+    this.loadFolderFile();
+    
 
     this.customers = [];
     this.start = 0;
@@ -394,9 +423,47 @@ export class FolderPage implements OnInit {
     });
   }
 
-  
+  comments: any[];
 
+  treeify(listo, idAttr, parentAttr, childrenAttr) {
+    if (!idAttr) idAttr = 'folderfileid';
+    if (!parentAttr) parentAttr = 'folder_id';
 
+    if (!childrenAttr) childrenAttr = 'children';
+
+    var treeList = [];
+    var lookup = {};
+    listo.forEach(function(obj) {
+        lookup[obj[idAttr]] = obj;
+        obj[childrenAttr] = [];
+    });
+    listo.forEach(function(obj) {
+        if (obj[parentAttr] != null) {
+            lookup[obj[parentAttr]][childrenAttr].push(obj);
+        } else {
+            treeList.push(obj);
+        }
+      });
+      return treeList;
+  };
+
+  listoso:any[]; 
+
+  loadFolderFile(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getfolderfile',
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let comment of data.result){
+          this.comments.push(comment);
+        }
+        this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
 
 
   toHome(){
