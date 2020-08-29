@@ -6,21 +6,21 @@
 
 
 <ion-tabs>
-  <ion-tab-bar slot="bottom" style="height:42px">
+  <ion-tab-bar slot="bottom" style="height:44px">
     <ion-tab-button (click)="toHome()">
-      <div class="fas fa-home" style="font-size: 24px; color:rgb(50,50,50)"></div>
+      <div id="homeicon" class="bx bxs-home-circle" style="font-size: 25px;color:rgb(50,50,50)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toActivity()">
+      <div class="bx bx-list-plus" style="font-size: 26px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
     <ion-tab-button (click)="toSubmitpost()">
-      <div class="fas fa-plus-square" style="font-size: 24px; color:rgb(160,160,160)"></div>
+      <div class="bx bx-upload" style="font-size: 25px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
     <ion-tab-button (click)="toFolder()">
-      <div class="fas fa-folder" style="font-size: 24px; color:rgb(160,160,160)"></div>
+      <div class="bx bx-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
-    <ion-tab-button (click)="toAdmin_user()">
-      <div class="fas fa-user" style="font-size: 24px;color:rgb(160,160,160)"></div>
-    </ion-tab-button>
-    <ion-tab-button (click)="toAdmin_doc()">
-      <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
+    <ion-tab-button (click)="toBookmark()">
+      <div class="bx bx-bookmark" style="font-size: 23px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
@@ -181,6 +181,15 @@
                 </div>
             </div>
         </div>
+
+        <div (click)="toActivity()" id="menuitem" style="">
+          <div id="gapicontext" style="color: rgb(120,120,120);">
+            <div class="bx bx-list-plus" style="font-size: 19px;"></div>
+              <div style="padding-top: 2px; font-weight: 500;">
+                  Tasks
+              </div>
+          </div>
+      </div>
 
           <div (click)="toAdmin_user()" id="menuitem" style="">
             <div id="gapicontext" style="color: rgb(120,120,120);">
@@ -370,6 +379,8 @@
   
 
 
+
+  
   
 
 

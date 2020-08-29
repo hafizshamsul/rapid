@@ -208,3 +208,12 @@ input[type="file"] {
 .inputfile:focus + label, .inputfile + label:hover {
   //background-color: red;
 }
+
+#bookmarkicon {
+  -webkit-animation: fadein 200ms;
+  -moz-animation: fadein 200ms;
+  -ms-animation: fadein 200ms;
+  -o-animation: fadein 200ms;
+  animation: fadein 200ms;
+  transition-timing-function: cubic-bezier(.17,.67,.83,.67);
+}

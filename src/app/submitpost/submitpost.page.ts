@@ -280,6 +280,10 @@ export class SubmitpostPage implements OnInit {
     this.navCtrl.navigateRoot(['stream/']);
   }
 
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }
