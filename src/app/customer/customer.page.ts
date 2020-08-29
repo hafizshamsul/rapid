@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NavController } from 'ionic-angular';
 import { ImagesProvider } from '../../providers/images/images';
@@ -21,18 +21,58 @@ export class CustomerPage implements OnInit {
   limit: number = 10;
   start: number = 0;
 
+  /*name_customer: string = "";
+  desc_customer: string = "";
+  id: number;*/
+
+
   private _SUFFIX : string;
   public image : string;
   public isSelected : boolean =	false;
 
+  name: string = "l";
+  decoded: string = "l";
+  id: number;
+
   constructor(
     //private docPicker: DocumentPicker,
     //private filePicker: IOSFilePicker, 
+    private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) { }
 
   ngOnInit() {
+    this.actRoute.params.subscribe((data: any) =>{
+      this.id = data.id;
+      this.name = data.name;
+      this.decoded = data.decoded;
+      console.log(data);
+    });
+    /*
+    this.actRoute.params.subscribe((data: any) =>{
+      this.id = data.id;
+      this.name_customer = data.name;
+      this.desc_customer = data.desc;
+      console.log(data);
+    });*/
   }
 
+  /*async createdProcess(){
+    return new Promise(resolve => {
+      let body = {
+        action: 'add',
+        name: this.name,
+        decoded: this.decoded,
+      };
+
+      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
+        this.router.navigate(['/customer']);
+        console.log('OK');
+      });
+    });
+  }*/
+
+  fails: any = [];
+  
   file: any;
   lol: String = "25 Jan 2020";
   private files: any[] = [
@@ -110,14 +150,32 @@ export class CustomerPage implements OnInit {
     }
    
    uploadFile() : void {
-      this._IMAGES.uploadImageSelection(this.image, this._SUFFIX).subscribe((res) => {
-         this.displayAlert(res.message);
+      this._IMAGES.uploadImageSelection(this.image, this._SUFFIX).subscribe((res) => {        
+        
+        this.displayAlert(res.message);
+        //this.createdProcess();
       },
       (error : any) => {
          console.dir(error);
          this.displayAlert(error.message);
       });
    }
+
+   
+  /*async createdProcess(){
+    return new Promise(resolve => {
+      let body = {
+        action: 'added',
+        name: this.name,
+        decoded: this.decoded,
+      };
+
+      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
+        this.router.navigate(['/loginform']);
+        console.log('OK');
+      });
+    });
+  }*/
 
    async presentAlert() {
     let alert : any = await this.alertCtrl.create({
@@ -137,7 +195,21 @@ export class CustomerPage implements OnInit {
       alert.present();
    }
 
-   
+   /*
+   loadFile(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getdata',
+      };
+
+      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data => {
+        for(let customer of data.result){
+          this.files.push(customer);
+        }
+        resolve(true);
+      });
+    });
+  }*/
    
 
   ionViewWillEnter(){

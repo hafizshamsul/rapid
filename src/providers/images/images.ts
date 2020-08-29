@@ -1,20 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 //import { IOSFilePicker } from '@ionic-native/file-picker';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesProvider {
+  postData(body: { action: string; name: string; decoded: string; }, arg1: string) {
+    throw new Error("Method not implemented.");
+  }
 
   private _READER: any = new FileReader();
   private _REMOTE_URI: string = "http://192.168.0.137/rapidkl/upload_api/parse-upload.php";
+  //server: string = "http://192.168.0.137/rapidkl/upload_api/uploads";
+  
+  //server: string = "http://192.168.0.137/rapidkl/upload_api/";
+  //server: string = "http://192.168.0.137/rapidkl/rapid/";
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    public htt: Http
+    ) { }
 
   handleImageSelection(event : any) : Observable<any> {
     let file: any = event.target.files[0];
@@ -35,11 +45,18 @@ export class ImagesProvider {
   uploadImageSelection(file: string, mimeType: string): Observable<any> {
     let headers: any = new Headers({'Content-Type' : 'application/octet-stream'}),
     fileName: any = Date.now() + '.' + mimeType,
-    options: any = { "name" : fileName, "file" : file };
+    options: any = {"action" : "add" , "name" : fileName, "file" : file, "rename" : "kehkeh.png" };
 
     return this.http.post(this._REMOTE_URI, JSON.stringify(options), headers);
 
     //return this.http.post(this.server + file, JSON.stringify(body), options).pipe(map(res=>res.json()));
   }
 
+  /*posting(body, file){
+    let type = "application/json; charset=UTF-8";
+    let headers = new Headers({'Content-Type': type});
+    let options = new RequestOptions({headers: headers});
+
+    return this.htt.post(this.server + file, JSON.stringify(body), options).pipe(map(res=>res.json()));
+  }*/
 }
