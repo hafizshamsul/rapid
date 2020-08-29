@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { Tagify } from '@yaireo/tagify';
 import { PostProvider } from '../../providers/post-provider';
+import { GlobalService } from "../..//providers/global.service";
 
 
 @Component({
@@ -13,44 +14,31 @@ import { PostProvider } from '../../providers/post-provider';
 })
 export class SubmitpostPage implements OnInit {
 
-  constructor(private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
+  constructor(
+    public global: GlobalService, 
+    private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) { }
 
-  id: number;
+  //tag
+  tags: any = [];
+  tagid: number;
   tagname: string;
   tagdesc: string;
 
-  dis: string = "lol";
+  //comment
+  comments: any = [];
+  commentid: number;
+  users_id: number;
+  title: string;
+  textcmt: string;
 
-  opt:any = [
-    {
-      "id": "webdev"
-    },
-    {
-      "id": "mobiledev"
-    },
-    {
-      "id": "database"
-    }
-  ]
-
-  tags:any = [
-    {
-      "id": 1,
-      "tagname": "sql",
-      "tagdesc" : "lol"
-    },
-    {
-      "id": 2,
-      "tagname": "database",
-      "tagdesc" : "lol"
-    }
-  ]
+  //tagcomment
+  tagcomments: any = [];
+  tagcommentid: number;
+  comment_id: number;
+  tag_id: number;
 
   editorForm: FormGroup;
-  editorContent: string;
-  
-  //input = document.querySelector('input[name=basic]');
-  //tagify = new Tagify(this.input);
+  editorContent: string; //textcmt
 
   editorStyle = {
     height: '380px',
@@ -69,24 +57,66 @@ export class SubmitpostPage implements OnInit {
       'editor': new FormControl(null)
     });
 
-    /*this.actRoute.params.subscribe((data: any) =>{
-      this.id = data.id;
+    //tag
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tagid = data.tagid;
       this.tagname = data.tagname;
       this.tagdesc = data.tagdesc;
 
       console.log(data);
-    });*/
+    });
+
+    //comment
+    this.actRoute.params.subscribe((data: any) =>{
+      this.commentid = data.commentid;
+      this.users_id = data.users_id;
+      this.title = data.title;
+      this.textcmt = data.textcmt;
+
+      console.log(data);
+    });
+
+    //tagcomment
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tagcommentid = data.tagcommentid;
+      this.comment_id = data.comment_id;
+      this.tag_id = data.tag_id;
+
+      console.log(data);
+    });
+    
   }
 
   ionViewWillEnter(){
-    //this.tags = [];
-    //this.loadTag();
-    //console.log(this.tags);
+    //load
+    this.tags = [];
+    this.loadTag();
   }
+
+  getTitle:string;
 
   onSubmit(){
     this.editorContent = this.editorForm.get('editor').value;
-    console.log(this.editorForm.get('editor').value);
+    console.log("comment.users_id: "+this.global.userid);
+    console.log("comment.title: "+this.getTitle);
+    console.log("comment.textcmt: "+this.editorContent);
+
+    return new Promise(resolve => {
+      let body = {
+        action : 'addpost',
+        users_id: this.global.userid,
+        title: this.getTitle,
+        textcmt: this.editorContent
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+      });
+      this.addPost();
+      this.router.navigate(['r/home/']);
+    });
+
+    
+    
   }
 
   maxLength(e){
@@ -97,19 +127,60 @@ export class SubmitpostPage implements OnInit {
 
   
   selectedtags: any = [];
+  
   getSelectedSubjectValue(getSelectedSubject){
     this.selectedtags = getSelectedSubject;
-    this.kah();
+    this.addPost();
     //console.log(this.lul);
   }
 
-  kah(){
+  addPost(){
+    /*
+    return new Promise(resolve => {
+      let body = {
+        action : 'loadpost',
+        users_id:,
+        title:,
+        textcmt:
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let comment of data.result){
+          this.comments.push(comment);
+        }
+        this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
+        resolve(true);
+      });
+    });
+    */
+    
     for(let val of this.selectedtags){
-      console.log("Add tag of value: "+val);
-      console.log();
+      console.log("tagcomment.tagname: "+val);
+      
+      return new Promise(resolve => {
+        let body = {
+          action : 'addtagcomment',
+          tag_id : val
+        };
+        this.postprovider.postData(body, 'process-api.php').subscribe(data => {   
+        });
+        
+      });
     }
   }
   
+  /*
+  addTagComment(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addtagcomment'
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {   
+      });
+      
+    });
+  }
+  */
+
   loadTag(){
     return new Promise(resolve => {
       let body = {
