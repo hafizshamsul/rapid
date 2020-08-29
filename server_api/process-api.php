@@ -124,14 +124,6 @@
         //$jsond = 'eh';
         $trytest = json_decode("{ 'id': 1, 'text': 'lol' }");
 
-
-        $print0 = $postjson['contoh'][0]['name'];
-        $print1 = $postjson['contoh'][1]['name'];
-
-        for($i=0; $i<count($postjson['contoh']); $i++){
-            $lastprint = $postjson['contoh'][$i]['name'];
-        }
-
         
         //$eh = $postjson['contoh']['name'];
 
@@ -139,7 +131,7 @@
             'name' => 'John',
         );
 
-        $query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$print0, $print1 = $lastprint'");
+        $query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
         
         $id_addpost = mysqli_insert_id($mysqli);
         $addone = mysqli_insert_id($mysqli)+1;

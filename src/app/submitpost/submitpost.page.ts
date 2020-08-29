@@ -132,9 +132,12 @@ export class SubmitpostPage implements OnInit {
   }
 
   selectedtags: any = [];
+  flagselected: boolean = false;
   
   getSelectedSubjectValue(getSelectedSubject){
+    this.contoh = [];
     this.selectedtags = getSelectedSubject;
+    
     this.loopTagComment();
   }
 
