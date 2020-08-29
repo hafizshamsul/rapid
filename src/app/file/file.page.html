@@ -21,8 +21,67 @@
 
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
   <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.8.1/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+  <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
+<ion-tabs>
+  <ion-tab-bar slot="bottom" style="height:42px">
+    <ion-tab-button (click)="toHome()">
+      <div class="fas fa-home" style="font-size: 24px; color:rgb(160,160,160)"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toSubmitpost()">
+      <div class="fas fa-plus-square" style="font-size: 24px; color:rgb(160,160,160);"></div>
+    </ion-tab-button>
+    <ion-tab-button (click)="toFolder()">
+      <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50) "></div>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<!--POPUP FOR CREATING FOLDER-->
+<div *ngIf="popup == true">
+  <div id="popupbg" (click)="closepopupbg()" style="display:grid; grid-template-rows: auto 180px auto; background: rgba(0,0,0,0.5); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+  <div></div>
+
+  <div>
+    <div id="popupfore" style="display: grid; height: 100%;">
+      <div></div>
+
+      <div (click)="openpopup()" style="background: white; width:100%; text-align: center; border-radius: 6px; box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.3);">
+        <div style="display: grid; grid-template-columns: auto; height:56px">
+          <div style="padding:24px 24px 0 24px; font-size: 16px;color:rgb(20,20,20); font-weight: 500; text-align: center;">
+            New folder
+          </div>
+          
+          <!--
+            <div (click)="closepopupbtn()" style="padding:20px 10px 0 10px; height:100%; cursor: pointer">
+            <div class="fas fa-times" style="font-size: 16px;color:rgb(150,150,150)"></div>
+          </div>
+          -->
+          
+        </div>
+        
+        <div style="padding: 8px 32px 0 32px;">
+          <ion-item style="--background: rgb(240,246,255)">
+            <ion-input [(ngModel)]="popuprename" #rename type="text" style="text-align: left;"></ion-input>
+          </ion-item>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: auto 100px 100px; height:64px; padding:11px 24px 0 24px; font-size: 14px;font-weight: 500;">
+          <div></div>
+          <div id="clickbtn" (click)="closepopupbtn()" style="border-radius:8px;cursor:pointer; margin:3px; color:rgb(150,150,150);padding-top: 10px;">Cancel</div>
+          <div id="clickbtn" (click)="addetc()" style="border-radius:8px;cursor:pointer; margin:3px;margin:3px; color:#2d98da;padding-top: 10px;font-size: 15px;">Create</div>
+        </div>
+      </div>
+
+      <div></div>
+      
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+</div>
 
     
   <!--  our side menu  -->
@@ -224,28 +283,55 @@
                 </div>
               -->
               
+              <div style="display: grid; grid-template-columns: 140px auto 100px; font-family: Inter;">
+                <div style="font-size: 15px; color: rgb(90,90,90); font-weight: 600; padding: 0 0 6px 12px">
+                  My Documents
+                </div>
+
+                <div></div>
+
+                <div (click)="openpopup()" style="cursor:pointer; font-size: 12px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
+                  NEW FOLDER
+                </div>
+              </div>
 
               <ng-template #recursiveList let-listoso>
                 <div *ngFor="let item of listoso">
                   <div *ngIf="item.folder_id==r_folderid">
-                    <div  id="listgrandparent" style="border-bottom: 1px solid rgb(230,230,230); padding: 8px 0 6px 16px; margin:0 auto; display:block">
+                    <div  id="listgrandparent" style="font-family:Inter; border-radius:8px; margin:6px auto; display:block">
                       <div (click)="showFolder(item.folderfileid, item.folderfileicon)">
-                        <div style="display: grid; grid-template-columns: 38px auto; ">
-                          <div>
-                            <div *ngIf="item.folderfileicon == 'folder'">
-                              <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                        <div style="display: grid; grid-template-columns: 32px auto 80px; ">
+                          <div style="padding: 10px 0 14px 14px;">
+                            <div style="width:100%; height:28px; border-radius: 8px; margin-top: 7px;">
+                              <div *ngIf="item.folderfileicon == 'folder'">
+                                <img src="assets/svg/svg_icons/zip_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                              </div>
+                              <div *ngIf="item.folderfileicon != 'folder'">
+                                <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+                              </div>
                             </div>
-                            <div *ngIf="item.folderfileicon != 'folder'">
-                              <img src="assets/svg/svg_icons/pdf_color.svg" style="height: 22px; margin: 0 12px 0 4px;" />
+
+                          </div>
+
+                          <div style="padding: 10px 0 14px 6px;">
+                            <div style="color:rgb(60,60,60);font-weight:400; font-size: 14px;padding-left: 10px;clear:both; margin-bottom: 4px;">
+                              {{item.folderfilename}}
+                            </div>
+                            <div style="color:rgb(150,150,150);font-weight:400; font-size: 12px;padding-left: 10px; clear:both">
+                              26 Apr 2020
                             </div>
                           </div>
-                          <div>
-                            <ion-label style="font-family: 'Inter var', sans-serif;">
-                              <ion-label style="font-family: 'Nunito Sans', sans-serif;">
-                                {{item.folderfilename}}
-                              </ion-label>
-                            </ion-label>
+
+                          <div style="cursor:pointer">
+                            <div style="display: grid; grid-template-rows: auto auto auto; height:100%">
+                              <div></div>
+                              <div style="margin:0 auto; display: block;">
+                                <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px"></div>
+                              </div>
+                              <div></div>
+                            </div>
                           </div>
+
                         </div>
                       </div>
                       

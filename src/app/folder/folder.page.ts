@@ -508,11 +508,9 @@ export class FolderPage implements OnInit {
   }
 
 
-  
-
-  //kaun:any = [];
-
+  //HTML ID
   @ViewChild('rename', {static: false}) rename;
+
   //LOGIC VARIABLE
   popup:boolean = false;
   UDpopup:boolean = false;
@@ -616,6 +614,8 @@ export class FolderPage implements OnInit {
   }
 
   //ACTION FOR ADDING FOLDER
+  popuprename:string = 'Untitled';
+  
   addetc(){
     this.addfolderfile_folder(this.popuprename);
     
@@ -625,8 +625,6 @@ export class FolderPage implements OnInit {
     
     this.popup = false;
   }
-
-  popuprename:string = 'Untitled';
 
   addfolderfile_folder(name){
     return new Promise(resolve => {
