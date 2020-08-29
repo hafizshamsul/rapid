@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
 
 import * as $ from 'jquery';
 import { LineUtil } from 'leaflet';
+import { stringify } from 'querystring';
+
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 
 @Component({
   selector: 'app-file',
@@ -60,6 +63,7 @@ export class FilePage implements OnInit {
     public navCtrl: NavController,
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
+    private document: DocumentViewer,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
     folderfileid:number;
@@ -70,6 +74,7 @@ export class FilePage implements OnInit {
     folder_id:number;
     folderfileusers_id:number;
     dateuploaded:string;
+    originalname:string = 'Untitled.txt';
 
   ngOnInit() {
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
@@ -112,6 +117,7 @@ export class FilePage implements OnInit {
       this.folder_id = data.folder_id;
       this.folderfileusers_id = data.folderfileusers_id;
       this.dateuploaded = data.dateuploaded;
+      this.originalname  = data.originalname;
       //this.thread = data.thread;
 
       //console.log(data);
@@ -205,7 +211,7 @@ export class FilePage implements OnInit {
     });
   }
  
-  originalname:string = 'Untitled.txt';
+  
 
     uploadFile() : void {
     this.name = Date.now() + '.' + this._SUFFIX;
@@ -229,17 +235,18 @@ export class FilePage implements OnInit {
       this.icon = 'zip';
     }
 
-    
+    this.rename = this.originalname;
 
     let body: any = {
       action : 'addfolderfile_file',
       originalname : this.originalname, //namebeforeuploaded
-      rename : 'kehkeh.png', //displayname
+      rename : this.rename, //displayname
       name : this.name, //storeduniquename
       file : this.image, //actual file, not available in iOS*****
       type : this._SUFFIX, //suffix from actual file, not available in iOS*****
       icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
-      folder_id : this.r_folderid //parentfolder
+      folder_id : this.r_folderid, //parentfolder
+      users_id : this.global.userid
     };  
   
     this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
@@ -315,16 +322,11 @@ export class FilePage implements OnInit {
     this.router.navigate(['/showcustomer/'+id]);
   }
 
-  showFolder(folderfileid, folderfileicon){
-    //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
-    if(folderfileicon == 'folder'){
-      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
-      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+  
 
-      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
-    }
-    
-  }
+  
+
+
 
   toBack(){
     //this.navCtrl.back( { animated: false, });
@@ -519,6 +521,8 @@ export class FilePage implements OnInit {
   popup:boolean = false;
   UDpopup:boolean = false;
   CDpopup:boolean = false;
+  PDFpopup:boolean = false;
+  PDFpopupnative:boolean = false;
 
   //VARIABLE PASSED TO POPUP
   selectedid:number;
@@ -574,6 +578,11 @@ export class FilePage implements OnInit {
     this.CDpopup = false;
     this.UDpopup = false;
     console.log(this.CDpopup);
+  }
+
+  PDFclosepopupbg(){
+    this.PDFpopup = false;
+    console.log(this.popup);
   }
 
   //CLOSE POPUP BUTTON
@@ -665,6 +674,34 @@ export class FilePage implements OnInit {
   selectit(){
     this.isSelected = true;
   }
+
+  selectedfilename:string;
+  src:any;
+
+  showFolder(folderfileid, folderfileicon, filename){
+    //this.router.navigate(['/r/'+this.r_username +'/'+folderfileid]);
+    if(folderfileicon == 'folder'){
+      //this.navCtrl.navigateForward(['/r/'+this.r_username +'/'+folderfileid], { animated: false, });
+      //this.router.navigateByUrl('/r/'+this.r_username +'/'+folderfileid);
+
+      this.router.navigate(['r/'+this.r_username +'/'+folderfileid+'/']);
+    }
+    else{
+      this.selectedfilename = filename;
+      this.src = "http://192.168.0.137/rapidkl/rapid/web/viewer.html?file=/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+
+      if (matchMedia('only screen and (max-width: 576px)').matches) {
+        this.PDFpopupnative = true;
+      }
+      else{
+        this.PDFpopup = true;
+      }
+      
+      
+    }
+    
+  }
+
 
 
   target:string = "eh";

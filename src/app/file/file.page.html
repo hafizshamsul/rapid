@@ -36,6 +36,9 @@
     <ion-tab-button (click)="toFolder()">
       <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50) "></div>
     </ion-tab-button>
+    <ion-tab-button (click)="toAdmin_user()">
+      <div class="fas fa-user" style="font-size: 24px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
     <ion-tab-button (click)="toAdmin_doc()">
       <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
     </ion-tab-button>
@@ -167,6 +170,27 @@
   </div>
 </div>
 
+
+<!--POPUP FOR FILE PREVIEW-->
+<div *ngIf="PDFpopup">
+  <div id="PDFpopupbg" (click)="PDFclosepopupbg()" style="display:grid; background: rgba(0,0,0,0.8); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+    <div></div>
+
+    <div>
+      <iframe [src]="src | safe"
+      style="width:100%; height:100%; z-index: 9999; border:none;"></iframe>
+    </div>
+
+    <div></div>
+  </div>
+</div>
+
+
+
+
+
+
+
     
   <!--  our side menu  -->
   <!--
@@ -272,62 +296,72 @@
         <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; ">
 
           <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
-              <div id="gapicontext" style="">
-                  <div class="fas fa-home" style="font-size: 18px"></div>
-                    <div style="padding-top: 2px">
-                        Home
-                    </div>
-                </div>
-            </div>
-    
-    
-    
-    
-                <div (click)="toSubmitpost()" id="menuitem" style="">
-                    <div id="gapicontext" style="">
-                        <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
-                        <div style="padding-top: 2px">
-                            Uploads
-                        </div>
-                    </div>
-                </div>
-     
-    
-    
-                <div (click)="toFolder()" id="currentmenuitem" style="">
-                    <div id="gapicontext" style="">
-                        <div class="fas fa-folder-open" style="font-size: 18px"></div>
-                        <div style="padding-top: 2px">
-                            Folders
-                        </div>
-                    </div>
-                </div>
-    
-                <div (click)="toAdmin_doc()" id="menuitem" style="">
+            <div id="gapicontext" style="">
+                <div class="fas fa-home" style="font-size: 18px"></div>
+                  <div style="padding-top: 2px">
+                      Home
+                  </div>
+              </div>
+          </div>
+  
+  
+  
+  
+              <div (click)="toSubmitpost()" id="menuitem" style="">
                   <div id="gapicontext" style="">
-                      <div class="fas fa-folder" style="font-size: 18px"></div>
+                      <div class="fas fa-cloud-upload-alt" style="font-size: 18px"></div>
                       <div style="padding-top: 2px">
-                          Files
+                          Uploads
                       </div>
                   </div>
-                </div>
-    
-    
+              </div>
+   
+  
+  
+              <div (click)="toFolder()" id="currentmenuitem" style="">
+                  <div id="gapicontext" style="">
+                    <div class="fas fa-folder-open" style="font-size: 18px"></div>
+                      <div style="padding-top: 2px">
+                          Folders
+                      </div>
+                  </div>
+              </div>
 
-                <div (click)="toMessenger()" id="menuitem" style="">
-                    <div id="gapicontext" style="">
-                        <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
-                        <div style="padding-top: 0px">
-                            Messenger
-                        </div>
+              <div (click)="toAdmin_user()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-user" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Users
                     </div>
                 </div>
+              </div>
+  
+              <div (click)="toAdmin_post()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-align-center" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Threads
+                    </div>
+                </div>
+              </div>
+
+              <div (click)="toAdmin_doc()" id="menuitem" style="">
+                <div id="gapicontext" style="">
+                    <div class="fas fa-folder" style="font-size: 18px"></div>
+                    <div style="padding-top: 2px">
+                        Files
+                    </div>
+                </div>
+              </div>
     
         </div>
+
         <div id="griditem2" style="display:grid;">
           <div></div>
           <div>
             <div>
+              
+              
               <!--
                 <ion-list>
                 <ion-item-sliding (click)="showFile(hik.id)" *ngFor="let hik of hiks">
@@ -414,7 +448,8 @@
                 <div *ngFor="let item of listoso">
                   <div *ngIf="item.folder_id==r_folderid">
                     <div  id="listgrandparent" style="font-family:Inter; border-radius:8px; margin:6px auto; display:block">
-                      <div (click)="showFolder(item.folderfileid, item.folderfileicon)">
+                      
+                      <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)">
                         <div style="display: grid; grid-template-columns: 32px auto 80px; ">
                           <div style="padding: 10px 0 14px 14px;">
                             <div style="width:100%; height:28px; border-radius: 8px; margin-top: 7px;">
