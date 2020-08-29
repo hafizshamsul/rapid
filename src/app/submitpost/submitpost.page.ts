@@ -74,6 +74,7 @@ export class SubmitpostPage implements OnInit {
       this.textcmt = data.textcmt;
 
       console.log(data);
+      //console.log("This is: "+this.commentid);
     });
 
     //tagcomment
@@ -83,6 +84,7 @@ export class SubmitpostPage implements OnInit {
       this.tag_id = data.tag_id;
 
       console.log(data);
+      
     });
     
   }
@@ -95,6 +97,9 @@ export class SubmitpostPage implements OnInit {
 
   getTitle:string;
 
+  contoh:any = [];
+  
+
   onSubmit(){
     this.editorContent = this.editorForm.get('editor').value;
     console.log("comment.users_id: "+this.global.userid);
@@ -106,7 +111,11 @@ export class SubmitpostPage implements OnInit {
         action : 'addpost',
         users_id: this.global.userid,
         title: this.getTitle,
-        textcmt: this.editorContent
+        textcmt: this.editorContent,
+        contoh: this.contoh,
+        //contoh: { "name":"John" },
+        //contoh: "{ 'id': 1, 'text': 'lol' }",
+        jsond: "{\'id\''}"
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
@@ -114,9 +123,6 @@ export class SubmitpostPage implements OnInit {
       this.loopTagComment();
       //this.router.navigate(['r/home/']);
     });
-
-    
-    
   }
 
   maxLength(e){
@@ -125,37 +131,22 @@ export class SubmitpostPage implements OnInit {
     }
   }
 
-  
   selectedtags: any = [];
   
   getSelectedSubjectValue(getSelectedSubject){
     this.selectedtags = getSelectedSubject;
     this.loopTagComment();
-    //console.log(this.lul);
   }
 
-  loopTagComment(){
-    /*
-    return new Promise(resolve => {
-      let body = {
-        action : 'loadpost',
-        users_id:,
-        title:,
-        textcmt:
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        for(let comment of data.result){
-          this.comments.push(comment);
-        }
-        this.listoso = this.treeify(this.comments, 'commentid', 'replyto', 'children');
-        resolve(true);
-      });
-    });
-    */
-    
+  arraytag: any = [];
+
+  loopTagComment(){    
     for(let val of this.selectedtags){
       console.log("tagcomment.tagid: "+val);
-      this.addTagComment(val);
+      this.contoh.push({"id": 3, "name": val});
+      //this.arraytag.push(val);
+      //console.log(this.arraytag)
+      //this.addTagComment(val);
     }
   }
 
@@ -169,19 +160,6 @@ export class SubmitpostPage implements OnInit {
         }); 
     });
   }
-  
-  /*
-  addTagComment(){
-    return new Promise(resolve => {
-      let body = {
-        action : 'addtagcomment'
-      };
-      this.postprovider.postData(body, 'process-api.php').subscribe(data => {   
-      });
-      
-    });
-  }
-  */
 
   loadTag(){
     return new Promise(resolve => {

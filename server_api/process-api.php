@@ -14,6 +14,8 @@
     $lel = $postjson['action'];
     $today = date('Y-m-d');
 
+    //$lastinserted = 0;
+
     if($postjson['action'] == 'add'){
         $query = mysqli_query($mysqli, "INSERT INTO master_customer SET name_customer = '$postjson[name_customer]', desc_customer = '$postjson[desc_customer]', created_at = '$today'");
 
@@ -108,12 +110,55 @@
     }
 
     elseif($postjson['action'] == 'addpost'){
-        $query = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+        //$kot = $postjson->contoh->id;
+        //$postjson = json_decode(file_get_contents('php://input'), true);
+        $jsonz = '
+                {
+                    "id": 1,
+                    "text": "lol"
+                }';
 
-        $id = mysqli_insert_id($mysqli);
+        $yummy = json_decode($jsonz);
+        //$zummy = $postjson['contoh'];
 
-        if($query){
-            $result = json_encode(array('success'=>true, 'id'=>$id));
+        //$jsond = 'eh';
+        $trytest = json_decode("{ 'id': 1, 'text': 'lol' }");
+
+
+        $print0 = $postjson['contoh'][0]['name'];
+        $print1 = $postjson['contoh'][1]['name'];
+
+        for($i=0; $i<count($postjson['contoh']); $i++){
+            $lastprint = $postjson['contoh'][$i]['name'];
+        }
+
+        
+        //$eh = $postjson['contoh']['name'];
+
+        $huhu = array (
+            'name' => 'John',
+        );
+
+        $query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$print0, $print1 = $lastprint'");
+        
+        $id_addpost = mysqli_insert_id($mysqli);
+        $addone = mysqli_insert_id($mysqli)+1;
+
+        //$query_addpost = mysqli_query($mysqli, "INSERT INTO comment SET users_id = '$postjson[users_id]', title = '$postjson[title]', textcmt = '$postjson[textcmt]'");
+        for($i=0; $i<count($postjson['contoh']); $i++){
+            $curr = $postjson['contoh'][$i]['name'];
+            $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = $id_addpost, tag_id = $curr");
+        }
+        
+
+        if($query_addpost){
+            /*while($row = mysqli_fetch_array($query)){
+                $data[] = array(
+                    'commentid' => $row['id']
+                );
+            }*/
+            
+            $result = json_encode(array('success'=>true, 'id'=>$id_addpost));
         }
         else{
             $result = json_encode(array('success'=>false));
@@ -123,13 +168,12 @@
     }
 
     elseif($postjson['action'] == 'addtagcomment'){
-        //$idx = mysqli_insert_id($mysqli);
-        $query = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 40, tag_id = '$postjson[tag_id]'");
+        $query_addtagcomment = mysqli_query($mysqli, "INSERT INTO tagcomment SET comment_id = 56, tag_id = '$postjson[tag_id]'");
 
-        $id = mysqli_insert_id($mysqli);
+        $id_addtagcomment = mysqli_insert_id($mysqli);
 
-        if($query){
-            $result = json_encode(array('success'=>true, 'tagcommentid'=>$id));
+        if($query_addtagcomment){
+            $result = json_encode(array('success'=>true, 'tagcommentid'=>$id_addtagcomment));
         }
         else{
             $result = json_encode(array('success'=>false));
@@ -159,7 +203,7 @@
 
     elseif($postjson['action']=='gettagcomment'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc");
+        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 8 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id order by dateuploaded desc, tag.tagname");
     
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
