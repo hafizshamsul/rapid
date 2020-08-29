@@ -503,6 +503,10 @@ export class FolderPage implements OnInit {
     this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
   }
 
+  toBookmark(){
+    this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
   toAdmin_user(){
     this.navCtrl.navigateRoot(['admin_user/']);
   }
@@ -567,6 +571,7 @@ export class FolderPage implements OnInit {
   CDopenpopup(){
     event.cancelBubble = true;
     if(event.stopPropagation) event.stopPropagation();
+    this.UDpopup = false;
     this.CDpopup = true;
     console.log(this.CDpopup);
   }
