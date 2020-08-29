@@ -52,7 +52,7 @@
 
           <ion-select [(ngModel)]="getSelectedSubject" [ngModelOptions]="{standalone: true}" multiple="true"  (ionChange)="getSelectedSubjectValue(getSelectedSubject)" [interfaceOptions]="customAlertOptions" interface="dropdown" placeholder="{{getSelectedSubject}}">
             <div *ngFor="let item of tags">
-              <ion-select-option value={{item.tagid}}>{{item.tagname}}</ion-select-option>
+              <ion-select-option value={{item.tagname}}>{{item.tagname}}</ion-select-option>
             </div>
           </ion-select>
 
