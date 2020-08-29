@@ -24,9 +24,57 @@ export class HomePage {
     public global: GlobalService, 
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
+    
+      
     }
 
+    listo:any[]=[
+      {
+        id: 1,
+        title: '1',
+        parent: null
+      },
+      {
+        id: 2,
+        title: '2',
+        parent: 1
+      }
+    ];
 
+    
+
+    treeify(listo, idAttr, parentAttr, childrenAttr) {
+      if (!idAttr) idAttr = 'id';
+      if (!parentAttr) parentAttr = 'parent';
+      if (!childrenAttr) childrenAttr = 'children';
+  
+      var treeList = [];
+      var lookup = {};
+      listo.forEach(function(obj) {
+          lookup[obj[idAttr]] = obj;
+          obj[childrenAttr] = [];
+      });
+      listo.forEach(function(obj) {
+          if (obj[parentAttr] != null) {
+              lookup[obj[parentAttr]][childrenAttr].push(obj);
+          } else {
+              treeList.push(obj);
+          }
+        });
+        return treeList;
+    };
+
+listos:any[] = this.treeify(this.listo, 'id', 'parent', 'children');
+
+
+ list:any = [
+        {id:1, title:"1", parent:null,
+            children:[
+                    {id:2, title:"2", parent:1, children:[]}
+                 ],
+                }
+    ];
+    
   current_users: any[];
   comments: any[];
   tagcomments: any[];
@@ -53,6 +101,9 @@ export class HomePage {
 
 
   ngOnInit() {
+    console.log(JSON.stringify(this.list));
+    console.log(JSON.stringify(this.listos));
+
     this.actRoute.params.subscribe((data: any) =>{
       this.commentid = data.commentid;
       this.users_id = data.users_id;
