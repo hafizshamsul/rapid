@@ -19,12 +19,34 @@
 }
 
 #griditem2{
-    grid-template-columns: 244px auto 310px;  
+    grid-template-columns: 244px auto 0px;  
     //grid-template-columns: 244px auto 0;
     //grid-template-columns: auto 70% auto;
   
     @media (max-width: 576px) {
         grid-template-columns: auto 100% auto;
+    }
+  }
+
+  #sidemenu{
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+
+  #twocolumn{
+    grid-template-columns: 84px auto;
+    padding:10px 40px 40px 0;
+
+    @media (max-width: 576px) {
+      padding:10px 20px 40px 20px;
+      grid-template-columns: auto;
+    }
+  }
+
+  #votecolumn{
+    @media (max-width: 576px) {
+      display: none;
     }
   }
   
@@ -36,9 +58,19 @@
     }
   }
 
+  #itemtitle{
+    font-size: 26px;
+    font-weight: 400;
+    
+    @media (max-width: 576px) {
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
 #textcmt{
     font-size: 13px;
-    letter-spacing: -0.0025em; 
+    letter-spacing: -0.0025em;
 
     @media (max-width: 576px) {
         font-size: 12px;
@@ -148,4 +180,9 @@
     font-size: 13px;
     margin: 13px 0;
     border-radius: 4px;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
   }
