@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2020 at 09:43 PM
+-- Generation Time: Apr 18, 2020 at 01:40 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -222,13 +222,14 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (177, '<p>1</p>', 1, NULL, '177', '2020-04-10 04:38:28', NULL, NULL, 177),
 (178, '<p>d</p>', 1, NULL, '178', '2020-04-10 04:40:14', NULL, NULL, 178),
 (179, '<p>e</p>', 1, NULL, '179', '2020-04-10 04:40:49', NULL, NULL, 179),
-(180, '<p>f</p>', 1, NULL, '180', '2020-04-10 04:41:47', NULL, NULL, 180),
+(180, '<p>feirfg ueruheirf eorhf eohf eovh eovhreov r</p><p>e ovfheohv oev oef vhoeiv hrovih e vpei vje</p><p> oevh eoijf eofj</p><p> feo hfeojf eir jfe oei rfjoeijf oeifj </p><p> oehfoe jferf</p>', 1, NULL, '180', '2020-04-10 04:41:47', NULL, NULL, 180),
 (181, '<p>w</p>', 1, NULL, '181', '2020-04-10 04:42:46', NULL, NULL, 181),
 (182, '<p>de</p>', 1, NULL, '182', '2020-04-10 04:47:22', NULL, NULL, 182),
 (183, '<p>sw</p>', 1, NULL, '183', '2020-04-10 04:50:33', NULL, NULL, 183),
 (184, '<p>dede</p>', 1, NULL, '184', '2020-04-10 04:52:22', NULL, NULL, 184),
 (192, '<p>fr</p>', 1, NULL, '185', '2020-04-11 00:39:47', NULL, NULL, 192),
-(193, '<p>pikachu</p>', 1, NULL, 'Hoiiiiiiiiii', '2020-04-12 00:18:19', NULL, NULL, 193);
+(193, '<p>pikachu haha</p>', 1, NULL, 'Hoiiiiiiiiiand', '2020-04-12 00:18:19', NULL, NULL, 193),
+(194, '<p>dede</p>', 1, NULL, 'fer', '2020-04-16 16:33:35', NULL, NULL, 194);
 
 -- --------------------------------------------------------
 
@@ -292,6 +293,35 @@ INSERT INTO `folderdata` (`id`, `name`, `description`, `users_id`) VALUES
 (11, 'Software Testing', 'Testing softwares', 1),
 (12, 'OOP', 'Developing system using Object-Oriented Approach', 1),
 (13, 'SRS', 'Documenting with SRS', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `folderfile`
+--
+
+CREATE TABLE `folderfile` (
+  `id` int(11) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `filename` varchar(20) DEFAULT NULL,
+  `type` varchar(15) DEFAULT NULL,
+  `icon` varchar(15) DEFAULT NULL,
+  `folder_id` int(11) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL,
+  `dateuploaded` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `folderfile`
+--
+
+INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`) VALUES
+(1, 'readme', 'readme.txt', 'txt', 'txt', NULL, 1, NULL),
+(2, 'Ubiquitous', NULL, NULL, 'folder', NULL, 1, NULL),
+(3, 'CLP', 'clp.pdf', 'pdf', 'pdf', 2, 1, NULL),
+(4, 'Chapter 1-3', NULL, NULL, 'folder', 2, 1, NULL),
+(5, 'Chapter 1', 'chapter1.pdf', 'pdf', 'pdf', 4, 1, NULL),
+(6, 'Chapter 2', 'chapter2.pdf', 'pdf', 'pdf', 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -387,9 +417,19 @@ CREATE TABLE `tag` (
 --
 
 INSERT INTO `tag` (`id`, `tagname`, `tagdesc`) VALUES
-(1, 'database', 'About database'),
+(1, 'mysql', 'About mysql'),
 (2, 'sql', 'About sql'),
-(3, 'java', 'About java');
+(3, 'java', 'About java'),
+(4, 'javascript', 'About javascript'),
+(5, 'java', 'About java'),
+(6, 'c#', 'About c#'),
+(7, 'python', 'About python'),
+(8, 'php', 'About php'),
+(9, 'android', 'About android'),
+(10, 'jquery', 'About jquery'),
+(11, 'html', 'About html'),
+(12, 'c++', 'About c++'),
+(13, 'css', 'About css');
 
 -- --------------------------------------------------------
 
@@ -599,14 +639,19 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (281, 177, 1),
 (282, 178, 1),
 (283, 179, 1),
-(284, 180, 1),
-(285, 181, 1),
-(286, 182, 1),
-(287, 183, 1),
-(288, 184, 1),
-(331, 193, 1),
-(332, 192, 1),
-(333, 192, 2);
+(399, 192, 5),
+(400, 184, 11),
+(401, 184, 13),
+(402, 183, 4),
+(403, 183, 11),
+(404, 182, 10),
+(405, 181, 7),
+(408, 180, 3),
+(409, 180, 9),
+(464, 193, 1),
+(465, 193, 8),
+(562, 194, 12),
+(563, 194, 13);
 
 -- --------------------------------------------------------
 
@@ -657,6 +702,12 @@ ALTER TABLE `folderdata`
   ADD KEY `users_id` (`users_id`);
 
 --
+-- Indexes for table `folderfile`
+--
+ALTER TABLE `folderfile`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `master_customer`
 --
 ALTER TABLE `master_customer`
@@ -696,7 +747,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -709,6 +760,12 @@ ALTER TABLE `filedata`
 --
 ALTER TABLE `folderdata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `folderfile`
+--
+ALTER TABLE `folderfile`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
@@ -726,13 +783,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=564;
 
 --
 -- AUTO_INCREMENT for table `users`
