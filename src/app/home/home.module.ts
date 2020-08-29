@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 
 import { StripHtmlPipe } from '../striphtml.pipe';
 import { SharedModule } from '../SharedModule';
+import { BottomSheetModule } from "ionic-custom-bottom-sheet";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../SharedModule';
     FormsModule,
     IonicModule,
     SharedModule,
+    BottomSheetModule,
     RouterModule.forChild([
       {
         path: '',
