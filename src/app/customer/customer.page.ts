@@ -19,36 +19,44 @@ export class CustomerPage implements OnInit {
   //@ViewChild('nav',  {static: false}) nav: NavController;
   //@ViewChild('displayAlert',  {static: false}) displayAlert: AlertController;
   
-  hiks: any = [];
   /*$.grep(this.hiks, function(n,i){
     return n.name === 'lol';
   });*/
   
+  users: any[];
+  folders: any[];
+  hiks: any = [];
   customers: any = [];
+
   limit: number = 10;
   start: number = 0;
+  lol: String = "25 Jan 2020";
 
   /*name_customer: string = "";
   desc_customer: string = "";
   id: number;*/
 
-
   private _SUFFIX : string;
   public image : string;
   public isSelected : boolean =	false;
-  
-  idc: number;
-  name: string = "l";
-  decoded: string = "l";
-  type: string = "l";
-  icon: string;
-  folderdata_id: number;
   
   userid: number;
   username: string;
   passwordhash: string;
   displayname: string;
 
+  folderid: number;
+  foldername: string;
+  description: string;
+  users_id: number;
+
+  idc: number;
+  name: string;
+  decoded: string;
+  type: string;
+  icon: string;
+  folderdata_id: number;
+  
   constructor(
     //private docPicker: DocumentPicker,
     //private filePicker: IOSFilePicker,
@@ -57,6 +65,22 @@ export class CustomerPage implements OnInit {
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {}
 
   ngOnInit() {
+    this.actRoute.params.subscribe((data: any) =>{
+      this.userid = data.id;
+      this.username = data.username;
+      this.passwordhash = data.passwordhash;
+      this.displayname = data.displayname;
+      console.log(data);
+    });
+    
+    this.actRoute.params.subscribe((data: any) =>{
+      this.folderid = data.folderid;
+      this.foldername = data.foldername;
+      this.description = data.description;
+      this.users_id = data.users_id;
+      console.log(data);
+    });
+
     this.actRoute.params.subscribe((data: any) =>{
       this.idc = data.idc;
       this.name = data.name;
@@ -67,13 +91,6 @@ export class CustomerPage implements OnInit {
       console.log(data);
     });
 
-    this.actRoute.params.subscribe((data: any) =>{
-      this.userid = data.id;
-      this.username = data.username;
-      this.passwordhash = data.passwordhash;
-      this.displayname = data.displayname;
-      console.log(data);
-    });
     /*
     this.actRoute.params.subscribe((data: any) =>{
       this.id = data.id;
@@ -82,81 +99,7 @@ export class CustomerPage implements OnInit {
       console.log(data);
     });*/
   }
-
-  /*async createdProcess(){
-    return new Promise(resolve => {
-      let body = {
-        action: 'add',
-        name: this.name,
-        decoded: this.decoded,
-      };
-      this._IMAGES.posting(body, 'parse-upload.php').subscribe(data=>{
-        this.router.navigate(['/customer']);
-        console.log('OK');
-      });
-    });
-  }*/
-
-  fails: any = [];
   
-  file: any;
-  lol: String = "25 Jan 2020";
-  private files: any[] = [
-    {
-      "name": "Chapter 1",
-      "type": "pdf_color.svg",
-      "id": "1"
-    },
-
-    {
-      "name": "Chapter 2",
-      "type": "pdf_color.svg",
-      "id": "2"
-    },
-
-    {
-      "name": "Chapter 3",
-      "type": "pdf_color.svg",
-      "id": "3"
-    },
-
-    {
-      "name": "Chapter 4",
-      "type": "pdf_color.svg",
-      "id": "4"
-    },
-  
-    {
-      "name": "Chapter 5",
-      "type": "pdf_color.svg",
-      "id": "5"
-    },
-
-    {
-      "name": "Image 1",
-      "type": "images_color.svg",
-      "id": "6"
-    },
-
-    {
-      "name": "Image 2",
-      "type": "images_color.svg",
-      "id": "7"
-    },
-
-    {
-      "name": "CLP Course",
-      "type": "doc_color.svg",
-      "id": "8"
-    },
-
-    {
-      "name": "Project Rubric",
-      "type": "doc_color.svg",
-      "id": "9"
-    }
-  ];
-
   selectFileToUpload(event) : void {
     this._IMAGES.handleImageSelection(event).subscribe((res) => {
         this._SUFFIX = res.split(':')[1].split('/')[1].split(";")[0];
@@ -242,8 +185,7 @@ export class CustomerPage implements OnInit {
     else if(['zip'].includes(this._SUFFIX)){
       this.icon = 'zip';
     }
-    
-    
+  
     let body: any = {
       action : "add" ,
       name : this.name,
@@ -269,7 +211,6 @@ export class CustomerPage implements OnInit {
       });
    }
 
-   
   /*async createdProcess(){
     return new Promise(resolve => {
       let body = {
@@ -302,26 +243,19 @@ export class CustomerPage implements OnInit {
       alert.present();
    }
 
-   /*filter(){
-    return this.hiks.filter(item => {
-      return item.id > 84;
-    });
-   }*/
-  
-
   ionViewWillEnter(){
-    this.hiks = [];
-    //this.filter();
-
-
-    this.customers = [];
-    this.start = 0;
-    
-    //this.loadCustomer();
-    this.loadFile();
-
     this.users = [];
     this.loadUser(this.global.userid);
+    
+    this.folders = [];
+    this.loadFolder();
+
+    this.hiks = [];
+    this.loadFile();
+
+    this.customers = [];
+    //this.loadCustomer();
+    this.start = 0;
   }
 
   addCustomer(){
@@ -398,6 +332,20 @@ export class CustomerPage implements OnInit {
     });
   }
 
+  loadFolder(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getfolder'
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let folder of data.result){
+          //this.hiks = this.hiks.filter((item) => {return item.id === 84});
+          this.folders.push(folder);
+        }
+        resolve(true);
+      });
+    });
+  }
      
    loadFile(){
     return new Promise(resolve => {
@@ -406,8 +354,6 @@ export class CustomerPage implements OnInit {
         folder: 1
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        
-
         for(let hik of data.result){
           //this.hiks = this.hiks.filter((item) => {return item.id === 84});
           this.hiks.push(hik);
@@ -417,16 +363,12 @@ export class CustomerPage implements OnInit {
     });
   }
 
-  users: any[];
-
   loadUser(userid){
     return new Promise(resolve => {
       let body = {
         action : 'getuser',
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
-        
-
         for(let user of data.result){
           this.users = this.users.filter((item) => {
             return item.id === userid
@@ -435,7 +377,6 @@ export class CustomerPage implements OnInit {
           if(user.id == userid){
             this.users.push(user);
           }
-          
         }
         resolve(true);
       });
