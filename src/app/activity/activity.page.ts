@@ -297,7 +297,7 @@ export class ActivityPage implements OnInit {
       type : this._SUFFIX, //suffix from actual file, not available in iOS*****
       icon : this.icon, //icon based on suffix from actual file, not available in iOS*****
       folder_id : this.r_folderid, //parentfolder
-      users_id : this.global.userid
+      users_id : sessionStorage.getItem('users-id')
     };  
   
     this._IMAGES.uploadImageSelection(body).subscribe((res) => {        
@@ -340,10 +340,10 @@ export class ActivityPage implements OnInit {
 
   ionViewDidEnter(){
     this.users = [];
-    this.loadUser(this.global.username, this.global.password);
+    this.loadUser(sessionStorage.getItem('users-username'), sessionStorage.getItem('users-passwordhash'));
     
     this.folders = [];
-    this.loadFolder(this.global.username);
+    this.loadFolder(sessionStorage.getItem('users-username'));
 
     this.hiks = [];
     this.loadFile(this.r_username, this.r_folderid);
@@ -352,7 +352,7 @@ export class ActivityPage implements OnInit {
     this.loadFolderFile();
 
     this.bookmarks = [];
-    this.loadBookmark(this.global.userid);
+    this.loadBookmark(sessionStorage.getItem('users-id'));
 
     this.tasks = [];
     this.loadTask();
@@ -589,11 +589,23 @@ export class ActivityPage implements OnInit {
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toBookmark(){
     this.navCtrl.navigateRoot(['r/bookmark/']);
+  }
+
+  toActivity(){
+    this.navCtrl.navigateRoot(['r/activity/']);
+  }
+
+  toAdmin_user(){
+    this.navCtrl.navigateRoot(['admin_user/']);
+  }
+
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
   }
 
   toAdmin_doc(){

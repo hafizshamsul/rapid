@@ -40,8 +40,7 @@ export class HomePage{
     public currentnav: CurrentNavService,
     private actRoute: ActivatedRoute,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
-      console.log('constructor home');
-      
+
     }
 
 
@@ -211,12 +210,10 @@ listoso:any[];
 
 
   ngOnInit() {
-    let usernamest = localStorage.getItem('username');
-    console.log(usernamest);
+    //let usernamest = localStorage.getItem('username');
+    //console.log(usernamest);
     
     this.currentnav.currentpage = 'home';
-
-    console.log('ngOnInit home');
 
     //var htmlString= "<div id = 'ju'><h1>Hello World</h1><p>This is the text that we should get.</p><p>Our Code World &#169; 2017</p></div>";
     //console.log(htmlString);
@@ -249,7 +246,6 @@ listoso:any[];
   }
 
   ionViewWillEnter(){
-    console.log('ionViewWillEnter home');
     this.comments = [];
     this.tagcomments = [];
     this.loadPost(this.topdate);
@@ -257,17 +253,13 @@ listoso:any[];
   }
 
   ionViewDidEnter(){
-    console.log('ionViewDidEnter home');
     
   }
   ionViewWillLeave(){
-    console.log('ionViewWillLeave home');
   }
   ionViewDidLeave(){
-    console.log('ionViewDidLeave home');
   }
   ngOnDestroy(){
-    console.log('ngOnDestroy home');
   }
 
 
@@ -599,7 +591,7 @@ listoso:any[];
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toBookmark(){

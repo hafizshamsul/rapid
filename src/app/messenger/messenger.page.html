@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <ion-toolbar style="--background:white">
+  <ion-toolbar id="toolbarborder" style="--background:white; ">
     <div id="searchnav" style="display: grid;">
       
       <div>
@@ -39,13 +39,13 @@
 
  
 
-    <ion-content>
-      <div>
+    <ion-content style="--padding-top: 4px;  --padding:10px">
+      <div id="innercontent" style="margin-top: 9px;">
         <div id="sidemenu" style="background: white; position: fixed; width:230px; height:100%; margin-top:-13px; border-right:1px solid rgb(240,240,240)">
-          <div (click)="toHome()" id="currentmenuitem" style="margin-top: 12px;">
-            <div id="gapicontext" style="">
+          <div (click)="toHome()" id="menuitem" style="margin-top: 12px;">
+            <div id="gapicontext" style="color: rgb(120,120,120);">
                 <div class="bx bx-home-circle" style="font-size: 19px;"></div>
-                  <div style="padding-top: 2px;">
+                  <div style="padding-top: 2px; font-weight: 500;">
                       Home
                   </div>
                 </div>
@@ -86,36 +86,18 @@
                 </div>
             </div>
         </div>
-  
-            <div (click)="toAdmin_user()" id="menuitem" style="">
-              <div id="gapicontext" style="color: rgb(120,120,120);">
-                <div class="bx bx-user" style="font-size: 19px;"></div>
-                  <div style="padding-top: 2px; font-weight: 500;">
-                      Users
-                  </div>
+        
+        <div (click)="toMessenger()" id="currentmenuitem" style="">
+          <div id="gapicontext" style="">
+            <div class="bx bx-message-square-dots" style="font-size: 19px;"></div>
+              <div style="padding-top: 2px">
+                  Messenger
               </div>
-            </div>
-  
-            <div (click)="toAdmin_post()" id="menuitem" style="">
-              <div id="gapicontext" style="color: rgb(120,120,120);">
-                <div class="bx bx-outline" style="font-size: 19px;"></div>
-                  <div style="padding-top: 2px; font-weight: 500;">
-                      Threads
-                  </div>
-              </div>
-            </div>
-  
-            <div (click)="toAdmin_doc()" id="menuitem" style="">
-              <div id="gapicontext" style="color: rgb(120,120,120);">
-                <div class="bx bx-dock-left" style="font-size: 19px;"></div>
-                  <div style="padding-top: 2px; font-weight: 500;">
-                      Files
-                  </div>
-              </div>
-            </div>
+          </div>
+      </div>
   
             <div (click)="toStream()" id="menuitem" style="">
-              <div id="gapicontext" style="">
+              <div id="gapicontext" style="color: rgb(120,120,120);">
                 <div class="bx bx-bullseye" style="font-size: 19px;"></div>
                   <div style="padding-top: 2px; font-weight: 500;">
                       Streams

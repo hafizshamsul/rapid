@@ -65,7 +65,7 @@
     }
 
 
-    elseif($postjson['action'] == 'getuser'){
+    elseif($postjson['action'] == 'authenticate'){
         $query = mysqli_query($mysqli, "select * from users where username='$postjson[username]' and passwordhash='$postjson[password]'");
 
         if ($query->num_rows > 0) {
@@ -74,7 +74,10 @@
                     'id' => $row['id'],
                     'username' => $row['username'],
                     'password' => $row['passwordhash'],
-                    'displayname' => 'hehe'
+                    'displayname' => $row['displayname'],
+                    'role' => $row['role'],
+                    'dateregistered' => $row['dateregistered'],
+                    'status' => $row['status']
                 );
             }
         }
@@ -83,7 +86,10 @@
                 'id' => null,
                 'username' => null,
                 'password' => null,
-                'displayname' => null
+                'displayname' => null,
+                'role' => null,
+                'dateregistered' => null,
+                'status' => null
             );
         }
         
@@ -939,7 +945,10 @@
                 'id' => $row['id'],
                 'username' => $row['username'],
                 'passwordhash' => $row['passwordhash'],
-                'displayname' => $row['displayname']
+                'displayname' => $row['displayname'],
+                'role' => $row['role'],
+                'dateregistered' => $row['dateregistered'],
+                'status' => $row['status']
             );
         }
 

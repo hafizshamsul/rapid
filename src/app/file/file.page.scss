@@ -217,3 +217,11 @@ input[type="file"] {
   animation: fadein 200ms;
   transition-timing-function: cubic-bezier(.17,.67,.83,.67);*/
 }
+
+#toolbarborder{
+  border-bottom: 1px solid rgb(240,240,240);
+  
+  @media (max-width: 576px) {
+    border-bottom: none;
+  }
+}

@@ -9,7 +9,7 @@ import { GlobalService } from "../..//providers/global.service";
 })
 export class TabsPage {
 
-  r_username:string = this.global.username;
+  r_username:string = sessionStorage.getItem('users-username');
 
   constructor(public global: GlobalService) {
   }

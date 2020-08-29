@@ -596,7 +596,7 @@ listoso:any[];
   }
 
   toFolder(){
-    this.navCtrl.navigateRoot(['r/'+this.global.username+'/']);
+    this.navCtrl.navigateRoot(['r/'+sessionStorage.getItem('users-username')+'/']);
   }
 
   toAdmin_user(){
