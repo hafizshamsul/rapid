@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2020 at 04:23 PM
+-- Generation Time: Apr 25, 2020 at 09:50 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -60,7 +60,7 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (238, '<p>I accidentally committed the wrong files to&nbsp;Git, but I haven\'t pushed the commit to the server yet.</p><p>How can I undo those commits from the local repository?</p>', 1, NULL, 'How do I undo the most recent local commits in Git?', '2020-02-23 13:42:06', NULL, NULL, 238),
 (239, '<p>I want to delete a branch both locally and remotely.</p><h2>Failed Attempts to Delete a Remote Branch</h2><pre class=\"ql-syntax\" spellcheck=\"false\">$ git branch -d remotes/origin/bugfix\nerror: branch \'remotes/origin/bugfix\' not found.\n\n$ git branch -d origin/bugfix\nerror: branch \'origin/bugfix\' not found.\n\n$ git branch -rd origin/bugfix\nDeleted remote branch origin/bugfix (was 2a14ef7).\n\n$ git push\nEverything up-to-date\n\n$ git pull\nFrom github.com:gituser/gitproject\n\n* [new branch] bugfix -&gt; origin/bugfix\nAlready up-to-date.\n</pre><p>What should I do differently to successfully delete the&nbsp;<code style=\"background-color: var(--black-075);\">remotes/origin/bugfix</code>&nbsp;branch both locally and remotely?</p><p><br></p>', 1, NULL, 'How do I delete a Git branch locally and remotely?', '2020-04-13 13:43:15', NULL, NULL, 239),
 (240, '<p><span style=\"color: rgb(36, 39, 41);\">What are the differences between&nbsp;</span><code style=\"color: rgb(36, 39, 41); background-color: var(--black-075);\">git pull</code><span style=\"color: rgb(36, 39, 41);\">&nbsp;and&nbsp;</span><code style=\"color: rgb(36, 39, 41); background-color: var(--black-075);\">git fetch</code><span style=\"color: rgb(36, 39, 41);\">?</span></p>', 1, NULL, 'What is the difference between git pull and git fetch?', '2020-04-21 13:46:14', NULL, NULL, 240),
-(241, '<p>I\'ve been messing around with JSON for some time, just pushing it out as text and it hasn\'t hurt anybody (that I know of), but I\'d like to start doing things properly.</p><p>I have seen&nbsp;<em>so</em>&nbsp;many purported \"standards\" for the JSON content type:</p><pre class=\"ql-syntax\" spellcheck=\"false\">application/json\napplication/x-javascript\ntext/javascript\ntext/x-javascript\ntext/x-json\n</pre><p>But which one is correct, or best? I gather that there are security and browser support issues varying between them.</p><p>I know there\'s a similar question,&nbsp;What MIME type if JSON is being returned by a REST API?, but I\'d like a slightly more targeted answer.</p>', 1, NULL, 'What is the correct JSON content type?', '2020-04-23 13:47:46', NULL, NULL, 241),
+(241, '<p>I\'ve been messing around with JSON for some time, just pushing it out as text and it hasn\'t hurt anybody (that I know of), but I\'d like to start doing things properly.</p><p>I have seen&nbsp;<em>so</em>&nbsp;many purported \"standards\" for the JSON content type:</p><pre class=\"ql-syntax\" spellcheck=\"false\">application/json\napplication/x-javascript\ntext/javascript\ntext/x-javascript\ntext/x-json\n</pre><p>But which one is correct, or best? I gather that there are security and browser support issues varying between them.</p><p>I know there\'s a similar question,&nbsp;What MIME type if JSON is being returned by a REST API?, but I\'d like a slightly more targeted answer.</p>', 1, NULL, 'What is the correct JSON content type?', '2020-04-25 12:47:46', NULL, NULL, 241),
 (242, '<p>What is the use of the&nbsp;<code style=\"background-color: var(--black-075);\">yield</code>&nbsp;keyword in Python, and what does it do?</p><p>For example, I\'m trying to understand this code:</p><pre class=\"ql-syntax\" spellcheck=\"false\">def _get_child_candidates(self, distance, min_dist, max_dist):\n    if self._leftchild and distance - max_dist &lt; self._median:\n        yield self._leftchild\n    if self._rightchild and distance + max_dist &gt;= self._median:\n        yield self._rightchild  \n</pre><p><span style=\"color: rgb(36, 39, 41);\">And this is the caller:</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">result, candidates = [], [self]\nwhile candidates:\n    node = candidates.pop()\n    distance = node._get_dist(obj)\n    if distance &lt;= max_dist and distance &gt;= min_dist:\n        result.extend(node._values)\n    candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))\nreturn result\n</pre><p><span style=\"color: rgb(36, 39, 41);\">What happens when the method', 1, NULL, 'What does the yield keyword do?', '2018-04-23 13:49:14', NULL, NULL, 242),
 (243, '<p><span style=\"color: rgb(36, 39, 41);\">I mistakenly added files to Git using the command:</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">git add myfile.txt\n</pre><p><span style=\"color: rgb(36, 39, 41);\">I have not yet run&nbsp;</span><code style=\"color: rgb(36, 39, 41); background-color: var(--black-075);\">git commit</code><span style=\"color: rgb(36, 39, 41);\">. Is there a way to undo this, so these files won\'t be included in the commit?</span></p>', 1, NULL, 'How do I undo git add before commit?', '2018-04-23 13:50:09', NULL, NULL, 243),
 (244, '<p>After reading&nbsp;Hidden Features and Dark Corners of C++/STL&nbsp;on&nbsp;<code style=\"background-color: var(--black-075);\">comp.lang.c++.moderated</code>, I was completely surprised that the following snippet compiled and worked in both Visual Studio 2008 and G++ 4.4.</p><p>Here\'s the code:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;stdio.h&gt;\nint main()\n{\n    int x = 10;\n    while (x --&gt; 0) // x goes to 0\n    {\n        printf(\"%d \", x);\n    }\n}\n</pre><p><span style=\"color: rgb(36, 39, 41);\">Output:</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">9 8 7 6 5 4 3 2 1 0\n</pre><p><span style=\"color: rgb(36, 39, 41);\">I\'d assume this is C, since it works in GCC as well. Where is this defined in the standard, and where has it come from?</span></p>', 1, NULL, 'What is the --> operator in C++?', '2018-04-23 13:51:29', NULL, NULL, 244),
@@ -73,10 +73,11 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (251, '<p><span style=\"color: rgb(36, 39, 41);\">How would you explain JavaScript closures to someone with a knowledge of the concepts they consist of (for example functions, variables and the like), but does not understand closures themselves?</span></p><p><br></p><p><span style=\"color: rgb(36, 39, 41);\">I have seen&nbsp;</span>the Scheme example<span style=\"color: rgb(36, 39, 41);\">&nbsp;given on Wikipedia, but unfortunately it did not help.</span></p>', 1, NULL, 'How do JavaScript closures work?', '2020-04-21 14:00:27', NULL, NULL, 251),
 (252, '<p>How do I revert from my current state to a snapshot made on a certain commit?</p><p>If I do&nbsp;<code style=\"background-color: var(--black-075);\">git log</code>, then I get the following output:</p><pre class=\"ql-syntax\" spellcheck=\"false\">$ git log\ncommit a867b4af366350be2e7c21b8de9cc6504678a61b`\nAuthor: Me &lt;me@me.com&gt;\nDate:   Thu Nov 4 18:59:41 2010 -0400\n\nblah blah blah...\n\ncommit 25eee4caef46ae64aa08e8ab3f988bc917ee1ce4\nAuthor: Me &lt;me@me.com&gt;\nDate:   Thu Nov 4 05:13:39 2010 -0400\n\nmore blah blah blah...\n\ncommit 0766c053c0ea2035e90f504928f8df3c9363b8bd\nAuthor: Me &lt;me@me.com&gt;\nDate:   Thu Nov 4 00:55:06 2010 -0400\n\nAnd yet more blah blah...\n\ncommit 0d1d7fc32e5a947fbd92ee598033d85bfc445a50\nAuthor: Me &lt;me@me.com&gt;\nDate:   Wed Nov 3 23:56:08 2010 -0400\n\nYep, more blah blah.\n</pre><p><span style=\"color: rgb(36, 39, 41);\">How do I revert to the commit from November 3, i.e. commit&nbsp;</span><code style=\"color: rgb(36, 39, 41); background-color: var(--black-075);', 1, NULL, 'How do I revert a Git repository to a previous commit?', '2020-04-21 14:01:45', NULL, NULL, 252),
 (253, '<p><span style=\"color: rgb(36, 39, 41);\">Can I use comments inside a JSON file? If so, how?</span></p>', 1, NULL, 'Can comments be used in JSON?', '2020-04-21 14:11:55', NULL, NULL, 253),
-(254, '<p>Recently, I ran some of my JavaScript code through Crockford\'s&nbsp;<a href=\"http://www.jslint.com/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--blue-700);\">JSLint</a>, and it gave the following error:</p><blockquote>Problem at line 1 character 1: Missing \"use strict\" statement.</blockquote><p>Doing some searching, I realized that some people add&nbsp;<code style=\"background-color: var(--black-075);\">\"use strict\";</code>&nbsp;into their JavaScript code. Once I added the statement, the error stopped appearing. Unfortunately, Google did not reveal much of the history behind this string statement. Certainly it must have something to do with how the JavaScript is interpreted by the browser, but I have no idea what the effect would be.</p><p>So what is&nbsp;<code style=\"background-color: var(--black-075);\">\"use strict\";</code>&nbsp;all about, what does it imply, and is it still relevant?</p><p>Do any of the current browsers respond to the&nbsp;<code style=\"background-co', 1, NULL, 'What does use strict do in JavaScript, and what is the reasoning behind it?', '2020-04-23 14:12:41', NULL, NULL, 254),
-(255, '<p><span style=\"color: rgb(36, 39, 41);\">How come certain random strings produce colors when entered as background colors in HTML? For example:</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">&lt;body bgcolor=\"chucknorris\"&gt; test &lt;/body&gt;\n</pre><p>...produces a document with a&nbsp;<strong>red background</strong>&nbsp;across all browsers and platforms.</p><p>Interestingly, while&nbsp;<code style=\"background-color: var(--black-075);\">chucknorri</code>&nbsp;produces a red background as well,&nbsp;<code style=\"background-color: var(--black-075);\">chucknorr</code>&nbsp;produces a yellow background.</p><p>What\'s going on here?</p>', 1, NULL, 'Why does HTML think chucknorris is a color?', '2020-04-23 14:14:12', NULL, NULL, 255),
-(256, '<p>Usually I would expect a&nbsp;<code style=\"background-color: var(--black-075);\">String.contains()</code>&nbsp;method, but there doesn\'t seem to be one.</p><p>What is a reasonable way to check for this?</p>', 1, NULL, 'How to check whether a string contains a substring in JavaScript?', '2020-04-23 14:14:55', NULL, NULL, 256),
-(257, '<pre class=\"ql-syntax\" spellcheck=\"false\">string hello = “hello world”;\n</pre><p>i have error here. Help.</p>', 1, NULL, 'Sarah try', '2020-04-23 19:32:20', NULL, NULL, 257);
+(254, '<p>Recently, I ran some of my JavaScript code through Crockford\'s&nbsp;<a href=\"http://www.jslint.com/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: var(--blue-700);\">JSLint</a>, and it gave the following error:</p><blockquote>Problem at line 1 character 1: Missing \"use strict\" statement.</blockquote><p>Doing some searching, I realized that some people add&nbsp;<code style=\"background-color: var(--black-075);\">\"use strict\";</code>&nbsp;into their JavaScript code. Once I added the statement, the error stopped appearing. Unfortunately, Google did not reveal much of the history behind this string statement. Certainly it must have something to do with how the JavaScript is interpreted by the browser, but I have no idea what the effect would be.</p><p>So what is&nbsp;<code style=\"background-color: var(--black-075);\">\"use strict\";</code>&nbsp;all about, what does it imply, and is it still relevant?</p><p>Do any of the current browsers respond to the&nbsp;<code style=\"background-co', 1, NULL, 'What does use strict do in JavaScript, and what is the reasoning behind it?', '2020-04-25 12:12:41', NULL, NULL, 254),
+(255, '<p><span style=\"color: rgb(36, 39, 41);\">How come certain random strings produce colors when entered as background colors in HTML? For example:</span></p><pre class=\"ql-syntax\" spellcheck=\"false\">&lt;body bgcolor=\"chucknorris\"&gt; test &lt;/body&gt;\n</pre><p>...produces a document with a&nbsp;<strong>red background</strong>&nbsp;across all browsers and platforms.</p><p>Interestingly, while&nbsp;<code style=\"background-color: var(--black-075);\">chucknorri</code>&nbsp;produces a red background as well,&nbsp;<code style=\"background-color: var(--black-075);\">chucknorr</code>&nbsp;produces a yellow background.</p><p>What\'s going on here?</p>', 1, NULL, 'Why does HTML think chucknorris is a color?', '2020-04-25 12:14:12', NULL, NULL, 255),
+(256, '<p>Usually I would expect a&nbsp;<code style=\"background-color: var(--black-075);\">String.contains()</code>&nbsp;method, but there doesn\'t seem to be one.</p><p>What is a reasonable way to check for this?</p>', 1, NULL, 'How to check whether a string contains a substring in JavaScript?', '2020-04-25 12:14:55', NULL, NULL, 256),
+(257, '<pre class=\"ql-syntax\" spellcheck=\"false\">string hello = “hello world”;\n</pre><p>i have error here. Help.</p>', 1, NULL, 'Sarah try', '2020-04-23 19:32:20', NULL, NULL, 257),
+(258, '<p>try testing</p><pre class=\"ql-syntax\" spellcheck=\"false\">int a = 55;\n</pre><p>terima kasih</p>', 1, NULL, 'Try test', '2020-04-24 14:42:23', NULL, NULL, 258);
 
 -- --------------------------------------------------------
 
@@ -155,24 +156,27 @@ CREATE TABLE `folderfile` (
   `icon` varchar(15) DEFAULT NULL,
   `folder_id` int(11) DEFAULT NULL,
   `users_id` int(11) DEFAULT NULL,
-  `dateuploaded` date DEFAULT NULL
+  `dateuploaded` date DEFAULT NULL,
+  `visibility` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `folderfile`
 --
 
-INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`) VALUES
-(1, 'readme', 'readme.txt', 'txt', 'txt', NULL, 1, NULL),
-(2, 'Ubiquitous', NULL, NULL, 'folder', NULL, 1, NULL),
-(3, 'SubCLP', NULL, NULL, 'folder', 2, 1, NULL),
-(4, 'Chapter 1-3', NULL, NULL, 'folder', 2, 1, NULL),
-(5, 'Subchapter', NULL, NULL, 'folder', 4, 1, NULL),
-(6, 'References', NULL, NULL, 'folder', 4, 1, NULL),
-(7, 'IEEE', 'IEEE.pdf', 'pdf', 'pdf', 6, 1, NULL),
-(8, 'Chapter 1', 'chapter1.pdf', 'pdf', 'pdf', 5, 1, NULL),
-(9, 'CLP', 'CLP.pdf', 'pdf', 'pdf', 3, 1, NULL),
-(10, 'APA', 'APA.pdf', 'pdf', 'pdf', 6, 1, NULL);
+INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`, `users_id`, `dateuploaded`, `visibility`) VALUES
+(1, 'readme', 'readme.txt', 'txt', 'txt', NULL, 1, NULL, 'hidden'),
+(2, 'Advanced Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
+(3, 'SubCLP', NULL, NULL, 'folder', 2, 1, NULL, NULL),
+(4, 'Chapter 1-3', NULL, NULL, 'folder', 2, 1, NULL, NULL),
+(5, 'Subchapter', NULL, NULL, 'folder', 4, 1, NULL, NULL),
+(6, 'References', NULL, NULL, 'folder', 4, 1, NULL, NULL),
+(7, 'IEEE', 'IEEE.pdf', 'pdf', 'pdf', 6, 1, NULL, NULL),
+(8, 'Chapter 1', 'chapter1.pdf', 'pdf', 'pdf', 5, 1, NULL, NULL),
+(9, 'CLP', 'CLP.pdf', 'pdf', 'pdf', 3, 1, NULL, NULL),
+(10, 'APA', 'APA.pdf', 'pdf', 'pdf', 6, 1, NULL, NULL),
+(11, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL),
+(12, 'Ubiquitous Computing', NULL, NULL, 'folder', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -334,7 +338,8 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (655, 254, 4),
 (656, 255, 11),
 (657, 256, 4),
-(658, 257, 6);
+(658, 257, 6),
+(659, 258, 8);
 
 -- --------------------------------------------------------
 
@@ -424,6 +429,7 @@ ALTER TABLE `tagcomment`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+ALTER TABLE `users` ADD FULLTEXT KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -433,7 +439,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -451,7 +457,7 @@ ALTER TABLE `folderdata`
 -- AUTO_INCREMENT for table `folderfile`
 --
 ALTER TABLE `folderfile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
@@ -475,7 +481,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=659;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=660;
 
 --
 -- AUTO_INCREMENT for table `users`
