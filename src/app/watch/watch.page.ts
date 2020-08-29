@@ -50,6 +50,7 @@ export class WatchPage implements OnInit {
         });
       peerConnection.ontrack = event => {
         video.srcObject = event.streams[0];
+        console.log(video.srcObject);
       };
       peerConnection.onicecandidate = event => {
         if (event.candidate) {
@@ -71,6 +72,8 @@ export class WatchPage implements OnInit {
     socket.on("broadcaster", () => {
       socket.emit("watcher");
     });
+
+    
 
     socket.on("disconnectPeer", () => {
       peerConnection.close();
