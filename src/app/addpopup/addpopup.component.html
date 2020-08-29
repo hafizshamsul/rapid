@@ -1,0 +1,37 @@
+<div>
+  <div id="popupbg" style="display:grid; grid-template-rows: auto 180px auto; background: rgba(0,0,0,0.2); width:100vw; height:100vh; position:fixed; top:0; left:0; z-index: 9998;">
+  <div></div>
+
+  <div>
+    <div id="popupfore" style="display: grid; height: 100%;">
+      <div></div>
+
+      <div style="background: white; width:100%; text-align: center; border-radius: 6px; box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.3);">
+        <div style="display: grid; grid-template-columns: auto; height:56px">
+          <div style="padding:24px 24px 0 24px; font-size: 16px;color:rgb(20,20,20); font-weight: 500; text-align: center;">
+            New folder
+          </div>
+          
+        </div>
+        
+        <div style="padding: 8px 32px 0 32px;">
+          <ion-item style="--background: rgb(240,246,255)">
+            <ion-input [(ngModel)]="popupnaming" #naming type="text" style="text-align: left;"></ion-input>
+          </ion-item>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: auto 100px 100px; height:64px; padding:11px 24px 0 24px; font-size: 14px;font-weight: 500;">
+          <div></div>
+          <div id="clickbtn" style="border-radius:8px;cursor:pointer; margin:3px; color:rgb(150,150,150);padding-top: 10px;">Cancel</div>
+          <div id="clickbtn" style="border-radius:8px;cursor:pointer; margin:3px;margin:3px; color:#2d98da;padding-top: 10px;font-size: 15px;">Create</div>
+        </div>
+      </div>
+
+      <div></div>
+      
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+</div>
