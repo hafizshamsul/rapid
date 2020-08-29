@@ -512,15 +512,23 @@ export class FolderPage implements OnInit {
 
   //kaun:any = [];
 
+  popup:boolean = false;
+
+  openpopup(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    this.popup = true;
+  }
+
+  closepopup(){
+    this.popup = false;
+  }
+
   addetc(){
     this.addfolderfile_folder();
-    console.log(this.comments);
     this.listoso = [];
     this.comments = [];
-    console.log(this.comments);
     this.loadFolderFile();
-    console.log(this.comments);
-    //this.loadFolderFile();
   }
 
   addfolderfile_folder(){
