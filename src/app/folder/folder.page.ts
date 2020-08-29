@@ -20,6 +20,7 @@ export class FolderPage implements OnInit {
   
   r_username: string;
 
+
   current_users: any[];
   users: any[];
   folders: any[];
