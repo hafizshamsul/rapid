@@ -507,6 +507,14 @@ export class FolderPage implements OnInit {
     this.navCtrl.navigateRoot(['admin_user/']);
   }
 
+  toAdmin_post(){
+    this.navCtrl.navigateRoot(['r/admin_post/']);
+  }
+
+  toAdmin_doc(){
+    this.navCtrl.navigateRoot(['r/admin_doc/']);
+  }
+
   toMessenger(){
     this.navCtrl.navigateRoot(['messenger/']);
   }

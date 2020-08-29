@@ -104,13 +104,13 @@
           <div class="fas fa-plus-square" style="font-size: 24px; color:rgb(160,160,160);"></div>
         </ion-tab-button>
         <ion-tab-button (click)="toFolder()">
-          <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50) "></div>
+          <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160) "></div>
         </ion-tab-button>
         <ion-tab-button (click)="toAdmin_user()">
           <div class="fas fa-user" style="font-size: 24px;color:rgb(160,160,160)"></div>
         </ion-tab-button>
         <ion-tab-button (click)="toAdmin_doc()">
-          <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
+          <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50)"></div>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -287,7 +287,7 @@
      
     
     
-                <div (click)="toFolder()" id="currentmenuitem" style="">
+                <div (click)="toFolder()" id="menuitem" style="">
                     <div id="gapicontext" style="">
                       <div class="fas fa-folder-open" style="font-size: 18px"></div>
                         <div style="padding-top: 2px">
@@ -314,7 +314,7 @@
                   </div>
                 </div>
 
-                <div (click)="toAdmin_doc()" id="menuitem" style="">
+                <div (click)="toAdmin_doc()" id="currentmenuitem" style="">
                   <div id="gapicontext" style="">
                       <div class="fas fa-folder" style="font-size: 18px"></div>
                       <div style="padding-top: 2px">
@@ -369,27 +369,93 @@
               </div>
               -->
               
-              <div style="display: grid; grid-template-columns: 90px auto; font-family: Inter; height:100px; padding: 0 12px 0 12px; margin: 0 0 14px 0">
-                <div style="width:100%; height:90px; background:lightblue; border-radius: 100%;">
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 130px auto 100px; height:40px;">
-                  <div style="height:40px;text-align:left;font-size: 15px; color: rgb(90,90,90); font-weight: 600; padding: 10px 0 6px 0px; margin-left:12px">
-                    hafizshamsul
+              <!--
+                <div style="display: grid; grid-template-columns: 90px auto; font-family: Inter; height:100px; padding: 0 12px 0 12px; margin: 0 0 14px 0">
+                  <div style="width:100%; height:90px; background:lightblue; border-radius: 100%;">
                   </div>
+                  
+                  <div style="display: grid; grid-template-columns: 130px auto 100px; height:40px;">
+                    <div style="height:40px;text-align:left;font-size: 15px; color: rgb(90,90,90); font-weight: 600; padding: 10px 0 6px 0px; margin-left:12px">
+                      hafizshamsul
+                    </div>
 
-                  <div></div>
+                    <div></div>
 
-                  <div style="padding: 4px">
-                    <div style="border:1.2px solid rgb(120,120,120);height:30px; border-radius: 20px; text-align:center;font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 6px 0px 6px 3px">
-                      SUBSCRIBE
+                    <div style="padding: 4px">
+                      <div style="border:1.2px solid rgb(120,120,120);height:30px; border-radius: 20px; text-align:center;font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 6px 0px 6px 3px">
+                        SUBSCRIBE
+                      </div>
                     </div>
                   </div>
                 </div>
+              -->
+              
 
-                
 
+
+              <div style="font-family: Inter; font-size: 15px; color: rgb(90,90,90); font-weight: 600; padding: 0 0 6px 12px; margin-bottom: 14px;">
+                <div style="display: grid; grid-template-rows: auto auto;"></div>
+                  <div style="font-size: 20px;font-weight: 300;">Overview</div>
+                  <div style="font-size: 14px; font-weight: 300;">Wednesday, 29 April</div>
               </div>
+
+              <div style="height: 1px; background: rgb(234,234,234);"></div>
+
+              <div style="display: grid; grid-template-columns: 46px 1fr 46px 1fr 46px 1fr; margin: 20px 0; font-family:Inter; padding:6px; color:rgb(90,90,90);font-weight:500; font-size: 14px; border-radius:8px;">
+                <div style="background: rgb(215, 234, 240); border-radius: 8px; margin:0 2px; text-align: center;">
+                  <div style="display: grid; grid-template-rows: auto 24px auto; height: 100%;">
+                    <div></div>
+                    <div>
+                      <div class="fas fa-users" style="font-size: 24px;color:rgb(143, 213, 235);"></div>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+                
+                <div style="margin:0 8px">
+                  <div style="display: grid; grid-template-rows: auto auto;">
+                    <div style="font-size: 24px; font-weight: 300;">12</div>
+                    <div style="font-size: 13px;color: rgb(120,120,120);font-weight: 400;">Total users registered</div>
+                  </div>
+                </div>
+
+                <div style="background: rgb(215, 234, 240); border-radius: 8px; margin:0 2px; text-align: center;">
+                  <div style="display: grid; grid-template-rows: auto 24px auto; height: 100%;">
+                    <div></div>
+                    <div>
+                      <div class="fas fa-users" style="font-size: 24px;color:rgb(143, 213, 235);"></div>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+                
+                <div style="margin:0 8px">
+                  <div style="display: grid; grid-template-rows: auto auto;">
+                    <div style="font-size: 24px; font-weight: 300;">12</div>
+                    <div style="font-size: 13px;color: rgb(120,120,120);font-weight: 400;">New daily users</div>
+                  </div>
+                </div>
+
+                <div style="background: rgb(215, 234, 240); border-radius: 8px; margin:0 2px; text-align: center;">
+                  <div style="display: grid; grid-template-rows: auto 24px auto; height: 100%;">
+                    <div></div>
+                    <div>
+                      <div class="fas fa-users" style="font-size: 24px;color:rgb(143, 213, 235);"></div>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+                
+                <div style="margin:0 8px">
+                  <div style="display: grid; grid-template-rows: auto auto;">
+                    <div style="font-size: 24px; font-weight: 300;">12</div>
+                    <div style="font-size: 13px;color: rgb(120,120,120);font-weight: 400;">Monthly active users</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="height: 1px; background: rgb(228,228,228); margin: 0 0 22px 0"></div>
+
 
               <div style="display: grid; grid-template-columns: 140px auto 100px; font-family: Inter;">
                 <div style="font-size: 15px; color: rgb(90,90,90); font-weight: 600; padding: 0 0 6px 12px">

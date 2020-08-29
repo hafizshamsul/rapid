@@ -36,6 +36,9 @@
     <ion-tab-button (click)="toFolder()">
       <div class="fas fa-folder" style="font-size: 24px;color:rgb(50,50,50) "></div>
     </ion-tab-button>
+    <ion-tab-button (click)="toAdmin_doc()">
+      <div class="fas fa-folder" style="font-size: 24px;color:rgb(160,160,160)"></div>
+    </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
 
@@ -300,8 +303,17 @@
                     </div>
                 </div>
     
+                <div (click)="toAdmin_doc()" id="menuitem" style="">
+                  <div id="gapicontext" style="">
+                      <div class="fas fa-folder" style="font-size: 18px"></div>
+                      <div style="padding-top: 2px">
+                          Files
+                      </div>
+                  </div>
+                </div>
     
     
+
                 <div (click)="toMessenger()" id="menuitem" style="">
                     <div id="gapicontext" style="">
                         <div class="fas fa-comment-alt" style="font-size: 17px; padding-left: 1px;"></div>
