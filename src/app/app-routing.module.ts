@@ -39,7 +39,15 @@ const routes: Routes = [
   {
     path: 'record-rtc',
     loadChildren: () => import('./record-rtc/record-rtc.module').then( m => m.RecordRtcPageModule)
+  },  {
+    path: 'broadcast',
+    loadChildren: () => import('./broadcast/broadcast.module').then( m => m.BroadcastPageModule)
   },
+  {
+    path: 'watch',
+    loadChildren: () => import('./watch/watch.module').then( m => m.WatchPageModule)
+  },
+
 
   /*
   {
