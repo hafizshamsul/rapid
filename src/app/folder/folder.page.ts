@@ -11,7 +11,8 @@ import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
 import * as $ from 'jquery';
-import * as dt from 'node_modules/datatables.net/js/jquery.dataTables';
+//import * as dt from 'node_modules/datatables.net/js/jquery.dataTables';
+import * as dt from '../../../node_modules/datatables.net/js/jquery.dataTables';
 
 //var $ = require('jquery');
 //declare var $: any;
@@ -72,6 +73,8 @@ export class FolderPage implements OnInit {
   active = "folder";
   session = sessionStorage.getItem('users-username');
 
+  
+
   constructor(
     public navCtrl: NavController,
     public route: AppRoutingModule,
@@ -118,14 +121,9 @@ export class FolderPage implements OnInit {
         alert('Wass up!');
       });*/
 
-      $(document).ready(function(){ 
-        /*$("#example").click(function(){ 
-          alert('Wass up!');
-        });*/
-        dt.$("#example").dataTable({
-          responsive: true
-        });
-      }); 
+      
+
+      
       
 
     console.log(this.comments);
@@ -193,6 +191,14 @@ export class FolderPage implements OnInit {
     });
 
   
+    
+
+    /*
+    $(document).ready(function(){ 
+     
+    });  
+    */
+     
   }
 
   deletelist:string;
@@ -341,6 +347,12 @@ export class FolderPage implements OnInit {
     this.start = 0;
 
     console.log(this.comments);
+
+    
+
+    
+
+    
   }
 
   addCustomer(){
@@ -528,6 +540,15 @@ export class FolderPage implements OnInit {
           this.comments.push(comment);
         }
         this.listoso = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+
+        setTimeout(()=>{
+          dt.$("#example").dataTable({
+            "lengthMenu": [[-1, 3, 6], ["All", 3, 6]],
+            "pagingType": "full_numbers",
+            responsive: true
+         });
+       }, 0);
+
         //console.log(JSON.stringify(this.listoso));
         resolve(true);
       });

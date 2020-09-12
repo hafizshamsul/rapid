@@ -17,7 +17,7 @@ export class ImagesProvider {
   }*/
 
   private _READER: any = new FileReader();
-  private _REMOTE_URI: string = "http://192.168.0.137/rapidkl/rapid/upload_api/parse-upload.php";
+  private _REMOTE_URI: string = "http://192.168.0.138/rapidkl/rapid/upload_api/parse-upload.php";
 
   constructor(private http: HttpClient,
     public htt: Http
