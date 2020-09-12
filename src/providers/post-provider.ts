@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class PostProvider {
     private _READER: any = new FileReader();
-    server: string = "http://192.168.0.137/rapidkl/rapid/server_api/";
+    server: string = "http://192.168.0.138/rapidkl/rapid/server_api/";
 
     //private _refreshNeeded$ = new Subject<void>();
 

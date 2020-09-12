@@ -289,8 +289,7 @@
           <div>
             <div>
               
-
-              <table id="example" class="table nowrap" style="width:100%;">
+              <table *ngIf="listoso" id="example" class="table nowrap" style="width:100%;">
                 <thead>
                   <tr>
                     <td>Name</td>
@@ -299,16 +298,10 @@
                 </thead>
                     
                 <tbody>
-                        <tr>
-                            <td>Advanced Programming</td><td>Aug 28, 2020</td>
-                        </tr>
-                        <tr>
-                            <td>Ubiquitous Computing</td><td>Aug 18, 2020</td>
-                        </tr>
-                        <tr>
-                            <td>Research Methodology</td><td>Aug 12, 2020</td>
-                        </tr>
-                    </tbody>
+                    <tr *ngFor="let item of listoso">
+                      <td>{{item.folderfilename}}</td><td>Aug 28, 2020</td>
+                    </tr>
+                </tbody>
               </table>
 
               <div style="display: grid; grid-template-columns: 140px auto 100px;">
@@ -323,10 +316,6 @@
                 </div>
               </div>
               
-
-              
-
-
 
               <div style="background: white; border-radius: 5px 5px 0 0; border:1px solid rgb(240,240,240)">
                 <div style="margin:0px auto; display:block;">

@@ -854,8 +854,8 @@ export class RoomnamePage implements OnInit {
     }
     else{
       this.selectedfilename = filename;
-      this.src = "http://192.168.0.137/rapidkl/rapid/web/viewer.html?file=/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
-      this.srcnative = "http://192.168.0.137/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+      this.src = "http://192.168.0.138/rapidkl/rapid/web/viewer.html?file=/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
+      this.srcnative = "http://192.168.0.138/rapidkl/rapid/upload_api/uploads/"+this.selectedfilename;
 
       if (matchMedia('only screen and (max-width: 576px)').matches) {
         this.PDFpopupnative = true;
