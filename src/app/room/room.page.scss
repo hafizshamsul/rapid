@@ -1,5 +1,5 @@
 #griditem2{
-  grid-template-columns: 244px auto 0;
+  grid-template-columns: 244px auto 0px;
   //grid-template-columns: auto 70% auto;
 
   @media (max-width: 576px) {
@@ -188,21 +188,15 @@ ion-item {
 }
 
 #roomlist{
-  margin: -14px -10px 14px -10px;
-  
-  @media (max-width: 768px) {
-    margin: -14px 0 0 0;
-  }
-}
-
-#quickaccess{
-  grid-template-columns: auto auto auto auto;
-  column-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  //column-gap: 10px;
+  //margin: -14px -10px 14px -10px;
 
   @media (max-width: 768px) {
     grid-template-columns: auto auto;
     column-gap: 8px;
     row-gap: 8px;
+    //margin: -14px 0 0 0;
   }
 
   @media (max-width: 576px) {

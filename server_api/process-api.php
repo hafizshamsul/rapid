@@ -478,7 +478,7 @@
     }
     elseif($postjson['action']=='getroomfolderfile'){
         $data = array();
-        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id = '$postjson[r_tblroom_id]' order by id asc");
+        $query = mysqli_query($mysqli, "select * from folderfile where visibility is null and room_id = '$postjson[r_tblroom_id]' order by type, name asc");
 
         while($row = mysqli_fetch_array($query)){
             $data[] = array(

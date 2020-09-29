@@ -34,6 +34,7 @@ export class RoomnamePage implements OnInit {
   hiks: any = [];
   rooms: any[];
   customers: any = [];
+  tasks: any[];
 
   limit: number = 10;
   start: number = 0;
@@ -60,7 +61,14 @@ export class RoomnamePage implements OnInit {
   type: string;
   icon: string = 'doc'; //database
   folderdata_id: number;
+
+  taskid: number;
+  taskname: string;
+  taskstart: string;
+  taskend: string;
   
+  visibleDocs:boolean;
+
   active = "room";
   session = sessionStorage.getItem('users-username');
 
@@ -74,6 +82,7 @@ export class RoomnamePage implements OnInit {
       
     }
 
+    
     folderfileid:number;
     folderfilename:string;
     filename:string;
@@ -111,10 +120,34 @@ export class RoomnamePage implements OnInit {
       },
     ]
 
+    clickDocs(){
+      //tab
+      document.getElementById('docsVisible').style.display = 'block'; //active
+      document.getElementById('projsVisible').style.display = 'none';
+
+      //menu
+      document.getElementById('menuDocs').style.color = '#1b75bc'; //active
+      document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
+    }
+
+    clickProjs(){
+      //tab
+      document.getElementById('projsVisible').style.display = 'block'; //active
+      document.getElementById('docsVisible').style.display = 'none';
+      
+      //menu
+      document.getElementById('menuProjs').style.color = '#1b75bc'; //active
+      document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
+    }
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
-    
+    //tab
+    document.getElementById('docsVisible').style.display = 'block'; //active
+    document.getElementById('projsVisible').style.display = 'none';
     
     console.log('refresh');
 
@@ -172,6 +205,13 @@ export class RoomnamePage implements OnInit {
       //console.log(data);
     });
 
+    this.actRoute.params.subscribe((data: any) =>{
+      this.taskid = data.taskid;
+      this.taskname = data.taskname;
+      this.taskstart = data.taskstart;
+      this.taskend = data.taskend;
+    });
+
     
 
     this.actRoute.params.subscribe((data: any) =>{
@@ -189,7 +229,8 @@ export class RoomnamePage implements OnInit {
   tup:string = "lmao";
 
   selectFileToUpload(event) : void {
-    document.getElementById('uploadbutton').style.display = 'block';
+    //document.getElementById('uploadbutton').style.display = 'block';
+    document.getElementById('uploadbtn').style.display = 'block';
     
     this.tup = event.target.files[0].name;
     this.originalname = event.target.files[0].name;
@@ -332,7 +373,8 @@ export class RoomnamePage implements OnInit {
     subHeader: '10% of battery remaining',
     buttons: ['Dismiss']
    });
-   await alert.present(); 
+   await alert.present();
+   document.getElementById('uploadbtn').style.display = 'none';
   }
 
    async displayAlert(message : string) {
@@ -342,6 +384,7 @@ export class RoomnamePage implements OnInit {
         buttons 	: ['Got it']
       });
       alert.present();
+      document.getElementById('uploadbtn').style.display = 'none';
    }
 
   ionViewWillEnter(){
@@ -365,6 +408,9 @@ export class RoomnamePage implements OnInit {
 
     this.rooms = [];
     this.loadRoom();
+
+    this.tasks = [];
+    this.loadTask();
 
     this.customers = [];
     this.start = 0;
@@ -585,6 +631,25 @@ export class RoomnamePage implements OnInit {
     });
   }
 
+  listosotask:any[];
+
+  loadTask(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettask'
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let task of data.result){
+          this.tasks.push(task);
+        }
+        //this.listosobookmark = this.treeify(this.comments, 'folderfileid', 'folder_id', 'children');
+        //console.log(JSON.stringify(this.listoso));
+        this.listosotask = this.tasks;
+        
+        resolve(true);
+      });
+    });
+  }
 
 
   toHome(){

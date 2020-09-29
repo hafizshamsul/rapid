@@ -192,7 +192,8 @@ export class RoomnamesubPage implements OnInit {
   tup:string = "lmao";
 
   selectFileToUpload(event) : void {
-    document.getElementById('uploadbutton').style.display = 'block';
+    //document.getElementById('uploadbutton').style.display = 'block';
+    document.getElementById('uploadbtn').style.display = 'block';
     
     this.tup = event.target.files[0].name;
     this.originalname = event.target.files[0].name;
@@ -335,7 +336,8 @@ export class RoomnamesubPage implements OnInit {
     subHeader: '10% of battery remaining',
     buttons: ['Dismiss']
    });
-   await alert.present(); 
+   await alert.present();
+   document.getElementById('uploadbtn').style.display = 'none';
   }
 
    async displayAlert(message : string) {
@@ -345,6 +347,7 @@ export class RoomnamesubPage implements OnInit {
         buttons 	: ['Got it']
       });
       alert.present();
+      document.getElementById('uploadbtn').style.display = 'none';
    }
 
   ionViewWillEnter(){

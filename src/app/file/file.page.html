@@ -367,23 +367,35 @@
                 <div></div>
 
                 <div>
-                  <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
-                  <label for="file" for="file">NEW FILE</label>
+                  <!--
+                    <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
+                    <label for="file" for="file">NEW FILE</label>
+                  -->
+                  
                 </div>
 
-                <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
-                  NEW FOLDER
-                </div>
+                <div></div>
+                <!--
+                  <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
+                    NEW FOLDER
+                  </div>
+                -->
+                
               </div>
 
               
-                <div style="display: grid; grid-template-columns: 220px auto; width: 100%; height:46px">
-                <div>
-                  <div id="uploadbutton">
-                    <ion-button color="primary" (click)="uploadFile()" style="float: left; padding-left: 10px;">Upload</ion-button>
-                  </div>
-                </div>
-              </div>
+                
+                    <!--
+                      <div style="display: grid; grid-template-columns: 220px auto; width: 100%; height:46px">
+                        <div>
+                          <div id="uploadbutton">
+                            <ion-button color="primary" (click)="uploadFile()" style="float: left; padding-left: 10px;">Upload</ion-button>
+                          </div>
+                        </div>
+                      </div>
+                    -->
+                    
+                  
             
               
               
@@ -393,10 +405,23 @@
                 <img [src]="image" style="height: 60px; width: 60px;">
               -->
               
+              <div style="display: grid; grid-template-columns: auto auto auto 1fr;">
+                <div style="font-size: 13px; color:rgb(90,90,90); font-weight: 500; padding: 0 0 10px 18px">
+                  <input name="file" id="file" class="inputfile" type="file" style="border:1px solid black" (change)="selectFileToUpload($event)">
+                  <label style="font-size: 13px" for="file" for="file">+ File</label>
+                </div>
 
+                <div (click)="openpopup()" style="cursor: pointer; font-size: 13px; color:rgb(90,90,90); font-weight: 500; padding: 0 0 10px 18px">
+                  + Folder
+                </div>
+
+                <div id="uploadbutton" style="padding: 0 0 10px 18px">
+                  <button id="uploadbtn" color="primary" (click)="uploadFile()" style="display:none; float: left; padding-left: 10px;">Upload</button>
+                </div>
+              </div>
               
 
-              <div style="background: white; border-radius: 5px 5px 0 0; border:1px solid rgb(240,240,240)">
+              <div style="background: white; border-radius: 5px 5px 0 0; border-bottom:1px solid rgb(240,240,240)">
                 <div style="margin:0px auto; display:block;">
                   <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns: auto 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
         
