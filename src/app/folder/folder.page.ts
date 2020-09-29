@@ -11,12 +11,8 @@ import { NavController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
 import * as $ from 'jquery';
-//import * as dt from 'node_modules/datatables.net/js/jquery.dataTables';
 import * as dt from '../../../node_modules/datatables.net/js/jquery.dataTables';
 
-//var $ = require('jquery');
-//declare var $: any;
-//var dt = require('datatables.net');
 
 @Component({
   selector: 'app-folder',
@@ -99,33 +95,7 @@ export class FolderPage implements OnInit {
   }
 
   ngOnInit() {
-    //$(this.el).dataTable();
-    /*$(this.myTable).DataTable({
-      "columnDefs": [ {
-        "searchable": true,
-        "orderable": false,
-        "targets": 0,
-    } ],
-    "order": [[ 0, 'asc' ]],
-        "paging": false,
-        "searching": true,
-    });*/
-    //this.myTable.DataTable();
     
-      //$('#example').DataTable( {
-      //responsive: true
-      //} );
-      //new $.fn.dataTable.FixedHeader( table );
-
-      /*$('button').click(function(){
-        alert('Wass up!');
-      });*/
-
-      
-
-      
-      
-
     console.log(this.comments);
     
     console.log('ngOnInit folder');
@@ -167,7 +137,6 @@ export class FolderPage implements OnInit {
       //console.log(data);
     });
 
-
     this.actRoute.params.subscribe((data: any) =>{
       this.folderfileid = data.folderfileid;
       this.folderfilename = data.folderfilename;
@@ -191,14 +160,6 @@ export class FolderPage implements OnInit {
     });
 
   
-    
-
-    /*
-    $(document).ready(function(){ 
-     
-    });  
-    */
-     
   }
 
   deletelist:string;
@@ -348,11 +309,6 @@ export class FolderPage implements OnInit {
 
     console.log(this.comments);
 
-    
-
-    
-
-    
   }
 
   addCustomer(){

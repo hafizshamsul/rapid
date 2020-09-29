@@ -1,6 +1,6 @@
 
 <head>
-  
+
 </head>
     
     <ion-tabs>
@@ -266,8 +266,8 @@
 
               <div style="display: grid; grid-template-columns: 140px auto 100px;">
                 
-                <div style="font-size: 13px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 0px 18px">
-                  My Rooms
+                <div style="font-size: 16px; color: rgb(90,90,90); font-weight: 600; padding: 0 0 0px 18px">
+                  Rooms
                 </div>
 
                 <div></div>
@@ -279,23 +279,38 @@
 
               <div id="roomlist" style="margin: 0 0 14px 0"></div>
 
+              <!--
+                <div id="roomlist">
+                  <div *ngFor="let room of rooms; let i = index" style="">
+                    <ion-card (click)="toRoomname(room.tblroom_id)" style="cursor: pointer;">
+                      <div [ngStyle]="{'background': cardcolors[i].color}"style="display: block; overflow:auto">
+                        <ion-card-header>
+                          <ion-card-title style="font-size: 15px;color:white">{{room.tblroom_name}}</ion-card-title>
+                          <div style="font-size: 12px;color:rgba(255,255,255,0.9); margin:2px 0 0 ">Zanariah Abu Bakar</div>
+                        </ion-card-header>
+                      </div>
+                      
+                      <ion-card-content style="background: white; font-size: 13px;">
+                        No upcoming announcement
+                      </ion-card-content>
+                    </ion-card>
+                    
+                  </div>
+                </div>
+              -->
+              
+
               <div id="roomlist">
                 <div *ngFor="let room of rooms; let i = index" style="">
-                  <ion-card (click)="toRoomname(room.tblroom_id)" style="cursor: pointer;">
-                    <div [ngStyle]="{'background': cardcolors[i].color}"style="display: block; overflow:auto">
-                      <ion-card-header>
-                        <ion-card-title style="font-size: 15px;color:white">{{room.tblroom_name}}</ion-card-title>
+                  <div (click)="toRoomname(room.tblroom_id)" style="border-bottom: 1px solid rgb(236,236,236); cursor: pointer; background:white; margin:4px; padding:10px 14px; height:60px; border-radius: 6px;">
+                    <div style="display: block; overflow:auto">
+                        <div style="font-size: 15px; font-weight: 600; color: rgb(90,90,90);">{{room.tblroom_name}}</div>
                         <div style="font-size: 12px;color:rgba(255,255,255,0.9); margin:2px 0 0 ">Zanariah Abu Bakar</div>
-                      </ion-card-header>
                     </div>
-                    
-                    <ion-card-content style="background: white; font-size: 13px;">
-                      No upcoming announcement
-                    </ion-card-content>
-                  </ion-card>
-                  
+                  </div>
                 </div>
               </div>
+              
 
               <!--
                 <table id="myTable" class="display">
@@ -372,7 +387,8 @@
               
             </div>
           </div>
-          <div></div>
+
+          <div style=""></div>
         </div>
 
       </div>

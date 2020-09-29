@@ -140,12 +140,13 @@ html { font-family: 'Inter', sans-serif; }
 
   //white layout
   //--sidemenubg: #f4f5f7;
-  --sidemenubg: white;
+  --sidemenubg: #f8f8f8;
   --sidemenuwidth: 230px;
   --currentmenucolor: rgb(40,40,40);
   //--contentbg: #f7f7f7;
   //--contentbg:#ffffff;
-  --contentbg:rgb(248,248,248);
+  //--contentbg:rgb(248,248,248);
+  --contentbf: white;
   --toolbarbg: #ffffff;
   --toolbarheight: 59px;
   --searchbg: rgb(244,244,244);
