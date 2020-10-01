@@ -45,11 +45,11 @@ html { font-family: 'Inter', sans-serif; }
   font-size: 12px;
   font-weight: 500;
   clear: both;
-  padding: 10px 12px;
-  margin: 2px 0px;
+  padding: 9px 12px;
+  margin: 3px 0px;
   color: rgb(120,120,120);
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 5px;
   margin-right: 8px;
   margin-left: 8px;
   
@@ -74,15 +74,15 @@ html { font-family: 'Inter', sans-serif; }
   font-size: 12px;
   font-weight: 600;
   clear: both;
-  padding: 10px 12px;
-  margin: 2px 0px;
+  padding: 9px 12px;
+  margin: 3px 0px;
   color: var(--currentmenucolor);
   cursor: pointer;
   //background:#e8f0fe;
   //background: #f4f5f7;
   //background: rgb(234,234,234);
   background: rgb(248,248,248);
-  border-radius: 8px;
+  border-radius: 5px;
   margin-right: 8px;
   margin-left: 8px;
   /*font-family: 'Inter';
@@ -105,7 +105,7 @@ html { font-family: 'Inter', sans-serif; }
 
 #gapicontext{
   display: grid;
-  grid-template-columns: 34px auto;
+  grid-template-columns: 32px auto;
 }
 
 #sidemenu{
@@ -140,13 +140,17 @@ html { font-family: 'Inter', sans-serif; }
 
   //white layout
   //--sidemenubg: #f4f5f7;
-  --sidemenubg: #f8f8f8;
+
+  //--sidemenubg: #f8f8f8;
+  --sidemenubg: white;
+
+  //--sidemenubg: #f8f8f9;
   --sidemenuwidth: 230px;
   --currentmenucolor: rgb(40,40,40);
   //--contentbg: #f7f7f7;
   //--contentbg:#ffffff;
   //--contentbg:rgb(248,248,248);
-  --contentbf: white;
+  --contentbg: white;
   --toolbarbg: #ffffff;
   --toolbarheight: 59px;
   --searchbg: rgb(244,244,244);

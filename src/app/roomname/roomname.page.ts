@@ -126,7 +126,7 @@ export class RoomnamePage implements OnInit {
       document.getElementById('projsVisible').style.display = 'none';
 
       //menu
-      document.getElementById('menuDocs').style.color = '#1b75bc'; //active
+      document.getElementById('menuDocs').style.color = '#4b46b5'; //active
       document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
       document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
     }
@@ -137,7 +137,7 @@ export class RoomnamePage implements OnInit {
       document.getElementById('docsVisible').style.display = 'none';
       
       //menu
-      document.getElementById('menuProjs').style.color = '#1b75bc'; //active
+      document.getElementById('menuProjs').style.color = '#4b46b5'; //active
       document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
       document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
     }
