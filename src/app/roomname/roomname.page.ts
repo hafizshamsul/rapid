@@ -82,7 +82,20 @@ export class RoomnamePage implements OnInit {
       
     }
 
-    
+    commentid: number;
+    title: string;
+    textcmt: string;
+    post_users_id: number;
+    replyto: number;
+    post_username: string;
+    post_dateuploaded: string;
+    vote: number;
+
+    tagcommentid: number;
+    comment_id: number;
+    tag_id: number;
+    tag_tagname: string;
+
     folderfileid:number;
     folderfilename:string;
     filename:string;
@@ -120,10 +133,23 @@ export class RoomnamePage implements OnInit {
       },
     ]
 
+    clickPosts(){
+      //tab
+      document.getElementById('postsVisible').style.display = 'block'; //active
+      document.getElementById('docsVisible').style.display = 'none';
+      document.getElementById('projsVisible').style.display = 'none';
+
+      //menu
+      document.getElementById('menuPosts').style.color = '#4b46b5'; //active
+      document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
+    }
+
     clickDocs(){
       //tab
       document.getElementById('docsVisible').style.display = 'block'; //active
       document.getElementById('projsVisible').style.display = 'none';
+      document.getElementById('postsVisible').style.display = 'none';
 
       //menu
       document.getElementById('menuDocs').style.color = '#4b46b5'; //active
@@ -135,6 +161,7 @@ export class RoomnamePage implements OnInit {
       //tab
       document.getElementById('projsVisible').style.display = 'block'; //active
       document.getElementById('docsVisible').style.display = 'none';
+      document.getElementById('postsVisible').style.display = 'none';
       
       //menu
       document.getElementById('menuProjs').style.color = '#4b46b5'; //active
@@ -146,7 +173,8 @@ export class RoomnamePage implements OnInit {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
     //tab
-    document.getElementById('docsVisible').style.display = 'block'; //active
+    document.getElementById('postsVisible').style.display = 'block'; //active
+    document.getElementById('docsVisible').style.display = 'none';
     document.getElementById('projsVisible').style.display = 'none';
     
     console.log('refresh');
@@ -174,7 +202,7 @@ export class RoomnamePage implements OnInit {
       this.folderid = data.folderid;
       this.foldername = data.foldername;
       this.description = data.description;
-      this.users_id = data.users_id;
+      this.post_users_id = data.users_id;
       console.log(data);
     });
 
@@ -217,6 +245,29 @@ export class RoomnamePage implements OnInit {
     this.actRoute.params.subscribe((data: any) =>{
       this.deletelist = data;
       //this.thread = data.thread;
+
+      //console.log(data);
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.commentid = data.commentid;
+      this.users_id = data.users_id;
+      this.title = data.title;
+      this.textcmt = data.textcmt;
+      this.replyto = data.replyto;
+      this.post_username = data.username;
+      this.post_dateuploaded = data.dateuploaded;
+      this.vote = data.vote;
+      //this.thread = data.thread;
+
+      //console.log(data);
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tagcommentid = data.tagcommentid;
+      this.comment_id = data.comment_id;
+      this.tag_id = data.tag_id;
+      this.tag_tagname = data.tag_tagname;
 
       //console.log(data);
     });
@@ -417,6 +468,9 @@ export class RoomnamePage implements OnInit {
 
     console.log(this.rooms);
     console.log(this.jo);
+
+    this.zcomments = [];
+    this.loadPost(this.topdate);
     
     //document.getElementById('uploadbutton').style.display = 'none';
     //this.enter = true;
@@ -589,6 +643,7 @@ export class RoomnamePage implements OnInit {
 
 
   comments: any[];
+  zcomments: any[];
 
   treeify(listo, idAttr, parentAttr, childrenAttr) {
     if (!idAttr) idAttr = 'folderfileid';
@@ -612,7 +667,8 @@ export class RoomnamePage implements OnInit {
       return treeList;
   };
 
-  listoso:any[]; 
+  listoso:any[];
+  zlistoso:any[];
 
   loadFolderFile(){
     return new Promise(resolve => {
@@ -962,6 +1018,113 @@ export class RoomnamePage implements OnInit {
         resolve(true);
       });
     });
+  }
+
+  loadPost(topdate){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getpost',
+        topsort : topdate
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let zcomment of data.result){
+          this.zcomments.push(zcomment);
+        }
+        this.zlistoso = this.ztreeify(this.zcomments, 'commentid', 'replyto', 'children');
+        //console.log(JSON.stringify(this.listoso));
+        resolve(true);
+      });
+    });
+  }
+
+  ztreeify(listo, idAttr, parentAttr, childrenAttr) {
+    if (!idAttr) idAttr = 'commentid';
+    if (!parentAttr) parentAttr = 'replyto';
+
+    if (!childrenAttr) childrenAttr = 'children';
+
+    var treeList = [];
+    var lookup = {};
+    listo.forEach(function(obj) {
+        lookup[obj[idAttr]] = obj;
+        obj[childrenAttr] = [];
+    });
+    listo.forEach(function(obj) {
+        if (obj[parentAttr] != null) {
+            lookup[obj[parentAttr]][childrenAttr].push(obj);
+        } else {
+            treeList.push(obj);
+        }
+      });
+      return treeList;
+  };
+
+  topdatearray:any = [
+    {
+      'value': 'today',
+      'menu': 'Today',
+      'selected': false
+    },
+    {
+      'value': 'week',
+      'menu': 'This week',
+      'selected': false
+    },
+    {
+      'value': 'month',
+      'menu': 'This month',
+      'selected': false
+    },
+    {
+      'value': 'year',
+      'menu': 'This year',
+      'selected': true
+    },
+    {
+      'value': 'alltime',
+      'menu': 'All time',
+      'selected': false
+    }
+  ];
+
+  toppostpressed: boolean = false;
+
+  topdate:string = 'month';
+  topdatestring:string = 'THIS MONTH';
+  topsortedby(topdate){
+    //this.topdate = 'alltime';
+    this.topdate = topdate;
+    this.toppostpressed = false;
+
+    for(let item of this.topdatearray){
+      if(item.value == topdate){
+        item.selected = true;
+      }
+      else if(item.value != topdate){
+        item.selected = false;
+      }
+    }
+
+    if(this.topdate == 'today'){
+      this.topdatestring = 'POST TODAY';
+    }
+    else if(this.topdate == 'week'){
+      this.topdatestring = 'THIS WEEK';
+    }
+    else if(this.topdate == 'month'){
+      this.topdatestring = 'THIS MONTH';
+    }
+    else if(this.topdate == 'year'){
+      this.topdatestring = 'THIS YEAR';
+    }
+    else if(this.topdate == 'alltime'){
+      this.topdatestring = 'ALL TIME';
+    }
+    
+    this.comments = [];
+    //this.tagcomments = [];
+    this.loadPost(this.topdate);
+    //this.loadTagComment();
   }
 
 }
