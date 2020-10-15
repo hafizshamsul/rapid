@@ -418,10 +418,22 @@
             
               <div style="background: white; border-radius: 5px 5px 0 0; border-bottom:1px solid rgb(240,240,240)">
                 <div style="margin:0px auto; display:block;">
-                  <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns: auto 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
+                  <div (click)="showFolder(item.folderfileid, item.folderfileicon)" style="display: grid; grid-template-columns:  1fr 1fr 1fr 1fr 60px; height:40px; align-items: center;padding-left: 14px;cursor:auto">
         
                     <div style="color:rgb(60,60,60);font-weight:500; font-size: 11.2px;padding-left: 5px;clear:both;">
                       Name
+                    </div>
+
+                    <div style="color:rgb(60,60,60);font-weight:500; text-align: center;padding-left: 13px; font-size: 11.2px; clear:both;">
+                      Owner
+                    </div>
+
+                    <div style="color:rgb(60,60,60);font-weight:500; text-align: center;padding-left: 13px; font-size: 11.2px; clear:both;">
+                      Last modified
+                    </div>
+
+                    <div style="color:rgb(60,60,60);font-weight:500; text-align: center;padding-left: 13px; font-size: 11.2px; clear:both;">
+                      File size
                     </div>
 
                     <div (click)="showid(item.folderfileid, item.folderfilename)" style="text-align:center;display: grid; align-items: center">
@@ -435,7 +447,7 @@
                     
                     <div id="listgrandparent" style="margin:0px auto; display:block; border-top:1px solid rgb(240,240,240);">
     
-                      <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px auto 60px; height:50px; align-items: center;padding-left: 14px;">
+                      <div (click)="showFolder(item.folderfileid, item.folderfileicon, item.filename)" style="cursor:pointer; display: grid; grid-template-columns: 30px 1fr 1fr 1fr 1fr 60px; height:50px; align-items: center;padding-left: 14px;">
                         <div style="display: grid; align-items: center; text-align: center;">
                           <div *ngIf="item.folderfileicon == 'folder'" class="bx bxs-folder" style="font-size: 22px; color: #ffc86b;"></div> 
                           <img *ngIf="item.folderfileicon != 'folder'" src="assets/svg/svg_icons/pdf_color.svg" style="height: 17px; display:block; margin:0 auto" />
@@ -443,6 +455,18 @@
     
                         <div style="color:rgb(60,60,60);font-weight:400; font-size: 12.4px;padding-left: 10px;clear:both;">
                           {{item.folderfilename}}
+                        </div>
+
+                        <div style="color:rgb(120,120,120);font-weight:400; font-size: 12.4px;clear:both; text-align: center;">
+                          Nurul Sharaz
+                        </div>
+
+                        <div style="color:rgb(120,120,120);font-weight:400; font-size: 12.4px;clear:both; text-align: center;">
+                          Apr 27, 2020
+                        </div>
+
+                        <div style="color:rgb(120,120,120);font-weight:400; font-size: 12.4px;clear:both; text-align: center;">
+                          2 MB
                         </div>
     
                         <div (click)="showid(item.folderfileid, item.folderfilename)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
@@ -501,19 +525,26 @@
               </div>
 
               <div id="postsVisible">
-                <div *ngFor="let item of zlistoso" style="display: grid; grid-template-columns: 60px auto; border-bottom:1px solid rgb(240,240,240); padding-bottom:14px">
-                  <div style="padding:8px">
+                <div *ngFor="let item of zlistoso" style="display: grid; grid-template-columns: 66px auto; border-bottom:1px solid rgb(240,240,240); padding: 0 5px 6px 5px">
+                  <div style="padding: 13px 4px 13px 10px">
                     <img src="assets/img/profpic.png" style="width:100%; aspect-ratio: 1/1; margin-bottom: 0;" />
                   </div>
                   
-                  <div style="padding: 9px 4px; color:rgb(60,60,60); line-height:1.3125">
-                    <div style="display: grid; grid-template-columns: auto auto 1fr; font-size: 11.8px; font-weight: 700; margin-bottom:1px">
-                      <div>Muhammad Hafiz</div>
-                      <div style="color:rgb(120,120,120); font-weight: 500; padding-left: 10px;">1 Oct</div>
-                      <div style="color:rgb(120,120,120); font-weight: 500; padding-left: 6px;">8:07 AM</div>
+                  <div style="padding: 9px 4px 9px 5px; color:rgb(60,60,60); line-height:1.3125">
+                    <div style="display: grid; grid-template-columns: auto auto auto 1fr 23px; font-size: 14px; font-weight: 600; margin-bottom:-2px">
+                      <div >Muhammad Hafiz</div>
+                      <div style="color:rgb(144,144,144); font-weight: 500; padding-left: 10px;">Oct 1</div>
+                      <div style="color:rgb(120,120,120); font-weight: 400; padding-left: 6px;"></div>
                       <div></div>
+                      <div class="bx bx-chevron-down" style="margin-top:-3px; font-size: 24px; color:rgb(196,196,196)"></div>
                     </div>
-                    <div style="display: grid; font-size: 13.8px; font-weight: 400;">{{item.textcmt | striphtml}}</div>
+                    <div id="JSONContainer" style="display: grid; font-size: 14px; font-weight: 400; padding-right: 26px;">
+                      <p id="eh" style="margin:0px" [innerHTML]="item.textcmt"></p>
+                    </div>
+                    <!--
+                                          <div style="display: grid; font-size: 14px; font-weight: 400; padding-right: 26px;">{{item.textcmt | striphtml}}</div>
+
+                    -->
                   </div>
 
                 </div>

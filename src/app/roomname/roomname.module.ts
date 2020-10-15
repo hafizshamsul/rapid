@@ -7,7 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { RoomnamePageRoutingModule } from './roomname-routing.module';
 
 import { RoomnamePage } from './roomname.page';
+
+import { StripHtmlPipe } from '../striphtml.pipe';
 import { SharedModule } from '../SharedModule';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
@@ -15,7 +18,12 @@ import { SharedModule } from '../SharedModule';
     FormsModule,
     IonicModule,
     RoomnamePageRoutingModule,
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot({
+      modules: {
+        syntax: false
+      }
+    })
   ],
   declarations: [RoomnamePage]
 })
