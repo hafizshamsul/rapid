@@ -470,7 +470,7 @@ export class RoomnamePage implements OnInit {
     console.log(this.jo);
 
     this.zcomments = [];
-    this.loadPost(this.topdate);
+    this.loadPost(this.topdate, this.r_tblroom_id);
     
     //document.getElementById('uploadbutton').style.display = 'none';
     //this.enter = true;
@@ -1020,11 +1020,13 @@ export class RoomnamePage implements OnInit {
     });
   }
 
-  loadPost(topdate){
+  loadPost(topdate, r_tblroom_id){
     return new Promise(resolve => {
       let body = {
-        action : 'getpost',
-        topsort : topdate
+        //action : 'getpost',
+        action : 'getroompost',
+        topsort : topdate,
+        r_tblroom_id : r_tblroom_id
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let zcomment of data.result){
@@ -1123,7 +1125,7 @@ export class RoomnamePage implements OnInit {
     
     this.comments = [];
     //this.tagcomments = [];
-    this.loadPost(this.topdate);
+    this.loadPost(this.topdate, this.r_tblroom_id);
     //this.loadTagComment();
   }
 
