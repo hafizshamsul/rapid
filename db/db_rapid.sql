@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2020 at 07:48 AM
+-- Generation Time: Oct 24, 2020 at 09:01 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -42,7 +42,10 @@ INSERT INTO `bookmark` (`id`, `folderfile_id`, `users_id`) VALUES
 (27, 194, 2),
 (28, 219, 2),
 (29, 220, 2),
-(31, 194, 1);
+(31, 194, 1),
+(45, 375, 1),
+(46, 221, 1),
+(47, 219, 1);
 
 -- --------------------------------------------------------
 
@@ -118,7 +121,23 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (281, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 281),
 (282, '', 1, NULL, '', '2020-05-30 17:53:31', NULL, NULL, 282),
 (283, '', 1, NULL, '', '2020-05-30 17:53:32', NULL, NULL, 283),
-(284, '', 1, NULL, '', '2020-05-30 17:53:32', NULL, NULL, 284);
+(284, '', 1, NULL, '', '2020-05-30 17:53:32', NULL, NULL, 284),
+(285, '<p>Huhu</p>', 1, NULL, 'Huhu', '2020-06-01 06:48:46', NULL, NULL, 285),
+(290, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 'a', '2020-10-01 18:28:27', NULL, NULL, 290),
+(291, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 'a', '2020-10-01 18:28:31', NULL, NULL, 291),
+(301, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 'ss', '2020-10-06 14:31:36', NULL, NULL, 301),
+(302, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 's', '2020-10-06 14:31:58', NULL, NULL, 302),
+(303, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 's', '2020-10-06 14:32:01', NULL, NULL, 303),
+(304, '<p><span style=\"color: rgb(60, 60, 60);\">Complete this report and get approval and feedback from your supervisor.</span></p>', 1, NULL, 's', '2020-10-06 14:32:04', NULL, NULL, 304),
+(306, '<p>trytest</p>', 1, NULL, 'Try', '2020-10-06 19:35:24', NULL, NULL, 306),
+(307, '<p>Complete this report and get approval and feedback from your supervisor.</p><p>Due date is 23 September 2020.</p>', 1, NULL, 'try', '2020-10-06 19:36:39', NULL, NULL, 307),
+(308, '<p>Complete this report and get approval and feedback from your supervisor.</p><p>Due date is 23 September 2020.</p>', 1, NULL, 'yu', '2020-10-06 19:37:11', NULL, NULL, 308),
+(314, '<p>mysql</p>', 1, NULL, 'mysql', '2020-10-24 14:49:50', NULL, NULL, 314),
+(315, '<p>sql</p>', 1, NULL, 'sql', '2020-10-24 14:51:40', NULL, NULL, 315),
+(316, '<p>Hello</p>', 1, NULL, 'CLP ITPM', '2020-10-25 01:15:19', NULL, NULL, 316),
+(317, '<p>Name: Sir Hafiz</p><p>Room no: 1234</p>', 1, NULL, 'Course Learning Outcome', '2020-10-25 02:28:04', NULL, NULL, 317),
+(318, '<pre class=\"ql-syntax\" spellcheck=\"false\">ffrfrrf\n</pre>', 1, NULL, 'frfr', '2020-10-25 02:40:47', NULL, NULL, 318),
+(319, 'lol', 1, NULL, 'gtgtgt', '2020-10-25 02:41:23', NULL, NULL, 319);
 
 -- --------------------------------------------------------
 
@@ -231,15 +250,24 @@ INSERT INTO `folderfile` (`id`, `name`, `filename`, `type`, `icon`, `folder_id`,
 (220, 'Research Methodology', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
 (221, 'Web Application Development', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
 (222, 'Internet Programming', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, NULL),
-(350, 'Untitled', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 1),
-(354, 'setA.png', '1590903548536.png', 'png', 'images', NULL, 1, NULL, NULL, 'setA.png', 1),
+(354, 'setA.png', '1590903548536.png', 'png', 'images', NULL, NULL, NULL, NULL, 'setA.png', 1),
 (355, 'setB.png', '1590903554743.png', 'png', 'images', NULL, 1, NULL, NULL, 'setB.png', 1),
 (356, 'Week 1', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
 (357, 'Week 2', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
 (358, 'Week 3', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
 (359, 'Week 4', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
 (360, 'Week 5', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
-(361, 'Week 6', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2);
+(361, 'Week 6', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 2),
+(370, 'Untitled', NULL, NULL, 'folder', 369, 1, NULL, NULL, NULL, NULL),
+(375, 'Untitled', NULL, NULL, 'folder', 194, 1, NULL, NULL, NULL, 1),
+(376, 'Untitledko', NULL, NULL, 'folder', 375, 1, NULL, NULL, NULL, NULL),
+(392, 'CLP', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 1),
+(393, 'fyp 1 present.pdf', '1590986590690.pdf', 'pdf', 'pdf', NULL, 1, NULL, NULL, 'fyp 1 present.pdf', 1),
+(394, 'Untitled', NULL, NULL, 'folder', NULL, 1, NULL, NULL, NULL, 1),
+(397, 'diagram test.png', '1598279043335.png', 'png', 'images', NULL, 1, NULL, NULL, 'diagram test.png', 1),
+(399, 'rainbow2.jpg', '1601106002913.jpeg', 'jpeg', 'images', NULL, 1, NULL, NULL, 'rainbow2.jpg', 1),
+(404, 'Hafiz SQ Lab 6.pptx', '1601130141482.pptx', 'pptx', 'presentation', NULL, 1, NULL, NULL, 'Hafiz SQ Lab 6.pptx', 1),
+(419, 'ISB 42703 - GroupProject.docx', '1603204751809.docx', 'docx', 'doc', NULL, 1, NULL, NULL, 'ISB 42703 - GroupProject.docx', 18);
 
 -- --------------------------------------------------------
 
@@ -329,7 +357,8 @@ INSERT INTO `room` (`id`, `name`, `description`) VALUES
 (3, 'Research Methodology', 'lol'),
 (4, 'IT Project Management', 'lol'),
 (5, 'Software Testing', 'lol'),
-(9, 'ihiy', 'iuhihiju');
+(17, 'efref', 'erferferf'),
+(18, 'dede', 'deded');
 
 -- --------------------------------------------------------
 
@@ -359,11 +388,11 @@ CREATE TABLE `tag` (
 --
 
 INSERT INTO `tag` (`id`, `tagname`, `tagdesc`) VALUES
-(1, 'mysql', 'About mysql'),
-(2, 'sql', 'About sql'),
-(3, 'java', 'About java'),
-(4, 'javascript', 'About javascript'),
-(5, 'git', 'About git'),
+(1, 'Real-time and Embedded', 'About Real-time and Embedded'),
+(2, 'Final Year Project 1', 'About  Final Year Project 1'),
+(3, 'Research Methodology', 'About Research Methodology'),
+(4, 'IT Project Management', 'About IT Project Management'),
+(5, 'Software Testing', 'About Software Testing'),
 (6, 'c#', 'About c#'),
 (7, 'python', 'About python'),
 (8, 'php', 'About php'),
@@ -434,7 +463,18 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (669, 266, 2),
 (671, 268, 1),
 (674, 270, 8),
-(675, 271, 1);
+(675, 271, 1),
+(678, 285, 1),
+(685, 314, 1),
+(686, 315, 2),
+(687, 316, 4),
+(688, 317, 1),
+(689, 317, 2),
+(690, 317, 3),
+(691, 317, 4),
+(692, 317, 5),
+(693, 318, 1),
+(694, 319, 1);
 
 -- --------------------------------------------------------
 
@@ -446,21 +486,20 @@ CREATE TABLE `task` (
   `id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `start` datetime DEFAULT NULL,
-  `end` datetime DEFAULT NULL
+  `end` datetime DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id`, `name`, `start`, `end`) VALUES
-(1, 'Internet Programming Project', NULL, NULL),
-(2, 'Software Testing Assignment 1', NULL, NULL),
-(6, 'Ubiquitous Computing Assignment 2', NULL, NULL),
-(7, 'dede', NULL, NULL),
-(9, 'huhuhu', NULL, NULL),
-(35, 'hai', NULL, NULL),
-(37, 'lol', NULL, NULL);
+INSERT INTO `task` (`id`, `name`, `start`, `end`, `room_id`) VALUES
+(1, 'Quiz 1', NULL, NULL, 1),
+(2, 'Quiz 2', NULL, NULL, 1),
+(6, 'Test', NULL, NULL, 1),
+(40, 'Assignment', NULL, NULL, 1),
+(41, 'Project', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -571,7 +610,8 @@ ALTER TABLE `tagcomment`
 -- Indexes for table `task`
 --
 ALTER TABLE `task`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `users`
@@ -588,13 +628,13 @@ ALTER TABLE `users` ADD FULLTEXT KEY `username` (`username`);
 -- AUTO_INCREMENT for table `bookmark`
 --
 ALTER TABLE `bookmark`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -612,7 +652,7 @@ ALTER TABLE `folderdata`
 -- AUTO_INCREMENT for table `folderfile`
 --
 ALTER TABLE `folderfile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=365;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
 
 --
 -- AUTO_INCREMENT for table `master_customer`
@@ -624,7 +664,7 @@ ALTER TABLE `master_customer`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -642,13 +682,13 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=678;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=695;
 
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -698,6 +738,12 @@ ALTER TABLE `folderfile`
 ALTER TABLE `tagcomment`
   ADD CONSTRAINT `tagcomment_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`),
   ADD CONSTRAINT `tagcomment_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`);
+
+--
+-- Constraints for table `task`
+--
+ALTER TABLE `task`
+  ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
