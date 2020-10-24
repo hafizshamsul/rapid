@@ -432,6 +432,103 @@
     
     }
 
+    elseif($postjson['action']=='getroompost'){
+        $data = array();
+
+        if($postjson['topsort']=='today'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 DAY order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort']=='week'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 WEEK order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort']=='month'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 MONTH order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort']=='year'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 YEAR order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort']=='alltime'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort'] == 'todaysearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 DAY AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort'] == 'weeksearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 WEEK AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort'] == 'monthsearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 MONTH AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort'] == 'yearsearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null and dateuploaded >= now()-INTERVAL 1 YEAR AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+        else if($postjson['topsort'] == 'alltimesearch'){
+            $query = mysqli_query($mysqli, "select * from ( select comment.id, users_id, title, textcmt, replyto, users.username, dateuploaded, upvote, downvote from comment join users on comment.users_id=users.id inner join tagcomment on tagcomment.comment_id=comment.id where tagcomment.tag_id ='$postjson[r_tblroom_id]' and replyto is null AND (MATCH (comment.title) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(comment.textcmt) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE) OR MATCH(users.username) AGAINST ('$postjson[r_searchedtext]' IN NATURAL LANGUAGE MODE)) order by dateuploaded asc limit 20 offset 0) d order by dateuploaded desc");
+        }
+
+    
+        //$date1 = new DateTime('2016-11-30 03:55:06');//start time
+        
+        //$diff = $date2->diff($date1);
+        //$hours = $diff->h;
+        //$hours = $hours + ($diff->days*24);
+
+        
+        while($row = mysqli_fetch_array($query)){
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+
+            $date = new DateTime();
+            $datenow = $date->format('Y-m-d H:i:s');
+            
+            $start = strtotime($row['dateuploaded']);
+            $end = strtotime($datenow);
+            $minutes = round(($end - $start) / 60 );
+
+            if($minutes<60){
+                $ago = $minutes . " min ago";
+            }
+            elseif($minutes<1440){
+                $hour = floor($minutes / 60);
+                $ago = $hour . " hr ago";
+            }
+            elseif($minutes<10080){
+                $day = floor($minutes/1440);
+                $ago = $day . " d ago";
+            }
+            elseif($minutes<43800){
+                $week = floor($minutes/(10080));
+                $ago = $week . " wk ago";
+            }
+            elseif($minutes<525600){
+                $month = floor($minutes/(43800));
+                $ago = $month . " mo ago";
+            }
+            else{
+                $year = floor($minutes/(525600));
+                $ago = $year . " y ago";
+            }
+
+            $vote = $row['upvote'] - $row['downvote'];
+
+            $data[] = array(
+                'commentid' => $row['id'],
+                'users_id' => $row['users_id'],
+                'title' => $row['title'],
+                'textcmt' => $row['textcmt'],
+                'replyto' => $row['replyto'],
+                'username' => $row['username'],
+                'dateuploaded' => $ago,
+                'vote' => $vote
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getfolderfile'){
         $data = array();
         //$query = mysqli_query($mysqli, "select * from folderfile where visibility is null order by field(icon, 'folder') desc");
