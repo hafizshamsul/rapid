@@ -1166,10 +1166,11 @@ export class RoomnamePage implements OnInit {
     
     return new Promise(resolve => {
       let body = {
-        action : 'newaddpost',
+        action : 'newaddroompost',
         users_id: sessionStorage.getItem('users-id'),
         title: this.getTitle,
         textcmt: this.editorContent,
+        r_tblroom_id : this.r_tblroom_id,
         jsond: "{\'id\''}"
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
@@ -1179,6 +1180,10 @@ export class RoomnamePage implements OnInit {
       this.getTitle = '';
       this.editorForm.get('editor').setValue('');
       
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
+
     }
     
     );
