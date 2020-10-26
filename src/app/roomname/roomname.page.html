@@ -399,6 +399,28 @@
 
               <div style="display: block; border-bottom: 1px solid rgb(240,240,240); width:100%; height:3px; margin-bottom: 10px;"></div>
 
+              <div style="display: grid; grid-template-columns: 56px auto; border-bottom:1px solid rgb(240,240,240); padding: 3px 5px 9px 5px">
+                <div style="padding: 10px 0px 8px 10px">
+                  <img src="assets/img/profpic.png" style="width:100%; aspect-ratio: 1/1; margin-bottom: 0;" />
+                </div>
+                
+                <div style="height:100px">
+                  <form style="" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+            
+                      <div style="clear:both; padding: 10px 0">
+                        <quill-editor placeholder="Start a new conversation or announcement..." style="clear:both;" [style]="editorStyle" [modules]="config" (onContentChanged)="maxLength($event)" formControlName="editor"></quill-editor>
+                        
+                      </div>
+                      
+                    </div>
+
+                    <ion-button id="formsubmit" style="background:pink; color:white; position:relative; bottom: 54px; right:0px; float:right" type="submit">Post</ion-button>
+                    
+                  </form>
+                </div>
+                
+              </div>
 
               <div id="docsVisible">
                 <div style="display: grid; grid-template-columns: auto auto auto 1fr;">
@@ -525,15 +547,15 @@
               </div>
 
               <div id="postsVisible">
-                <div *ngFor="let item of zlistoso" style="display: grid; grid-template-columns: 66px auto; border-bottom:1px solid rgb(240,240,240); padding: 0 5px 6px 5px">
-                  <div style="padding: 13px 4px 13px 10px">
+                <div *ngFor="let item of zlistoso" style="display: grid; grid-template-columns: 66px auto; border-bottom:1px solid rgb(240,240,240); padding: 3px 5px 9px 5px">
+                  <div style="padding: 8px 10px 8px 10px">
                     <img src="assets/img/profpic.png" style="width:100%; aspect-ratio: 1/1; margin-bottom: 0;" />
                   </div>
                   
                   <div style="padding: 9px 4px 9px 5px; color:rgb(60,60,60); line-height:1.3125">
                     <div style="display: grid; grid-template-columns: auto auto auto 1fr 23px; font-size: 14px; font-weight: 600; margin-bottom:-2px">
                       <div >Muhammad Hafiz</div>
-                      <div style="color:rgb(144,144,144); font-weight: 500; padding-left: 10px;">Oct 1</div>
+                      <div style="color:rgb(134,134,134); font-weight: 400; padding-left: 10px; font-size: 13px;">Oct 1</div>
                       <div style="color:rgb(120,120,120); font-weight: 400; padding-left: 6px;"></div>
                       <div></div>
                       <div class="bx bx-chevron-down" style="margin-top:-3px; font-size: 24px; color:rgb(196,196,196)"></div>

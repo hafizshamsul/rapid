@@ -6,6 +6,8 @@ import { ImagesProvider } from '../../providers/images/images';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from "../../providers/global.service";
 import { NavController } from '@ionic/angular';
+import { QuillModule } from 'ngx-quill';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
@@ -169,8 +171,24 @@ export class RoomnamePage implements OnInit {
       document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
     }
 
+    editorStyle = {
+      height: '380px',
+      backgroundColor: 'black'
+    }
+
+    config = {
+      toolbar: [
+        ['bold', 'italic', 'underline'],
+        ['image', 'code-block']
+      ]
+    }
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
+
+    this.editorForm = new FormGroup({
+      'editor': new FormControl(null)
+    });
 
     //tab
     document.getElementById('postsVisible').style.display = 'block'; //active
@@ -1129,4 +1147,44 @@ export class RoomnamePage implements OnInit {
     //this.loadTagComment();
   }
 
+  editorForm: FormGroup;
+  editorContent: string; //textcmt
+  getTitle:string = '';
+
+  maxLength(e){
+    if(e.editor.getLength() > 1000){
+      e.editor.deleteText(10, e.editor.getLength());
+    }
+  }
+
+  onSubmit(){
+    this.editorContent = this.editorForm.get('editor').value;
+    console.log("comment.users_id: "+sessionStorage.getItem('users-id'));
+    console.log("comment.title: "+this.getTitle);
+
+    console.log(this.editorForm.get('editor').value);
+    
+    return new Promise(resolve => {
+      let body = {
+        action : 'newaddpost',
+        users_id: sessionStorage.getItem('users-id'),
+        title: this.getTitle,
+        textcmt: this.editorContent,
+        jsond: "{\'id\''}"
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+      });
+
+      this.getTitle = '';
+      this.editorForm.get('editor').setValue('');
+      
+    }
+    
+    );
+    
+  }
+
 }
+
+
