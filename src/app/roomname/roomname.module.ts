@@ -11,6 +11,7 @@ import { RoomnamePage } from './roomname.page';
 import { StripHtmlPipe } from '../striphtml.pipe';
 import { SharedModule } from '../SharedModule';
 import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { QuillModule } from 'ngx-quill';
     IonicModule,
     RoomnamePageRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
     QuillModule.forRoot({
       modules: {
         syntax: false

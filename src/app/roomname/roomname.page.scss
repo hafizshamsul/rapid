@@ -248,3 +248,18 @@ input[type="file"] {
 ::ng-deep p#eh p{
   margin:0px;
 }
+
+::ng-deep quill-editor{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+::ng-deep div.ql-container.ql-snow{
+  height: fit-content;
+  border: none;
+}
+
+::ng-deep div.ql-toolbar.ql-snow{
+  border: none;
+}
+
