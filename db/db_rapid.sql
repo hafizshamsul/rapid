@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 06:40 AM
+-- Generation Time: Oct 27, 2020 at 06:50 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -165,7 +165,17 @@ INSERT INTO `comment` (`id`, `textcmt`, `users_id`, `replyto`, `title`, `dateupl
 (356, '<p>ki</p>', 1, NULL, '', '2020-10-26 13:36:27', NULL, NULL, 356),
 (357, '<p>lol</p>', 1, NULL, '', '2020-10-26 13:36:32', NULL, NULL, 357),
 (358, '<p>er</p>', 1, NULL, '', '2020-10-26 13:36:39', NULL, NULL, 358),
-(359, '<p>ki</p>', 1, NULL, '', '2020-10-26 13:39:43', NULL, NULL, 359);
+(359, '<p>ki</p>', 1, NULL, '', '2020-10-26 13:39:43', NULL, NULL, 359),
+(360, '<p><strong>cuba try test</strong></p><p><em>cuba try test</em></p><p><u>cuba try test</u></p><p>cuba try test</p>', 1, NULL, '', '2020-10-26 14:11:03', NULL, NULL, 360),
+(363, '<p>Good morning everyone. Today we will have an online test on 2PM. Thank you.</p>', 1, NULL, '', '2020-10-26 19:18:51', NULL, NULL, 363),
+(364, '<p>Good morning everyone. Today we will have an online test on 2PM. Thank you.</p>', 1, NULL, '', '2020-10-26 19:19:17', NULL, NULL, 364),
+(365, '<p>Good morning everyone. Today we will have an online test on 2PM. Thank you.</p>', 1, NULL, '', '2020-10-26 19:19:26', NULL, NULL, 365),
+(366, '<p>Good morning everyone. Today we will have an online test on 2PM. Thank you.</p>', 1, NULL, '', '2020-10-26 19:19:33', NULL, NULL, 366),
+(367, '<p>Good morning everyone. Today we will have an online test on 2PM. Thank you.</p>', 1, NULL, '', '2020-10-26 19:19:38', NULL, NULL, 367),
+(374, '<p>lel</p>', 1, NULL, '', '2020-10-27 12:07:42', NULL, NULL, 374),
+(375, '<p>lol</p>', 1, NULL, '', '2020-10-27 12:13:49', NULL, NULL, 375),
+(376, '<p>fr4</p>', 1, NULL, 'fr4', '2020-10-27 15:33:22', NULL, NULL, 376),
+(378, '<p>Assalamualaikum students. I am not in campus today. TQ.</p>', 1, NULL, '', '2020-10-27 15:58:37', NULL, NULL, 378);
 
 -- --------------------------------------------------------
 
@@ -395,6 +405,19 @@ INSERT INTO `room` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roomusers`
+--
+
+CREATE TABLE `roomusers` (
+  `id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
+  `users_id` int(11) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student`
 --
 
@@ -535,7 +558,18 @@ INSERT INTO `tagcomment` (`id`, `comment_id`, `tag_id`) VALUES
 (732, 355, 5),
 (733, 356, 5),
 (734, 357, 5),
-(736, 359, 1);
+(736, 359, 1),
+(737, 360, 1),
+(740, 363, 1),
+(741, 364, 2),
+(742, 365, 3),
+(743, 366, 4),
+(744, 367, 5),
+(754, 375, 1),
+(755, 376, 1),
+(756, 376, 2),
+(766, 378, 1),
+(767, 378, 2);
 
 -- --------------------------------------------------------
 
@@ -648,6 +682,13 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `roomusers`
+--
+ALTER TABLE `roomusers`
+  ADD KEY `users_id` (`users_id`),
+  ADD KEY `room_id` (`room_id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -695,7 +736,7 @@ ALTER TABLE `bookmark`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=360;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=379;
 
 --
 -- AUTO_INCREMENT for table `filedata`
@@ -743,7 +784,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `tagcomment`
 --
 ALTER TABLE `tagcomment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=737;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=768;
 
 --
 -- AUTO_INCREMENT for table `task`
@@ -792,6 +833,13 @@ ALTER TABLE `folderdata`
 --
 ALTER TABLE `folderfile`
   ADD CONSTRAINT `folderfile_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
+
+--
+-- Constraints for table `roomusers`
+--
+ALTER TABLE `roomusers`
+  ADD CONSTRAINT `roomusers_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `roomusers_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`);
 
 --
 -- Constraints for table `tagcomment`
