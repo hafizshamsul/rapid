@@ -8,6 +8,7 @@ import { GlobalService } from "../../providers/global.service";
 import { NavController } from '@ionic/angular';
 import { QuillModule } from 'ngx-quill';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MyNavService } from "../..//providers/mynavservice.service";
 
 import { Observable } from 'rxjs';
 
@@ -80,6 +81,7 @@ export class RoomnamePage implements OnInit {
     private actRoute: ActivatedRoute,
     //private document: DocumentViewer,
     private previewAnyFile: PreviewAnyFile,
+    public myNavService: MyNavService,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       
     }
@@ -1188,6 +1190,114 @@ export class RoomnamePage implements OnInit {
     
     );
     
+  }
+
+
+  locs: any = {
+    "id": 0,
+    "title": "lel",
+    "textcmt": "lel",
+    "tags": ["hur"],
+    "tagsname": ["hur"],
+    "generaltags":{"tagid": 0, "tagname": "hur"},
+    "newtags":{"tagid": 0, "tagname": "hur"}
+  }
+
+  collecttag: any=[];
+  collecttagname: any=[];
+  collectnewtags: any=[];
+
+  tagcomments: any[];
+
+  public async toEdit(commentid, title, textcmt){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+
+    this.locs.id = commentid;
+    this.locs.title = title;
+    this.locs.textcmt = textcmt;
+
+    for(let tagcomment of this.tagcomments){
+      if(tagcomment.comment_id==commentid){
+        //console.log('ehhhhhhhhhhh'+tagcomment.tag_id);
+        //console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
+        this.collecttag.push(tagcomment.tag_id);
+        this.collecttagname.push(tagcomment.tag_tagname);
+        this.collectnewtags.push({"tagid": tagcomment.tag_id, "tagname": tagcomment.tag_tagname});
+      }
+    }
+    /*console.log(this.collecttag);
+    console.log(this.collecttagname);
+    console.log(this.collectnewtags);*/
+
+    this.locs.tags = this.collecttag;
+    this.locs.tagsname = this.collecttagname;
+    this.locs.generaltags.tagid = this.collecttag;
+    this.locs.generaltags.tagname = this.collecttagname;
+    this.locs.newtags = this.collectnewtags;
+
+    this.myNavService.myParam = {locs:this.locs};
+    //await this.navCtrl.goForward('/map-page');
+    
+    this.collecttag =[];
+    this.collecttagname =[];
+    this.collectnewtags =[];
+
+    this.router.navigateByUrl('/r/home/editpost');
+    //this.navCtrl.navigateRoot(['/r/editpost']);
+
+    //this.router.navigate(['editpost/']);
+    //this.router.navigateByUrl('/editpost', { state: { hello: 'world' } });
+  }
+
+  async presentAlertMultipleButtons(r_thread) {
+    let leh: number = r_thread;
+
+    //event.cancelBubble = true;
+    //if(event.stopPropagation) event.stopPropagation();
+
+    const alert = await this.alertCtrl.create({
+      header: 'Delete Post',
+      message: 'Are you sure you want to delete this post?',
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Delete',
+          handler: (r_thread) => {
+            this.deletePost(leh);
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  deletePost(r_thread){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletepost',
+        commentid : r_thread
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let zcomment of data.result){
+          this.zcomments.push(zcomment);
+        }
+        this.listoso = this.treeify(this.zcomments, 'commentid', 'replyto', 'children');
+        console.log('Delete is clicked');
+        //this.zcomments = [];
+        //this.tagcomments = [];
+        //this.loadPost(this.topdate);
+        //this.loadTagComment();
+        setTimeout(()=>{
+          this.ionViewDidEnter();
+        }, 240);
+        resolve(true);
+      });
+    });
   }
 
 }
