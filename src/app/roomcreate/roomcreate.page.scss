@@ -141,7 +141,7 @@ ion-item {
 
 #headertitle{
   display: grid;
-  grid-template-columns: 10px auto;
+  grid-template-columns: auto;
 
   @media (max-width: 576px) {
     display: none;
@@ -166,25 +166,25 @@ ion-item {
 #inputsearch::-webkit-input-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch:-ms-input-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch:-moz-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #inputsearch::-moz-placeholder {
   font-family: 'Inter';
   font-size: 13px;
-  color:rgb(188,188,188);
+  color:var(--searchph);
 }
 
 #quickaccess{
