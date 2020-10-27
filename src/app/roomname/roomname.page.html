@@ -555,12 +555,13 @@
                   </div>
                   
                   <div style="padding: 9px 4px 9px 5px; color:rgb(60,60,60); line-height:1.3125">
-                    <div style="display: grid; grid-template-columns: auto auto auto 1fr 23px; font-size: 14px; font-weight: 600; margin-bottom:-2px">
+                    <div style="display: grid; grid-template-columns: auto auto auto 1fr 28px 28px; font-size: 14px; font-weight: 600; margin-bottom:-2px">
                       <div >Muhammad Hafiz</div>
                       <div style="color:rgb(134,134,134); font-weight: 400; padding-left: 10px; font-size: 13px;">Oct 1</div>
                       <div style="color:rgb(120,120,120); font-weight: 400; padding-left: 6px;"></div>
                       <div></div>
-                      <div class="bx bx-chevron-down" style="margin-top:-3px; font-size: 24px; color:rgb(196,196,196)"></div>
+                      <div id="edit" class="bx bx-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="margin-top:-3px; font-size: 18px; "></div>
+                      <div id="trash" class="bx bx-trash" (click)="presentAlertMultipleButtons(item.commentid)" style="margin-top:-3px; font-size: 18px; "></div>
                     </div>
                     <div id="JSONContainer" style="display: grid; font-size: 14px; font-weight: 400; padding-right: 26px;">
                       <p id="eh" style="margin:0px" [innerHTML]="item.textcmt"></p>

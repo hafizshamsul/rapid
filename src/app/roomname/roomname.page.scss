@@ -263,5 +263,23 @@ input[type="file"] {
   border: none;
 }
 
+#edit{
+  color:rgb(200,200,200);
+  //color:rgb(196,196,196)
+}
 
+#edit:hover{
+  color:rgb(53, 53, 53);
+  cursor: pointer;
+}
+
+#trash{
+  color:rgb(200,200,200);
+  //color:rgb(196,196,196)
+}
+
+#trash:hover{
+  color:#d91e18;
+  cursor: pointer;
+}
 
