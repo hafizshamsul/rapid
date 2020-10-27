@@ -11,7 +11,6 @@ import { map } from 'rxjs/operators';
 import { AlertController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-editpost',
   templateUrl: './editpost.page.html',
@@ -29,10 +28,6 @@ export class EditpostPage implements OnInit {
     public myNavService: MyNavService,
     public alertCtrl: AlertController,
     private postprovider: PostProvider, private qull: QuillModule, private router: Router, private actRoute: ActivatedRoute) {
-      //console.log('constructor');
-      //console.log(this.getSelectedSubject);
-      //console.log(this.getSelectedSubjectName);
-      //this.getSelectedSubject = [1];
 
       this.category = [];
       this.category.push({"id": 1, "name": "science", "selected": false});
@@ -42,7 +37,6 @@ export class EditpostPage implements OnInit {
         console.log('aiwah');
       }
      }
-
 
 noerror:boolean = true;
 
@@ -79,16 +73,9 @@ getselectedtag(){
       this.selectedtag.push(item.tagid);
     }
   }
-  //console.log(this.selectedtag);
-  //console.log(this.contoh);
+
 }
   
-
-
-
-
-
-
   hello:string = "eh";
   getSelectedSubject:any[];
   getSelectedSubjectName:any[];
@@ -113,6 +100,7 @@ getselectedtag(){
   tagcommentid: number;
   comment_id: number;
   tag_id: number;
+  tag_tagname: any;
 
   getTitle:string; //title
   editorContent: string; //textcmt
@@ -133,14 +121,10 @@ getselectedtag(){
 
   myObject:any = [];
   
-
-
   ngOnInit() {
     console.log('ngOnInit edit');
-    
 
     try{
-      
       
       this.myObject = this.myNavService.myParam;
       this.passededitid = this.myObject.locs.id;
@@ -152,26 +136,16 @@ getselectedtag(){
       this.passededitgeneraltagstagname = this.myObject.locs.generaltags.tagname;
       this.passededitnewtags = this.myObject.locs.newtags;
 
-       /*console.log(this.passededitid);
-      console.log(this.passededittitle);
-      console.log(this.passededittextcmt);
-      console.log(this.passededittags);
-      console.log(this.passededittagsname);
-      console.log(this.passededitgeneraltagstagid);
-      console.log(this.passededitgeneraltagstagname);
-      console.log(this.passededitnewtags);*/
-
       this.getSelectedSubject = this.passededittags;
       this.getSelectedSubjectName = this.passededittagsname;
 
       this.comments = [];
       this.tags = [];
       this.contoh = [];
-      
 
       this.loadPost(this.passededitid);
       this.loadTag();
-      
+      this.loadTagComment(this.passededitid);
       
       this.editorForm = new FormGroup({
         'editor': new FormControl(this.passededittextcmt)
@@ -183,7 +157,7 @@ getselectedtag(){
         this.tagname = data.tagname;
         this.tagdesc = data.tagdesc;
 
-        //console.log(data);
+        console.log(this.tags);
       });
 
       //comment
@@ -193,79 +167,33 @@ getselectedtag(){
         this.title = data.title;
         this.textcmt = data.textcmt;
 
-        //console.log(data);
-
-        //console.log('before editorform:'+this.listoso[0].textcmt);
-        //console.log("This is: "+this.commentid);
+        console.log(this.comments);
       });
 
       //tagcomment
       this.actRoute.params.subscribe((data: any) =>{
-        this.tagcommentid = data.tagcommentid;
+        this.tagcommentid = data.id;
         this.comment_id = data.comment_id;
         this.tag_id = data.tag_id;
+        this.tag_tagname = data.tagname;
 
-        //console.log(data);
-        
+        console.log(this.tagcomments);
       });
     }
     catch(err){
       this.noerror = false;
     }
     
-    
-   
-    
   }
 
   ionViewWillEnter(){
-    //console.log('ionViewWillEnter');
-
-    
-
-    //load
-    
-    
-    
-    //console.log(this.comments);
-    //console.log(this.tags);
-    //console.log(this.contoh);
-    //console.log(this.myObject.locs.generaltags.tagid[0]);
-    
-
-    /*for(let item of this.tags){
-      console.log(item.tagid);
-    }
-    for(let item of this.passededittags){
-      console.log('looping passedittags');
-    }
-    for(let item of this.myObject.locs.generaltags.tagid){
-      console.log(this.myObject.locs.generaltags.tagid[item-1]);
-    }*/
 
     for(let itemtags of this.tags){
-      /*for(let itempassededittags of this.myObject.locs.generaltags.tagid){
-        if(itemtags.tagid == this.myObject.locs.generaltags.tagid[itempassededittags-1]){
-          console.log('selected');
-        }
-      }*/
-      //this.contoh.push({"tagid": itemtags.tagid, "name": itemtags.tagname, "selected": false})
+     
     }
 
-    /*for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
-      for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
-        if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
-          this.contoh[itemtags].selected = true;
-        }
-      }
-    }*/
-
-    //console.log(this.tags);
-    //console.log(this.myObject.locs.newtags);
-    //console.log(this.contoh);
   }
   
-
   passededitid:number;
   passededittitle:string;
   passededittextcmt:string;
@@ -327,13 +255,6 @@ getselectedtag(){
   }
 
   ionViewDidEnter(){
-    //console.log('ionViewDidEnter');
-    //console.log(Object.keys(this.tags).length);
-    
-    /*for(let i=0; i<Object.keys(this.tags).length; i++){
-      this.contoh.push({"tagid":"1", "name":"lel", "selected": false});
-    }*/
-    
 
     try{
       for(let itemtags of this.tags){
@@ -341,11 +262,20 @@ getselectedtag(){
       }
       
       for(let itemtags = 0; itemtags<this.tags.length; itemtags++){
-        for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
-          if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
+        
+        //for(let itempassededittags = 0; itempassededittags<this.myObject.locs.newtags.length; itempassededittags++){
+        
+        for(let tagcomment of this.tagcomments){
+          if(this.tags[itemtags].tagid == tagcomment.tag_id){
             this.contoh[itemtags].selected = true;
           }
         }
+        
+        
+          /*if(this.tags[itemtags].tagid == this.myObject.locs.newtags[itempassededittags].tagid){
+            this.contoh[itemtags].selected = true;
+          }*/
+        //}
       }
 
       //console.log(this.contoh);
@@ -387,9 +317,7 @@ getselectedtag(){
           text: 'Update',
           handler: () => {
             this.onUpdate();
-            //console.log('Update is clicked');
-            //console.log(this.contoh);
-            //window.location.href = window.location.href;
+         
           }
         }
       ]
@@ -398,14 +326,8 @@ getselectedtag(){
     await alert.present();
   }
 
-
   onUpdate(){
     this.editorContent = this.editorForm.get('editor').value;
-    //console.log("comment.users_id: "+this.global.userid);
-    //console.log("comment.title: "+this.getTitle);
-    //console.log("comment.textcmt: "+this.editorContent);
-
-    
 
     return new Promise(resolve => {
       let body = {
@@ -414,31 +336,16 @@ getselectedtag(){
         title: this.getTitle,
         textcmt: this.editorContent,
         contoh: this.contoh,
-        //contoh: { "name":"John" },
-        //contoh: "{ 'id': 1, 'text': 'lol' }",
         jsond: "{\'id\''}"
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         
       });
-      //this.loopTagComment();
-      //window.location.reload(true);
-      //window.location.href = window.location.href;
-      
-      //this.router.navigate(['r/home/']);
-      //this.getTitle = "";
-      //this.router.navigate(['r/home/']);
-      //this.navCtrl.pop();
-      //this.router.navigateByUrl('/r/home');
-      //this.navCtrl.navigateRoot(['r/home']);
 
       setTimeout(() => {
         this.navCtrl.navigateRoot(['r/home']);
       }, 1000);
 
-      
-      //this.navCtrl.
-      //this.navCtrl.navigateRoot('/r/home', {animated: true, animationDirection: 'forward'});
     }
     
     );
@@ -458,7 +365,6 @@ getselectedtag(){
   getSelectedSubjectValue(getSelectedSubject){
     this.selectedtags = getSelectedSubject;
     this.selectedtagsname = this.getSelectedSubjectName;
-    //console.log(getSelectedSubject);
     
     this.loopTagComment();
   }
@@ -469,39 +375,12 @@ getselectedtag(){
 
   loopTagComment(){    
     for(let val of this.selectedtags){
-      //console.log("tagcomment.tagid: "+val);
-      
-      //this.contoh.push({"id": val, "name": val, "selected": false});
-      //this.arraytag.push(val);
-      //console.log(this.arraytag)
-      //this.addTagComment(val);
-    }
 
-    /*for(let item of this.myObject.locs){
-      //this.contoh.push({"id": this.myObject.item.generaltags.tagid, "name": this.myObject.item.generaltags.tagname, "selected": false});
-    }*/
+    }
 
     for(let item of this.selectedtags){
-      //console.log(this.myObject.locs.generaltags.tagid[item-1]);
-      //console.log(item);
-      
-      //console.log('lol: '+this.selectedtags[item-1]);
-      //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[item-1], "name": this.myObject.locs.generaltags.tagname[item-1], "selected": false});
 
     }
-
-    //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[0], "name": this.myObject.locs.generaltags.tagname[0], "selected": false});
-    //this.contoh.push({"id": this.myObject.locs.generaltags.tagid[1], "name": this.myObject.locs.generaltags.tagname[1], "selected": false});
-
-    //console.log(this.myObject.locs.generaltags.tagid[0]);
-    
-    //console.log(this.contoh);
-    //console.log(this.myObject.locs.generaltags.tagid);
-
-    /*for(let item of this.contoh){
-      console.log(this.contoh[0].id);
-    }*/
-
     
   }
 
@@ -525,12 +404,25 @@ getselectedtag(){
         for(let tag of data.result){
           this.tags.push(tag);
         }
-        //console.log(this.tags);
         resolve(true);
       });
     });
   }
 
+  loadTagComment(passededitid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'editgettagcomment',
+        passededitid : passededitid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let tagcomment of data.result){
+          this.tagcomments.push(tagcomment);
+        }
+        resolve(true);
+      });
+    });
+  }
  
   toBack(){
     this.navCtrl.pop();
@@ -556,7 +448,6 @@ getselectedtag(){
 
     this.router.navigate(['/loginform']);
   }
-
 
   toHome(){
     this.navCtrl.navigateRoot(['r/home/']);
