@@ -1202,9 +1202,10 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
     echo $result;
     
     }
+
     elseif($postjson['action']=='getroom'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT id, name, description FROM room");
+        $query = mysqli_query($mysqli, "SELECT room.id, room.name, room.description FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where users.id = 1");
 
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -1219,6 +1220,7 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
     
     echo $result;
     }
+
     elseif($postjson['action']=='addroom'){
         $data = array();
         $query = mysqli_query($mysqli, "INSERT INTO room SET name='$postjson[tblroom_name]', description='$postjson[tblroom_description]'");
