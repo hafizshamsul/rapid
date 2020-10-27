@@ -373,6 +373,26 @@
     
     }
 
+    elseif($postjson['action']=='editgettagcomment'){
+        $data = array();
+        $query = mysqli_query($mysqli, "select * from tagcomment inner join (select comment.id, dateuploaded from comment order by dateuploaded desc limit 200 offset 0)d on tagcomment.comment_id = d.id inner join tag on tagcomment.tag_id=tag.id where tagcomment.comment_id='$postjson[passededitid]' order by dateuploaded asc, tag.tagname");
+    
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'tagcommentid' => $row['id'],
+                'comment_id' => $row['comment_id'],
+                'tag_id' => $row['tag_id'],
+                'tag_tagname' => $row['tagname']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='getpost'){
         $data = array();
 
