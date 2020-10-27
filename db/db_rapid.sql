@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 06:50 PM
+-- Generation Time: Oct 27, 2020 at 07:08 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -409,11 +409,18 @@ INSERT INTO `room` (`id`, `name`, `description`) VALUES
 --
 
 CREATE TABLE `roomusers` (
-  `id` int(11) DEFAULT NULL,
-  `room_id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `users_id` int(11) DEFAULT NULL,
+  `room_id` int(11) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roomusers`
+--
+
+INSERT INTO `roomusers` (`id`, `users_id`, `room_id`, `role`) VALUES
+(1, 1, 1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -685,6 +692,7 @@ ALTER TABLE `room`
 -- Indexes for table `roomusers`
 --
 ALTER TABLE `roomusers`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `users_id` (`users_id`),
   ADD KEY `room_id` (`room_id`);
 
@@ -767,6 +775,12 @@ ALTER TABLE `master_customer`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `roomusers`
+--
+ALTER TABLE `roomusers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student`
