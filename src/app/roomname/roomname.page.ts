@@ -217,6 +217,15 @@ export class RoomnamePage implements OnInit {
       this.displayname = data.displayname;
       console.log(data);
     });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tagcommentid = data.tagcommentid;
+      this.comment_id = data.comment_id;
+      this.tag_id = data.tag_id;
+      this.tag_tagname = data.tag_tagname;
+
+      //console.log(data);
+    });
     
     this.actRoute.params.subscribe((data: any) =>{
       this.folderid = data.folderid;
@@ -490,7 +499,9 @@ export class RoomnamePage implements OnInit {
     console.log(this.jo);
 
     this.zcomments = [];
+    this.tagcomments = [];
     this.loadPost(this.topdate, this.r_tblroom_id);
+    this.loadTagComment();
     
     //document.getElementById('uploadbutton').style.display = 'none';
     //this.enter = true;
@@ -1144,9 +1155,9 @@ export class RoomnamePage implements OnInit {
     }
     
     this.comments = [];
-    //this.tagcomments = [];
+    this.tagcomments = [];
     this.loadPost(this.topdate, this.r_tblroom_id);
-    //this.loadTagComment();
+    this.loadTagComment();
   }
 
   editorForm: FormGroup;
@@ -1218,13 +1229,13 @@ export class RoomnamePage implements OnInit {
     this.locs.textcmt = textcmt;
 
     for(let tagcomment of this.tagcomments){
-      if(tagcomment.comment_id==commentid){
+      /*if(tagcomment.comment_id==commentid){
         //console.log('ehhhhhhhhhhh'+tagcomment.tag_id);
         //console.log('ehhhhhhhhhhh'+tagcomment.tag_tagname);
         this.collecttag.push(tagcomment.tag_id);
         this.collecttagname.push(tagcomment.tag_tagname);
         this.collectnewtags.push({"tagid": tagcomment.tag_id, "tagname": tagcomment.tag_tagname});
-      }
+      }*/
     }
     /*console.log(this.collecttag);
     console.log(this.collecttagname);
@@ -1297,6 +1308,40 @@ export class RoomnamePage implements OnInit {
         }, 240);
         resolve(true);
       });
+    });
+  }
+
+  subsrcibedatafirst(body){
+    this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let tagcomment of data.result){
+          //if(tagcomment.comment_id == 10){
+            this.tagcomments.push(tagcomment);
+          //}
+        }
+      }); 
+  }
+  subsrcibedatalater(body){
+    
+    this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        this.tagcomments = [];
+        for(let tagcomment of data.result){
+          //if(tagcomment.comment_id == 10){
+            this.tagcomments.push(tagcomment);
+          //}
+        }
+      }); 
+  }
+
+  loadTagComment(){
+    return new Promise(resolve => {
+      let body = {
+        action : 'gettagcomment'
+      };
+      this.subsrcibedatafirst(body);
+      
+      /*this.interval = setInterval(() => { 
+        this.subsrcibedatalater(body); 
+      }, 1000);*/
     });
   }
 
