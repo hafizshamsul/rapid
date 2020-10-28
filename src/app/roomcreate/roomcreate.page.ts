@@ -327,10 +327,10 @@ export class RoomcreatePage implements OnInit {
     this.loadFile(sessionStorage.getItem('users-username'), this.r_folderid);
     
     this.comments = [];
-    this.loadFolderFile();
+    //this.loadFolderFile();
     
     this.rooms = [];
-    this.loadRoom();
+    this.loadRoom(sessionStorage.getItem('users-id'));
 
     this.customers = [];
     this.start = 0;
@@ -424,10 +424,11 @@ export class RoomcreatePage implements OnInit {
     });
   }
 
-  loadRoom(){
+  loadRoom(usersid){
     return new Promise(resolve => {
       let body = {
-        action : 'getroom'
+        action : 'getroom',
+        usersid : usersid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let room of data.result){
@@ -438,19 +439,24 @@ export class RoomcreatePage implements OnInit {
     });
   }
 
-  addRoom(){
+  addRoom(usersid){
     return new Promise(resolve => {
       let body = {
         action : 'addroom',
         tblroom_name : this.tblroom_name,
-        tblroom_description : this.tblroom_description
+        tblroom_description : this.tblroom_description,
+        usersid : sessionStorage.getItem('users-id')
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         resolve(true);
       });
       this.tblroom_name ='';
       this.tblroom_description ='';
-      this.navCtrl.navigateRoot(['r/room/']);
+
+      setTimeout(()=>{
+        this.navCtrl.navigateRoot(['r/room/']);
+      },240);
+      
     });
   }
 
