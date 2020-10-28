@@ -345,12 +345,14 @@
 
               -->
 
-              <div style="display: grid; grid-template-columns: 340px auto 100px 100px;">
-                <div style="font-size: 16px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 0px 18px">
-                  Rooms > Real-Time and Embedded
+              <div style="display: grid; grid-template-columns: auto 50px 1fr">
+                <div *ngFor="let item of currentrooms" style="font-size: 16px; color: rgb(90,90,90); font-weight: 500; padding: 0px 0px 0px 18px">
+                  Rooms > {{item.currentroom_name}}
                 </div>
 
-                <div></div>
+                <div style="display: grid;place-items: center;">
+                  <div *ngFor="let item of currentrooms" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#c0d6fa">{{item.currentroom_role}}</div>
+                </div>
 
                 <div>
                   <!--
@@ -358,14 +360,6 @@
                   <label for="file" for="file">NEW FILE</label>
                   -->
                   
-                </div>
-
-                <div>
-                  <!--
-                    <div (click)="openpopup()" style="cursor:pointer; font-size: 11px; color: rgb(90,90,90); font-weight: 500; padding: 0 0 6px 12px;">
-                      NEW FOLDER
-                    </div>
-                  -->
                 </div>
                 
               </div>

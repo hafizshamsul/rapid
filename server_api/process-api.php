@@ -1205,13 +1205,33 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
 
     elseif($postjson['action']=='getroom'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT room.id, room.name, room.description FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where users.id = '$postjson[usersid]'");
+        $query = mysqli_query($mysqli, "SELECT room.id, room.name, room.description, roomusers.role FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where users.id = '$postjson[usersid]'");
 
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
                 'tblroom_id' => $row['id'],
                 'tblroom_name' => $row['name'],
-                'tblroom_description' => $row['description']
+                'tblroom_description' => $row['description'],
+                'tblroom_role' => $row['role']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    }
+
+    elseif($postjson['action']=='getcurrentroom'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT room.id, room.name, room.description, roomusers.role FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where users.id = '$postjson[usersid]' and roomusers.room_id='$postjson[roomid]'");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'currentroom_id' => $row['id'],
+                'currentroom_name' => $row['name'],
+                'currentroom_description' => $row['description'],
+                'currentroom_role' => $row['role']
             );
         }
 
