@@ -18,6 +18,7 @@ import { stringify } from 'querystring';
 
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { ExecFileOptionsWithStringEncoding } from 'child_process';
 
 @Component({
   selector: 'app-roomname',
@@ -36,6 +37,7 @@ export class RoomnamePage implements OnInit {
   folders: any[];
   hiks: any = [];
   rooms: any[];
+  currentrooms: any[];
   customers: any = [];
   tasks: any[];
 
@@ -113,6 +115,11 @@ export class RoomnamePage implements OnInit {
     tblroom_id:number;
     tblroom_name:string;
     tblroom_description:string;
+
+    currentroom_id:number;
+    currentroom_name:string;
+    currentroom_description:string;
+    currentroom_role:string;
 
     r_tblroom_id:any;
 
@@ -207,6 +214,13 @@ export class RoomnamePage implements OnInit {
       this.tblroom_id = data.tblroom_id;
       this.tblroom_name = data.tblroom_name;
       this.tblroom_description = data.tblroom_description;
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.currentroom_id = data.currentroom_id;
+      this.currentroom_name = data.currentroom_name;
+      this.currentroom_description = data.currentroom_description;
+      this.currentroom_role = data.currentroom_role;
     });
     
 
@@ -488,6 +502,9 @@ export class RoomnamePage implements OnInit {
 
     this.rooms = [];
     this.loadRoom(sessionStorage.getItem('users-id'));
+    
+    this.currentrooms = [];
+    this.loadCurrentRoom(sessionStorage.getItem('users-id'), this.r_tblroom_id);
 
     this.tasks = [];
     this.loadTask();
@@ -1046,6 +1063,22 @@ export class RoomnamePage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let room of data.result){
           this.rooms.push(room);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+  loadCurrentRoom(usersid, roomid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getcurrentroom',
+        usersid : usersid,
+        roomid : roomid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let currentroom of data.result){
+          this.currentrooms.push(currentroom);
         }
         resolve(true);
       });

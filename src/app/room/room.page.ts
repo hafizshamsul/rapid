@@ -100,6 +100,8 @@ export class RoomPage implements OnInit {
 
     tblroom_id:number;
     tblroom_name:number;
+    tblroom_description:any;
+    tblroom_role:any;
 
     folderfileid:number;
     folderfilename:string;
@@ -118,6 +120,8 @@ export class RoomPage implements OnInit {
     this.actRoute.params.subscribe((data: any) =>{
       this.tblroom_id = data.tblroom_id;
       this.tblroom_name = data.tblroom_name;
+      this.tblroom_description = data.tblroom_description,
+      this.tblroom_role = data.tblroom_role
     });
 
     this.actRoute.params.subscribe((data: any) =>{
