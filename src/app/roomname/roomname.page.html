@@ -574,7 +574,34 @@
 
               </div>
 
-              <div id="membsVisible"></div>
+              <div id="membsVisible">
+                <div *ngFor="let item of members" style="display: grid; grid-template-columns: 66px auto; border-bottom:1px solid rgb(240,240,240); padding: 3px 5px 9px 5px">
+                  <div style="padding: 8px 10px 8px 10px">
+                    <img src="assets/img/profpic.png" style="width:100%; aspect-ratio: 1/1; margin-bottom: 0;" />
+                  </div>
+                  
+                  <div style="padding: 9px 4px 9px 5px; color:rgb(60,60,60); line-height:1.3125">
+                    <div style="display: grid; grid-template-columns: auto auto auto 1fr 28px 28px; font-size: 14px; font-weight: 600; margin-bottom:0px">
+                      <div >{{item.members_displayname}}</div>
+                      
+                      <div style="padding-left: 4px;">
+                        <div style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#c0d6fa">{{item.members_role}}</div>
+                      </div>
+                      
+                      <div style="color:rgb(120,120,120); font-weight: 400; padding-left: 6px;"></div>
+                      <div></div>
+                      <div id="edit" class="bx bx-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="margin-top:-3px; font-size: 18px; "></div>
+                      <div id="trash" class="bx bx-trash" (click)="presentAlertMultipleButtons(item.commentid)" style="margin-top:-3px; font-size: 18px; "></div>
+                    </div>
+                    <div id="JSONContainer" style="display: grid; font-size: 14px; font-weight: 400; padding-right: 26px;">
+                      <p id="eh" style="margin:0px; color:rgb(90,90,90)" [innerHTML]="">@{{item.members_username}}</p>
+                    </div>
+                  
+                  </div>
+
+                </div>
+              
+              </div>
 
               <div style="display: block; height:100px"></div>
 

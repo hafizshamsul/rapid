@@ -38,6 +38,7 @@ export class RoomnamePage implements OnInit {
   hiks: any = [];
   rooms: any[];
   currentrooms: any[];
+  members: any[];
   customers: any = [];
   tasks: any[];
 
@@ -120,6 +121,11 @@ export class RoomnamePage implements OnInit {
     currentroom_name:string;
     currentroom_description:string;
     currentroom_role:string;
+
+    members_id:number;
+    members_username:string;
+    members_displayname:string;
+    members_role:string;
 
     r_tblroom_id:any;
 
@@ -241,6 +247,13 @@ export class RoomnamePage implements OnInit {
       this.currentroom_name = data.currentroom_name;
       this.currentroom_description = data.currentroom_description;
       this.currentroom_role = data.currentroom_role;
+    });
+
+    this.actRoute.params.subscribe((data: any) =>{
+      this.members_id = data.members_id;
+      this.members_username = data.members_username;
+      this.members_displayname = data.members_displayname;
+      this.members_role = data.members_role;
     });
     
 
@@ -525,6 +538,9 @@ export class RoomnamePage implements OnInit {
     
     this.currentrooms = [];
     this.loadCurrentRoom(sessionStorage.getItem('users-id'), this.r_tblroom_id);
+
+    this.members = [];
+    this.loadMembers(this.r_tblroom_id);
 
     this.tasks = [];
     this.loadTask();
@@ -1099,6 +1115,21 @@ export class RoomnamePage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let currentroom of data.result){
           this.currentrooms.push(currentroom);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+  loadMembers(roomid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getmembers',
+        roomid : roomid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let member of data.result){
+          this.members.push(member);
         }
         resolve(true);
       });
