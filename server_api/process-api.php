@@ -1227,7 +1227,7 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
 
         $id_addroom = mysqli_insert_id($mysqli);
 
-        $query2 = mysqli_query($mysqli, "INSERT INTO roomusers(users_id, room_id, role) values(1,$id_addroom,'admin')");
+        $query2 = mysqli_query($mysqli, "INSERT INTO roomusers(users_id, room_id, role) values('$postjson[usersid]',$id_addroom,'admin')");
 
         if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
         else $result = json_encode(array('success'=>false));
