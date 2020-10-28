@@ -295,7 +295,7 @@ export class RoomPage implements OnInit {
    }
 
   ionViewWillEnter(){
-    
+    console.log('ENTER');
     
     this.current_users = [];
     this.loadCurrentUser(sessionStorage.getItem('users-username'));
@@ -313,7 +313,9 @@ export class RoomPage implements OnInit {
     this.loadFolderFile();
     
     this.rooms = [];
-    this.loadRoom();
+    this.loadRoom(sessionStorage.getItem('users-id'));
+
+    console.log("HEHE "+ sessionStorage.getItem('users-id'));
   }
 
   showFolder(folderfileid, folderfileicon){
@@ -326,10 +328,11 @@ export class RoomPage implements OnInit {
     this.isSelected = false;
   }
 
-  loadRoom(){
+  loadRoom(usersid){
     return new Promise(resolve => {
       let body = {
-        action : 'getroom'
+        action : 'getroom',
+        usersid : usersid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let room of data.result){
@@ -444,6 +447,10 @@ export class RoomPage implements OnInit {
     });
   }
 
+  ngOnDestroy(){
+    console.log('DESTROY');
+  }
+
   login(){
     //local-based authentication
     sessionStorage.setItem('users-id', 'null');
@@ -454,7 +461,8 @@ export class RoomPage implements OnInit {
     sessionStorage.setItem('users-dateregistered', 'null');
     sessionStorage.setItem('users-status', 'null');
 
-    this.router.navigate(['/loginform']);
+    //this.router.navigate(['/loginform']);
+    this.navCtrl.navigateRoot(['/loginform']);
   }
 
   toHome(){

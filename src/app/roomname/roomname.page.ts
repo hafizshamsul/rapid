@@ -487,7 +487,7 @@ export class RoomnamePage implements OnInit {
     this.loadFolderFile();
 
     this.rooms = [];
-    this.loadRoom();
+    this.loadRoom(sessionStorage.getItem('users-id'));
 
     this.tasks = [];
     this.loadTask();
@@ -1037,10 +1037,11 @@ export class RoomnamePage implements OnInit {
   }
 
 
-  loadRoom(){
+  loadRoom(usersid){
     return new Promise(resolve => {
       let body = {
-        action : 'getroom'
+        action : 'getroom',
+        usersid : usersid
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let room of data.result){
