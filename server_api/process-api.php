@@ -1241,6 +1241,25 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
     echo $result;
     }
 
+    elseif($postjson['action']=='getmembers'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT users.id, users.username, users.displayname, roomusers.role FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where roomusers.room_id = 1");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'members_id' => $row['id'],
+                'members_username' => $row['username'],
+                'members_displayname' => $row['displayname'],
+                'members_role' => $row['role']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    }
+
     elseif($postjson['action']=='addroom'){
         $data = array();
         $query = mysqli_query($mysqli, "INSERT INTO room SET name='$postjson[tblroom_name]', description='$postjson[tblroom_description]'");
