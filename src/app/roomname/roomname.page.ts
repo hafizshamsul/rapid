@@ -149,11 +149,13 @@ export class RoomnamePage implements OnInit {
       document.getElementById('postsVisible').style.display = 'block'; //active
       document.getElementById('docsVisible').style.display = 'none';
       document.getElementById('projsVisible').style.display = 'none';
+      document.getElementById('membsVisible').style.display = 'none';
 
       //menu
       document.getElementById('menuPosts').style.color = '#4b46b5'; //active
       document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
       document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuMembs').style.color = 'rgb(90,90,90)';
     }
 
     clickDocs(){
@@ -161,11 +163,13 @@ export class RoomnamePage implements OnInit {
       document.getElementById('docsVisible').style.display = 'block'; //active
       document.getElementById('projsVisible').style.display = 'none';
       document.getElementById('postsVisible').style.display = 'none';
+      document.getElementById('membsVisible').style.display = 'none';
 
       //menu
       document.getElementById('menuDocs').style.color = '#4b46b5'; //active
       document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
       document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuMembs').style.color = 'rgb(90,90,90)';
     }
 
     clickProjs(){
@@ -173,11 +177,27 @@ export class RoomnamePage implements OnInit {
       document.getElementById('projsVisible').style.display = 'block'; //active
       document.getElementById('docsVisible').style.display = 'none';
       document.getElementById('postsVisible').style.display = 'none';
+      document.getElementById('membsVisible').style.display = 'none';
       
       //menu
       document.getElementById('menuProjs').style.color = '#4b46b5'; //active
       document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
       document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuMembs').style.color = 'rgb(90,90,90)';
+    }
+
+    clickMembs(){
+      //tab
+      document.getElementById('membsVisible').style.display = 'block'; //active
+      document.getElementById('docsVisible').style.display = 'none';
+      document.getElementById('postsVisible').style.display = 'none';
+      document.getElementById('projsVisible').style.display = 'none';
+      
+      //menu
+      document.getElementById('menuMembs').style.color = '#4b46b5'; //active
+      document.getElementById('menuDocs').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuPosts').style.color = 'rgb(90,90,90)';
+      document.getElementById('menuProjs').style.color = 'rgb(90,90,90)';
     }
 
     editorStyle = {
