@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -13,6 +13,9 @@ import { MyNavService } from "../..//providers/mynavservice.service";
 import { Observable } from 'rxjs';
 
 import * as $ from 'jquery';
+import 'select2';
+//import { Select2 } from 'select2';
+
 import { LineUtil } from 'leaflet';
 import { stringify } from 'querystring';
 
@@ -26,9 +29,11 @@ import { ExecFileOptionsWithStringEncoding } from 'child_process';
   styleUrls: ['./roomname.page.scss'],
 })
 
+
+
 export class RoomnamePage implements OnInit {
 
-
+  
 
   r_username: string;
   r_folderid: string;
@@ -84,6 +89,7 @@ export class RoomnamePage implements OnInit {
     private actRoute: ActivatedRoute,
     //private document: DocumentViewer,
     private previewAnyFile: PreviewAnyFile,
+    //public select2: Select2,
     public myNavService: MyNavService,
     public alertCtrl: AlertController, private postprovider: PostProvider, private router: Router, private _IMAGES: ImagesProvider, private http: HttpClient) {
       
@@ -218,6 +224,7 @@ export class RoomnamePage implements OnInit {
       ]
     }
 
+  
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
@@ -225,11 +232,18 @@ export class RoomnamePage implements OnInit {
       'editor': new FormControl(null)
     });
 
+      
+
     //tab
     document.getElementById('postsVisible').style.display = 'block'; //active
     document.getElementById('docsVisible').style.display = 'none';
     document.getElementById('projsVisible').style.display = 'none';
+    document.getElementById('membsVisible').style.display = 'none';
     
+    $('#lol').select2({
+      placeholder: 'Select an option'
+    });
+
     console.log('refresh');
 
 
@@ -1429,6 +1443,8 @@ export class RoomnamePage implements OnInit {
       }, 1000);*/
     });
   }
+
+  
 
 }
 
