@@ -1243,7 +1243,7 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
 
     elseif($postjson['action']=='getmembers'){
         $data = array();
-        $query = mysqli_query($mysqli, "SELECT users.id, users.username, users.displayname, roomusers.role FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where roomusers.room_id = 1");
+        $query = mysqli_query($mysqli, "SELECT users.id, users.username, users.displayname, roomusers.role FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where roomusers.room_id = '$postjson[roomid]'");
 
         while($row = mysqli_fetch_array($query)){
             $data[] = array(
@@ -1251,6 +1251,26 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
                 'members_username' => $row['username'],
                 'members_displayname' => $row['displayname'],
                 'members_role' => $row['role']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    }
+
+    
+    elseif($postjson['action']=='getnonmembers'){
+        $data = array();
+        $query = mysqli_query($mysqli, "SELECT users.id, users.username, users.displayname, users.role from users where users.id not in (SELECT users.id FROM roomusers inner join room on roomusers.room_id = room.id inner join users on roomusers.users_id = users.id where roomusers.room_id = '$postjson[roomid]')");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'nonmembers_id' => $row['id'],
+                'nonmembers_username' => $row['username'],
+                'nonmembers_displayname' => $row['displayname'],
+                'nonmembers_role' => $row['role']
             );
         }
 
