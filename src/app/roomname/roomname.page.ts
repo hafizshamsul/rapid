@@ -33,7 +33,6 @@ import { ExecFileOptionsWithStringEncoding } from 'child_process';
 
 export class RoomnamePage implements OnInit {
 
-  
 
   r_username: string;
   r_folderid: string;
@@ -44,6 +43,7 @@ export class RoomnamePage implements OnInit {
   rooms: any[];
   currentrooms: any[];
   members: any[];
+  nonmembers: any[];
   customers: any = [];
   tasks: any[];
 
@@ -132,6 +132,11 @@ export class RoomnamePage implements OnInit {
     members_username:string;
     members_displayname:string;
     members_role:string;
+
+    nonmembers_id:number;
+    nonmembers_username:string;
+    nonmembers_displayname:string;
+    nonmembers_role:string;
 
     r_tblroom_id:any;
 
@@ -224,7 +229,9 @@ export class RoomnamePage implements OnInit {
       ]
     }
 
-  
+hop:any;
+
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
@@ -240,11 +247,14 @@ export class RoomnamePage implements OnInit {
     document.getElementById('projsVisible').style.display = 'none';
     document.getElementById('membsVisible').style.display = 'none';
     
-    $('#lol').select2({
-      placeholder: 'Select an option'
+    $('#selectmember').select2({
+      placeholder: "Add room members..",
     });
 
-    console.log('refresh');
+    $('#selectmember').on('select2:select', function (e) {
+      var data = e.params.data;
+      console.log(data);
+    });
 
 
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
@@ -268,6 +278,13 @@ export class RoomnamePage implements OnInit {
       this.members_username = data.members_username;
       this.members_displayname = data.members_displayname;
       this.members_role = data.members_role;
+    });
+    
+    this.actRoute.params.subscribe((data: any) =>{
+      this.nonmembers_id = data.nonmembers_id;
+      this.nonmembers_username = data.nonmembers_username;
+      this.nonmembers_displayname = data.nonmembers_displayname;
+      this.nonmembers_role = data.nonmembers_role;
     });
     
 
@@ -555,6 +572,9 @@ export class RoomnamePage implements OnInit {
 
     this.members = [];
     this.loadMembers(this.r_tblroom_id);
+
+    this.nonmembers = [];
+    this.loadNonMembers(this.r_tblroom_id);
 
     this.tasks = [];
     this.loadTask();
@@ -1144,6 +1164,21 @@ export class RoomnamePage implements OnInit {
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let member of data.result){
           this.members.push(member);
+        }
+        resolve(true);
+      });
+    });
+  }
+
+  loadNonMembers(roomid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'getnonmembers',
+        roomid : roomid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        for(let nonmember of data.result){
+          this.nonmembers.push(nonmember);
         }
         resolve(true);
       });

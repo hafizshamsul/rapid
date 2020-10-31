@@ -577,10 +577,21 @@
 
               <div id="membsVisible">
               
-                  <select id="lol" style="width: 100%">
-                    <option *ngFor="let item of members" value="item.members_id">{{item.members_displayname}}</option>
-                  </select>
-               
+                <div style="display:grid; grid-template-columns: auto 50px; padding: 10px;">
+                  <div style="padding: 8px 8px">
+                    <select id="selectmember" style="width: 100%">
+                      <option></option>
+                      <option *ngFor="let item of nonmembers" [value]="item.nonmembers_id">{{item.nonmembers_displayname}}</option>
+                    </select>
+                  </div>
+                  <div>
+                    <ion-button style="width:100%">+</ion-button>
+                  </div>
+                  
+                </div>
+                  
+
+                  
 
                 <div *ngFor="let item of members" style="display: grid; grid-template-columns: 66px auto; border-bottom:1px solid rgb(240,240,240); padding: 3px 5px 9px 5px">
                   <div style="padding: 8px 10px 8px 10px">
