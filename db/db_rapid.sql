@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 07:08 PM
+-- Generation Time: Nov 02, 2020 at 02:40 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -400,7 +400,17 @@ INSERT INTO `room` (`id`, `name`, `description`) VALUES
 (4, 'IT Project Management', 'lol'),
 (5, 'Software Testing', 'lol'),
 (17, 'efref', 'erferferf'),
-(18, 'dede', 'deded');
+(18, 'dede', 'deded'),
+(19, 'a', 'a'),
+(20, 'b', 'b'),
+(21, 'c', 'c'),
+(22, 'gt', 'gt'),
+(23, 'grp amin', 'grp amin'),
+(24, 'grp hafiz', 'grp hafiz'),
+(25, 'group amin', 'group amin'),
+(26, 'grp amin 2', 'grp amin 2'),
+(27, 'grp amin 3', 'grp amin 3'),
+(28, 'Grp amin 4', 'Grp amin 4');
 
 -- --------------------------------------------------------
 
@@ -420,7 +430,27 @@ CREATE TABLE `roomusers` (
 --
 
 INSERT INTO `roomusers` (`id`, `users_id`, `room_id`, `role`) VALUES
-(1, 1, 1, 'admin');
+(1, 1, 1, 'admin'),
+(2, 1, 2, 'admin'),
+(3, 1, 3, 'admin'),
+(4, 1, 4, 'admin'),
+(5, 1, 5, 'admin'),
+(6, 1, 17, 'admin'),
+(7, 1, 18, 'admin'),
+(8, 1, 19, 'admin'),
+(9, 1, 20, 'admin'),
+(10, 1, 21, 'admin'),
+(11, 1, 22, 'admin'),
+(12, 1, 23, 'admin'),
+(13, 1, 24, 'admin'),
+(14, 2, 25, 'admin'),
+(15, 2, 26, 'admin'),
+(16, 2, 27, 'admin'),
+(17, 2, 28, 'admin'),
+(18, 2, 1, 'member'),
+(19, 4, 1, 'member'),
+(20, 6, 1, 'member'),
+(22, 2, 2, 'member');
 
 -- --------------------------------------------------------
 
@@ -774,13 +804,13 @@ ALTER TABLE `master_customer`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `roomusers`
 --
 ALTER TABLE `roomusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `student`
