@@ -351,8 +351,9 @@
                   Rooms > {{item.currentroom_name}}
                 </div>
 
-                <div style="display: grid;place-items: center;">
-                  <div *ngFor="let item of currentrooms" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#c0d6fa">{{item.currentroom_role}}</div>
+                <div *ngFor="let item of currentrooms" style="padding-left:8px; display: grid;place-items: center;">
+                  <div *ngIf="item.currentroom_role=='admin'" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#d3e1f8">{{item.currentroom_role}}</div>
+                  <div *ngIf="item.currentroom_role=='member'" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 600; color: #808080; background:#ebebeb">{{item.currentroom_role}}</div>
                 </div>
 
                 <div>
@@ -585,7 +586,7 @@
                     </select>
                   </div>
                   <div>
-                    <ion-button style="width:100%">+</ion-button>
+                    <ion-button (click)="displayAddedMemberId()" style="width:100%">+</ion-button>
                   </div>
                   
                 </div>
@@ -599,11 +600,12 @@
                   </div>
                   
                   <div style="padding: 9px 4px 9px 5px; color:rgb(60,60,60); line-height:1.3125">
-                    <div style="display: grid; grid-template-columns: auto auto auto 1fr 28px 28px; font-size: 14px; font-weight: 600; margin-bottom:0px">
+                    <div style="display: grid;place-items: center; grid-template-columns: auto auto auto 1fr 28px 28px; font-size: 14px; font-weight: 600; margin-bottom:0px">
                       <div >{{item.members_displayname}}</div>
                       
-                      <div style="padding-left: 4px;">
-                        <div style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#c0d6fa">{{item.members_role}}</div>
+                      <div style="padding-left: 8px;">
+                        <div *ngIf="item.members_role=='admin'" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 700; color: #1973fd; background:#d3e1f8">{{item.members_role}}</div>
+                        <div *ngIf="item.members_role=='member'" style="text-transform:uppercase;width:fit-content; padding:2px 5px; border-radius: 3px; font-size: 8px; font-weight: 600; color: #808080; background:#ebebeb">{{item.members_role}}</div>
                       </div>
                       
                       <div style="color:rgb(120,120,120); font-weight: 400; padding-left: 6px;"></div>
