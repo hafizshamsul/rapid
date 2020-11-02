@@ -22,6 +22,7 @@ import { stringify } from 'querystring';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { ExecFileOptionsWithStringEncoding } from 'child_process';
+import { distinct } from 'rxjs/operators';
 
 @Component({
   selector: 'app-roomname',
@@ -231,6 +232,32 @@ export class RoomnamePage implements OnInit {
 
 hop:any;
 
+    doto:any;
+
+  displayAddedMemberId(){
+    var a = $("#selectmember").val();
+    console.log(a);
+    this.addRoom(a);
+    
+  }
+
+  addRoom(users_id){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addroomusers',
+        users_id : users_id,
+        room_id : this.r_tblroom_id
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        resolve(true);
+      });
+
+      setTimeout(()=>{
+        this.navCtrl.navigateRoot(['r/room/']);
+      },240);
+      
+    });
+  }
 
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
@@ -251,10 +278,12 @@ hop:any;
       placeholder: "Add room members..",
     });
 
+    /*
     $('#selectmember').on('select2:select', function (e) {
       var data = e.params.data;
-      console.log(data);
-    });
+      var diti = e.params.data.id;
+      console.log(diti);
+    });*/
 
 
     this.r_username = this.actRoute.snapshot.paramMap.get('r_username');
