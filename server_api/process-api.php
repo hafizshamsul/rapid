@@ -32,7 +32,7 @@
     }
 
     elseif($postjson['action'] == 'adduser'){
-        $query = mysqli_query($mysqli, "insert into users(username, passwordhash) values('$postjson[username]','$postjson[password]')");
+        $query = mysqli_query($mysqli, "insert into users(username, passwordhash, displayname, role, status) values('$postjson[username]','$postjson[password]', '$postjson[username]', 'User', 'Active')");
 
         $id = mysqli_insert_id($mysqli);
 

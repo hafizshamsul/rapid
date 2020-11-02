@@ -54,8 +54,8 @@ export class RegisterformPage implements OnInit {
     return new Promise(resolve => {
       let body = {
         action: 'adduser',
-        username: this.username,
-        password: this.password,
+        username: this.logusername,
+        password: this.logpassword,
       };
 
       this.postprovider.postData(body, 'process-api.php').subscribe(data=>{
