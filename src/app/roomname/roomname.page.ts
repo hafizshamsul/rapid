@@ -294,6 +294,40 @@ hop:any;
     });
   }
 
+  //ACTION FOR DELETING TASK
+  deletetask(){
+    //console.log('id: '+this.selectedid+', name: '+this.selectedname);
+
+    //this.deletetask_impl(taskid);
+
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    //this.CDpopup = false;
+    //this.UDpopup = false;
+
+    //this.popuprename = 'Untitled';
+    //this.currparent = '0';
+  }
+
+  deletetask_impl(taskid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deletetask',
+        taskid : taskid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
+        resolve(true);
+      });
+
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
+    });
+  }
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
