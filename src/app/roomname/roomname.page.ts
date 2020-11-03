@@ -102,6 +102,7 @@ export class RoomnamePage implements OnInit {
     post_users_id: number;
     replyto: number;
     post_username: string;
+    post_displayname: string;
     post_dateuploaded: string;
     vote: number;
 
@@ -485,6 +486,7 @@ hop:any;
       this.textcmt = data.textcmt;
       this.replyto = data.replyto;
       this.post_username = data.username;
+      this.post_displayname = data.displayname;
       this.post_dateuploaded = data.dateuploaded;
       this.vote = data.vote;
       //this.thread = data.thread;
@@ -779,8 +781,18 @@ hop:any;
     this.router.navigate(['/file']);
   }
 
-  loginform(){
-    this.router.navigate(['/loginform']);
+  login(){
+    //local-based authentication
+    sessionStorage.setItem('users-id', 'null');
+    sessionStorage.setItem('users-username', 'null');
+    sessionStorage.setItem('users-passwordhash', 'null');
+    sessionStorage.setItem('users-displayname', 'null');
+    sessionStorage.setItem('users-role', 'null');
+    sessionStorage.setItem('users-dateregistered', 'null');
+    sessionStorage.setItem('users-status', 'null');
+
+    //this.router.navigate(['/loginform']);
+    this.navCtrl.navigateRoot(['/loginform']);
   }
 
   doRefresh(event){

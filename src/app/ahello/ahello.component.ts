@@ -42,6 +42,7 @@ export class AhelloComponent implements OnInit {
       "link": "toHome()"
     },
     
+    /*
     {
       "name": "folder",
       "label": "Documents",
@@ -49,6 +50,8 @@ export class AhelloComponent implements OnInit {
       "iconcurr": "bx bxs-folder",
       "link": "toSubmitpostS()"
     },
+    */
+    
     {
       "name": "bookmark",
       "label": "Bookmarks",
@@ -58,7 +61,7 @@ export class AhelloComponent implements OnInit {
     },
     {
       "name": "activity",
-      "label": "Projects",
+      "label": "Tasks",
       "icon": "bx bx-list-plus",
       "iconcurr": "bx bx-list-plus",
       "link": "toSubmitpostS()"
