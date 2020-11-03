@@ -526,9 +526,16 @@
                     {{item.taskname}}
                   </div>
 
-                  <div (click)="showid(item.taskid, item.taskname)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
-                    <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px;"></div>
+                  <!--
+                    <div (click)="showid(item.taskid, item.taskname)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
+                      <div class='bx bx-dots-horizontal-rounded' style="color:rgb(160,160,160); font-size: 20px;"></div>
+                    </div>
+                  -->
+
+                  <div (click)="deletetask_impl(item.taskid)" style="text-align:center;display: grid; align-items: center; cursor: pointer;">
+                    <div id="trash" class='bx bx-trash' style="font-size: 20px;"></div>
                   </div>
+                  
                 </div>
 
               </div>
