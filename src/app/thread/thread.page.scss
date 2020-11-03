@@ -107,10 +107,9 @@
     }
 }
 
-
 #headertitle{
   display: grid;
-  grid-template-columns: 10px auto;
+  grid-template-columns: auto;
 
   @media (max-width: 576px) {
     display: none;
@@ -134,26 +133,26 @@
 
 #inputsearch::-webkit-input-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:var(--searchph);
 }
 
 #inputsearch:-ms-input-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:var(--searchph);
 }
 
 #inputsearch:-moz-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:var(--searchph);
 }
 
 #inputsearch::-moz-placeholder {
   font-family: 'Inter';
-  font-size: 14px;
-  color:rgb(180,180,180);
+  font-size: 13px;
+  color:var(--searchph);
 }
 
 
@@ -222,3 +221,5 @@
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
   }
+
+  

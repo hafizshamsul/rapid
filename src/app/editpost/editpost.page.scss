@@ -169,3 +169,59 @@ ion-content{
     display: grid;
     grid-template-columns: 34px auto;
   }
+
+  #toolbarborder{
+    border-bottom: 1px solid rgb(240,240,240);
+    
+    @media (max-width: 576px) {
+      border-bottom: none;
+    }
+  }
+
+  #searchnav{
+    grid-template-columns: 278px auto 34px;
+  
+      @media (max-width: 576px) {
+          grid-template-columns: 34px auto 34px;
+      }
+  }
+
+  #headertitle{
+    display: grid;
+    grid-template-columns: auto;
+  
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+
+  #inputsearch{
+
+  }
+  #inputsearch:focus{
+    outline: none;
+  }
+  
+  #inputsearch::-webkit-input-placeholder {
+    font-family: 'Inter';
+    font-size: 13px;
+    color:var(--searchph);
+  }
+  
+  #inputsearch:-ms-input-placeholder {
+    font-family: 'Inter';
+    font-size: 13px;
+    color:var(--searchph);
+  }
+  
+  #inputsearch:-moz-placeholder {
+    font-family: 'Inter';
+    font-size: 13px;
+    color:var(--searchph);
+  }
+  
+  #inputsearch::-moz-placeholder {
+    font-family: 'Inter';
+    font-size: 13px;
+    color:var(--searchph);
+  }
