@@ -95,6 +95,42 @@ export class Admin_userPage implements OnInit {
     console.log('ngOnDestroy folder');
   }
 
+  ActivateUser(id_users){
+    return new Promise(resolve => {
+      let body = {
+        action : 'activateuser',
+        id_users : id_users
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+        resolve(true);
+      });
+
+      setTimeout(()=>{
+        this.ionViewWillEnter();
+      }, 240);
+
+    });
+  }
+
+  DeactivateUser(id_users){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deactivateuser',
+        id_users : id_users
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        
+        resolve(true);
+      });
+
+      setTimeout(()=>{
+        this.ionViewWillEnter();
+      }, 240);
+      
+    });
+  }
+
   ngOnInit() {
     console.log(this.comments);
     
