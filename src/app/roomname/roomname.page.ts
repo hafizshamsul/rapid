@@ -350,6 +350,8 @@ hop:any;
     });
   }
 
+  currentuserid:any = sessionStorage.getItem('users-id');
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
@@ -478,7 +480,7 @@ hop:any;
 
     this.actRoute.params.subscribe((data: any) =>{
       this.commentid = data.commentid;
-      this.users_id = data.users_id;
+      this.post_users_id = data.users_id;
       this.title = data.title;
       this.textcmt = data.textcmt;
       this.replyto = data.replyto;

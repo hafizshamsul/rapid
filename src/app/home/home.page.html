@@ -150,11 +150,11 @@
                 </div>
 
                 <div>
-                  <div id="edit" class="fas fa-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="font-size: 14px;float: right;" alt="Edit post"></div>
+                  <div *ngIf="item.users_id == currentuserid" id="edit" class="fas fa-edit" (click)="toEdit(item.commentid, item.title, item.textcmt)" style="font-size: 14px;float: right;" alt="Edit post"></div>
                 </div>
 
                 <div>
-                    <div id="trash" class="far fa-trash-alt" (click)="presentAlertMultipleButtons(item.commentid)" style="font-size: 14px;float: right;" alt="Delete post"></div>
+                    <div *ngIf="item.users_id == currentuserid" id="trash" class="far fa-trash-alt" (click)="presentAlertMultipleButtons(item.commentid)" style="font-size: 14px;float: right;" alt="Delete post"></div>
                 </div>
                 
                 

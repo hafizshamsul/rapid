@@ -217,6 +217,7 @@ listoso:any[];
     //console.log(index);
   }
 
+  currentuserid:any = sessionStorage.getItem('users-id');
 
   ngOnInit() {
     //let usernamest = localStorage.getItem('username');

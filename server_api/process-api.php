@@ -570,7 +570,7 @@
 
             $data[] = array(
                 'commentid' => $row['id'],
-                'users_id' => $row['users_id'],
+                'post_users_id' => $row['users_id'],
                 'title' => $row['title'],
                 'textcmt' => $row['textcmt'],
                 'replyto' => $row['replyto'],
