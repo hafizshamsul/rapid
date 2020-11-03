@@ -252,9 +252,13 @@ hop:any;
         resolve(true);
       });
 
-      setTimeout(()=>{
+      /*setTimeout(()=>{
         this.navCtrl.navigateRoot(['r/room/']);
-      },240);
+      },240);*/
+
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
       
     });
   }
@@ -316,6 +320,24 @@ hop:any;
       let body = {
         action : 'deletetask',
         taskid : taskid
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
+        resolve(true);
+      });
+
+      setTimeout(()=>{
+        this.ionViewDidEnter();
+      }, 240);
+    });
+  }
+
+  deletemember_impl(memberid, roomid){
+    return new Promise(resolve => {
+      let body = {
+        action : 'deleteroommember',
+        memberid : memberid,
+        roomid : this.r_tblroom_id
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         //this.deletelist = data;

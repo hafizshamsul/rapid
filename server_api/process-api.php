@@ -931,6 +931,17 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
     
     }
 
+    elseif($postjson['action']=='deleteroommember'){
+        $data = array();
+        $query = mysqli_query($mysqli, "delete from roomusers where users_id = '$postjson[memberid]' and room_id = '$postjson[roomid]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+        else $result = json_encode(array('success'=>false));
+        
+        echo $result;
+    
+    }
+
     elseif($postjson['action']=='getusers'){
         $data = array();
         $query = mysqli_query($mysqli, "select * from users");
