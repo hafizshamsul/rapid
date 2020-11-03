@@ -740,6 +740,26 @@
     
     }
 
+    elseif($postjson['action']=='gettaskroom'){
+        $data = array();
+        $query = mysqli_query($mysqli, "select * from task where room_id = '$postjson[room_id]'");
+
+        while($row = mysqli_fetch_array($query)){
+            $data[] = array(
+                'taskid' => $row['id'],
+                'taskname' => $row['name'],
+                'taskstart' => $row['start'],
+                'taskend' => $row['end']
+            );
+        }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
     elseif($postjson['action']=='addbookmark'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into bookmark set folderfile_id = '$postjson[folderfile_id]', users_id = '$postjson[users_id]'");
@@ -755,6 +775,18 @@
     elseif($postjson['action']=='addtask'){
         $data = array();
         $query = mysqli_query($mysqli, "insert into task set name = '$postjson[task_name]'");
+    
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    
+    echo $result;
+    
+    }
+
+    elseif($postjson['action']=='addtaskroom'){
+        $data = array();
+        $query = mysqli_query($mysqli, "insert into task set name = '$postjson[task_name]', room_id = '$postjson[room_id]'");
     
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
