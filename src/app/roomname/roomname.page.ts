@@ -259,6 +259,41 @@ hop:any;
     });
   }
 
+  task_name:any;
+
+  //ACTION FOR ADDING TASK
+  addtask(){
+    event.cancelBubble = true;
+    if(event.stopPropagation) event.stopPropagation();
+    
+    //console.log('id: '+this.selectedid+', name: '+this.selectedname);
+    console.log(this.task_name);
+
+    this.addtask_impl(this.task_name);
+
+    setTimeout(()=>{
+      this.ionViewDidEnter();
+    }, 240);
+
+    this.UDpopup = false;
+
+    this.task_name = '';
+  }
+
+  addtask_impl(task_name){
+    return new Promise(resolve => {
+      let body = {
+        action : 'addtaskroom',
+        task_name : task_name,
+        room_id : this.r_tblroom_id
+      };
+      this.postprovider.postData(body, 'process-api.php').subscribe(data => {
+        //this.deletelist = data;
+        resolve(true);
+      });
+    });
+  }
+
   ngOnInit() {
     this.r_tblroom_id = this.actRoute.snapshot.paramMap.get('r_tblroom_id');
 
@@ -839,7 +874,8 @@ hop:any;
   loadTask(){
     return new Promise(resolve => {
       let body = {
-        action : 'gettask'
+        action : 'gettaskroom',
+        room_id : this.r_tblroom_id
       };
       this.postprovider.postData(body, 'process-api.php').subscribe(data => {
         for(let task of data.result){

@@ -499,6 +499,16 @@
               </div>
 
               <div id="projsVisible">
+                
+                <div style="display: grid; grid-template-columns: auto 30px;padding: 0 26px 0 18px">
+                  <div>
+                    <ion-input [(ngModel)]="task_name" placeholder="Task name"></ion-input>
+                  </div>
+                  <div>
+                    <ion-button (click)="addtask()">+</ion-button>
+                  </div>
+                </div>
+                
                 <div id="listgrandparent" *ngFor="let item of listosotask" style="margin:0px auto; display:block;  background: white; border-radius: 8px;">
     
                 <div style="cursor:pointer; display: grid; grid-template-columns: 24px auto 60px; height:50px; align-items: center;padding-left: 10px; margin: 6px 0; ">
