@@ -1369,6 +1369,27 @@ $query = mysqli_query($mysqli, "insert into folderfile set name = '$postjson[nam
     echo $result;
     
     }
+
+    elseif($postjson['action']=='activateuser'){
+        $query = mysqli_query($mysqli, "UPDATE users set status = 'Active' where id = '$postjson[id_users]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+        else $result = json_encode(array('success'=>false, 'result'=>'error'));
+        
+        echo $result;
+    
+    }
+
+    elseif($postjson['action']=='deactivateuser'){
+        $query = mysqli_query($mysqli, "UPDATE users set status = 'Inactive' where id = '$postjson[id_users]'");
+
+        if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+        else $result = json_encode(array('success'=>false, 'result'=>'error'));
+        
+        echo $result;
+    
+    }
+
     elseif($postjson['action']=='update'){
         $query = mysqli_query($mysqli, "UPDATE master_customer SET
         name_customer='$postjson[name_customer]',
