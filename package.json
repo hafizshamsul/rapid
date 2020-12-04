@@ -63,7 +63,7 @@
     "express": "^4.17.1",
     "feather-icons": "^4.28.0",
     "flatpickr": "^4.6.3",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "ionic-angular": "^3.9.9",
     "ionic-custom-bottom-sheet": "^2.0.7",
     "leaflet": "^1.6.0",
